@@ -27,6 +27,10 @@ loopn
 repn
 sald/sard
 broadcast/vvbroadcast
+pmovsx/pmovzx
+vbroadcast
+vfnmaddsub213pd
+
 
  ;not in intel documentation
 retf
@@ -122,17 +126,47 @@ wrfsbase/wrgsbase
 rep/repe/repz/repne/repnz
 sal/shl/shld
 sar/shr/shrd
-vbroadcast
 vcvtph2ps/vcvtps2ph
 vmovupd
+pmovsxbd/pmovsxbq/pmovsxbw
+pmovsxwd/pmovsxwq
+pmovsxdq
+pmovzxbd/pmovzxbq/pmovzxbw
+pmovzxwq/pmovzxwd
+pmovzxdq
+stmxcsr
 
 getsec
+
 
 ;amd
 bextr
 prefetch/prefetchw
 skinit
 stgi
+extrq
+insertq
+vbroadcastf128/vbroadcastsd/vbroadcastss
+vfmaddpd/vfmadd132pd/vfmadd213pd/vfmadd231pd
+vfnmaddpd/vfnmadd132pd/vfnmadd213pd/vfnmadd231pd
+vfrczpd
+vpcmov
+vpcomq
+vpermil2pd
+vpmacsdd
+vpmacssdd
+vpmacsdql
+vpmacssdql
+vpmacsdqh
+vpmacssdqh
+vpmacsww
+vpmacssww
+vpmacswd
+vpmacsswd
+vpmadcswd
+vpmadcsswd
+vpperm
+vprotb
 
 
 
