@@ -4,6 +4,7 @@ r8|r9|r10|r11|r12|r13|r14|r15|r8b|r9b|r10b|r11b|r12b|r13b|r14b|r15b|r8w|r9w|r10w
 eip|eax|ebx|ecx|edx|edi|esi|ebp|esp|ax|bx|cx|dx|di|si|bp|sp|ah|al|bh|bl|ch|cl|dh|dl|ax|bx|cx|dx|cs|ds|ss|es|fs|gs|cr0|cr2|cr3|db0|db1|db2|db3|db6|db7|tr6|tr7|st
 
 ;should be invalid
+cwdqo
 fiaddp
 cmovnpo/cmovpos
 fucomipp
@@ -28,7 +29,6 @@ sald/sard
 broadcast/vvbroadcast
 
  ;not in intel documentation
-loopz/loopnz
 retf
 
 
@@ -70,6 +70,7 @@ ja|jae|jb|jbe|jc|jcxz|je|jecxz|jg|jge|jl|jle|jmp|jna|jnae|jnb|jnbe|jnc|jne|jng|j
 lds/les/lfs/lgs/lss
 lgdt/lidt
 lldt
+loopz/loopnz
 vmaxpd/vmaxps/maxpd/maxps
 vmovapd
 movbe
@@ -115,6 +116,7 @@ psubsb/psubsw
 psubusb/psubusw
 punpckhbw/punpckhwd/punpckhdq/punpckhqdq
 punpcklbw/punpcklwd/punpckldq/punpcklqdq
+pushf/pushfd/pushfq
 rdfsbase/rdgsbase
 wrfsbase/wrgsbase
 rep/repe/repz/repne/repnz
@@ -122,6 +124,17 @@ sal/shl/shld
 sar/shr/shrd
 vbroadcast
 vcvtph2ps/vcvtps2ph
+vmovupd
+
+getsec
+
+;amd
+bextr
+prefetch/prefetchw
+skinit
+stgi
+
+
 
 stosb
 icebp
