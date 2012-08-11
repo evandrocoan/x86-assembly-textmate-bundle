@@ -167,18 +167,16 @@ vpmadcswd
 vpmadcsswd
 vpperm
 vprotb
+femms
+pf2id
+pfrcp/pfrcpit1/pfrcpit2
+pi2fd/pi2fw
+pavgusb
+pmulhrw
+pswapd
 
-
-
+;undocumented
 stosb
 icebp
 int1
 smi
-
-;sse
-movdqu	xmm0, [vec]
-movhlps	xmm1, xmm0
-punpcklbw xmm0, xmm1
-movhlps	xmm1, xmm0
-punpcklbw xmm0, xmm1
-movdqu	[vec], xmm0
