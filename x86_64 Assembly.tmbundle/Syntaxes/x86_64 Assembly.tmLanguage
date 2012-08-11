@@ -244,37 +244,25 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(aaa|aad|aam|aas|adc|add|and|arpl|bound|bsf|bsr|bswap|bt|btc|btr|bts|call|cbw|cdq|cdqo|cdqe|cl(c|d|i|ts)|cmc|cmp|cmps[bwdq]?|cmpxchg((8|16)b)?|cpuid|cqo|cwd|cwde|daa|das|dec|div|emms|enter|esc|hlt|idiv|imul|in|inc|ins[bwd]?|int|into|inv(d|lpg|pcid)|iretd?|jmp|lahf|lar|lds|les|lfs|lgs|lss|lea|leave|lfence|l[gil]dt|lmsw|lock|lods[bwdq]?|loopn?[ez]?|lsl|lss|ltr|mov|movs|movsx|movzx|mul|near|neg|nop|not|or|out|outs|pop|popa|popad|popf|popfd|push|pusha|pushad|pushf|pushfd|rcl|rcr|rep|repe|repz|repne|repnz|ret|retf|rol|ror|sahf|sal|sar|sbb|scas|section|setae|setnb|setb|setnae|setbe|setna|sete|setz|setne|setnz|setl|setnge|setge|setng|setle|setng|setg|setnle|sets|setns|setc|setnc|seto|setno|setp|setpe|setnp|setpo|sgdt|sidt|shl|shld|shr|shrd|sldt|smsw|stc|std|sti|stos|str|sub|test|verr|verw|wait|fwait|wbinvd|xchg|xlat|xlatb|xor|syscall)\b</string>	
+			<string>\b(aaa|aad|aam|aas|adc|add|and|arpl|bound|bsf|bsr|bswap|bt|btc|btr|bts|call|cbw|cdq|cdqo|cdqe|cl(c|d|i|ts)|cmc|cmp|cmps[bwdq]?|cmpxchg((8|16)b)?|cpuid|cqo|cwd|cwde|daa|das|dec|div|emms|enter|esc|hlt|idiv|imul|in|inc|ins[bwd]?|int|into|inv(d|lpg|pcid)|iretd?|jmp|lahf|lar|lds|les|lfs|lgs|lss|lea|leave|[lms]fence|[ls][gil]dt|lmsw|lock|lods[bwdq]?|loop(n?[ez])?|lsl|lss|ltr|monitor|mov(be|d|q|dq2q|nti|ntq|q2dq|s[bwdqx]?|sxd|zx)|mul|neg|nop|not|or|out|outs[bwd]?|pause|(pop|push)(a|ad|f|fd|fq)?|popcnt|prefetch(nta|t[012])|rcl|rcr|rol|ror|(rd|wr)[fg]sbase|(rd|wr)msr|rdpmc|rdrand|rdtscp?|rep(n?[ez])?|retf?|rsm|sahf|s[ah][lr]|sbb|scas[bwd]|sh[lr]d|smsw|st[cdi]|stos[bwdq]|str|sub|swapgs|sys(call|ret|enter|exit)|test|ud2|vbroadcast|vcvtph2ps|vcvtps2ph|ver[rw]|v(extract|insert|perm2)f128|vzero(all|upper)|[fm]?wait|wbinvd|xadd|xchg|xgetbv|xlatb?|xor|xrstor|xsave(opt)?|xsetbv)\b</string>	
 			<key>name</key>
 			<string>keyword.mnemonic32</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(f(2xm1|abs|add|addp|iadd|bld|bstp|chs|n?clex|cmovn?(b|e|be|u)|(u?comi?)p?|u?compp|cos|decstp|divr?p?|idivr?|free|icomp?|ild|incstp|n?init|ist(p|tp)?|ld(1|l2t|l2e|pi|lg2|ln2|z|cw|env)?|imul|mulp?|nop|p(atan|rem1?|tan)|rndint|rstor|n?save|scale|sin(cos)?|sqrt|stp?|n?st(cw|env|sw)|subr?p?|isubr?|tst|xam|xch|xrstor|xsave|xtract|yl2x(p1)?))\b</string>	
+			<string>\b((v)?(aesdec|aesdeclast|aesenc|aesenclast|aesimc|aeskeygenassist|clflush|crc32|cvtpd2(dq|pi|ps)|cvtps2(dq|pd|pi)|cvtsd2(si|ss)|cvtss2(sd|si)|cvtt(pd|ps)2(dq|pi)|cvtt(sd|ss)2si|extractps|insertps|ld(dqu|mxcsr)|maskmov(dqu|q)|mov((d|sh|hl)dup|dqa|dqu|hlps|lhps|ntdqa?|s[ds])|mpsadbw|pabs[bwd]|pack(s|u)s(wb|dw)|padd([bwdq]|u?s(b|w))|palignr|pandn?|pavg[bw]|pblend(vb|w)|pclmulqdq|pcmp((eq|gt)[bwdq]|[ei]str[im])|pextr[bwdq]|phadd(w|d|sw)|phminposuw|phsub(w|d|sw)|pinsr[bwdq]|pmadd(ubsw|wd)|p(max|min)[su][bdw]|pmov(mskb|sx|zx)|pmul(dq|hrsw|hu?w|ld|lw|udq)|por|psadbw|pshuf[bdw]|pshuf[hl]w|psign[bwd]|ps[lr]l(dq|w|d|q)|psra[wd]|psub([bwdq]|u?s[bw])|ptest|punpck[hl](bw|wd|dq|qdq)|pxor|rcp[ps]s|rsqrt[ps]s|ucomis[ds]))\b</string>	
 			<key>name</key>
-			<string>keyword.mnemonic32fpu</string>
+			<string>keyword.mnemonic64vex</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(cmov((n?(a|ae|b|be|c|e|g|ge|l|le|o|p|s|z))|(pe|po)))\b</string>	
-			<key>name</key>
-			<string>keyword.mnemonic64movcc</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>\b(j((n?(a|ae|b|be|c|e|g|ge|l|le|o|p|s|z))|(cxz|ecxz|rcxz|pe|po)))\b</string>	
-			<key>name</key>
-			<string>keyword.mnemonic64jcc</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>\b((v)?(add|cmp|div)[ps][ds])\b</string>	
+			<string>\b((v)?(add|cmp|div|max|min|mul|round|sqrt|sub)[ps][ds])\b</string>	
 			<key>name</key>
 			<string>keyword.mnemonic64vex_pd_ps_sd_ss</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b((v)?(addsub|and|andn|blend|blendv|clflush|cmppd|cmpps|cmpsd|cmpss|cvt(dq|pi)2|dp|hadd|hsub)p[ds])\b</string>	
+			<string>\b((v)?(addsub|and|andn|blend|blendv|clflush|cmppd|cmpps|cmpsd|cmpss|cvt(dq|pi)2|dp|hadd|hsub|mov(a|h|l|msk|nt|u)|or|shuf|unpck[hl]|xor)p[ds])\b</string>	
 			<key>name</key>
 			<string>keyword.mnemonic64vex_pd_ps</string>
 		</dict>
@@ -286,9 +274,27 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b((v)?(aesdec|aesdeclast|aesenc|aesenclast|aesimc|aeskeygenassist|clflush|crc32|cvtpd2(dq|pi|ps)|cvtps2(dq|pd|pi)|cvtsd2(si|ss)|cvtss2(sd|si)|cvtt(pd|ps)2(dq|pi)|cvtt(sd|ss)2si|extractps|insertps|ld(dqu|mxcsr)|maskmov(dqu|q)))\b</string>	
+			<string>\b(v(maskmov|permil|test)p[ds])\b</string>	
 			<key>name</key>
-			<string>keyword.mnemonic64vex</string>
+			<string>keyword.mnemonic64_pd_ps</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\b((cmov|set)((n?(a|ae|b|be|c|e|g|ge|l|le|o|p|s|z))|(pe|po)))\b</string>	
+			<key>name</key>
+			<string>keyword.mnemonic64cmov_set_cc</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\b(j((n?(a|ae|b|be|c|e|g|ge|l|le|o|p|s|z))|(cxz|ecxz|rcxz|pe|po)))\b</string>	
+			<key>name</key>
+			<string>keyword.mnemonic64jcc</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\b(f(2xm1|abs|add|addp|iadd|bld|bstp|chs|n?clex|cmovn?(b|e|be|u)|(u?comi?)p?|u?compp|cos|decstp|divr?p?|idivr?|free|icomp?|ild|incstp|n?init|ist(p|tp)?|ld(1|l2t|l2e|pi|lg2|ln2|z|cw|env)?|imul|mulp?|nop|p(atan|rem1?|tan)|rndint|rstor|n?save|scale|sin(cos)?|sqrt|stp?|n?st(cw|env|sw)|subr?p?|isubr?|tst|xam|xch|xrstor|xsave|xtract|yl2x(p1)?))\b</string>	
+			<key>name</key>
+			<string>keyword.mnemonic32fpu</string>
 		</dict>
 		<dict>
 			<key>match</key>
