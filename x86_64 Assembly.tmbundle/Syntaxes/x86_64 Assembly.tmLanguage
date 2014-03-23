@@ -298,6 +298,12 @@
 		</dict>
 		<dict>
 			<key>match</key>
+			<string>\b(sha(1(msg1|msg2|nexte|rnds4)|256(msg1|msg2|rnds2)))\b</string>	
+			<key>name</key>
+			<string>keyword.mnemonic_sha</string>
+		</dict>
+		<dict>
+			<key>match</key>
 			<string>\b((cmov|set)((n?(a|ae|b|be|c|e|g|ge|l|le|o|p|s|z))|(pe|po)))\b</string>	
 			<key>name</key>
 			<string>keyword.mnemonic64cmov_set_cc</string>

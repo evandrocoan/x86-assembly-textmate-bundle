@@ -32,7 +32,7 @@ vbroadcast
 vfnmaddsub213pd
 
 
- ;not in intel documentation
+;not in intel documentation
 retf
 
 
@@ -174,6 +174,15 @@ pi2fd/pi2fw
 pavgusb
 pmulhrw
 pswapd
+
+;intel sha1
+sha1msg1
+sha1msg2
+sha1nexte
+sha1rnds4
+sha256msg1
+sha256msg2
+sha256rnds2
 
 ;undocumented
 stosb
