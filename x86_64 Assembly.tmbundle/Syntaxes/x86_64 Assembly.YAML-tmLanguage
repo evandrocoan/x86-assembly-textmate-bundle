@@ -10,7 +10,7 @@ patterns:
 - include: '#strings'
 - include: '#support'
 - include: '#registers'
-- include: '#keywords'
+- include: '#mnemonics'
 - include: '#entities'
 - include: '#constants'
 
@@ -127,7 +127,7 @@ repository:
     - name: constant.language.registers.debug
       match: \b%?(dr[0-367])\b
 
-  keywords:
+  mnemonics:
     patterns:
     - name: keyword.mnemonic.32.intel
       match: \b(aaa|aad|aam|aas|adc|add|andn?|arpl|bl[cs](fill|ic?|msk)|blcs|blsr|bound|bsf|bsr|bswap|bt[crs]?|call|cbw|cwde?|cdqe?|cqo|clflush|cl(c|d|gi|i|ts)|cmc|cmp|cmps[bwdq]?|cmpxchg((8|16)b)?|cpuid|crc32|daa|das|dec|div|enter|f?emms|esc|getsec|hlt|idiv|imul|in|inc|ins[bwd]?|into?|inv(d|lpga?|pcid)|iret[dq]?|jmp|lahf|lar|l[defgs]s|lea|leave|[lms]fence|[ls][gil]dt|lmsw|lock|lods[bwdq]?|loop(n?[ez])?|ls[ls]|ltr|lwp(ins|val)|monitor|mov(be|d|q|dq2q|nti|ntq|q2dq|s[bwdqx]?|sxd|zx)?|mul|neg|nop|not|or|out|outs[bwd]?|pause|(pop|push)(a|ad|f|fd|fq)?|popcnt|prefetch(nta|t[012]|w)?|r[co][lr]|(rd|wr)[fg]sbase|(rd|wr)msr|rdpmc|rdrand|rdtscp?|rep(n?[ez])?|ret[nf]?|rsm|sahf|s[ah][lr]|sbb|scas[bwd]|sh[lr]d|smsw|st(c|d|gi|i)|stos[bwdq]|str|sub|swapgs|sys(call|ret|enter|exit)|test|ud2|vbroadcast(f128|sd|ss)|vcvtph2ps|vcvtps2ph|ver[rw]|v(extract|insert|perm2)f128|vzero(all|upper)|[fm]?wait|wbinvd|xadd|xchg|xgetbv|xlatb?|xor|xrstor|xsave(opt)?|xsetbv)\b

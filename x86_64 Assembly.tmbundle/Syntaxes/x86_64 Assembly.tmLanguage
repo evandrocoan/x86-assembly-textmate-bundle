@@ -35,7 +35,7 @@
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#keywords</string>
+			<string>#mnemonics</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -124,7 +124,7 @@
 				</dict>
 			</array>
 		</dict>
-		<key>keywords</key>
+		<key>mnemonics</key>
 		<dict>
 			<key>patterns</key>
 			<array>
