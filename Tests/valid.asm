@@ -1,31 +1,3 @@
-;should be invalid
-cwdqo
-fiaddp
-cmovnpo/cmovpos
-fucomipp
-fidivp/fidivrp
-fimulp
-fisubp/fisubrp
-vmovbe
-vmovdq2q/vmovq2dq
-vmovnti/vmovntq
-vmovsx/vmovsxd
-vmovzx
-vmul
-xwait/iwait
-outsq
-padduw
-popd/popq/popfdq
-prefetcht3/prefetchta
-psubuw
-loopn
-repn
-sald/sard
-broadcast/vvbroadcast
-pmovsx/pmovzx
-vbroadcast
-vfnmaddsub213pd
-
 ;Intel® 64 and IA-32 Architectures Software Developer’s Manual (2015-01)
 ;5.1 GENERAL-PURPOSE INSTRUCTIONS
 ;5.1.1         Data Transfer Instructions
@@ -418,7 +390,7 @@ vmptrld/vmptrst/vmclear/vmread/vmwrite/vmlaunch/vmresume/vmxoff/vmxon/invept/inv
 
 ;5.21 SAFER MODE EXTENSIONS
 getsec
-capabilities/enteraccs/exitac/senter/sexit/parameters/smcrtl/wakeup
+[capabilities/enteraccs/exitac/senter/sexit/parameters/smcrtl/wakeup]
 
 ;====================================================================
 
@@ -429,7 +401,13 @@ capabilities/enteraccs/exitac/senter/sexit/parameters/smcrtl/wakeup
 ;legacy
 retn/retf
 
-;valid
+;undocumented
+stosb
+icebp
+int1
+smi
+
+;old samples
 vaddpd xmm10, [rax+r15*4]
 vaddps ymm1, ymm2, yword [rax]
 andpd ymm1, ymm2
@@ -578,9 +556,3 @@ sha256msg2
 sha256rnds2
 
 xsave/xrstore/xsaveopt
-
-;undocumented
-stosb
-icebp
-int1
-smi

@@ -1,0 +1,27 @@
+;invalid instructions, should not be highlighted
+cwdqo
+fiaddp
+cmovnpo/cmovpos
+fucomipp
+fidivp/fidivrp
+fimulp
+fisubp/fisubrp
+vmovbe
+vmovdq2q/vmovq2dq
+vmovnti/vmovntq
+vmovsx/vmovsxd
+vmovzx
+vmul
+xwait/iwait
+outsq
+padduw
+popd/popq/popfdq
+prefetcht3/prefetchta
+psubuw
+loopn
+repn
+sald/sard
+broadcast/vvbroadcast
+pmovsx/pmovzx
+vbroadcast
+vfnmaddsub213pd
