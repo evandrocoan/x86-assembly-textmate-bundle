@@ -20,8 +20,7 @@ incbin equ times
 
 /* multiline
    comment
-   block
-*/
+   block */
 
 .data
 .bss

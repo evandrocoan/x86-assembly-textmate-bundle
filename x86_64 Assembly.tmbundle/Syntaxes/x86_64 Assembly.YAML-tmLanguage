@@ -20,13 +20,13 @@ repository:
     - name: comment.line
       match: ;.*$
     
-    - name: comment.preprocessor
-      begin: ^\s*[\#%]\s*if\s+0\b
-      end: ^\s*[\#%]\s*endif\b
-    
     - name: comment.block
       begin: /\*
       end: \*/
+    
+    - name: comment.preprocessor
+      begin: ^\s*[\#%]\s*if\s+0\b
+      end: ^\s*[\#%]\s*endif\b
 
   preprocessor:
     patterns:
@@ -102,8 +102,33 @@ repository:
     match: (?i)\b((d|q|t|y)?word|db|dw|dd|dq|dt|do|dy|res(b|w|d|q|t|o|y)?|incbin|equ|times)\b
 
   registers:
-    name: storage.registers.intel.general_purpose
-    match: \b(%?(((a|b|c|d)h)|((a|b|c|d|di|si|bp|sp)l)|(((e|r)?((a|b|c|d)x|(di|si|bp|sp|ip)|flags))|cs|ds|ss|es|fs|gs|([xy]mm([0-9]|1[0-5]))|mxcsr|((st|mm|fpr)[0-7]))|(cr[02348])|(dr[0-367])|([gli]dtr?)|(r([89]|1[0-5])[bdlw]?)|tp?r))\b
+    patterns:
+    - name: storage.registers.general_purpose
+      match: \b%?([abcd][lh]|[er]?[abcd]x|[er]?(di|si|bp|sp)|dil|sil|bpl|spl|r(8|9|1[0-5])[bdlw]?)\b
+
+    - name: storage.registers.segment
+      match: \b%?([cdefgs]s)\b
+
+    - name: storage.registers.flags
+      match: \b%?([er]?flags)\b
+
+    - name: storage.registers.instruction_pointer
+      match: \b%?([er]?ip)\b
+
+    - name: storage.registers.control
+      match: \b%?(cr[02-48]|tpr)\b
+
+    - name: storage.registers.mmx
+      match: \b%?((mm|st|fpr)[0-7])\b
+
+    - name: storage.registers.sse_avx
+      match: \b%?([xy]mm([0-9]|1[0-5])|mxcsr)\b
+
+    - name: storage.registers.system_table_pointer
+      match: \b%?(([gil]dt)r?|tr)\b
+
+    - name: storage.registers.debug
+      match: \b%?(dr[0-367])\b
 
   keywords:
     patterns:

@@ -60,19 +60,19 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>^\s*[\#%]\s*if\s+0\b</string>
-					<key>end</key>
-					<string>^\s*[\#%]\s*endif\b</string>
-					<key>name</key>
-					<string>comment.preprocessor</string>
-				</dict>
-				<dict>
-					<key>begin</key>
 					<string>/\*</string>
 					<key>end</key>
 					<string>\*/</string>
 					<key>name</key>
 					<string>comment.block</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>^\s*[\#%]\s*if\s+0\b</string>
+					<key>end</key>
+					<string>^\s*[\#%]\s*endif\b</string>
+					<key>name</key>
+					<string>comment.preprocessor</string>
 				</dict>
 			</array>
 		</dict>
@@ -333,10 +333,63 @@
 		</dict>
 		<key>registers</key>
 		<dict>
-			<key>match</key>
-			<string>\b(%?(((a|b|c|d)h)|((a|b|c|d|di|si|bp|sp)l)|(((e|r)?((a|b|c|d)x|(di|si|bp|sp|ip)|flags))|cs|ds|ss|es|fs|gs|([xy]mm([0-9]|1[0-5]))|mxcsr|((st|mm|fpr)[0-7]))|(cr[02348])|(dr[0-367])|([gli]dtr?)|(r([89]|1[0-5])[bdlw]?)|tp?r))\b</string>
-			<key>name</key>
-			<string>storage.registers.intel.general_purpose</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\b%?([abcd][lh]|[er]?[abcd]x|[er]?(di|si|bp|sp)|dil|sil|bpl|spl|r(8|9|1[0-5])[bdlw]?)\b</string>
+					<key>name</key>
+					<string>storage.registers.general_purpose</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b%?([cdefgs]s)\b</string>
+					<key>name</key>
+					<string>storage.registers.segment</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b%?([er]?flags)\b</string>
+					<key>name</key>
+					<string>storage.registers.flags</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b%?([er]?ip)\b</string>
+					<key>name</key>
+					<string>storage.registers.instruction_pointer</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b%?(cr[02-48]|tpr)\b</string>
+					<key>name</key>
+					<string>storage.registers.control</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b%?((mm|st|fpr)[0-7])\b</string>
+					<key>name</key>
+					<string>storage.registers.mmx</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b%?([xy]mm([0-9]|1[0-5])|mxcsr)\b</string>
+					<key>name</key>
+					<string>storage.registers.sse_avx</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b%?(([gil]dt)r?|tr)\b</string>
+					<key>name</key>
+					<string>storage.registers.system_table_pointer</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b%?(dr[0-367])\b</string>
+					<key>name</key>
+					<string>storage.registers.debug</string>
+				</dict>
+			</array>
 		</dict>
 		<key>strings</key>
 		<dict>
