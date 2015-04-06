@@ -84,47 +84,47 @@ patterns:
   - match: (?>\\\s*\n)
     name: punctuation.separator.continuation.c
 
-- name: storage.registers_intel
+- name: storage.registers.intel
   match: \b(%?(((a|b|c|d)h)|((a|b|c|d|di|si|bp|sp)l)|(((e|r)?((a|b|c|d)x|(di|si|bp|sp|ip)|flags))|cs|ds|ss|es|fs|gs|([xy]mm([0-9]|1[0-5]))|mxcsr|((st|mm|fpr)[0-7]))|(cr[02348])|(dr[0-367])|([gli]dtr?)|(r([89]|1[0-5])[bdlw]?)|tp?r))\b
 
-- name: keyword.mnemonic32
+- name: keyword.mnemonic.32.intel
   match: \b(aaa|aad|aam|aas|adc|add|andn?|arpl|bl[cs](fill|ic?|msk)|blcs|blsr|bound|bsf|bsr|bswap|bt[crs]?|call|cbw|cwde?|cdqe?|cqo|clflush|cl(c|d|gi|i|ts)|cmc|cmp|cmps[bwdq]?|cmpxchg((8|16)b)?|cpuid|crc32|daa|das|dec|div|enter|f?emms|esc|getsec|hlt|idiv|imul|in|inc|ins[bwd]?|into?|inv(d|lpga?|pcid)|iret[dq]?|jmp|lahf|lar|l[defgs]s|lea|leave|[lms]fence|[ls][gil]dt|lmsw|lock|lods[bwdq]?|loop(n?[ez])?|ls[ls]|ltr|lwp(ins|val)|monitor|mov(be|d|q|dq2q|nti|ntq|q2dq|s[bwdqx]?|sxd|zx)?|mul|neg|nop|not|or|out|outs[bwd]?|pause|(pop|push)(a|ad|f|fd|fq)?|popcnt|prefetch(nta|t[012]|w)?|r[co][lr]|(rd|wr)[fg]sbase|(rd|wr)msr|rdpmc|rdrand|rdtscp?|rep(n?[ez])?|ret[nf]?|rsm|sahf|s[ah][lr]|sbb|scas[bwd]|sh[lr]d|smsw|st(c|d|gi|i)|stos[bwdq]|str|sub|swapgs|sys(call|ret|enter|exit)|test|ud2|vbroadcast(f128|sd|ss)|vcvtph2ps|vcvtps2ph|ver[rw]|v(extract|insert|perm2)f128|vzero(all|upper)|[fm]?wait|wbinvd|xadd|xchg|xgetbv|xlatb?|xor|xrstore|xsave(opt)?|xsetbv)\b
 
-- name: keyword.mnemonic32amd
+- name: keyword.mnemonic.32.amd
   match: \b(bextr|extrq|insertq|llwpcb|lzcnt|skinit|slwpcb|t1mskc|tz(cnt|msk)|vm(load|mcall|run|save)|vpc(mov|omu?[bdqw])|vpmacss?(dd|dql|dqh|ww|wd)|vpmadcss?wd|vpperm|vprot[bdqw]|vpsh[al][bdqw]|pavgusb|pf(2i[dw]|acc|add|cmpeq|cmpgt|max|min|mul|p?nacc|rcp(it[12])?|rsqit1|rsqrt|subr?)|pi2f[dw]|pmulhrw|pswapd)\b
 
-- name: keyword.mnemonic32other
+- name: keyword.mnemonic.32.fpu
+  match: \b(f(2xm1|abs|add|addp|iadd|bld|bstp|chs|n?clex|cmovn?(b|e|be|u)|(u?comi?)p?|u?compp|cos|decstp|divr?p?|idivr?|free|icomp?|ild|incstp|n?init|ist(p|tp)?|ld(1|l2t|l2e|pi|lg2|ln2|z|cw|env)?|imul|mulp?|nop|p(atan|rem1?|tan)|rndint|rstor|n?save|scale|sin(cos)?|sqrt|stp?|n?st(cw|env|sw)|subr?p?|isubr?|tst|xam|xch|xrstor|xsave|xtract|yl2x(p1)?))\b
+
+- name: keyword.mnemonic.32.other
   match: \b(icebp|int1|smi)\b
 
-- name: keyword.mnemonic64vex
+- name: keyword.mnemonic.64.vex
   match: \b((v)?(aesdec|aesdeclast|aesenc|aesenclast|aesimc|aeskeygenassist|cvtpd2(dq|pi|ps)|cvtps2(dq|pd|pi)|cvtsd2(si|ss)|cvtss2(sd|si)|cvtt(pd|ps)2(dq|pi)|cvtt(sd|ss)2si|extractps|insertps|ld(dqu|mxcsr)|maskmov(dqu|q)|mov((d|sh|hl)dup|dqa|dqu|hlps|lhps|ntdqa?|s[ds])?|mpsadbw|pabs[bwd]|pack(s|u)s(wb|dw)|padd([bwdq]|u?s(b|w))|palignr|pandn?|pavg[bw]|pblend(vb|w)|pclmulqdq|pcmp((eq|gt)[bwdq]|[ei]str[im])|pextr[bwdq]|phadd(w|d|sw)|phminposuw|phsub(w|d|sw)|pinsr[bwdq]|pmadd(ubsw|wd)|p(max|min)[su][bdw]|pmov(mskb|([sz]x(b[dqw]|w[dq]|dq)))|pmul(dq|hrsw|hu?w|ld|lw|udq)|por|psadbw|pshuf[bdw]|pshuf[hl]w|psign[bwd]|ps[lr]l(dq|w|d|q)|psra[wd]|psub([bwdq]|u?s[bw])|ptest|punpck[hl](bw|wd|dq|qdq)|pxor|rcp[ps]s|rsqrt[ps]s|stmxcsr|ucomis[ds]))\b
 
-- name: keyword.mnemonic64vex_pd_ps_sd_ss
+- name: keyword.mnemonic.64.vex_pd_ps_sd_ss.intel
   match: \b((v)?(add|cmp|div|max|min|mul|round|sqrt|sub)[ps][ds])\b
 
-- name: keyword.mnemonic64vex_pd_ps_sd_ss_amd
+- name: keyword.mnemonic.64.vex_pd_ps_sd_ss.amd
   match: \b(vf(((n?m(add|sub)|fm(addsub|subadd))(132|213|231)?)|rcz)[ps][ds])\b
 
-- name: keyword.mnemonic64vex_pd_ps
+- name: keyword.mnemonic.64.vex_pd_ps
   match: \b((v)?(addsub|and|andn|blend|blendv|clflush|cmppd|cmpps|cmpsd|cmpss|cvt(dq|pi)2|dp|hadd|hsub|mov(a|h|l|msk|nt|u)|or|shuf|unpck[hl]|xor)p[ds])\b
 
-- name: keyword.mnemonic64vex_sd_ss
+- name: keyword.mnemonic.64.vex_sd_ss
   match: \b((v)?(comi|cvtsi2)s[ds])\b
 
-- name: keyword.mnemonic64_pd_ps
+- name: keyword.mnemonic.64.pd_ps
   match: \b(v(maskmov|permil2?|test)p[ds])\b
 
-- name: keyword.mnemonic_sha
-  match: \b(sha(1(msg1|msg2|nexte|rnds4)|256(msg1|msg2|rnds2)))\b
-
-- name: keyword.mnemonic64cmov_set_cc
+- name: keyword.mnemonic.64.cmov_set_cc
   match: \b((cmov|set)((n?(a|ae|b|be|c|e|g|ge|l|le|o|p|s|z))|(pe|po)))\b
 
-- name: keyword.mnemonic64jcc
+- name: keyword.mnemonic.64.jcc
   match: \b(j((n?(a|ae|b|be|c|e|g|ge|l|le|o|p|s|z))|(cxz|ecxz|rcxz|pe|po)))\b
 
-- name: keyword.mnemonic32fpu
-  match: \b(f(2xm1|abs|add|addp|iadd|bld|bstp|chs|n?clex|cmovn?(b|e|be|u)|(u?comi?)p?|u?compp|cos|decstp|divr?p?|idivr?|free|icomp?|ild|incstp|n?init|ist(p|tp)?|ld(1|l2t|l2e|pi|lg2|ln2|z|cw|env)?|imul|mulp?|nop|p(atan|rem1?|tan)|rndint|rstor|n?save|scale|sin(cos)?|sqrt|stp?|n?st(cw|env|sw)|subr?p?|isubr?|tst|xam|xch|xrstor|xsave|xtract|yl2x(p1)?))\b
+- name: keyword.mnemonic.sha
+  match: \b(sha(1(msg1|msg2|nexte|rnds4)|256(msg1|msg2|rnds2)))\b
 
 - name: entity.name.label
   match: ^\s*\.?\w+:\s*(?=$|;)
