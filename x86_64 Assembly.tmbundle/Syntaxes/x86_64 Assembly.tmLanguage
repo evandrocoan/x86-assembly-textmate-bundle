@@ -106,9 +106,15 @@
 			<array>
 				<dict>
 					<key>match</key>
+					<string>\.(data|bss|text)$</string>
+					<key>name</key>
+					<string>entity.name.section</string>
+				</dict>
+				<dict>
+					<key>match</key>
 					<string>^\s*\.?\w+:\s*(?=$|;)</string>
 					<key>name</key>
-					<string>entity.name.label</string>
+					<string>entity.name.function</string>
 				</dict>
 				<dict>
 					<key>match</key>
@@ -339,55 +345,55 @@
 					<key>match</key>
 					<string>\b%?([abcd][lh]|[er]?[abcd]x|[er]?(di|si|bp|sp)|dil|sil|bpl|spl|r(8|9|1[0-5])[bdlw]?)\b</string>
 					<key>name</key>
-					<string>storage.registers.general_purpose</string>
+					<string>constant.language.registers.general_purpose</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>\b%?([cdefgs]s)\b</string>
 					<key>name</key>
-					<string>storage.registers.segment</string>
+					<string>constant.language.registers.segment</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>\b%?([er]?flags)\b</string>
 					<key>name</key>
-					<string>storage.registers.flags</string>
+					<string>constant.language.registers.flags</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>\b%?([er]?ip)\b</string>
 					<key>name</key>
-					<string>storage.registers.instruction_pointer</string>
+					<string>constant.language.registers.instruction_pointer</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>\b%?(cr[02-48]|tpr)\b</string>
 					<key>name</key>
-					<string>storage.registers.control</string>
+					<string>constant.language.registers.control</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>\b%?((mm|st|fpr)[0-7])\b</string>
 					<key>name</key>
-					<string>storage.registers.mmx</string>
+					<string>constant.language.registers.mmx</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>\b%?([xy]mm([0-9]|1[0-5])|mxcsr)\b</string>
 					<key>name</key>
-					<string>storage.registers.sse_avx</string>
+					<string>constant.language.registers.sse_avx</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>\b%?(([gil]dt)r?|tr)\b</string>
 					<key>name</key>
-					<string>storage.registers.system_table_pointer</string>
+					<string>constant.language.registers.system_table_pointer</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>\b%?(dr[0-367])\b</string>
 					<key>name</key>
-					<string>storage.registers.debug</string>
+					<string>constant.language.registers.debug</string>
 				</dict>
 			</array>
 		</dict>
@@ -395,12 +401,6 @@
 		<dict>
 			<key>patterns</key>
 			<array>
-				<dict>
-					<key>match</key>
-					<string>\.(data|bss|text)$</string>
-					<key>name</key>
-					<string>string.section</string>
-				</dict>
 				<dict>
 					<key>begin</key>
 					<string>["']</string>

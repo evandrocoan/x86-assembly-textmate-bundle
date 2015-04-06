@@ -408,9 +408,14 @@ int1
 smi
 
 ;old samples
-vaddpd xmm10, [rax+r15*4]
-vaddps ymm1, ymm2, yword [rax]
-andpd ymm1, ymm2
+label:	vaddpd xmm10, [rax+r15*4]
+		vaddps ymm1, ymm2, yword [rax]
+lock	add st0, mm1
+
+.text
+		db 'test\0'
+
+;old mnemonics list
 cmovge
 cmovnz
 cmovz
