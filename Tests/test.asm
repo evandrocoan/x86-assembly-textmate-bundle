@@ -200,10 +200,6 @@ icebp
 int1
 smi
 
-;new
-aesni, pclmulqdq
-f16c, rdrand, tsx, invpcid, adx, rdseed, clac, stac
-
 ;new summary from Intel docs
 ;5.1 GENERAL-PURPOSE INSTRUCTIONS
 ;5.1.1         Data Transfer Instructions
@@ -401,3 +397,200 @@ pcmpeqq
 packusdw
 
 ;5.11       SSE4.2 INSTRUCTION SET
+;5.11.1      String and Text Processing Instructions
+pcmpestri/pcmpestrm/pcmpistri/pcmpistrm
+;5.11.2 Packed Comparison SIMD integer Instruction
+pcmpgtq
+
+;5.12       AESNI AND PCLMULQDQ
+aesdec/aesdeclast/aesenc/aesenclast/aesimc/aeskeygenassist/pclmulqdq
+
+;5.13       INTEL® ADVANCED VECTOR EXTENSIONS (INTEL® AVX)
+;Table 14-2.  Promoted 256-Bit and 128-bit Arithmetic AVX Instructions
+sqrtps, sqrtpd, rsqrtps, rcpps
+addps, addpd, subps, subpd
+mulps, mulpd, divps, divpd
+cvtps2pd, cvtpd2ps
+cvtdq2ps, cvtps2dq
+cvttps2dq, cvttpd2dq
+cvtpd2dq, cvtdq2pd
+minps, minpd, maxps, maxpd
+haddpd, haddps, hsubpd, hsubps
+cmpps, cmppd
+addsubpd, addsubps, dpps
+roundpd, roundps
+;Table 14-3.  Promoted 256-bit and 128-bit Data Movement AVX Instructions
+movaps, movapd, movdqa
+movups, movupd, movdqu
+movmskps, movmskpd
+lddqu, movntps, movntpd, movntdq, movntdqa
+movshdup, movsldup, movddup
+;Table 14-3.  Promoted 256-bit and 128-bit Data Movement AVX Instructions
+unpckhpd, unpckhps, unpcklpd
+blendps, blendpd
+shufpd, shufps, unpcklps
+blendvps, blendvpd
+ptest, movmskpd, movmskps
+xorps, xorpd, orps, orpd
+andnpd, andnps, andpd, andps
+;Table 14-4.  256-bit AVX Instruction Enhancement
+vbroadcastf128/vbroadcastsd/vbroadcastss/vextractf128/vinsertf128/vmaskmovps/vmaskmovpd/vmaskmovps/vmaskmovpd
+vpermilpd/vpermilpd/vpermilps/vpermilps/vperm2f128/vtestps/vtestpd/vzeroall/vzeroupper
+;Table 14-5.  Promotion of Legacy SIMD ISA to 128-bit Arithmetic AVX instruction
+cvtpi2ps, cvtpi2pd, cvtpd2pi
+cvttps2pi, cvttpd2pi, cvtps2pi
+cvtsi2ss, cvtsi2sd, cvtsd2si
+cvttss2si, cvttsd2si, cvtss2si
+comisd, rsqrtss, rcpss
+ucomiss, ucomisd, comiss
+addss, addsd, subss, subsd
+mulss, mulsd, divss, divsd
+sqrtss, sqrtsd
+cvtss2sd, cvtsd2ss
+minss, minsd, maxss, maxsd
+pand, pandn, por, pxor
+pcmpgtb, pcmpgtw, pcmpgtd
+pmaddwd, pmaddubsw
+pavgb, pavgw, pmuludq
+pcmpeqb, pcmpeqw, pcmpeqd
+pmullw, pmulhuw, pmulhw
+psubsw, paddsw, psadbw
+paddusb, paddusw, paddsb
+psubusb, psubusw, psubsb
+pminub, pminsw
+pmaxub, pmaxsw
+paddb, paddw, paddd, paddq
+psubb, psubw, psubd, psubq
+psllw, pslld, psllq, psraw
+psrlw, psrld, psrlq, psrad
+phsubw, phsubd, phsubsw
+phaddw, phaddd, phaddsw
+pmulhrsw
+psignb, psignw, psignd
+pabsb, pabsw, pabsd
+dppd
+phminposuw, mpsadbw
+pmaxsb, pmaxsd, pmaxud
+pminsb, pminsd, pminud
+pmaxuw, pminuw
+pmovsxbw, pmovzxbw, pmovsxbd, pmovzxbd, pmovsxwd, pmovzxwd, pmovsxbq, pmovzxbq, pmovsxwq, pmovzxwq, pmovsxdq, pmovzxdq
+pmuldq, pmulld
+roundsd, roundss
+popcnt
+pcmpgtq
+crc32
+pcmpestri, pcmpestrm
+pcmpistri, pcmpistrm
+pclmulqdq
+aesdec, aesdeclast
+aesenc, aesenclast
+aesimc, aeskeygenassist
+;Table 14-6.  128-bit AVX Instruction Enhancement
+vbroadcastss/vmaskmovps/vmaskmovpd/vmaskmovps/vmaskmovpd/vpermilpd/vpermilpd/vpermilps/vpermilps/vtestps/vtestpd
+;Table 14-7.  Promotion of Legacy SIMD ISA to 128-bit Non-Arithmetic AVX instruction
+movq2dq, movdq2q
+ldmxcsr, stmxcsr
+movss, movsd, cmpss, cmpsd
+movhps, movhpd
+movhps, movhpd
+movlhps, movhlps
+movq, movd
+packuswb, packssdw, packsswb
+punpckhbw, punpckhwd
+punpcklbw, punpcklwd
+punpckhdq, punpckldq
+punpcklqdq, punpckhqdq
+pshufhw, pshuflw, pshufd
+pmovmskb, maskmovdqu
+pand, pandn, por, pxor
+pinsrw, pextrw
+palignr, pshufb
+extractps, insertps
+packusdw, pcmpeqq
+pblendvb, pblendw
+pextrw, pextrb, pextrd, pextrq
+pinsrb, pinsrd, pinsrq
+
+;5.14 16-BIT FLOATING-POINT CONVERSION
+vcvtph2ps/vcvtps2ph
+
+;5.15 FUSED-MULTIPLY-ADD (FMA)
+;Table 14-15.  FMA Instructions
+vfmadd132pd/vfmadd213pd/vfmadd231pd
+vfmadd132ps/vfmadd213ps/vfmadd231ps
+vfmadd132sd/vfmadd213sd/vfmadd231sd
+vfmadd132ss/vfmadd213ss/vfmadd231ss
+vfmaddsub132pd/vfmaddsub213pd/vfmaddsub231pd
+vfmaddsub132ps/vfmaddsub213ps/vfmaddsub231ps
+vfmsubadd132pd/vfmsubadd213pd/vfmsubadd231pd
+vfmsubadd132ps/vfmsubadd213ps/vfmsubadd231ps
+vfmsub132pd/vfmsub213pd/vfmsub231pd
+vfmsub132ps/vfmsub213ps/vfmsub231ps
+vfmsub132sd/vfmsub213sd/vfmsub231sd
+vfmsub132ss/vfmsub213ss/vfmsub231ss
+vfnmadd132pd/vfnmadd213pd/vfnmadd231pd
+vfnmadd132ps/vfnmadd213ps/vfnmadd231ps
+vfnmadd132sd/vfnmadd213sd/vfnmadd231sd
+vfnmadd132ss/vfnmadd213ss/vfnmadd231ss
+vfnmsub132pd/vfnmsub213pd/vfnmsub231pd
+vfnmsub132ps/vfnmsub213ps/vfnmsub231ps
+vfnmsub132sd/vfnmsub213sd/vfnmsub231sd
+vfnmsub132ss/vfnmsub213ss/vfnmsub231ss
+
+;5.16       INTEL® ADVANCED VECTOR EXTENSIONS 2 (INTEL® AVX2)
+;Table 14-18.  Promoted Vector Integer SIMD Instructions in AVX2
+punpcklbw/punpcklwd/punpckldq/packsswb/pcmpgtb/pcmpgtw/pcmpgtd/packuswb
+punpckhbw/punpckhwd/punpckhdq/packssdw/punpcklqdq/punpckhqdq/movd/movq/movdqa/movdqu
+pshufd/pshufhw/pshuflw/pcmpeqb/pcmpeqw/pcmpeqd/movdqa/movdqu/pinsrw/pextrw
+psrlw/psrld/psrlq/paddq/pmullw/pmovmskb/psubusb/psubusw/pminub/pand/paddusb/paddusw
+pmaxub/pandn/pavgb/psraw/psrad/pavgw/pmulhuw/pmulhw/movntdq/psubsb/psubsw/pminsw
+por/paddsb/paddsw/pmaxsw/pxor/lddqu/psllw/pslld/psllq/pmuludq/pmaddwd
+psadbw/psubb/psubw/psubd/psubq/paddb/paddw/paddd/phaddw/phaddsw/phaddd
+phsubw/phsubsw/phsubd/pmaddubsw/palignr/pshufb/pmulhrsw/psignb/psignw/psignd
+pabsb/pabsw/pabsd/movntdqa/mpsadbw/packusdw/pblendvb/pblendw/pcmpeqq
+pextrd/pextrq/pextrb/pextrw/phminposuw/pinsrb/pinsrd/pinsrq
+pmaxsb/pmaxsd/pmaxud/pmaxuw/pminsb/pminsd/pminud/pminuw
+pmovsxbw/pmovzxbw/pmovsxbd/pmovzxbd/pmovsxwd/pmovzxwd/pmovsxbq/pmovzxbq/pmovsxwq/pmovzxwq/pmovsxdq/pmovzxdq
+pmuldq/pmulld/ptest/pcmpgtq/pcmpestri/pcmpestrm/pcmpistri/pcmpistrm
+aesdec/aesdeclast/aesenc/aesenclast/aesimc/aeskeygenassist/pclmulqdq
+;Table 14-19.   VEX-Only SIMD Instructions in AVX and AVX2
+vbroadcasti128/vbroadcastf128
+vbroadcastsd/vbroadcastsd
+vbroadcastss/vbroadcastss
+vextracti128/vextractf128
+vinserti128/vinsertf128
+vpmaskmovd/vmaskmovps
+vpmaskmovq/vmaskmovpd
+vpermilpd/vpermilps
+vperm2i128/vperm2f128
+vpermd/vpermps/vpermq/vpermpd
+vtestpd/vtestps
+vpblendd/vpsllvd/vpsllvq/vpsravd/vpsrlvd/vpsrlvq
+vgatherdpd/vgatherdqpd/vgatherdps/vgatherdqps/vpgatherdd/vpgatherqd/vpgatherdq/vpgatherqq
+;Table 14-20.  New Primitive in AVX2 Instructions
+vpermd/vpermpd/vpermps/vpermq
+vpsllvd/vpsllvq/vpsllvd/vpsllvq
+vpsravd/vpsrlvd/vpsrlvq/vpsrlvd/vpsrlvq
+vgatherdd/vgatherqd/vgatherdd/vgatherqd/vgatherdpd/vgatherqpd/vgatherdpd/vgatherqpd
+vgatherdps/vgatherqps/vgatherdps/vgatherqps/vgatherdq/vgatherqq/vgatherdq/vgatherqq
+
+;5.17       INTEL® TRANSACTIONAL SYNCHRONIZATION EXTENSIONS (TSX)
+xabort/xacquire/xrelease/xbegin/xend/xtest
+
+;5.18 SYSTEM INSTRUCTIONS
+clac/stac/lgdt/sgdt/lldt/sldt/ltr/str/lidt/sidt/mov/lmsw/smsw
+clts/arpl/lar/lsl/verr/verw/mov/invd/wbinvd/invlpg/invpcid
+lock
+hlt/rsm/rdmsr/wrmsr/rdpmc/rdtsc/rdtscp/sysenter/sysexit
+xsave/xsaveopt/xrstor/xgetbv/xsetbv/rdfsbase/rdgsbase/wrfsbase/wrgsbase
+
+;5.19 64-BIT MODE INSTRUCTIONS
+cdqe/cmpsq/cmpxchg16b/lodsq/movsq/movzx/stosq/swapgs/syscall/sysret
+
+;5.20 VIRTUAL-MACHINE EXTENSIONS
+vmptrld/vmptrst/vmclear/vmread/vmwrite/vmlaunch/vmresume/vmxoff/vmxon/invept/invvpid/vmcall/vmfunc
+
+;5.21 SAFER MODE EXTENSIONS
+getsec
+capabilities/enteraccs/exitac/senter/sexit/parameters/smcrtl/wakeup
+
