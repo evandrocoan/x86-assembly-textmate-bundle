@@ -12,6 +12,8 @@ st8, st9, st10, st11
 ;obsolete
 t6, t7, tr3, tr4, tr5
 
+;legacy and compatibility
+db0|db1|db2|db3|db6|db7|tr6|tr7|st
 
 ;general purpose
 cl, dl, ah, bh, ch, dh
