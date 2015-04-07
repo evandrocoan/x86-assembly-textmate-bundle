@@ -140,6 +140,10 @@
 					<key>include</key>
 					<string>#mnemonics-mmx</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mnemonics-sse</string>
+				</dict>
 			</array>
 		</dict>
 		<key>mnemonics-fpu</key>
@@ -160,7 +164,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(f((add|mul|sub)p|i?(add|div|mul|sub)|(div|sub)rp?|i(div|sub)r))\b</string>
+					<string>\b(f((add|div|mul|sub)p?|i(add|div|mul|sub)|(div|sub)rp?|i(div|sub)r))\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.fpu.basic-arithmetic.basic</string>
 				</dict>
@@ -298,7 +302,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(lea|nop|ud2|xlatb?|cpuid|movbe|prefetchw(t1)?)\b</string>
+					<string>\b(lea|nop|ud2|xlatb?|cpuid|movbe)\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.general-purpose.misc</string>
 				</dict>
@@ -328,7 +332,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(pack(ssdw|sswb|uswb)|punpck[hl](bw|dq|wd))\b</string>
+					<string>\b(pack(ssdw|[su]swb)|punpck[hl](bw|dq|wd))\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.mmx.conversion</string>
 				</dict>
@@ -361,6 +365,72 @@
 					<string>\b(emms)\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.mmx.state-management</string>
+				</dict>
+			</array>
+		</dict>
+		<key>mnemonics-sse</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\b(mov(([ahlu]|hl|lh|msk)ps|ss))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse.data-transfer</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b((add|div|max|min|mul|rcp|r?sqrt|sub)[ps]s)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse.packed-arithmetic</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(cmp[ps]s|u?comiss)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse.comparison</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b((andn?|x?or)ps)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse.logical</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b((shuf|unpck[hl])ps)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse.shuffle-and-unpack</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(cvt(pi2ps|si2ss|ps2pi|tps2pi|ss2si|tss2si))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse.conversion</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b((ld|st)mxcsr)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse.state-management</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(p(avg[bw]|extrw|insrw|(max|min)(sw|ub)|sadbw|shufw|mulhuw|movmskb))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse.simd-integer</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(maskmovq|movntps|sfence)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse.cacheability-control</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(prefetch(nta|t[0-2]|w(t1)?))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse.prefetch</string>
 				</dict>
 			</array>
 		</dict>

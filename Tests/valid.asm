@@ -55,7 +55,7 @@ fld/fst/fstp/fild/fist/fistp/fbld/fbstp/fxch
 fcmove/fcmovne/fcmovb/fcmovbe/fcmovnb/fcmovnbe/fcmovu/fcmovnu
 ;5.2.2         x87 FPU Basic Arithmetic Instructions
 fadd/faddp/fiadd/fsub/fsubp/fisub/fsubr/fsubrp/fisubr
-fmul/fmulp/fimul/fdiv/fidiv/fdivr/fdivrp/fidivr
+fmul/fmulp/fimul/fdiv/fdivp/fidiv/fdivr/fdivrp/fidivr
 fprem/fprem1/fabs/fchs/frndint/fscale/fsqrt/fxtract
 ;5.2.3         x87 FPU Comparison Instructions
 fcom/fcomp/fcompp/fucom/fucomp/fucompp/ficom/ficomp/fcomi/fucomi/fcomip/fucomip/ftst/fxam
@@ -94,7 +94,7 @@ emms
 ;5.5.1.1        SSE Data Transfer Instructions
 movaps/movups/movhps/movhlps/movlps/movlhps/movmskps/movss
 ;5.5.1.2        SSE Packed Arithmetic Instructions
-addps/addss/subps/subss/mulps/divps/divss
+addps/addss/subps/subss/mulss/mulps/divps/divss
 rcpps/rcpss/sqrtps/sqrtss/rsqrtps/rsqrtss
 maxps/maxss/minps/minss
 ;5.5.1.3        SSE Comparison Instructions

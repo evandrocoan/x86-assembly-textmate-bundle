@@ -122,6 +122,7 @@ repository:
     - include: '#mnemonics-general-purpose'
     - include: '#mnemonics-fpu'
     - include: '#mnemonics-mmx'
+    - include: '#mnemonics-sse'
 
   mnemonics-general-purpose:
     patterns:
@@ -156,7 +157,7 @@ repository:
     - name: keyword.mnemonic.general-purpose.segment-registers
       match: \b(l[defgs]s)\b
     - name: keyword.mnemonic.general-purpose.misc
-      match: \b(lea|nop|ud2|xlatb?|cpuid|movbe|prefetchw(t1)?)\b
+      match: \b(lea|nop|ud2|xlatb?|cpuid|movbe)\b
     - name: keyword.mnemonic.general-purpose.rng
       match: \b(rdrand|rdseed)\b
     - name: keyword.mnemonic.general-purpose.bmi
@@ -169,7 +170,7 @@ repository:
     - name: keyword.mnemonic.fpu.data-transfer.other
       match: \b(f(i?(ld|stp?)|b(ld|stp)|xch))\b
     - name: keyword.mnemonic.fpu.basic-arithmetic.basic
-      match: \b(f((add|mul|sub)p|i?(add|div|mul|sub)|(div|sub)rp?|i(div|sub)r))\b
+      match: \b(f((add|div|mul|sub)p?|i(add|div|mul|sub)|(div|sub)rp?|i(div|sub)r))\b
     - name: keyword.mnemonic.fpu.basic-arithmetic.other
       match: \b(f(prem1?|abs|chs|rndint|scale|sqrt|xtract))\b
     - name: keyword.mnemonic.fpu.comparison
@@ -188,7 +189,7 @@ repository:
     - name: keyword.mnemonic.mmx.data-transfer
       match: \b(mov[dq])\b
     - name: keyword.mnemonic.mmx.conversion
-      match: \b(pack(ssdw|sswb|uswb)|punpck[hl](bw|dq|wd))\b
+      match: \b(pack(ssdw|[su]swb)|punpck[hl](bw|dq|wd))\b
     - name: keyword.mnemonic.mmx.packed-arithmetic
       match: \b(p(addd|maddwd|((add|sub)(u?s)?[bw])|mul[lh]w))\b
     - name: keyword.mnemonic.mmx.comparison
@@ -199,6 +200,29 @@ repository:
       match: \b(ps([rl]l[dwq]|raw|rad))\b
     - name: keyword.mnemonic.mmx.state-management
       match: \b(emms)\b
+
+  mnemonics-sse:
+    patterns:
+    - name: keyword.mnemonic.sse.data-transfer
+      match: \b(mov(([ahlu]|hl|lh|msk)ps|ss))\b
+    - name: keyword.mnemonic.sse.packed-arithmetic
+      match: \b((add|div|max|min|mul|rcp|r?sqrt|sub)[ps]s)\b
+    - name: keyword.mnemonic.sse.comparison
+      match: \b(cmp[ps]s|u?comiss)\b
+    - name: keyword.mnemonic.sse.logical
+      match: \b((andn?|x?or)ps)\b
+    - name: keyword.mnemonic.sse.shuffle-and-unpack
+      match: \b((shuf|unpck[hl])ps)\b
+    - name: keyword.mnemonic.sse.conversion
+      match: \b(cvt(pi2ps|si2ss|ps2pi|tps2pi|ss2si|tss2si))\b
+    - name: keyword.mnemonic.sse.state-management
+      match: \b((ld|st)mxcsr)\b
+    - name: keyword.mnemonic.sse.simd-integer
+      match: \b(p(avg[bw]|extrw|insrw|(max|min)(sw|ub)|sadbw|shufw|mulhuw|movmskb))\b
+    - name: keyword.mnemonic.sse.cacheability-control
+      match: \b(maskmovq|movntps|sfence)\b
+    - name: keyword.mnemonic.sse.prefetch
+      match: \b(prefetch(nta|t[0-2]|w(t1)?))\b
 
   entities:
     patterns:
