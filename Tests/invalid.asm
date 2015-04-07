@@ -9,6 +9,7 @@ fdivp/fidivp/fidivrp
 ficomip/ficompp
 fimulp
 fisubp/fisubrp
+paddub/padduw
 vmovbe
 vmovdq2q/vmovq2dq
 vmovnti/vmovntq

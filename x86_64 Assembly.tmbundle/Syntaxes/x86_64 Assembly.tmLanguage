@@ -332,6 +332,36 @@
 					<key>name</key>
 					<string>keyword.mnemonic.mmx.conversion</string>
 				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(p(addd|maddwd|((add|sub)(u?s)?[bw])|mul[lh]w))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.mmx.packed-arithmetic</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(pcmp((eq|gt)[bdw]))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.mmx.comparison</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(pandn?|px?or)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.mmx.logical</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(ps([rl]l[dwq]|raw|rad))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.mmx.shift-and-rotate</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(emms)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.mmx.state-management</string>
+				</dict>
 			</array>
 		</dict>
 		<key>preprocessor</key>

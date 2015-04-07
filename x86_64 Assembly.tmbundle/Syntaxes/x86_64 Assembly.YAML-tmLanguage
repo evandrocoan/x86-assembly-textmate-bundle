@@ -189,8 +189,16 @@ repository:
       match: \b(mov[dq])\b
     - name: keyword.mnemonic.mmx.conversion
       match: \b(pack(ssdw|sswb|uswb)|punpck[hl](bw|dq|wd))\b
-#    - name: keyword.mnemonic.mmx.packed-arithmetic
-#      match: \b(p)\b
+    - name: keyword.mnemonic.mmx.packed-arithmetic
+      match: \b(p(addd|maddwd|((add|sub)(u?s)?[bw])|mul[lh]w))\b
+    - name: keyword.mnemonic.mmx.comparison
+      match: \b(pcmp((eq|gt)[bdw]))\b
+    - name: keyword.mnemonic.mmx.logical
+      match: \b(pandn?|px?or)\b
+    - name: keyword.mnemonic.mmx.shift-and-rotate
+      match: \b(ps([rl]l[dwq]|raw|rad))\b
+    - name: keyword.mnemonic.mmx.state-management
+      match: \b(emms)\b
 
   entities:
     patterns:
