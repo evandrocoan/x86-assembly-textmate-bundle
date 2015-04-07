@@ -1,9 +1,12 @@
 ;invalid instructions, should not be highlighted
 cwdqo
-fiaddp
+fbst
+fcmovnbu
+fiaddp/fisubp
 cmovnpo/cmovpos
 fucomipp
-fidivp/fidivrp
+fdivp/fidivp/fidivrp
+ficomip/ficompp
 fimulp
 fisubp/fisubrp
 vmovbe

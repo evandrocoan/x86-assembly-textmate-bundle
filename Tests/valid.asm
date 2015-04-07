@@ -62,7 +62,7 @@ fcom/fcomp/fcompp/fucom/fucomp/fucompp/ficom/ficomp/fcomi/fucomi/fcomip/fucomip/
 ;5.2.4         x87 FPU Transcendental Instructions
 fsin/fcos/fsincos/fptan/fpatan/f2xm1/fyl2xp1
 ;5.2.5         x87 FPU Load Constants Instructions
-fld1/fldz/fldpi/fldl2e/fldln2/fldl2t/fldlg2  
+fld1/fldz/fldpi/fldl2e/fldln2/fldl2t/fldlg2
 ;5.2.6         x87 FPU Control Instructions
 fincstp/fdecstp/ffree/finit/fninit/fclex/fnclex/fstcw/fnstcw
 fldcw/fstenv/fnstenv/fldenv/fsave/fnsave/frstor/fstsw/fnstsw
