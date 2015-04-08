@@ -152,7 +152,22 @@
 					<key>include</key>
 					<string>#mnemonics-sse3</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mnemonics-sse4</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mnemonics-aesni</string>
+				</dict>
 			</array>
+		</dict>
+		<key>mnemonics-aesni</key>
+		<dict>
+			<key>match</key>
+			<string>\b(aes((dec|enc)(last)?|imc|keygenassist)|pclmulqdq)\b</string>
+			<key>name</key>
+			<string>keyword.mnemonic.aesni</string>
 		</dict>
 		<key>mnemonics-fpu</key>
 		<dict>
@@ -529,6 +544,66 @@
 					<string>\b(p((abs|sign)[bdw]|maddubsw|mulhrsw|shufb|alignr))\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.sse3.supplimental.other</string>
+				</dict>
+			</array>
+		</dict>
+		<key>mnemonics-sse4</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\b(pmul(ld|dq)|dpp[ds])\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse4.1.arithmetic</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(movntdqa)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse4.1.load-hint</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(blendv?p[ds]|pblend(vb|w))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse4.1.packed-blending</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(p(min|max)(u[dw]|s[bd]))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse4.1.packed-integer</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(round[ps][sd])\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse4.1.packed-floating-point</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b((extract|insert)ps|p((ins|ext)(r[bdq])))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse4.1.insertion-and-extraction</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(pmov([sz]x(b[dqw]|dq|wd|wq)))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse4.1.conversion</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(mpsadbw|phminposuw|ptest|pcmpeqq|packusdw)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse4.1.other</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(pcmp([ei]str[im]|gtq))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse4.2</string>
 				</dict>
 			</array>
 		</dict>

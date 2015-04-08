@@ -13,6 +13,7 @@ paddub/padduw
 cvtsi2pi/cvtps2ps/cvtsi2si/cvtpi2pi/cvtss2ss/cvtss2ps/cvtss2pi/cvtpi2ss
 cvttsi2si/cvttps2ps/cvttpi2pi
 cvttdq2ps
+pmovsxww
 vmovbe
 vmovdq2q/vmovq2dq
 vmovnti/vmovntq

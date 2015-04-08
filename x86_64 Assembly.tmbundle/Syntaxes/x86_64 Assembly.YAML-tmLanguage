@@ -128,6 +128,8 @@ repository:
     - include: '#mnemonics-sse'
     - include: '#mnemonics-sse2'
     - include: '#mnemonics-sse3'
+    - include: '#mnemonics-sse4'
+    - include: '#mnemonics-aesni'
 
   mnemonics-general-purpose:
     patterns:
@@ -260,6 +262,31 @@ repository:
       match: \b(ph(add|sub)(s?w|d))\b
     - name: keyword.mnemonic.sse3.supplimental.other
       match: \b(p((abs|sign)[bdw]|maddubsw|mulhrsw|shufb|alignr))\b
+
+  mnemonics-sse4:
+    patterns:
+    - name: keyword.mnemonic.sse4.1.arithmetic
+      match: \b(pmul(ld|dq)|dpp[ds])\b
+    - name: keyword.mnemonic.sse4.1.load-hint
+      match: \b(movntdqa)\b
+    - name: keyword.mnemonic.sse4.1.packed-blending
+      match: \b(blendv?p[ds]|pblend(vb|w))\b
+    - name: keyword.mnemonic.sse4.1.packed-integer
+      match: \b(p(min|max)(u[dw]|s[bd]))\b
+    - name: keyword.mnemonic.sse4.1.packed-floating-point
+      match: \b(round[ps][sd])\b
+    - name: keyword.mnemonic.sse4.1.insertion-and-extraction
+      match: \b((extract|insert)ps|p((ins|ext)(r[bdq])))\b
+    - name: keyword.mnemonic.sse4.1.conversion
+      match: \b(pmov([sz]x(b[dqw]|dq|wd|wq)))\b
+    - name: keyword.mnemonic.sse4.1.other
+      match: \b(mpsadbw|phminposuw|ptest|pcmpeqq|packusdw)\b
+    - name: keyword.mnemonic.sse4.2
+      match: \b(pcmp([ei]str[im]|gtq))\b
+
+  mnemonics-aesni:
+    name: keyword.mnemonic.aesni
+    match: \b(aes((dec|enc)(last)?|imc|keygenassist)|pclmulqdq)\b
 
   entities:
     patterns:
