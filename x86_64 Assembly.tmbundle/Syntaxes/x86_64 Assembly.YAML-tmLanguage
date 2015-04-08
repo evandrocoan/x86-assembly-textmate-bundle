@@ -93,8 +93,11 @@ repository:
       - include: '#string_escaped_char'
 
   support:
-    name: support.type.asm
-    match: (?i)\b((d|q|t|y)?word|db|dw|dd|dq|dt|do|dy|res(b|w|d|q|t|o|y)?|incbin|equ|times)\b
+    patterns:
+    - name: support.type.asm
+      match: (?i)\b((d|q|t|y)?word|db|dw|dd|dq|dt|do|dy|res(b|w|d|q|t|o|y)?|incbin|equ|times)\b
+    - name: support.other.asm.directive
+      match: (?i)\b(\.?align)\b
 
   registers:
     patterns:
@@ -123,6 +126,7 @@ repository:
     - include: '#mnemonics-fpu'
     - include: '#mnemonics-mmx'
     - include: '#mnemonics-sse'
+    - include: '#mnemonics-sse2'
 
   mnemonics-general-purpose:
     patterns:
@@ -224,14 +228,35 @@ repository:
     - name: keyword.mnemonic.sse.prefetch
       match: \b(prefetch(nta|t[0-2]|w(t1)?))\b
 
+  mnemonics-sse2:
+    patterns:
+    - name: keyword.mnemonic.sse2.data-transfer
+      match: \b(mov([auhl]|msk)pd)\b
+    - name: keyword.mnemonic.sse2.packed-arithmetic
+      match: \b((add|div|max|min|mul|sub|sqrt)[ps]d)\b
+    - name: keyword.mnemonic.sse2.logical
+      match: \b((andn?|x?or)pd)\b
+    - name: keyword.mnemonic.sse2.compare
+      match: \b((cmpp|u?comis)d)\b
+    - name: keyword.mnemonic.sse2.shuffle-and-unpack
+      match: \b((shuf|unpck[hl])pd)\b
+    - name: keyword.mnemonic.sse2.conversion
+      match: \b(cvt(dq2pd|pd2dq|pd2pi|pi2pd|ps2pd|sd2si|sd2ss|si2sd|ss2sd|t(pd2dq|pd2pi|sd2si)))\b
+    - name: keyword.mnemonic.sse2.packed-floating-point
+      match: \b(cvt(dq2ps|ps2dq|tps2dq))\b
+    - name: keyword.mnemonic.sse2.simd-integer.mov
+      match: \b(mov(dq[au]|q2dq|dq2q))\b
+    - name: keyword.mnemonic.sse2.simd-integer.other
+      match: \b(p((add|sub|(s[lr]l|mulu|unpck[hl]q)d)q|shuf(d|[hl]w)))\b
+    - name: keyword.mnemonic.sse2.cacheability-control
+      match: \b(clflush|[lm]fence|maskmovdqu|movnt(dq|i))\b
+
   entities:
     patterns:
     - name: entity.name.section
-      match: \.(data|bss|text)$
-
+      match: (section\W+)?\.(data|bss|text)$
     - name: entity.name.function
       match: ^\s*\.?\w+:\s*(?=$|;)
-    
     - name: entity.directive
       match: ^\.?(globl|global)\b
 
@@ -239,11 +264,8 @@ repository:
     patterns:
     - name: constant.numeric.literal
       match: \$[0-9a-f]+\b
-    
     - name: constant.numeric.dec
       match: \b[0-9]+\b
-    
     - name: constant.numeric.hex
       match: \b([0-9a-fA-F]+h?|0x[0-9a-fA-F]+)\b
-
 ...

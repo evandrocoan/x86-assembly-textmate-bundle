@@ -106,7 +106,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\.(data|bss|text)$</string>
+					<string>(section\W+)?\.(data|bss|text)$</string>
 					<key>name</key>
 					<string>entity.name.section</string>
 				</dict>
@@ -143,6 +143,10 @@
 				<dict>
 					<key>include</key>
 					<string>#mnemonics-sse</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mnemonics-sse2</string>
 				</dict>
 			</array>
 		</dict>
@@ -434,6 +438,72 @@
 				</dict>
 			</array>
 		</dict>
+		<key>mnemonics-sse2</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\b(mov([auhl]|msk)pd)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse2.data-transfer</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b((add|div|max|min|mul|sub|sqrt)[ps]d)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse2.packed-arithmetic</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b((andn?|x?or)pd)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse2.logical</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b((cmpp|u?comis)d)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse2.compare</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b((shuf|unpck[hl])pd)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse2.shuffle-and-unpack</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(cvt(dq2pd|pd2dq|pd2pi|pi2pd|ps2pd|sd2si|sd2ss|si2sd|ss2sd|t(pd2dq|pd2pi|sd2si)))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse2.conversion</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(cvt(dq2ps|ps2dq|tps2dq))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse2.packed-floating-point</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(mov(dq[au]|q2dq|dq2q))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse2.simd-integer.mov</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(p((add|sub|(s[lr]l|mulu|unpck[hl]q)d)q|shuf(d|[hl]w)))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse2.simd-integer.other</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(clflush|[lm]fence|maskmovdqu|movnt(dq|i))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse2.cacheability-control</string>
+				</dict>
+			</array>
+		</dict>
 		<key>preprocessor</key>
 		<dict>
 			<key>patterns</key>
@@ -697,10 +767,21 @@
 		</dict>
 		<key>support</key>
 		<dict>
-			<key>match</key>
-			<string>(?i)\b((d|q|t|y)?word|db|dw|dd|dq|dt|do|dy|res(b|w|d|q|t|o|y)?|incbin|equ|times)\b</string>
-			<key>name</key>
-			<string>support.type.asm</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>(?i)\b((d|q|t|y)?word|db|dw|dd|dq|dt|do|dy|res(b|w|d|q|t|o|y)?|incbin|equ|times)\b</string>
+					<key>name</key>
+					<string>support.type.asm</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>(?i)\b(\.?align)\b</string>
+					<key>name</key>
+					<string>support.other.asm.directive</string>
+				</dict>
+			</array>
 		</dict>
 	</dict>
 	<key>scopeName</key>
