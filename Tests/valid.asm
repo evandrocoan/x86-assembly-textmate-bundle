@@ -78,7 +78,7 @@ movd/movq
 packsswb/packssdw/packuswb/punpckhbw/punpckhwd/punpckhdq/punpcklbw/punpcklwd/punpckldq
 ;5.4.3         MMX Packed Arithmetic Instructions
 paddb/paddw/paddd/paddsb/paddsw/paddusb/paddusw
-psubb/psubw/psubsb/psubsw/psubusb/psubusw
+psubb/psubw/psubd/psubsb/psubsw/psubusb/psubusw
 pmulhw/pmullw/pmaddwd
 ;5.4.4         MMX Comparison Instructions
 pcmpeqb/pcmpeqw/pcmpeqd/pcmpgtb/pcmpgtw/pcmpgtd
@@ -132,7 +132,7 @@ cvtdq2ps/cvtps2dq/cvttps2dq
 ;5.6.3         SSE2 128-Bit SIMD Integer Instructions
 movdqa/movdqu/movq2dq/movdq2q/pmuludq/paddq/psubq/pshuflw/pshufhw/pshufd/pslldq/psrldq/punpckhqdq/punpcklqdq
 ;5.6.4         SSE2 Cacheability Control and Ordering Instructions
-clflush/lfence/mfence/maskmovdqu/movntdq/movnti
+clflush/lfence/mfence/pause/maskmovdqu/movntpd/movntdq/movnti
 
 ;5.7 SSE3 INSTRUCTIONS
 ;5.7.1         SSE3 x87-FP Integer Conversion Instruction
@@ -402,7 +402,6 @@ getsec
 retn/retf
 
 ;undocumented
-stosb
 icebp
 int1
 smi

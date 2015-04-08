@@ -198,7 +198,7 @@ repository:
     - name: keyword.mnemonic.mmx.conversion
       match: \b(pack(ssdw|[su]swb)|punpck[hl](bw|dq|wd))\b
     - name: keyword.mnemonic.mmx.packed-arithmetic
-      match: \b(p(addd|maddwd|((add|sub)(u?s)?[bw])|mul[lh]w))\b
+      match: \b(p(((add|sub)(d|(u?s)?[bw]))|maddwd|mul[lh]w))\b
     - name: keyword.mnemonic.mmx.comparison
       match: \b(pcmp((eq|gt)[bdw]))\b
     - name: keyword.mnemonic.mmx.logical
@@ -252,7 +252,7 @@ repository:
     - name: keyword.mnemonic.sse2.simd-integer.other
       match: \b(p((add|sub|(s[lr]l|mulu|unpck[hl]q)d)q|shuf(d|[hl]w)))\b
     - name: keyword.mnemonic.sse2.cacheability-control
-      match: \b(clflush|[lm]fence|maskmovdqu|movnt(dq|i))\b
+      match: \b(clflush|[lm]fence|pause|maskmovdqu|movnt(dq|i|pd))\b
 
   mnemonics-sse3:
     patterns:

@@ -361,7 +361,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(p(addd|maddwd|((add|sub)(u?s)?[bw])|mul[lh]w))\b</string>
+					<string>\b(p(((add|sub)(d|(u?s)?[bw]))|maddwd|mul[lh]w))\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.mmx.packed-arithmetic</string>
 				</dict>
@@ -517,7 +517,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(clflush|[lm]fence|maskmovdqu|movnt(dq|i))\b</string>
+					<string>\b(clflush|[lm]fence|pause|maskmovdqu|movnt(dq|i|pd))\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.sse2.cacheability-control</string>
 				</dict>
