@@ -132,6 +132,7 @@ repository:
     - include: '#mnemonics-aesni'
     - include: '#mnemonics-avx'
     - include: '#mnemonics-avx2'
+    - include: '#mnemonics-tsx'
 
   mnemonics-general-purpose:
     patterns:
@@ -298,6 +299,20 @@ repository:
       match: \b(vcvt(ph2ps|ps2ph))\b
     - name: keyword.mnemonic.fma
       match: \b(vfn?m((add|sub)(132|213|231)[ps][ds])|vfm((addsub|subadd)(132|213|231)p[ds]))\b
+
+  mnemonics-avx2:
+    patterns:
+    - name: keyword.mnemonic.avx2.promoted.simd
+      match: \b(v((broadcast|extract|insert|perm2)i128|pmaskmov[dq]|perm([dsq]|p[sd])))\b
+    - name: keyword.mnemonic.avx2.blend
+      match: \b(vp(blendd|s[lr]lv[dq]|sravd))\b
+    - name: keyword.mnemonic.avx2.gather
+      match: \b(vp?gather[dq][dq]|vgather([dq]|dq)p[ds])\b
+
+  mnemonics-tsx:
+    patterns:
+    - name: keyword.mnemonic.tsx
+      match: \b(x(abort|acquire|release|begin|end|test))\b
 
   entities:
     patterns:

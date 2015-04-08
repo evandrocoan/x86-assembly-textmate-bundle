@@ -21,6 +21,7 @@ vmovsx/vmovsxd
 vmovzx
 vmul
 vfmsubadd132sd/vfmsubadd132ss/vfnmsubadd132pd
+vgatherds/vgatherdpq/vpgatherdqpd
 xwait/iwait
 outsq
 padduw

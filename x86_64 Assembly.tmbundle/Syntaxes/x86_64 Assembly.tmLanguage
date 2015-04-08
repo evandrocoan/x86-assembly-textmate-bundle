@@ -168,6 +168,10 @@
 					<key>include</key>
 					<string>#mnemonics-avx2</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mnemonics-tsx</string>
+				</dict>
 			</array>
 		</dict>
 		<key>mnemonics-aesni</key>
@@ -198,6 +202,30 @@
 					<string>\b(vfn?m((add|sub)(132|213|231)[ps][ds])|vfm((addsub|subadd)(132|213|231)p[ds]))\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.fma</string>
+				</dict>
+			</array>
+		</dict>
+		<key>mnemonics-avx2</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\b(v((broadcast|extract|insert|perm2)i128|pmaskmov[dq]|perm([dsq]|p[sd])))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx2.promoted.simd</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vp(blendd|s[lr]lv[dq]|sravd))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx2.blend</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vp?gather[dq][dq]|vgather([dq]|dq)p[ds])\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx2.gather</string>
 				</dict>
 			</array>
 		</dict>
@@ -636,6 +664,18 @@
 					<string>\b(pcmp([ei]str[im]|gtq))\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.sse4.2</string>
+				</dict>
+			</array>
+		</dict>
+		<key>mnemonics-tsx</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\b(x(abort|acquire|release|begin|end|test))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.tsx</string>
 				</dict>
 			</array>
 		</dict>
