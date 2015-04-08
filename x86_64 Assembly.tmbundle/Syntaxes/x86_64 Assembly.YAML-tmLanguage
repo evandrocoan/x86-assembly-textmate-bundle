@@ -127,6 +127,7 @@ repository:
     - include: '#mnemonics-mmx'
     - include: '#mnemonics-sse'
     - include: '#mnemonics-sse2'
+    - include: '#mnemonics-ssse3'
 
   mnemonics-general-purpose:
     patterns:
@@ -250,6 +251,15 @@ repository:
       match: \b(p((add|sub|(s[lr]l|mulu|unpck[hl]q)d)q|shuf(d|[hl]w)))\b
     - name: keyword.mnemonic.sse2.cacheability-control
       match: \b(clflush|[lm]fence|maskmovdqu|movnt(dq|i))\b
+
+  mnemonics-ssse3:
+    patterns:
+    - name: keyword.mnemonic.sse3
+      match: \b(fisttp|lddqu|(addsub|h(add|sub))p[sd]|mov(sh|sl|d)dup|monitor|mwait)\b
+    - name: keyword.mnemonic.ssse3.arithmetic
+      match: \b(ph(add|sub)(s?w|d))\b
+    - name: keyword.mnemonic.ssse3.other
+      match: \b(p((abs|sign)[bdw]|maddubsw|mulhrsw|shufb|alignr))\b
 
   entities:
     patterns:

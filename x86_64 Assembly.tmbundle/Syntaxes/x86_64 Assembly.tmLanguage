@@ -148,6 +148,10 @@
 					<key>include</key>
 					<string>#mnemonics-sse2</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mnemonics-ssse3</string>
+				</dict>
 			</array>
 		</dict>
 		<key>mnemonics-fpu</key>
@@ -501,6 +505,30 @@
 					<string>\b(clflush|[lm]fence|maskmovdqu|movnt(dq|i))\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.sse2.cacheability-control</string>
+				</dict>
+			</array>
+		</dict>
+		<key>mnemonics-ssse3</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\b(fisttp|lddqu|(addsub|h(add|sub))p[sd]|mov(sh|sl|d)dup|monitor|mwait)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sse3</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(ph(add|sub)(s?w|d))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.ssse3.arithmetic</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(p((abs|sign)[bdw]|maddubsw|mulhrsw|shufb|alignr))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.ssse3.other</string>
 				</dict>
 			</array>
 		</dict>
