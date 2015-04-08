@@ -172,7 +172,30 @@
 					<key>include</key>
 					<string>#mnemonics-tsx</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mnemonics-system</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mnemonics-64bit</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mnemonics-vmx</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mnemonics-smx</string>
+				</dict>
 			</array>
+		</dict>
+		<key>mnemonics-64bit</key>
+		<dict>
+			<key>match</key>
+			<string>\b(cdqe|(cmp|lod|mov|sto)sq|cmpxchg16b|swapgs|sys(call|ret))\b</string>
+			<key>name</key>
+			<string>keyword.mnemonic.64-bit-mode</string>
 		</dict>
 		<key>mnemonics-aesni</key>
 		<dict>
@@ -451,6 +474,24 @@
 				</dict>
 			</array>
 		</dict>
+		<key>mnemonics-smx</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\b(getsec)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.smx.getsec</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(capabilities|enteraccs|exitac|senter|sexit|parameters|smctrl|wakeup)\b</string>
+					<key>name</key>
+					<string>support.constant</string>
+				</dict>
+			</array>
+		</dict>
 		<key>mnemonics-sse</key>
 		<dict>
 			<key>patterns</key>
@@ -667,17 +708,43 @@
 				</dict>
 			</array>
 		</dict>
-		<key>mnemonics-tsx</key>
+		<key>mnemonics-system</key>
 		<dict>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\b(x(abort|acquire|release|begin|end|test))\b</string>
+					<string>\b((cl|st)ac|[ls]([gli]dt|tr|msw)|clts|arpl|lar|lsl|ver[rw]|inv(d|lpg|pcid)|wbinvd)\b</string>
 					<key>name</key>
-					<string>keyword.mnemonic.tsx</string>
+					<string>keyword.mnemonic.system</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(lock|hlt|rsm|(rd|wr)msr|rd(pmc|tscp?)|sys(enter|exit))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.system</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(x(save(opt)?|rstor|[gs]etbv)|(rd|wr)[fg]sbase)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.system</string>
 				</dict>
 			</array>
+		</dict>
+		<key>mnemonics-tsx</key>
+		<dict>
+			<key>match</key>
+			<string>\b(x(abort|acquire|release|begin|end|test))\b</string>
+			<key>name</key>
+			<string>keyword.mnemonic.tsx</string>
+		</dict>
+		<key>mnemonics-vmx</key>
+		<dict>
+			<key>match</key>
+			<string>\b(vm(ptr(ld|st)|clear|read|write|launch|resume|xo(ff|n)|call|func)|inv(ept|vpid))\b</string>
+			<key>name</key>
+			<string>keyword.mnemonic.vmx</string>
 		</dict>
 		<key>preprocessor</key>
 		<dict>
@@ -865,6 +932,12 @@
 					<string>\b%?(dr[0-367])\b</string>
 					<key>name</key>
 					<string>constant.language.registers.debug</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b%?(db[0-367]|t[67]|tr[3-7]|st)\b</string>
+					<key>name</key>
+					<string>invalid.deprecated</string>
 				</dict>
 			</array>
 		</dict>

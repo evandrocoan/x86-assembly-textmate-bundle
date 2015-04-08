@@ -35,3 +35,4 @@ broadcast/vvbroadcast
 pmovsx/pmovzx
 vbroadcast
 vfnmaddsub213pd
+xrdfsbase

@@ -1,4 +1,4 @@
-;Intel® 64 and IA-32 Architectures Software Developer’s Manual (2015-01)
+;Intel® 64 and IA-32 Architectures Software Developer’s Manual. Vol 1 (2015-01)
 ;5.1 GENERAL-PURPOSE INSTRUCTIONS
 ;5.1.1         Data Transfer Instructions
 mov/cmove/cmovz/cmovne/cmovnz/cmova/cmovnbe/cmovae/cmovnb/cmovb/cmovnae
@@ -390,11 +390,94 @@ vmptrld/vmptrst/vmclear/vmread/vmwrite/vmlaunch/vmresume/vmxoff/vmxon/invept/inv
 
 ;5.21 SAFER MODE EXTENSIONS
 getsec
-[capabilities/enteraccs/exitac/senter/sexit/parameters/smcrtl/wakeup]
+[capabilities/enteraccs/exitac/senter/sexit/parameters/smctrl/wakeup]
 
 ;====================================================================
+;Intel® 64 and IA-32 Architectures Software Developer’s Manual. Vol 2A (2015-01)
+aaa|aad|aam|aas|adc|adcx|add|addpd|addps|addsd|addss|addsubpd|addsubps|adox
+aesdec|aesdeclast|aesenc|aesenclast|aesimc|aeskeygenassist
+and|andn|andpd|andps|andnpd|andnps|arpl
 
+blendpd|bextr|blendps|blendvpd|blendvps|blsi|blsmsk|blsr|bound|bsf|bsr|bswap|bt|btc|btr|bts|bzhi
 
+call|cbw|cwde|cdqe|clac|clc|cld|clflush|cli|clts|cmc
+cmovcc
+cmp|cmppd|cmpps|cmps|cmpsb|cmpsw|cmpsd|cmpsq|cmpsd|cmpss|cmpxchg|cmpxchg8b|cmpxchg16b|comisd|comiss|cpuid|crc32
+cvtdq2pd|cvtdq2ps|cvtpd2dq|cvtpd2pi|cvtpd2ps|cvtpi2pd|cvtpi2ps|cvtps2dq|cvtps2pd|cvtps2pi|cvtsd2si|cvtsd2ss
+cvtsi2sd|cvtsi2ss|cvtss2sd|cvtss2si|cvttpd2dq|cvttpd2pi|cvttps2dq|cvttps2pi|cvttsd2si|cvttss2si|cwd|cdq|cqo
+
+daa|das|dec|div|divpd|divps|divsd|divss|dppd|dpps
+
+emms|enter|extractps
+
+f2xm1|fabs|fadd|faddp|fiadd|fbld|fbstp|fchs|fclex|fnclex
+fcmovcc
+fcom|fcomp|fcompp|fcomi|fcomip| fucomi|fucomip|fcos|fdecstp|fdiv|fdivp|fidiv|fdivr|fdivrp|fidivr|ffree
+ficom|ficomp|fild|fincstp|finit|fninit|fist|fistp|fisttp|fld|fld1|fldl2t|fldl2e|fldpi|fldlg2|fldln2|fldz|fldcw|fldenv
+fmul|fmulp|fimul|fnop|fpatan|fprem|fprem1|fptan|frndint|frstor|fsave|fnsave|fscale|fsin|fsincos|fsqrt|fst|fstp
+fstcw|fnstcw|fstenv|fnstenv|fstsw|fnstsw|fsub|fsubp|fisub|fsubr|fsubrp|fisubr|ftst|fucom|fucomp|fucompp|fxam|fxch
+fxrstor|fxsave|fxtract|fyl2x|fyl2xp1
+
+haddpd|haddps|hlt|hsubpd|hsubps
+
+idiv|imul|in|inc|ins|insb|insw|insd|insertps|int n|into|int 3|invd|invlpg|invpcid|iret|iretd
+
+jcc
+jmp
+
+lahf|lar|lddqu|ldmxcsr|lds|les|lfs|lgs|lss|lea|leave|lfence|lgdt|lidt|lldt|lmsw|lock|lods|lodsb|lodsw|lodsd|lodsq|loop
+loopcc
+lsl|ltr|lzcnt
+
+maskmovdqu|maskmovq|maxpd|maxps|maxsd|maxss|mfence|minpd|minps|minsd|minss|monitor
+mov|mov|mov|movapd|movaps|movbe|movd|movq|movddup|movdqa|movdqu|movdq2q|movhlps|movhpd|movhps|movlhps|movlpd|movlps
+movmskpd|movmskps|movntdqa|movntdq|movnti|movntpd|movntps|movntq|movq|movq2dq|movs|movsb|movsw|movsd|movsq|movsd
+movshdup|movsldup|movss|movsx|movsxd|movupd|movups|movzx|mpsadbw|mul|mulpd|mulps|mulsd|mulss|mulx|mwait
+
+neg|nop|not
+
+or|orpd|orps|out|outs|outsb|outsw|outsd
+
+pabsb|pabsw|pabsd|packsswb|packssdw|packusdw|packuswb|paddb|paddw|paddd|paddq|paddsb|paddsw|paddusb|paddusw
+palignr|pand|pandn|pause|pavgb|pavgw|pblendvb|pblendw|pclmulqdq
+pcmpeqb|pcmpeqw|pcmpeqd|pcmpeqq|pcmpestri|pcmpestrm|pcmpgtb|pcmpgtw|pcmpgtd|pcmpgtq|pcmpistri|pcmpistrm
+pdep|pext|pextrb|pextrd|pextrq|pextrw|phaddw|phaddd|phaddsw|phminposuw|phsubw|phsubd|phsubsw|pinsrb|pinsrd|pinsrq|pinsrw
+pmaddubsw|pmaddwd|pmaxsb|pmaxsd|pmaxsw|pmaxub|pmaxud|pmaxuw|pminsb|pminsd|pminsw|pminub|pminud|pminuw
+pmovmskb|pmovsx|pmovzx|pmuldq|pmulhrsw|pmulhuw|pmulhw|pmulld|pmullw|pmuludq|pop|popa|popad|popcnt|popf|popfd|popfq|por
+prefetchh
+prefetchw|prefetchwt1|psadbw|pshufb|pshufd|pshufhw|pshuflw|pshufw|psignb|psignw|psignd
+pslldq|psllw|pslld|psllq|psraw|psrad|psrldq|psrlw|psrld|psrlq
+psubb|psubw|psubd|psubq|psubsb|psubsw|psubusb|psubusw|ptest|punpckhbw|punpckhwd|punpckhdq|punpckhqdq|punpcklbw|punpcklwd|punpckldq|punpcklqdq
+push|pusha|pushad|pushf|pushfd|pxor
+
+rcl|rcr|rol|ror|rcpps|rcpss|rdfsbase|rdgsbase|rdmsr|rdpmc|rdrand|rdseed|rdtsc|rdtscp
+rep|repe|repz|repne|repnz|ret|rorx|roundpd|roundps|roundsd|roundss|rsm|rsqrtps|rsqrtss
+
+sahf|sal|sar|shl|shr|sarx|shlx|shrx|sbb|scas|scasb|scasw|scasd
+setcc
+sfence|sgdt|shld|shrd|shufpd|shufps|sidt|sldt|smsw|sqrtpd|sqrtps|sqrtsd|sqrtss
+stac|stc|std|sti|stmxcsr|stos|stosb|stosw|stosd|stosq|str|sub|subpd|subps|subsd|subss|swapgs|syscall|sysenter|sysexit|sysret
+
+test|tzcnt
+
+ucomisd|ucomiss|ud2|unpckhpd|unpckhps|unpcklpd|unpcklps
+vbroadcast
+vcvtph2ps|vcvtps2ph|verr|verw
+vextractf128|vextracti128|vfmadd132pd|vfmadd213pd|vfmadd231pd|vfmadd132ps|vfmadd213ps|vfmadd231ps|vfmadd132sd|vfmadd213sd|vfmadd231sd|vfmadd132ss|vfmadd213ss|vfmadd231ss
+vfmaddsub132pd|vfmaddsub213pd|vfmaddsub231pd|vfmaddsub132ps|vfmaddsub213ps|vfmaddsub231ps
+vfmsubadd132pd|vfmsubadd213pd|vfmsubadd231pd|vfmsubadd132ps|vfmsubadd213ps|vfmsubadd231ps
+vfmsub132pd|vfmsub213pd|vfmsub231pd|vfmsub132ps|vfmsub213ps|vfmsub231ps|vfmsub132sd|vfmsub213sd|vfmsub231sd|vfmsub132ss|vfmsub213ss|vfmsub231ss
+vfnmadd132pd|vfnmadd213pd|vfnmadd231pd|vfnmadd132ps|vfnmadd213ps|vfnmadd231ps|vfnmadd132sd|vfnmadd213sd|vfnmadd231sd|vfnmadd132ss|vfnmadd213ss|vfnmadd231ss
+vfnmsub132pd|vfnmsub213pd|vfnmsub231pd|vfnmsub132ps|vfnmsub213ps|vfnmsub231ps|vfnmsub132sd|vfnmsub213sd|vfnmsub231sd|vfnmsub132ss|vfnmsub213ss|vfnmsub231ss
+vgatherdpd|vgatherqpd|vgatherdps|vgatherqps|vpgatherdd|vpgatherqd|vpgatherdq|vpgatherqq
+vinsertf128|vinserti128|vmaskmov|vpblendd|vpbroadcast|vpermd|vpermpd|vpermps|vpermq|vperm2i128|vpermilpd|vpermilps|vperm2f128
+vpmaskmov|vpsllvd|vpsllvq|vpsravd|vpsrlvd|vpsrlvq|vtestpd|vtestps|vzeroall|vzeroupper
+
+wait|fwait|wbinvd|wrfsbase|wrgsbase|wrmsr
+
+xacquire|xrelease|xabort|xadd|xbegin|xchg|xend|xgetbv|xlat|xlatb|xor|xorpd|xorps|xrstor|xrstors|xsave|xsavec|xsaveopt|xsaves|xsetbv|xtest
+
+getsec[capabilities]|getsec[enteraccs]|getsec[exitac]|getsec[senter]|getsec[sexit]|getsec[parameters]|getsec[smctrl]|getsec[wakeup]|
 
 ;====================================================================
 
@@ -559,4 +642,4 @@ sha256msg1
 sha256msg2
 sha256rnds2
 
-xsave/xrstore/xsaveopt
+xsave/xrstor/xsaveopt
