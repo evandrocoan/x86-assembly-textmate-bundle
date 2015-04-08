@@ -20,6 +20,7 @@ vmovnti/vmovntq
 vmovsx/vmovsxd
 vmovzx
 vmul
+vfmsubadd132sd/vfmsubadd132ss/vfnmsubadd132pd
 xwait/iwait
 outsq
 padduw

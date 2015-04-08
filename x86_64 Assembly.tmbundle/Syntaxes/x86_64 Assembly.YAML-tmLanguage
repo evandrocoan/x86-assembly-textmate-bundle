@@ -130,6 +130,8 @@ repository:
     - include: '#mnemonics-sse3'
     - include: '#mnemonics-sse4'
     - include: '#mnemonics-aesni'
+    - include: '#mnemonics-avx'
+    - include: '#mnemonics-avx2'
 
   mnemonics-general-purpose:
     patterns:
@@ -287,6 +289,15 @@ repository:
   mnemonics-aesni:
     name: keyword.mnemonic.aesni
     match: \b(aes((dec|enc)(last)?|imc|keygenassist)|pclmulqdq)\b
+
+  mnemonics-avx:
+    patterns:
+    - name: keyword.mnemonic.avx
+      match: \b(v((test|permil|maskmov)p[ds]|zero(all|upper)|(perm2|insert|extract|broadcast)f128|broadcasts[ds]))\b
+    - name: keyword.mnemonic.16-bit-floating-point-conversion
+      match: \b(vcvt(ph2ps|ps2ph))\b
+    - name: keyword.mnemonic.fma
+      match: \b(vfn?m((add|sub)(132|213|231)[ps][ds])|vfm((addsub|subadd)(132|213|231)p[ds]))\b
 
   entities:
     patterns:

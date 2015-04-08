@@ -160,6 +160,14 @@
 					<key>include</key>
 					<string>#mnemonics-aesni</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mnemonics-avx</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mnemonics-avx2</string>
+				</dict>
 			</array>
 		</dict>
 		<key>mnemonics-aesni</key>
@@ -168,6 +176,30 @@
 			<string>\b(aes((dec|enc)(last)?|imc|keygenassist)|pclmulqdq)\b</string>
 			<key>name</key>
 			<string>keyword.mnemonic.aesni</string>
+		</dict>
+		<key>mnemonics-avx</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\b(v((test|permil|maskmov)p[ds]|zero(all|upper)|(perm2|insert|extract|broadcast)f128|broadcasts[ds]))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vcvt(ph2ps|ps2ph))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.16-bit-floating-point-conversion</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vfn?m((add|sub)(132|213|231)[ps][ds])|vfm((addsub|subadd)(132|213|231)p[ds]))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.fma</string>
+				</dict>
+			</array>
 		</dict>
 		<key>mnemonics-fpu</key>
 		<dict>
