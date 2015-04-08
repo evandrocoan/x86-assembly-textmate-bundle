@@ -127,7 +127,7 @@ repository:
     - include: '#mnemonics-mmx'
     - include: '#mnemonics-sse'
     - include: '#mnemonics-sse2'
-    - include: '#mnemonics-ssse3'
+    - include: '#mnemonics-sse3'
 
   mnemonics-general-purpose:
     patterns:
@@ -242,7 +242,7 @@ repository:
     - name: keyword.mnemonic.sse2.shuffle-and-unpack
       match: \b((shuf|unpck[hl])pd)\b
     - name: keyword.mnemonic.sse2.conversion
-      match: \b(cvt(dq2pd|pd2dq|pd2pi|pi2pd|ps2pd|sd2si|sd2ss|si2sd|ss2sd|t(pd2dq|pd2pi|sd2si)))\b
+      match: \b(cvt(dq2pd|pd2dq|pd2pi|pi2pd|ps2pd|pd2ps|sd2si|si2sd|sd2ss|ss2sd|t(pd2dq|pd2pi|sd2si)))\b
     - name: keyword.mnemonic.sse2.packed-floating-point
       match: \b(cvt(dq2ps|ps2dq|tps2dq))\b
     - name: keyword.mnemonic.sse2.simd-integer.mov
@@ -252,13 +252,13 @@ repository:
     - name: keyword.mnemonic.sse2.cacheability-control
       match: \b(clflush|[lm]fence|maskmovdqu|movnt(dq|i))\b
 
-  mnemonics-ssse3:
+  mnemonics-sse3:
     patterns:
     - name: keyword.mnemonic.sse3
       match: \b(fisttp|lddqu|(addsub|h(add|sub))p[sd]|mov(sh|sl|d)dup|monitor|mwait)\b
-    - name: keyword.mnemonic.ssse3.arithmetic
+    - name: keyword.mnemonic.sse3.supplimental.arithmetic
       match: \b(ph(add|sub)(s?w|d))\b
-    - name: keyword.mnemonic.ssse3.other
+    - name: keyword.mnemonic.sse3.supplimental.other
       match: \b(p((abs|sign)[bdw]|maddubsw|mulhrsw|shufb|alignr))\b
 
   entities:

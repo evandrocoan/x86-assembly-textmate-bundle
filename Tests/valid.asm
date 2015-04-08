@@ -126,7 +126,7 @@ cmppd/cmpsd/comisd/ucomisd
 ;5.6.1.5        SSE2 Shuffle and Unpack Instructions
 shufpd/unpckhpd/unpcklpd
 ;5.6.1.6        SSE2 Conversion Instructions
-cvtpd2pi/cvttpd2pi/cvtpi2pd/cvtpd2dq/cvttpd2dq/cvtdq2pd/cvtps2pd/cvtss2sd/cvtsd2ss/cvtsd2si/cvttsd2si/cvtsi2sd
+cvtpd2pi/cvttpd2pi/cvtpi2pd/cvtpd2dq/cvttpd2dq/cvtdq2pd/cvtps2pd/cvtpd2ps/cvtss2sd/cvtsd2ss/cvtsd2si/cvttsd2si/cvtsi2sd
 ;5.6.2         SSE2 Packed Single-Precision Floating-Point Instructions
 cvtdq2ps/cvtps2dq/cvttps2dq
 ;5.6.3         SSE2 128-Bit SIMD Integer Instructions

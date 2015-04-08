@@ -150,7 +150,7 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#mnemonics-ssse3</string>
+					<string>#mnemonics-sse3</string>
 				</dict>
 			</array>
 		</dict>
@@ -478,7 +478,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(cvt(dq2pd|pd2dq|pd2pi|pi2pd|ps2pd|sd2si|sd2ss|si2sd|ss2sd|t(pd2dq|pd2pi|sd2si)))\b</string>
+					<string>\b(cvt(dq2pd|pd2dq|pd2pi|pi2pd|ps2pd|pd2ps|sd2si|si2sd|sd2ss|ss2sd|t(pd2dq|pd2pi|sd2si)))\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.sse2.conversion</string>
 				</dict>
@@ -508,7 +508,7 @@
 				</dict>
 			</array>
 		</dict>
-		<key>mnemonics-ssse3</key>
+		<key>mnemonics-sse3</key>
 		<dict>
 			<key>patterns</key>
 			<array>
@@ -522,13 +522,13 @@
 					<key>match</key>
 					<string>\b(ph(add|sub)(s?w|d))\b</string>
 					<key>name</key>
-					<string>keyword.mnemonic.ssse3.arithmetic</string>
+					<string>keyword.mnemonic.sse3.supplimental.arithmetic</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>\b(p((abs|sign)[bdw]|maddubsw|mulhrsw|shufb|alignr))\b</string>
 					<key>name</key>
-					<string>keyword.mnemonic.ssse3.other</string>
+					<string>keyword.mnemonic.sse3.supplimental.other</string>
 				</dict>
 			</array>
 		</dict>
