@@ -1,6 +1,6 @@
 vaddpd|vaddps|vaddsd|vaddsd|vaddsubpd|vaddsubps
 vaesdec|vaesdeclast|vaesenc|vaesenclast|vaesimc|vaeskeygenassist
-vandpd|vandps|vandndp|vandnps
+vandpd|vandps|vandnpd|vandnps
 
 vblendpd|vblendps|vblendvpd|vblendvps
 

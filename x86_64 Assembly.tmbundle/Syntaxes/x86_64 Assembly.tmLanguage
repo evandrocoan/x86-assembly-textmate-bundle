@@ -216,6 +216,12 @@
 				</dict>
 				<dict>
 					<key>match</key>
+					<string>\b(vaes((dec|enc)(last)?|imc|keygenassist)|pclmul[hl]q[hl]qdq)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx.promoted.aes</string>
+				</dict>
+				<dict>
+					<key>match</key>
 					<string>\b(v((cmp[ps]|u?comis)[ds]))\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.avx.promoted.compare</string>

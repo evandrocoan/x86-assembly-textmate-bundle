@@ -303,6 +303,8 @@ repository:
     patterns:
     - name: keyword.mnemonic.avx
       match: \b(v((test|permil|maskmov)p[ds]|zero(all|upper)|(perm2|insert|extract|broadcast)f128|broadcasts[ds]))\b
+    - name: keyword.mnemonic.avx.promoted.aes
+      match: \b(vaes((dec|enc)(last)?|imc|keygenassist)|pclmul[hl]q[hl]qdq)\b
     - name: keyword.mnemonic.avx.promoted.compare
       match: \b(v((cmp[ps]|u?comis)[ds]))\b
     - name: keyword.mnemonic.avx.promoted.conversion
