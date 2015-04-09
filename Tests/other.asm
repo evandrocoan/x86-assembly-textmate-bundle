@@ -25,6 +25,11 @@ incbin equ times
 .data
 .bss
 .text
+section test
+
+label1:
+	test	ax, bx
+label2: jmp label1
 
 db 'some string'
 db "another string\0"

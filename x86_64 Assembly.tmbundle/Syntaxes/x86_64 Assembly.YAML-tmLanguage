@@ -95,9 +95,11 @@ repository:
   support:
     patterns:
     - name: support.type.asm
-      match: (?i)\b((d|q|t|y)?word|db|dw|dd|dq|dt|do|dy|res(b|w|d|q|t|o|y)?|incbin|equ|times)\b
+      match: (?i)\b(byte|(d|dq|o|q|t|y)?word|db|dw|dd|dq|dt|do|dy|res(b|w|d|q|t|o|y)?|incbin|equ|times)\b
     - name: support.other.asm.directive
-      match: (?i)\b(\.?align)\b
+      match: (?i)\b(\.?(align|bits|cpu|fpu))\b
+    - name: support.other.asm.modifier
+      match: \b(strict|nosplit|near|far|abs|rel)\b
 
   registers:
     patterns:
@@ -198,7 +200,7 @@ repository:
     - name: keyword.mnemonic.fpu.control
       match: \b(f((inc|dec)stp|free|n?(init|clex|st[cs]w|stenv|save)|ld(cw|env)|rstor|nop)|f?wait)\b
     - name: keyword.mnemonic.fpu.state-management
-      match: \b(fx(save|rstor))\b
+      match: \b(fx(save|rstor)(64)?)\b
 
   mnemonics-mmx:
     patterns:
@@ -330,7 +332,7 @@ repository:
 
   mnemonics-64bit:
     name: keyword.mnemonic.64-bit-mode
-    match: \b(cdqe|cqo|(cmp|lod|mov|sto)sq|cmpxchg16b|swapgs|sys(call|ret))\b
+    match: \b(cdqe|cqo|(cmp|lod|mov|sto)sq|cmpxchg16b|mov(ntq|sxd)|swapgs|sys(call|ret))\b
 
   mnemonics-vmx:
     name: keyword.mnemonic.vmx
@@ -346,11 +348,11 @@ repository:
   entities:
     patterns:
     - name: entity.name.section
-      match: (section\W+)?\.(data|bss|text)$
+      match: (section\s+)?\.(data|bss|text)$
     - name: entity.name.function
       match: ^\s*\.?\w+:\s*(?=$|;)
     - name: entity.directive
-      match: ^\.?(globl|global)\b
+      match: ^\.?(globa?l)\b
 
   constants:
     patterns:

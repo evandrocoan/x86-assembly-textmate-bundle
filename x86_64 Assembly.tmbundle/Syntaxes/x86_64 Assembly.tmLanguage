@@ -106,7 +106,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>(section\W+)?\.(data|bss|text)$</string>
+					<string>(section\s+)?\.(data|bss|text)$</string>
 					<key>name</key>
 					<string>entity.name.section</string>
 				</dict>
@@ -118,7 +118,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>^\.?(globl|global)\b</string>
+					<string>^\.?(globa?l)\b</string>
 					<key>name</key>
 					<string>entity.directive</string>
 				</dict>
@@ -193,7 +193,7 @@
 		<key>mnemonics-64bit</key>
 		<dict>
 			<key>match</key>
-			<string>\b(cdqe|cqo|(cmp|lod|mov|sto)sq|cmpxchg16b|swapgs|sys(call|ret))\b</string>
+			<string>\b(cdqe|cqo|(cmp|lod|mov|sto)sq|cmpxchg16b|mov(ntq|sxd)|swapgs|sys(call|ret))\b</string>
 			<key>name</key>
 			<string>keyword.mnemonic.64-bit-mode</string>
 		</dict>
@@ -306,7 +306,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(fx(save|rstor))\b</string>
+					<string>\b(fx(save|rstor)(64)?)\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.fpu.state-management</string>
 				</dict>
@@ -1019,15 +1019,21 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>(?i)\b((d|q|t|y)?word|db|dw|dd|dq|dt|do|dy|res(b|w|d|q|t|o|y)?|incbin|equ|times)\b</string>
+					<string>(?i)\b(byte|(d|dq|o|q|t|y)?word|db|dw|dd|dq|dt|do|dy|res(b|w|d|q|t|o|y)?|incbin|equ|times)\b</string>
 					<key>name</key>
 					<string>support.type.asm</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?i)\b(\.?align)\b</string>
+					<string>(?i)\b(\.?(align|bits|cpu|fpu))\b</string>
 					<key>name</key>
 					<string>support.other.asm.directive</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(strict|nosplit|near|far|abs|rel)\b</string>
+					<key>name</key>
+					<string>support.other.asm.modifier</string>
 				</dict>
 			</array>
 		</dict>

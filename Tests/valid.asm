@@ -414,11 +414,11 @@ emms|enter|extractps
 
 f2xm1|fabs|fadd|faddp|fiadd|fbld|fbstp|fchs|fclex|fnclex
 fcmovb|fcmove|fcmovbe|fcmovu|fcmovnb|fcmovne|fcmovnbe|fcmovnu
-fcom|fcomp|fcompp|fcomi|fcomip| fucomi|fucomip|fcos|fdecstp|fdiv|fdivp|fidiv|fdivr|fdivrp|fidivr|ffree
+fcom|fcomp|fcompp|fcomi|fcomip|fucomi|fucomip|fcos|fdecstp|fdiv|fdivp|fidiv|fdivr|fdivrp|fidivr|ffree
 ficom|ficomp|fild|fincstp|finit|fninit|fist|fistp|fisttp|fld|fld1|fldl2t|fldl2e|fldpi|fldlg2|fldln2|fldz|fldcw|fldenv
 fmul|fmulp|fimul|fnop|fpatan|fprem|fprem1|fptan|frndint|frstor|fsave|fnsave|fscale|fsin|fsincos|fsqrt|fst|fstp
 fstcw|fnstcw|fstenv|fnstenv|fstsw|fnstsw|fsub|fsubp|fisub|fsubr|fsubrp|fisubr|ftst|fucom|fucomp|fucompp|fxam|fxch
-fxrstor|fxsave|fxtract|fyl2x|fyl2xp1
+fxrstor|fxrstor64|fxsave|fxsave64|fxtract|fyl2x|fyl2xp1
 
 haddpd|haddps|hlt|hsubpd|hsubps
 
@@ -427,8 +427,8 @@ idiv|imul|in|inc|ins|insb|insw|insd|insertps|int n|into|int 3|invd|invlpg|invpci
 ja|jae|jb|jbe|jc|jcxz|jecxz|jrcxz|je|jg|jge|jl|jle|jna|jnae|jnb|jnbe|jnc|jne|jng|jnge|jnl|jnle|jno|jnp|jns|jnz|jo|jp|jpe|jpo|js|jz
 jmp
 
-lahf|lar|lddqu|ldmxcsr|lds|les|lfs|lgs|lss|lea|leave|lfence|lgdt|lidt|lldt|lmsw|lock|lods|lodsb|lodsw|lodsd|lodsq|loop
-loopcc
+lahf|lar|lddqu|ldmxcsr|lds|les|lfs|lgs|lss|lea|leave|lfence|lgdt|lidt|lldt|lmsw|lock|lods|lodsb|lodsw|lodsd|lodsq
+loop|loope|loopne
 lsl|ltr|lzcnt
 
 maskmovdqu|maskmovq|maxpd|maxps|maxsd|maxss|mfence|minpd|minps|minsd|minss|monitor
@@ -464,12 +464,7 @@ test|tzcnt
 
 ucomisd|ucomiss|ud2|unpckhpd|unpckhps|unpcklpd|unpcklps
 
-vaddpd|vaddps|vaddsd|vaddsd|vaddsubpd|vaddsubps
-vaesdec|vaesdeclast|vaesenc|vaesenclast|vaesimc|vaeskeygenassist
-vandpd|vandps|vandndp|vandnps
-vblendpd|vblendps|vblendvpd|vblendvps
 vbroadcast
-vcmppd|vcmpps|
 vcvtph2ps|vcvtps2ph|verr|verw
 vextractf128|vextracti128|vfmadd132pd|vfmadd213pd|vfmadd231pd|vfmadd132ps|vfmadd213ps|vfmadd231ps|vfmadd132sd|vfmadd213sd|vfmadd231sd|vfmadd132ss|vfmadd213ss|vfmadd231ss
 vfmaddsub132pd|vfmaddsub213pd|vfmaddsub231pd|vfmaddsub132ps|vfmaddsub213ps|vfmaddsub231ps
