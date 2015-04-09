@@ -269,7 +269,7 @@ repository:
     patterns:
     - name: keyword.mnemonic.sse3
       match: \b(fisttp|lddqu|(addsub|h(add|sub))p[sd]|mov(sh|sl|d)dup|monitor|mwait)\b
-    - name: keyword.mnemonic.sse3.supplimental.arithmetic
+    - name: keyword.mnemonic.sse3.supplimental.horizontal-packed-arithmetic
       match: \b(ph(add|sub)(s?w|d))\b
     - name: keyword.mnemonic.sse3.supplimental.other
       match: \b(p((abs|sign)[bdw]|maddubsw|mulhrsw|shufb|alignr))\b
@@ -303,10 +303,22 @@ repository:
     patterns:
     - name: keyword.mnemonic.avx
       match: \b(v((test|permil|maskmov)p[ds]|zero(all|upper)|(perm2|insert|extract|broadcast)f128|broadcasts[ds]))\b
-    - name: keyword.mnemonic.avx.promoted.arithmetic
-      match: \b(v((add|div|mul|sub|max|min)[ps][ds]|addsubp[ds]))\b
+    - name: keyword.mnemonic.avx.promoted.compare
+      match: \b(v((cmp[ps]|u?comis)[ds]))\b
+    - name: keyword.mnemonic.avx.promoted.conversion
+      match: \b(v(cvt(dq2pd|dq2ps|pd2ps|ps2pd|sd2ss|si2sd|si2ss|ss2sd|t?(pd2dq|ps2dq|sd2si|ss2si))))\b
+    - name: keyword.mnemonic.avx.promoted.horizontal-packed-arithmetic
+      match: \b(vh((add|sub)p[ds]))\b
     - name: keyword.mnemonic.avx.promoted.logical
       match: \b(v((andn?|x?or)p[ds]))\b
+    - name: keyword.mnemonic.avx.promoted.mov
+      match: \b(v(mov(([ahl]|msk|nt|u)p[ds]|d(dup|qa|qu)?|hlps|ntdqa?|s([ds]|[hl]dup)|q)))\b
+    - name: keyword.mnemonic.avx.promoted.packed-arithmetic
+      match: \b(v((add|div|mul|sub|max|min|round|sqrt)[ps][ds]|(addsub|dp)p[ds]|(rcp|rsqrt)[ps]s))\b
+    - name: keyword.mnemonic.avx.promoted.packed-blending
+      match: \b(v(blendv?p[ds]))\b
+    - name: keyword.mnemonic.avx.promoted.other
+      match: \b(v((extract|insert)ps|lddqu|(ld|st)mxcsr|maskmovdqu|mpsadbw))\b
     - name: keyword.mnemonic.16-bit-floating-point-conversion
       match: \b(vcvt(ph2ps|ps2ph))\b
     - name: keyword.mnemonic.fma

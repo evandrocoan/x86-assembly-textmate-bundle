@@ -216,15 +216,51 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(v((add|div|mul|sub|max|min)[ps][ds]|addsubp[ds]))\b</string>
+					<string>\b(v((cmp[ps]|u?comis)[ds]))\b</string>
 					<key>name</key>
-					<string>keyword.mnemonic.avx.promoted.arithmetic</string>
+					<string>keyword.mnemonic.avx.promoted.compare</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(v(cvt(dq2pd|dq2ps|pd2ps|ps2pd|sd2ss|si2sd|si2ss|ss2sd|t?(pd2dq|ps2dq|sd2si|ss2si))))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx.promoted.conversion</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vh((add|sub)p[ds]))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx.promoted.horizontal-packed-arithmetic</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>\b(v((andn?|x?or)p[ds]))\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.avx.promoted.logical</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(v(mov(([ahl]|msk|nt|u)p[ds]|d(dup|qa|qu)?|hlps|ntdqa?|s([ds]|[hl]dup)|q)))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx.promoted.mov</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(v((add|div|mul|sub|max|min|round|sqrt)[ps][ds]|(addsub|dp)p[ds]|(rcp|rsqrt)[ps]s))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx.promoted.packed-arithmetic</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(v(blendv?p[ds]))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx.promoted.packed-blending</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(v((extract|insert)ps|lddqu|(ld|st)mxcsr|maskmovdqu|mpsadbw))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx.promoted.other</string>
 				</dict>
 				<dict>
 					<key>match</key>
@@ -650,7 +686,7 @@
 					<key>match</key>
 					<string>\b(ph(add|sub)(s?w|d))\b</string>
 					<key>name</key>
-					<string>keyword.mnemonic.sse3.supplimental.arithmetic</string>
+					<string>keyword.mnemonic.sse3.supplimental.horizontal-packed-arithmetic</string>
 				</dict>
 				<dict>
 					<key>match</key>
