@@ -216,6 +216,18 @@
 				</dict>
 				<dict>
 					<key>match</key>
+					<string>\b(v((add|div|mul|sub|max|min)[ps][ds]|addsubp[ds]))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx.promoted.arithmetic</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(v((andn?|x?or)p[ds]))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx.promoted.logical</string>
+				</dict>
+				<dict>
+					<key>match</key>
 					<string>\b(vcvt(ph2ps|ps2ph))\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.16-bit-floating-point-conversion</string>

@@ -303,6 +303,10 @@ repository:
     patterns:
     - name: keyword.mnemonic.avx
       match: \b(v((test|permil|maskmov)p[ds]|zero(all|upper)|(perm2|insert|extract|broadcast)f128|broadcasts[ds]))\b
+    - name: keyword.mnemonic.avx.promoted.arithmetic
+      match: \b(v((add|div|mul|sub|max|min)[ps][ds]|addsubp[ds]))\b
+    - name: keyword.mnemonic.avx.promoted.logical
+      match: \b(v((andn?|x?or)p[ds]))\b
     - name: keyword.mnemonic.16-bit-floating-point-conversion
       match: \b(vcvt(ph2ps|ps2ph))\b
     - name: keyword.mnemonic.fma
