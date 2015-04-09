@@ -193,7 +193,7 @@
 		<key>mnemonics-64bit</key>
 		<dict>
 			<key>match</key>
-			<string>\b(cdqe|(cmp|lod|mov|sto)sq|cmpxchg16b|swapgs|sys(call|ret))\b</string>
+			<string>\b(cdqe|cqo|(cmp|lod|mov|sto)sq|cmpxchg16b|swapgs|sys(call|ret))\b</string>
 			<key>name</key>
 			<string>keyword.mnemonic.64-bit-mode</string>
 		</dict>
@@ -288,7 +288,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(f(sin|cos|sincos|pa?tan|2xm1|yl2xp1))\b</string>
+					<string>\b(f(sin|cos|sincos|pa?tan|2xm1|yl2x(p1)?))\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.fpu.transcendental</string>
 				</dict>
@@ -372,13 +372,13 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(jmp|jn?[abceglopsz]|jn?[abgl]e|jp[eo]|je?cxz)\b</string>
+					<string>\b(jmp|jn?[abceglopsz]|jn?[abgl]e|jp[eo]|j[er]?cxz)\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.general-purpose.control-transfer.jmp</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(loop(n?[ez])?|call|ret[nf]?|iret|into?|bound|enter|leave)\b</string>
+					<string>\b(loop(n?[ez])?|call|ret[nf]?|iret[dq]?|into?|bound|enter|leave)\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.general-purpose.control-transfer.other</string>
 				</dict>
@@ -420,7 +420,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(andn|bls(i|msk)|bzhi|pdep|pext|[lt]zcnt|(mul|ror|sar|shl|shr)x)\b</string>
+					<string>\b(andn|bextr|bls(i|r|msk)|bzhi|pdep|pext|[lt]zcnt|(mul|ror|sar|shl|shr)x)\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.general-purpose.bmi</string>
 				</dict>

@@ -161,9 +161,9 @@ repository:
     - name: keyword.mnemonic.general-purpose.bit-and-byte.other
       match: \b(bt[crs]?|bs[fr]|test|crc32|popcnt)\b
     - name: keyword.mnemonic.general-purpose.control-transfer.jmp
-      match: \b(jmp|jn?[abceglopsz]|jn?[abgl]e|jp[eo]|je?cxz)\b
+      match: \b(jmp|jn?[abceglopsz]|jn?[abgl]e|jp[eo]|j[er]?cxz)\b
     - name: keyword.mnemonic.general-purpose.control-transfer.other
-      match: \b(loop(n?[ez])?|call|ret[nf]?|iret|into?|bound|enter|leave)\b
+      match: \b(loop(n?[ez])?|call|ret[nf]?|iret[dq]?|into?|bound|enter|leave)\b
     - name: keyword.mnemonic.general-purpose.string
       match: \b((mov|cmp|sca|lod|sto)(s[bdw]?)|rep(n?[ez])?)\b
     - name: keyword.mnemonic.general-purpose.io
@@ -177,7 +177,7 @@ repository:
     - name: keyword.mnemonic.general-purpose.rng
       match: \b(rdrand|rdseed)\b
     - name: keyword.mnemonic.general-purpose.bmi
-      match: \b(andn|bls(i|msk)|bzhi|pdep|pext|[lt]zcnt|(mul|ror|sar|shl|shr)x)\b
+      match: \b(andn|bextr|bls(i|r|msk)|bzhi|pdep|pext|[lt]zcnt|(mul|ror|sar|shl|shr)x)\b
 
   mnemonics-fpu:
     patterns:
@@ -192,7 +192,7 @@ repository:
     - name: keyword.mnemonic.fpu.comparison
       match: \b(f(u?com[ip]?p?|icomp?|tst|xam))\b
     - name: keyword.mnemonic.fpu.transcendental
-      match: \b(f(sin|cos|sincos|pa?tan|2xm1|yl2xp1))\b
+      match: \b(f(sin|cos|sincos|pa?tan|2xm1|yl2x(p1)?))\b
     - name: keyword.mnemonic.fpu.load-constants
       match: \b(fld(1|z|pi|l2[et]|l[ng]2))\b
     - name: keyword.mnemonic.fpu.control
@@ -330,7 +330,7 @@ repository:
 
   mnemonics-64bit:
     name: keyword.mnemonic.64-bit-mode
-    match: \b(cdqe|(cmp|lod|mov|sto)sq|cmpxchg16b|swapgs|sys(call|ret))\b
+    match: \b(cdqe|cqo|(cmp|lod|mov|sto)sq|cmpxchg16b|swapgs|sys(call|ret))\b
 
   mnemonics-vmx:
     name: keyword.mnemonic.vmx

@@ -47,7 +47,7 @@ lea/nop/ud2/xlat/xlatb/cpuid/movbe/prefetchw/prefetchwt1
 ;5.1.14      Random Number Generator Instructions
 rdrand/rdseed
 ;5.1.15 BMI1, BMI2
-andn/blsi/blsmsk/bzhi/lzcnt/mulx/pdep/pext/rorx/sarx/shlx/shrx/tzcnt
+andn/bextr/blsi/blsmsk/blsr/bzhi/lzcnt/mulx/pdep/pext/rorx/sarx/shlx/shrx/tzcnt
 
 ;5.2         X87 FPU INSTRUCTIONS
 ;5.2.1         x87 FPU Data Transfer Instructions
@@ -60,7 +60,7 @@ fprem/fprem1/fabs/fchs/frndint/fscale/fsqrt/fxtract
 ;5.2.3         x87 FPU Comparison Instructions
 fcom/fcomp/fcompp/fucom/fucomp/fucompp/ficom/ficomp/fcomi/fucomi/fcomip/fucomip/ftst/fxam
 ;5.2.4         x87 FPU Transcendental Instructions
-fsin/fcos/fsincos/fptan/fpatan/f2xm1/fyl2xp1
+fsin/fcos/fsincos/fptan/fpatan/f2xm1/fyl2x/fyl2xp1
 ;5.2.5         x87 FPU Load Constants Instructions
 fld1/fldz/fldpi/fldl2e/fldln2/fldl2t/fldlg2
 ;5.2.6         x87 FPU Control Instructions
@@ -393,7 +393,7 @@ getsec
 [capabilities/enteraccs/exitac/senter/sexit/parameters/smctrl/wakeup]
 
 ;====================================================================
-;Intel® 64 and IA-32 Architectures Software Developer’s Manual. Vol 2A (2015-01)
+;Intel® 64 and IA-32 Architectures Software Developer’s Manual. Vol 2 (2015-01)
 aaa|aad|aam|aas|adc|adcx|add|addpd|addps|addsd|addss|addsubpd|addsubps|adox
 aesdec|aesdeclast|aesenc|aesenclast|aesimc|aeskeygenassist
 and|andn|andpd|andps|andnpd|andnps|arpl
@@ -401,7 +401,9 @@ and|andn|andpd|andps|andnpd|andnps|arpl
 blendpd|bextr|blendps|blendvpd|blendvps|blsi|blsmsk|blsr|bound|bsf|bsr|bswap|bt|btc|btr|bts|bzhi
 
 call|cbw|cwde|cdqe|clac|clc|cld|clflush|cli|clts|cmc
-cmovcc
+cmova|cmovae|cmovb|cmovbe|cmovc|cmove|cmovg|cmovge|cmovl|cmovle
+cmovna|cmovnae|cmovnb|cmovnbe|cmovnc|cmovne|cmovng|cmovnge|cmovnl|cmovnle
+cmovno|cmovnp|cmovns|cmovnz|cmovo|cmovp|cmovpe|cmovpo|cmovs|cmovz
 cmp|cmppd|cmpps|cmps|cmpsb|cmpsw|cmpsd|cmpsq|cmpsd|cmpss|cmpxchg|cmpxchg8b|cmpxchg16b|comisd|comiss|cpuid|crc32
 cvtdq2pd|cvtdq2ps|cvtpd2dq|cvtpd2pi|cvtpd2ps|cvtpi2pd|cvtpi2ps|cvtps2dq|cvtps2pd|cvtps2pi|cvtsd2si|cvtsd2ss
 cvtsi2sd|cvtsi2ss|cvtss2sd|cvtss2si|cvttpd2dq|cvttpd2pi|cvttps2dq|cvttps2pi|cvttsd2si|cvttss2si|cwd|cdq|cqo
@@ -411,7 +413,7 @@ daa|das|dec|div|divpd|divps|divsd|divss|dppd|dpps
 emms|enter|extractps
 
 f2xm1|fabs|fadd|faddp|fiadd|fbld|fbstp|fchs|fclex|fnclex
-fcmovcc
+fcmovb|fcmove|fcmovbe|fcmovu|fcmovnb|fcmovne|fcmovnbe|fcmovnu
 fcom|fcomp|fcompp|fcomi|fcomip| fucomi|fucomip|fcos|fdecstp|fdiv|fdivp|fidiv|fdivr|fdivrp|fidivr|ffree
 ficom|ficomp|fild|fincstp|finit|fninit|fist|fistp|fisttp|fld|fld1|fldl2t|fldl2e|fldpi|fldlg2|fldln2|fldz|fldcw|fldenv
 fmul|fmulp|fimul|fnop|fpatan|fprem|fprem1|fptan|frndint|frstor|fsave|fnsave|fscale|fsin|fsincos|fsqrt|fst|fstp
@@ -420,9 +422,9 @@ fxrstor|fxsave|fxtract|fyl2x|fyl2xp1
 
 haddpd|haddps|hlt|hsubpd|hsubps
 
-idiv|imul|in|inc|ins|insb|insw|insd|insertps|int n|into|int 3|invd|invlpg|invpcid|iret|iretd
+idiv|imul|in|inc|ins|insb|insw|insd|insertps|int n|into|int 3|invd|invlpg|invpcid|iret|iretd|iretq
 
-jcc
+ja|jae|jb|jbe|jc|jcxz|jecxz|jrcxz|je|jg|jge|jl|jle|jna|jnae|jnb|jnbe|jnc|jne|jng|jnge|jnl|jnle|jno|jnp|jns|jnz|jo|jp|jpe|jpo|js|jz
 jmp
 
 lahf|lar|lddqu|ldmxcsr|lds|les|lfs|lgs|lss|lea|leave|lfence|lgdt|lidt|lldt|lmsw|lock|lods|lodsb|lodsw|lodsd|lodsq|loop
@@ -430,8 +432,8 @@ loopcc
 lsl|ltr|lzcnt
 
 maskmovdqu|maskmovq|maxpd|maxps|maxsd|maxss|mfence|minpd|minps|minsd|minss|monitor
-mov|mov|mov|movapd|movaps|movbe|movd|movq|movddup|movdqa|movdqu|movdq2q|movhlps|movhpd|movhps|movlhps|movlpd|movlps
-movmskpd|movmskps|movntdqa|movntdq|movnti|movntpd|movntps|movntq|movq|movq2dq|movs|movsb|movsw|movsd|movsq|movsd
+mov|movapd|movaps|movbe|movd|movq|movddup|movdqa|movdqu|movdq2q|movhlps|movhpd|movhps|movlhps|movlpd|movlps
+movmskpd|movmskps|movntdqa|movntdq|movnti|movntpd|movntps|movntq|movq2dq|movs|movsb|movsw|movsd|movsq
 movshdup|movsldup|movss|movsx|movsxd|movupd|movups|movzx|mpsadbw|mul|mulpd|mulps|mulsd|mulss|mulx|mwait
 
 neg|nop|not
@@ -461,7 +463,13 @@ stac|stc|std|sti|stmxcsr|stos|stosb|stosw|stosd|stosq|str|sub|subpd|subps|subsd|
 test|tzcnt
 
 ucomisd|ucomiss|ud2|unpckhpd|unpckhps|unpcklpd|unpcklps
+
+vaddpd|vaddps|vaddsd|vaddsd|vaddsubpd|vaddsubps
+vaesdec|vaesdeclast|vaesenc|vaesenclast|vaesimc|vaeskeygenassist
+vandpd|vandps|vandndp|vandnps
+vblendpd|vblendps|vblendvpd|vblendvps
 vbroadcast
+vcmppd|vcmpps|
 vcvtph2ps|vcvtps2ph|verr|verw
 vextractf128|vextracti128|vfmadd132pd|vfmadd213pd|vfmadd231pd|vfmadd132ps|vfmadd213ps|vfmadd231ps|vfmadd132sd|vfmadd213sd|vfmadd231sd|vfmadd132ss|vfmadd213ss|vfmadd231ss
 vfmaddsub132pd|vfmaddsub213pd|vfmaddsub231pd|vfmaddsub132ps|vfmaddsub213ps|vfmaddsub231ps
@@ -479,8 +487,8 @@ xacquire|xrelease|xabort|xadd|xbegin|xchg|xend|xgetbv|xlat|xlatb|xor|xorpd|xorps
 
 getsec[capabilities]|getsec[enteraccs]|getsec[exitac]|getsec[senter]|getsec[sexit]|getsec[parameters]|getsec[smctrl]|getsec[wakeup]|
 
-;====================================================================
 
+;====================================================================
 ;legacy
 retn/retf
 
