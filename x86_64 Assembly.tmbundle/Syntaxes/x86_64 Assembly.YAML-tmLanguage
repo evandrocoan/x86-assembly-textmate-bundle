@@ -314,7 +314,7 @@ repository:
     - name: keyword.mnemonic.avx.promoted.logical
       match: \b(v((andn?|x?or)p[ds]))\b
     - name: keyword.mnemonic.avx.promoted.mov
-      match: \b(v(mov(([ahl]|msk|nt|u)p[ds]|d(dup|qa|qu)?|hlps|ntdqa?|s([ds]|[hl]dup)|q)))\b
+      match: \b(v(mov(([ahl]|msk|nt|u)p[ds]|d(dup|qa|qu)?|(hl|lh)ps|ntdqa?|s([ds]|[hl]dup)|q)))\b
     - name: keyword.mnemonic.avx.promoted.packed-arithmetic
       match: \b(v((add|div|mul|sub|max|min|round|sqrt)[ps][ds]|(addsub|dp)p[ds]|(rcp|rsqrt)[ps]s))\b
     - name: keyword.mnemonic.avx.promoted.packed-blending

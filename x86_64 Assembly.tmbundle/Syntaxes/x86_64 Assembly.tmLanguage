@@ -246,7 +246,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(v(mov(([ahl]|msk|nt|u)p[ds]|d(dup|qa|qu)?|hlps|ntdqa?|s([ds]|[hl]dup)|q)))\b</string>
+					<string>\b(v(mov(([ahl]|msk|nt|u)p[ds]|d(dup|qa|qu)?|(hl|lh)ps|ntdqa?|s([ds]|[hl]dup)|q)))\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.avx.promoted.mov</string>
 				</dict>
