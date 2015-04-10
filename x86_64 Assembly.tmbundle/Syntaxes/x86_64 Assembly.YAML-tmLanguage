@@ -141,6 +141,7 @@ repository:
     - include: '#mnemonics-64bit'
     - include: '#mnemonics-vmx'
     - include: '#mnemonics-smx'
+    - include: '#mnemonics-undocumented'
 
   mnemonics-general-purpose:
     patterns:
@@ -165,7 +166,7 @@ repository:
     - name: keyword.mnemonic.general-purpose.control-transfer.jmp
       match: \b(jmp|jn?[abceglopsz]|jn?[abgl]e|jp[eo]|j[er]?cxz)\b
     - name: keyword.mnemonic.general-purpose.control-transfer.other
-      match: \b(loop(n?[ez])?|call|ret[nf]?|iret[dq]?|into?|bound|enter|leave)\b
+      match: \b(loop(n?[ez])?|call|ret|iret[dq]?|into?|bound|enter|leave)\b
     - name: keyword.mnemonic.general-purpose.string
       match: \b((mov|cmp|sca|lod|sto)(s[bdw]?)|rep(n?[ez])?)\b
     - name: keyword.mnemonic.general-purpose.io
@@ -386,6 +387,10 @@ repository:
       match: \b(getsec)\b
     - name: support.constant
       match: \b(capabilities|enteraccs|exitac|senter|sexit|parameters|smctrl|wakeup)\b
+
+  mnemonics-undocumented:
+    name: keyword.mnemonic.undocumented
+    match: \b(ret[nf]|icebp|int1|smi)\b
 
   entities:
     patterns:

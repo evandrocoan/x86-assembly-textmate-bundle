@@ -489,6 +489,10 @@ xrstor|xrstor64|xrstors|xrstors64|xsave|xsave64|xsavec|xsavec64|xsaveopt|xsaveop
 
 getsec[capabilities]|getsec[enteraccs]|getsec[exitac]|getsec[senter]|getsec[sexit]|getsec[parameters]|getsec[smctrl]|getsec[wakeup]|
 
+;====================================================================
+;Intel® Architecture Instruction Set Extensions Programming Reference (2014-10)
+
+
 
 ;====================================================================
 ;legacy

@@ -188,6 +188,10 @@
 					<key>include</key>
 					<string>#mnemonics-smx</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mnemonics-undocumented</string>
+				</dict>
 			</array>
 		</dict>
 		<key>mnemonics-64bit</key>
@@ -504,7 +508,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(loop(n?[ez])?|call|ret[nf]?|iret[dq]?|into?|bound|enter|leave)\b</string>
+					<string>\b(loop(n?[ez])?|call|ret|iret[dq]?|into?|bound|enter|leave)\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.general-purpose.control-transfer.other</string>
 				</dict>
@@ -864,6 +868,13 @@
 			<string>\b(x(abort|acquire|release|begin|end|test))\b</string>
 			<key>name</key>
 			<string>keyword.mnemonic.tsx</string>
+		</dict>
+		<key>mnemonics-undocumented</key>
+		<dict>
+			<key>match</key>
+			<string>\b(ret[nf]|icebp|int1|smi)\b</string>
+			<key>name</key>
+			<string>keyword.mnemonic.undocumented</string>
 		</dict>
 		<key>mnemonics-vmx</key>
 		<dict>
