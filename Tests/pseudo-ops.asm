@@ -28,4 +28,5 @@ vcmpeqss|vcmpltss|vcmpless|vcmpunordss|vcmpneqss|vcmpnltss|vcmpnless|vcmpordss
 vcmpeq_uqss|vcmpngess|vcmpngtss|vcmpfalsess|vcmpneq_oqss|vcmpgess|vcmpgtss|vcmptruess
 vcmpeq_osss|vcmplt_oqss|vcmple_oqss|vcmpunord_sss|vcmpneq_usss|vcmpnlt_uqss|vcmpnle_uqss|vcmpord_sss
 vcmpeq_usss|vcmpnge_uqss|vcmpngt_uqss|vcmpfalse_osss|vcmpneq_osss|vcmpge_oqss|vcmpgt_oqss|vcmptrue_usss
-;
+;Table 4-11.  Pseudo-Op and PCLMULQDQ Implementation
+pclmullqlqdq|pclmulhqlqdq|pclmullqhdq|pclmulhqhdq ;pclmullqhqdq|pclmulhqhqdq ???

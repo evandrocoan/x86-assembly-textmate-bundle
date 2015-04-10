@@ -216,7 +216,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(vaes((dec|enc)(last)?|imc|keygenassist)|pclmul[hl]q[hl]qdq)\b</string>
+					<string>\b(vaes((dec|enc)(last)?|imc|keygenassist)|vpclmulqdq|pclmul[hl]q[hl]qdq)\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.avx.promoted.aes</string>
 				</dict>
@@ -522,7 +522,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b((st|cl)[cdi]|cmc|[ls]ahf|(push|pop)fd?)\b</string>
+					<string>\b((st|cl)[cdi]|cmc|[ls]ahf|(push|pop)f[dq]?)\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.general-purpose.flag-control</string>
 				</dict>

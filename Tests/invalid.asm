@@ -20,8 +20,10 @@ vmovnti/vmovntq
 vmovsx/vmovsxd
 vmovzx
 vmul
+vpshufw
 vfmsubadd132sd/vfmsubadd132ss/vfnmsubadd132pd
 vgatherds/vgatherdpq/vpgatherdqpd
+vpclmulhqlqdq
 xwait/iwait
 outsq
 padduw

@@ -24,3 +24,18 @@ vmovmskpd|vmovmskps|vmovntdqa|vmovntdq|vmovntpd|vmovntps|vmovq|vmovsd
 vmovshdup|vmovsldup|vmovss|vmovupd|vmovups
 vmpsadbw|vmulpd|vmulps|vmulsd|vmulss
 
+vorpd|vorps
+
+vpabsb|vpabsw|vpabsd|vpacksswb|vpackssdw|vpackusdw|vpackuswb|vpaddb|vpaddw|vpaddd|vpaddq|vpaddsb|vpaddsw|vpaddusb|vpaddusw
+vpalignr|vpand|vpandn|vpavgb|vpavgw|vpblendvb|vpblendw|vpclmulqdq|vpcmpeqb|vpcmpeqw|vpcmpeqd|vpcmpeqq|vpcmpestri
+vpcmpeqb|vpcmpeqw|vpcmpeqd|vpcmpeqq|vpcmpestri|vpcmpestrm|vpcmpgtb|vpcmpgtw|vpcmpgtd|vpcmpgtq|vpcmpistri|vpcmpistrm
+vpextrb|vpextrd|vpextrq|vpextrw|vpextrw|vphaddw|vphaddd|vphaddsw|vphminposuw|vphsubw|vphsubd|vphsubsw
+vpinsrb|vpinsrd|vpinsrq|vpinsrw|vpmaddubsw|vpmaddwd
+vpmaxsb|vpmaxsd|vpmaxsw|vpmaxub|vpmaxud|vpmaxuw|vpminsb|vpminsd|vpminsw|vpminub|vpminud|vpminuw|vpmovmskb
+vpmovsxbw|vpmovsxbd|vpmovsxbq|vpmovsxwd|vpmovsxwq|vpmovsxdq
+vpmovzxbw|vpmovzxbd|vpmovzxbq|vpmovzxwd|vpmovzxwq|vpmovzxdq
+vpmuldq|vpmulhrsw|vpmulhuw|vpmulhw|vpmulld|vpmullw|vpmuludq
+vpor|vpsadbw|vpshufb|vpshufd|vpshufhw|vpshuflw|vpsignb|vpsignw|vpsignd
+vpslldq|vpsllw|vpslld|vpsllq|vpsraw|vpsrad|vpsrldq|vpsrlw|vpsrld|vpsrlq
+vpsubb|vpsubw|vpsubd|vpsubq|vpsubsb|vpsubsw|vpsubusb|vpsubusw|vptest
+vpunpckhbw|vpunpckhwd|vpunpckhdq|vpunpckhqdq|vpunpcklbw|vpunpcklwd|vpunpckldq|vpunpcklqdq

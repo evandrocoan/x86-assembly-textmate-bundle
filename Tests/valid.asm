@@ -444,13 +444,16 @@ pabsb|pabsw|pabsd|packsswb|packssdw|packusdw|packuswb|paddb|paddw|paddd|paddq|pa
 palignr|pand|pandn|pause|pavgb|pavgw|pblendvb|pblendw|pclmulqdq
 pcmpeqb|pcmpeqw|pcmpeqd|pcmpeqq|pcmpestri|pcmpestrm|pcmpgtb|pcmpgtw|pcmpgtd|pcmpgtq|pcmpistri|pcmpistrm
 pdep|pext|pextrb|pextrd|pextrq|pextrw|phaddw|phaddd|phaddsw|phminposuw|phsubw|phsubd|phsubsw|pinsrb|pinsrd|pinsrq|pinsrw
-pmaddubsw|pmaddwd|pmaxsb|pmaxsd|pmaxsw|pmaxub|pmaxud|pmaxuw|pminsb|pminsd|pminsw|pminub|pminud|pminuw
-pmovmskb|pmovsx|pmovzx|pmuldq|pmulhrsw|pmulhuw|pmulhw|pmulld|pmullw|pmuludq|pop|popa|popad|popcnt|popf|popfd|popfq|por
-prefetchh
-prefetchw|prefetchwt1|psadbw|pshufb|pshufd|pshufhw|pshuflw|pshufw|psignb|psignw|psignd
+pmaddubsw|pmaddwd|pmaxsb|pmaxsd|pmaxsw|pmaxub|pmaxud|pmaxuw|pminsb|pminsd|pminsw|pminub|pminud|pminuw|pmovmskb
+pmovsxbw|pmovsxbd|pmovsxbq|pmovsxwd|pmovsxwq|pmovsxdq
+pmovzxbw|pmovzxbd|pmovzxbq|pmovzxwd|pmovzxwq|pmovzxdq
+pmuldq|pmulhrsw|pmulhuw|pmulhw|pmulld|pmullw|pmuludq|pop|popa|popad|popcnt|popf|popfd|popfq|por
+prefetcht0|prefetcht1|prefetcht2|prefetchnta|prefetchw|prefetchwt1
+psadbw|pshufb|pshufd|pshufhw|pshuflw|pshufw|psignb|psignw|psignd
 pslldq|psllw|pslld|psllq|psraw|psrad|psrldq|psrlw|psrld|psrlq
-psubb|psubw|psubd|psubq|psubsb|psubsw|psubusb|psubusw|ptest|punpckhbw|punpckhwd|punpckhdq|punpckhqdq|punpcklbw|punpcklwd|punpckldq|punpcklqdq
-push|pusha|pushad|pushf|pushfd|pxor
+psubb|psubw|psubd|psubq|psubsb|psubsw|psubusb|psubusw|ptest
+punpckhbw|punpckhwd|punpckhdq|punpckhqdq|punpcklbw|punpcklwd|punpckldq|punpcklqdq
+push|pusha|pushad|pushf|pushfd|pushfq|pxor
 
 rcl|rcr|rol|ror|rcpps|rcpss|rdfsbase|rdgsbase|rdmsr|rdpmc|rdrand|rdseed|rdtsc|rdtscp
 rep|repe|repz|repne|repnz|ret|rorx|roundpd|roundps|roundsd|roundss|rsm|rsqrtps|rsqrtss
