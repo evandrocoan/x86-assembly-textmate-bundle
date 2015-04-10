@@ -38,4 +38,12 @@ vpmuldq|vpmulhrsw|vpmulhuw|vpmulhw|vpmulld|vpmullw|vpmuludq
 vpor|vpsadbw|vpshufb|vpshufd|vpshufhw|vpshuflw|vpsignb|vpsignw|vpsignd
 vpslldq|vpsllw|vpslld|vpsllq|vpsraw|vpsrad|vpsrldq|vpsrlw|vpsrld|vpsrlq
 vpsubb|vpsubw|vpsubd|vpsubq|vpsubsb|vpsubsw|vpsubusb|vpsubusw|vptest
-vpunpckhbw|vpunpckhwd|vpunpckhdq|vpunpckhqdq|vpunpcklbw|vpunpcklwd|vpunpckldq|vpunpcklqdq
+vpunpckhbw|vpunpckhwd|vpunpckhdq|vpunpckhqdq|vpunpcklbw|vpunpcklwd|vpunpckldq|vpunpcklqdq|vpxor
+
+vrcpps|vrcpss|vroundpd|vroundps|vroundsd|vroundss|vrsqrtps|vrsqrtss
+
+vshufpd|vshufps|vsqrtpd|vsqrtps|vsqrtsd|vsqrtss|vstmxcsr|vsubpd|vsubps|vsubsd|vsubss
+
+vucomisd|vucomiss|vunpckhpd|vunpckhps|vunpcklpd|vunpcklps
+
+vxorpd|vxorps

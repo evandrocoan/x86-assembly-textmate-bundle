@@ -458,8 +458,9 @@ push|pusha|pushad|pushf|pushfd|pushfq|pxor
 rcl|rcr|rol|ror|rcpps|rcpss|rdfsbase|rdgsbase|rdmsr|rdpmc|rdrand|rdseed|rdtsc|rdtscp
 rep|repe|repz|repne|repnz|ret|rorx|roundpd|roundps|roundsd|roundss|rsm|rsqrtps|rsqrtss
 
-sahf|sal|sar|shl|shr|sarx|shlx|shrx|sbb|scas|scasb|scasw|scasd
-setcc
+sahf|sal|sar|shl|shr|sarx|shlx|shrx|sbb|scas|scasb|scasw|scasd|scasq
+seta|setae|setb|setbe|setc|sete|setg|setge|setl|setle|seto|setp|setpe|setpo|sets|setz
+setna|setnae|setnb|setnbe|setnc|setne|setng|setnge|setnl|setnle|setno|setnp|setns|setnz
 sfence|sgdt|shld|shrd|shufpd|shufps|sidt|sldt|smsw|sqrtpd|sqrtps|sqrtsd|sqrtss
 stac|stc|std|sti|stmxcsr|stos|stosb|stosw|stosd|stosq|str|sub|subpd|subps|subsd|subss|swapgs|syscall|sysenter|sysexit|sysret
 
@@ -467,7 +468,7 @@ test|tzcnt
 
 ucomisd|ucomiss|ud2|unpckhpd|unpckhps|unpcklpd|unpcklps
 
-vbroadcast
+vbroadcastss|vbroadcastsd|vbroadcastf128
 vcvtph2ps|vcvtps2ph|verr|verw
 vextractf128|vextracti128|vfmadd132pd|vfmadd213pd|vfmadd231pd|vfmadd132ps|vfmadd213ps|vfmadd231ps|vfmadd132sd|vfmadd213sd|vfmadd231sd|vfmadd132ss|vfmadd213ss|vfmadd231ss
 vfmaddsub132pd|vfmaddsub213pd|vfmaddsub231pd|vfmaddsub132ps|vfmaddsub213ps|vfmaddsub231ps
@@ -476,12 +477,15 @@ vfmsub132pd|vfmsub213pd|vfmsub231pd|vfmsub132ps|vfmsub213ps|vfmsub231ps|vfmsub13
 vfnmadd132pd|vfnmadd213pd|vfnmadd231pd|vfnmadd132ps|vfnmadd213ps|vfnmadd231ps|vfnmadd132sd|vfnmadd213sd|vfnmadd231sd|vfnmadd132ss|vfnmadd213ss|vfnmadd231ss
 vfnmsub132pd|vfnmsub213pd|vfnmsub231pd|vfnmsub132ps|vfnmsub213ps|vfnmsub231ps|vfnmsub132sd|vfnmsub213sd|vfnmsub231sd|vfnmsub132ss|vfnmsub213ss|vfnmsub231ss
 vgatherdpd|vgatherqpd|vgatherdps|vgatherqps|vpgatherdd|vpgatherqd|vpgatherdq|vpgatherqq
-vinsertf128|vinserti128|vmaskmov|vpblendd|vpbroadcast|vpermd|vpermpd|vpermps|vpermq|vperm2i128|vpermilpd|vpermilps|vperm2f128
-vpmaskmov|vpsllvd|vpsllvq|vpsravd|vpsrlvd|vpsrlvq|vtestpd|vtestps|vzeroall|vzeroupper
+vinsertf128|vinserti128|vmaskmovps|vmaskmovpd|vpblendd
+vpbroadcastb|vpbroadcastw|vpbroadcastd|vpbroadcastq|vbroadcasti128
+vpermd|vpermpd|vpermps|vpermq|vperm2i128|vpermilpd|vpermilps|vperm2f128|vpmaskmovd|vpmaskmovq
+vpsllvd|vpsllvq|vpsravd|vpsrlvd|vpsrlvq|vtestpd|vtestps|vzeroall|vzeroupper
 
 wait|fwait|wbinvd|wrfsbase|wrgsbase|wrmsr
 
-xacquire|xrelease|xabort|xadd|xbegin|xchg|xend|xgetbv|xlat|xlatb|xor|xorpd|xorps|xrstor|xrstors|xsave|xsavec|xsaveopt|xsaves|xsetbv|xtest
+xacquire|xrelease|xabort|xadd|xbegin|xchg|xend|xgetbv|xlat|xlatb|xor|xorpd|xorps
+xrstor|xrstor64|xrstors|xrstors64|xsave|xsave64|xsavec|xsavec64|xsaveopt|xsaveopt64|xsaves|xsaves64|xsetbv|xtest
 
 getsec[capabilities]|getsec[enteraccs]|getsec[exitac]|getsec[senter]|getsec[sexit]|getsec[parameters]|getsec[smctrl]|getsec[wakeup]|
 

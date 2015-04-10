@@ -304,7 +304,7 @@ repository:
     - name: keyword.mnemonic.avx
       match: \b(v((test|permil|maskmov)p[ds]|zero(all|upper)|(perm2|insert|extract|broadcast)f128|broadcasts[ds]))\b
     - name: keyword.mnemonic.avx.promoted.aes
-      match: \b(vaes((dec|enc)(last)?|imc|keygenassist)|vpclmulqdq|pclmul[hl]q[hl]qdq)\b
+      match: \b(vaes((dec|enc)(last)?|imc|keygenassist)|vpclmulqdq)\b
     - name: keyword.mnemonic.avx.promoted.comparison
       match: \b(v((cmp[ps]|u?comis)[ds]|pcmp([ei]str[im]|(eq|gt)[bdqw])))\b
     - name: keyword.mnemonic.avx.promoted.conversion
@@ -370,11 +370,11 @@ repository:
     - name: keyword.mnemonic.system
       match: \b(lock|hlt|rsm|(rd|wr)msr|rd(pmc|tscp?)|sys(enter|exit))\b
     - name: keyword.mnemonic.system
-      match: \b(x(save(opt)?|rstor|[gs]etbv)|(rd|wr)[fg]sbase)\b
+      match: \b(x((save(c|opt|s)?|rstors?)(64)?|[gs]etbv)|(rd|wr)[fg]sbase)\b
 
   mnemonics-64bit:
     name: keyword.mnemonic.64-bit-mode
-    match: \b(cdqe|cqo|(cmp|lod|mov|sto)sq|cmpxchg16b|mov(ntq|sxd)|swapgs|sys(call|ret))\b
+    match: \b(cdqe|cqo|(cmp|lod|mov|sto)sq|cmpxchg16b|mov(ntq|sxd)|scasq|swapgs|sys(call|ret))\b
 
   mnemonics-vmx:
     name: keyword.mnemonic.vmx

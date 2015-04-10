@@ -193,7 +193,7 @@
 		<key>mnemonics-64bit</key>
 		<dict>
 			<key>match</key>
-			<string>\b(cdqe|cqo|(cmp|lod|mov|sto)sq|cmpxchg16b|mov(ntq|sxd)|swapgs|sys(call|ret))\b</string>
+			<string>\b(cdqe|cqo|(cmp|lod|mov|sto)sq|cmpxchg16b|mov(ntq|sxd)|scasq|swapgs|sys(call|ret))\b</string>
 			<key>name</key>
 			<string>keyword.mnemonic.64-bit-mode</string>
 		</dict>
@@ -216,7 +216,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(vaes((dec|enc)(last)?|imc|keygenassist)|vpclmulqdq|pclmul[hl]q[hl]qdq)\b</string>
+					<string>\b(vaes((dec|enc)(last)?|imc|keygenassist)|vpclmulqdq)\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.avx.promoted.aes</string>
 				</dict>
@@ -852,7 +852,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(x(save(opt)?|rstor|[gs]etbv)|(rd|wr)[fg]sbase)\b</string>
+					<string>\b(x((save(c|opt|s)?|rstors?)(64)?|[gs]etbv)|(rd|wr)[fg]sbase)\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.system</string>
 				</dict>
