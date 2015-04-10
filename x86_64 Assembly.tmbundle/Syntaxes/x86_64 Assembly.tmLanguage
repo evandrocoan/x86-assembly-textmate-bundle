@@ -1060,6 +1060,12 @@
 				</dict>
 				<dict>
 					<key>match</key>
+					<string>\b%?(zmm([12]?[0-9]|30|31))\b</string>
+					<key>name</key>
+					<string>constant.language.registers.avx512</string>
+				</dict>
+				<dict>
+					<key>match</key>
 					<string>\b%?(([gil]dt)r?|tr)\b</string>
 					<key>name</key>
 					<string>constant.language.registers.system-table-pointer</string>
