@@ -360,6 +360,12 @@
 				</dict>
 				<dict>
 					<key>match</key>
+					<string>\b(vpbroadcast[bdqw])\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx2.promoted.packed</string>
+				</dict>
+				<dict>
+					<key>match</key>
 					<string>\b(vp(blendd|s[lr]lv[dq]|sravd))\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.avx2.blend</string>

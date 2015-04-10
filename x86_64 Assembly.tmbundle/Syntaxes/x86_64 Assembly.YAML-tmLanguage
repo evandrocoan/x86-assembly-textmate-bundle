@@ -352,6 +352,8 @@ repository:
     patterns:
     - name: keyword.mnemonic.avx2.promoted.simd
       match: \b(v((broadcast|extract|insert|perm2)i128|pmaskmov[dq]|perm([dsq]|p[sd])))\b
+    - name: keyword.mnemonic.avx2.promoted.packed
+      match: \b(vpbroadcast[bdqw])\b
     - name: keyword.mnemonic.avx2.blend
       match: \b(vp(blendd|s[lr]lv[dq]|sravd))\b
     - name: keyword.mnemonic.avx2.gather
