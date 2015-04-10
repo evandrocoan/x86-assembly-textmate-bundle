@@ -23,3 +23,4 @@ vmovapd|vmovaps|vmovd|vmovq|vmovddup|vmovdqa|vmovdqu|vmovhlps|vmovhpd|vmovhps|vm
 vmovmskpd|vmovmskps|vmovntdqa|vmovntdq|vmovntpd|vmovntps|vmovq|vmovsd
 vmovshdup|vmovsldup|vmovss|vmovupd|vmovups
 vmpsadbw|vmulpd|vmulps|vmulsd|vmulss
+

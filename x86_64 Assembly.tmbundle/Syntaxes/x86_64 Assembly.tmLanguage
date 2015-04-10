@@ -222,9 +222,9 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(v((cmp[ps]|u?comis)[ds]))\b</string>
+					<string>\b(v((cmp[ps]|u?comis)[ds]|pcmp([ei]str[im]|(eq|gt)[bdqw])))\b</string>
 					<key>name</key>
-					<string>keyword.mnemonic.avx.promoted.compare</string>
+					<string>keyword.mnemonic.avx.promoted.comparison</string>
 				</dict>
 				<dict>
 					<key>match</key>
@@ -234,7 +234,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(vh((add|sub)p[ds]))\b</string>
+					<string>\b(vh((add|sub)p[ds])|vph((add|sub)([dw]|sw)|minposuw))\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.avx.promoted.horizontal-packed-arithmetic</string>
 				</dict>
@@ -246,7 +246,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(v(mov(([ahl]|msk|nt|u)p[ds]|d(dup|qa|qu)?|(hl|lh)ps|ntdqa?|s([ds]|[hl]dup)|q)))\b</string>
+					<string>\b(v(mov(([ahl]|msk|nt|u)p[ds]|(hl|lh)ps|s([ds]|[hl]dup)|q)))\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.avx.promoted.mov</string>
 				</dict>
@@ -258,15 +258,81 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(v(blendv?p[ds]))\b</string>
+					<string>\b(v(pack[su]s(dw|wb)|punpck[hl](bw|dq|wd|qdq)|unpck[hl]p[ds]))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx.promoted.packed-conversion</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vp(shuf([bd]|[hl]w))|vshufp[ds])\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx.promoted.packed-shuffle</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vp((abs|sign|(max|min)[su])[bdw]|(add|sub)([bdqw]|u?s[bw])|avg[bw]|extr[bdqw]|madd(wd|ubsw)|mul(hu?w|hrsw|l[dw]|u?dq)|sadbw))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx.promoted.supplemental.arithmetic</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vp(andn?|x?or))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx.promoted.supplemental.logical</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vpblend(vb|w))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx.promoted.supplemental.blending</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vpmov(mskb|[sz]x(b[dqw]|w[dq]|dq)))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx.promoted.supplemental.mov</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vp(insr[bdqw]|sll(dq|[dqw])|srl(dq)))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx.promoted.simd-integer</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vp(sra[dw]|srl[dqw]))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx.promoted.shift-and-rotate</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vblendv?p[ds])\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.avx.promoted.packed-blending</string>
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(v((extract|insert)ps|lddqu|(ld|st)mxcsr|maskmovdqu|mpsadbw))\b</string>
+					<string>\b(vp(test|alignr))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx.promoted.packed-other</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vmov(d(dup|qa|qu)?))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx.promoted.simd-integer.mov</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(v((extract|insert)ps|lddqu|(ld|st)mxcsr|mpsadbw))\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.avx.promoted.other</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(v(maskmovdqu|movntdqa?))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx.promoted.cacheability-control</string>
 				</dict>
 				<dict>
 					<key>match</key>
@@ -648,7 +714,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b(cvt(dq2pd|pd2dq|pd2pi|pi2pd|ps2pd|pd2ps|sd2si|si2sd|sd2ss|ss2sd|t(pd2dq|pd2pi|sd2si)))\b</string>
+					<string>\b(cvt(dq2pd|pi2pd|ps2pd|pd2ps|si2sd|sd2ss|ss2sd|t?(pd2dq|pd2pi|sd2si)))\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.sse2.conversion</string>
 				</dict>

@@ -255,7 +255,7 @@ repository:
     - name: keyword.mnemonic.sse2.shuffle-and-unpack
       match: \b((shuf|unpck[hl])pd)\b
     - name: keyword.mnemonic.sse2.conversion
-      match: \b(cvt(dq2pd|pd2dq|pd2pi|pi2pd|ps2pd|pd2ps|sd2si|si2sd|sd2ss|ss2sd|t(pd2dq|pd2pi|sd2si)))\b
+      match: \b(cvt(dq2pd|pi2pd|ps2pd|pd2ps|si2sd|sd2ss|ss2sd|t?(pd2dq|pd2pi|sd2si)))\b
     - name: keyword.mnemonic.sse2.packed-floating-point
       match: \b(cvt(dq2ps|ps2dq|tps2dq))\b
     - name: keyword.mnemonic.sse2.simd-integer.mov
@@ -305,22 +305,44 @@ repository:
       match: \b(v((test|permil|maskmov)p[ds]|zero(all|upper)|(perm2|insert|extract|broadcast)f128|broadcasts[ds]))\b
     - name: keyword.mnemonic.avx.promoted.aes
       match: \b(vaes((dec|enc)(last)?|imc|keygenassist)|pclmul[hl]q[hl]qdq)\b
-    - name: keyword.mnemonic.avx.promoted.compare
-      match: \b(v((cmp[ps]|u?comis)[ds]))\b
+    - name: keyword.mnemonic.avx.promoted.comparison
+      match: \b(v((cmp[ps]|u?comis)[ds]|pcmp([ei]str[im]|(eq|gt)[bdqw])))\b
     - name: keyword.mnemonic.avx.promoted.conversion
       match: \b(v(cvt(dq2pd|dq2ps|pd2ps|ps2pd|sd2ss|si2sd|si2ss|ss2sd|t?(pd2dq|ps2dq|sd2si|ss2si))))\b
     - name: keyword.mnemonic.avx.promoted.horizontal-packed-arithmetic
-      match: \b(vh((add|sub)p[ds]))\b
+      match: \b(vh((add|sub)p[ds])|vph((add|sub)([dw]|sw)|minposuw))\b
     - name: keyword.mnemonic.avx.promoted.logical
       match: \b(v((andn?|x?or)p[ds]))\b
     - name: keyword.mnemonic.avx.promoted.mov
-      match: \b(v(mov(([ahl]|msk|nt|u)p[ds]|d(dup|qa|qu)?|(hl|lh)ps|ntdqa?|s([ds]|[hl]dup)|q)))\b
+      match: \b(v(mov(([ahl]|msk|nt|u)p[ds]|(hl|lh)ps|s([ds]|[hl]dup)|q)))\b
     - name: keyword.mnemonic.avx.promoted.packed-arithmetic
       match: \b(v((add|div|mul|sub|max|min|round|sqrt)[ps][ds]|(addsub|dp)p[ds]|(rcp|rsqrt)[ps]s))\b
+    - name: keyword.mnemonic.avx.promoted.packed-conversion
+      match: \b(v(pack[su]s(dw|wb)|punpck[hl](bw|dq|wd|qdq)|unpck[hl]p[ds]))\b
+    - name: keyword.mnemonic.avx.promoted.packed-shuffle
+      match: \b(vp(shuf([bd]|[hl]w))|vshufp[ds])\b
+    - name: keyword.mnemonic.avx.promoted.supplemental.arithmetic
+      match: \b(vp((abs|sign|(max|min)[su])[bdw]|(add|sub)([bdqw]|u?s[bw])|avg[bw]|extr[bdqw]|madd(wd|ubsw)|mul(hu?w|hrsw|l[dw]|u?dq)|sadbw))\b
+    - name: keyword.mnemonic.avx.promoted.supplemental.logical
+      match: \b(vp(andn?|x?or))\b
+    - name: keyword.mnemonic.avx.promoted.supplemental.blending
+      match: \b(vpblend(vb|w))\b
+    - name: keyword.mnemonic.avx.promoted.supplemental.mov
+      match: \b(vpmov(mskb|[sz]x(b[dqw]|w[dq]|dq)))\b
+    - name: keyword.mnemonic.avx.promoted.simd-integer
+      match: \b(vp(insr[bdqw]|sll(dq|[dqw])|srl(dq)))\b
+    - name: keyword.mnemonic.avx.promoted.shift-and-rotate
+      match: \b(vp(sra[dw]|srl[dqw]))\b
     - name: keyword.mnemonic.avx.promoted.packed-blending
-      match: \b(v(blendv?p[ds]))\b
+      match: \b(vblendv?p[ds])\b
+    - name: keyword.mnemonic.avx.promoted.packed-other
+      match: \b(vp(test|alignr))\b
+    - name: keyword.mnemonic.avx.promoted.simd-integer.mov
+      match: \b(vmov(d(dup|qa|qu)?))\b
     - name: keyword.mnemonic.avx.promoted.other
-      match: \b(v((extract|insert)ps|lddqu|(ld|st)mxcsr|maskmovdqu|mpsadbw))\b
+      match: \b(v((extract|insert)ps|lddqu|(ld|st)mxcsr|mpsadbw))\b
+    - name: keyword.mnemonic.avx.promoted.cacheability-control
+      match: \b(v(maskmovdqu|movntdqa?))\b
     - name: keyword.mnemonic.16-bit-floating-point-conversion
       match: \b(vcvt(ph2ps|ps2ph))\b
     - name: keyword.mnemonic.fma
