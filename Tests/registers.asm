@@ -9,7 +9,7 @@ r0, r1, r7, r16, r18, r20, r21
 xmm, xmm01, xmm16, xmm20, xmm21
 ymm, ymm01, ymm16, ymm20, ymm21
 zmm, zmm01, zmm32, zmm40, zmm41
-dr4, dr5, dr8, dr9
+dr4, dr5, dr16, dr21, dr25
 cr1, cr5, cr01, dtr
 st8, st9, st10, st11
 
@@ -69,5 +69,21 @@ gdtr, ldtr, idtr, tr
 dr0, dr1, dr2, dr3, dr6, dr7
 
 ;amd
-cr8, tpr
+cr8, tpr, efer, syscfg
+dr8, dr9, dr10, dr11, dr12, dr13, dr14, dr15
 gdt, ldt, idt
+;3.2.2  System-Linkage Registers
+star, lstar, cstar, sfmask
+kernelgsbase
+sysenter_cs, sysenter_esp, sysenter_eip
+;3.2.3  Memory-Typing Registers
+mtrrcap, mtrrdeftype, mtrrphysbasen, mtrrphysmaskn, mtrrfixn, pat, top_mem, top_mem2
+;3.2.4  Debug-Extension Registers
+debugctl
+lastbranchtoip, lastbranchfromip, lastinttoip, lastintfromip
+;3.2.5  Performance-Monitoring Registers
+tsc
+;perfevtsel, perfctr
+;3.2.6  Machine-Check Registers
+mcg_cap, mcg_ctl, mcg_status
+;MCi_CTL, MCi_STATUS, MCi_ADDR, MCi_MISC

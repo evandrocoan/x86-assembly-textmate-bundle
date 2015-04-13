@@ -533,6 +533,14 @@ prefetchwt1
 ;11.4 INSTRUCTION SET REFERENCE
 clflushopt|clwb|pcommit
 
+;====================================================================
+;AMD64 Architecture Programmer’s Manual Volume 2: System Programming (2011-12)
+;6         System-Management Instructions
+arpl|clgi|cli|clts|hlt|int3|invd|invlpg|invlpga
+iret|iret|iretw|iretd|iretq
+lar|lgdt|lidt|lldt|lmsw|lsl|ltr|monitor|mwait|rdfsbase|rdgsbase|rdmsr|rdpmc|rdtsc|rdtscp|rsm|sgdt|sidt|skinit|sldt
+smsw|sti|stgi|str|swapgs|syscall|sysenter|sysexit|sysret|ud2|verr|verw|vmload|vmmcal|vmrun|vmsave|wbinvd|wrfsbase|wrgsbase|wrmsr
+
 
 ;====================================================================
 ;legacy

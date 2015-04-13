@@ -1000,19 +1000,25 @@
 					<key>match</key>
 					<string>\b((cl|st)ac|[ls]([gli]dt|tr|msw)|clts|arpl|lar|lsl|ver[rw]|inv(d|lpg|pcid)|wbinvd)\b</string>
 					<key>name</key>
-					<string>keyword.mnemonic.system</string>
+					<string>keyword.mnemonic.system.intel</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>\b(lock|hlt|rsm|(rd|wr)msr|rd(pmc|tscp?)|sys(enter|exit))\b</string>
 					<key>name</key>
-					<string>keyword.mnemonic.system</string>
+					<string>keyword.mnemonic.system.intel</string>
 				</dict>
 				<dict>
 					<key>match</key>
 					<string>\b(x((save(c|opt|s)?|rstors?)(64)?|[gs]etbv)|(rd|wr)[fg]sbase)\b</string>
 					<key>name</key>
-					<string>keyword.mnemonic.system</string>
+					<string>keyword.mnemonic.system.intel</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(clgi|int3|invlpga|iretw|skinit|stgi|vm(load|mcal|run|save))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.system.amd</string>
 				</dict>
 			</array>
 		</dict>
@@ -1196,7 +1202,7 @@
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>\b%?(cr[02-48]|tpr)\b</string>
+					<string>\b%?(cr[02-4])\b</string>
 					<key>name</key>
 					<string>constant.language.registers.control</string>
 				</dict>
@@ -1235,6 +1241,12 @@
 					<string>\b%?(dr[0-367])\b</string>
 					<key>name</key>
 					<string>constant.language.registers.debug</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b%?(cr8|dr([89]|1[0-5])|efer|tpr|syscfg)\b</string>
+					<key>name</key>
+					<string>constant.language.registers.amd</string>
 				</dict>
 				<dict>
 					<key>match</key>
