@@ -190,11 +190,19 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#mnemonics-future-intel</string>
+					<string>#mnemonics-supplemental-amd</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mnemonics-supplemental-cyrix</string>
 				</dict>
 				<dict>
 					<key>include</key>
 					<string>#mnemonics-undocumented</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mnemonics-future-intel</string>
 				</dict>
 			</array>
 		</dict>
@@ -989,6 +997,30 @@
 					<string>\b(pcmp([ei]str[im]|gtq))\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.sse4.2</string>
+				</dict>
+			</array>
+		</dict>
+		<key>mnemonics-supplemental-amd</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\b(movnts[ds])\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.supplemental.amd.memory-management</string>
+				</dict>
+			</array>
+		</dict>
+		<key>mnemonics-supplemental-cyrix</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\b((sv|rs)dc|(wr|rd)shr)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.supplemental.cyrix</string>
 				</dict>
 			</array>
 		</dict>

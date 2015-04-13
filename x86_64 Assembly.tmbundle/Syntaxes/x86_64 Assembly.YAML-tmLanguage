@@ -147,8 +147,10 @@ repository:
     - include: '#mnemonics-64bit'
     - include: '#mnemonics-vmx'
     - include: '#mnemonics-smx'
-    - include: '#mnemonics-future-intel'
+    - include: '#mnemonics-supplemental-amd'
+    - include: '#mnemonics-supplemental-cyrix'
     - include: '#mnemonics-undocumented'
+    - include: '#mnemonics-future-intel'
 
   mnemonics-general-purpose:
     patterns:
@@ -397,6 +399,20 @@ repository:
     - name: support.constant
       match: \b(capabilities|enteraccs|exitac|senter|sexit|parameters|smctrl|wakeup)\b
 
+  mnemonics-supplemental-amd:
+    patterns:
+    - name: keyword.mnemonic.supplemental.amd.memory-management
+      match: \b(movnts[ds])\b
+
+  mnemonics-supplemental-cyrix:
+    patterns:
+    - name: keyword.mnemonic.supplemental.cyrix
+      match: \b((sv|rs)dc|(wr|rd)shr)\b
+
+  mnemonics-undocumented:
+    name: keyword.mnemonic.undocumented
+    match: \b(ret[nf]|icebp|int1|smi)\b
+
   mnemonics-future-intel:
     patterns:
     - include: '#mnemonics-future-intel-avx512'
@@ -453,10 +469,6 @@ repository:
   mnemonics-future-intel-other:
     name: keyword.mnemonic.other
     match: \b(clflushopt|clwb|pcommit)\b
-
-  mnemonics-undocumented:
-    name: keyword.mnemonic.undocumented
-    match: \b(ret[nf]|icebp|int1|smi)\b
 
   entities:
     patterns:

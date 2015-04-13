@@ -540,6 +540,9 @@ arpl|clgi|cli|clts|hlt|int3|invd|invlpg|invlpga
 iret|iret|iretw|iretd|iretq
 lar|lgdt|lidt|lldt|lmsw|lsl|ltr|monitor|mwait|rdfsbase|rdgsbase|rdmsr|rdpmc|rdtsc|rdtscp|rsm|sgdt|sidt|skinit|sldt
 smsw|sti|stgi|str|swapgs|syscall|sysenter|sysexit|sysret|ud2|verr|verw|vmload|vmmcal|vmrun|vmsave|wbinvd|wrfsbase|wrgsbase|wrmsr
+;7         Memory System
+;7.5.2  Write Combining
+movntsd|movntss
 
 ;old amd
 bextr
