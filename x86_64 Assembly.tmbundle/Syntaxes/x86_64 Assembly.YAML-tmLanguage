@@ -379,10 +379,8 @@ repository:
       match: \b((cl|st)ac|[ls]([gli]dt|tr|msw)|clts|arpl|lar|lsl|ver[rw]|inv(d|lpg|pcid)|wbinvd)\b
     - name: keyword.mnemonic.system
       match: \b(lock|hlt|rsm|(rd|wr)(msr|[fg]sbase)|rd(pmc|tscp?)|sys(enter|exit))\b
-    - name: keyword.mnemonic.system.intel
+    - name: keyword.mnemonic.system
       match: \b(x((save(c|opt|s)?|rstors?)(64)?|[gs]etbv))\b
-    - name: keyword.mnemonic.system.amd
-      match: \b(clgi|int3|invlpga|iretw|skinit|stgi|vm(load|mcal|run|save))\b
 
   mnemonics-64bit:
     name: keyword.mnemonic.64-bit-mode
@@ -401,6 +399,8 @@ repository:
 
   mnemonics-supplemental-amd:
     patterns:
+    - name: keyword.mnemonic.supplemental.amd.system
+      match: \b(clgi|int3|invlpga|iretw|skinit|stgi|vm(load|mcall|run|save))\b
     - name: keyword.mnemonic.supplemental.amd.memory-management
       match: \b(movnts[ds])\b
 

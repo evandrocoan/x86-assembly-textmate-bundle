@@ -1006,6 +1006,12 @@
 			<array>
 				<dict>
 					<key>match</key>
+					<string>\b(clgi|int3|invlpga|iretw|skinit|stgi|vm(load|mcall|run|save))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.supplemental.amd.system</string>
+				</dict>
+				<dict>
+					<key>match</key>
 					<string>\b(movnts[ds])\b</string>
 					<key>name</key>
 					<string>keyword.mnemonic.supplemental.amd.memory-management</string>
@@ -1044,13 +1050,7 @@
 					<key>match</key>
 					<string>\b(x((save(c|opt|s)?|rstors?)(64)?|[gs]etbv))\b</string>
 					<key>name</key>
-					<string>keyword.mnemonic.system.intel</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\b(clgi|int3|invlpga|iretw|skinit|stgi|vm(load|mcal|run|save))\b</string>
-					<key>name</key>
-					<string>keyword.mnemonic.system.amd</string>
+					<string>keyword.mnemonic.system</string>
 				</dict>
 			</array>
 		</dict>
