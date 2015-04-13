@@ -539,21 +539,22 @@ clflushopt|clwb|pcommit
 arpl|clgi|cli|clts|hlt|int3|invd|invlpg|invlpga
 iret|iret|iretw|iretd|iretq
 lar|lgdt|lidt|lldt|lmsw|lsl|ltr|monitor|mwait|rdfsbase|rdgsbase|rdmsr|rdpmc|rdtsc|rdtscp|rsm|sgdt|sidt|skinit|sldt
-smsw|sti|stgi|str|swapgs|syscall|sysenter|sysexit|sysret|ud2|verr|verw|vmload|vmmcal|vmrun|vmsave|wbinvd|wrfsbase|wrgsbase|wrmsr
+smsw|sti|stgi|str|swapgs|syscall|sysenter|sysexit|sysret|ud2|verr|verw|vmload|vmmcall|vmrun|vmsave|wbinvd|wrfsbase|wrgsbase|wrmsr
 ;7         Memory System
 ;7.5.2  Write Combining
 movntsd|movntss
+;7.6.3  Cache and Memory Management Instructions
+prefetch|prefetchw
+
+;====================================================================
+;AMD64 Architecture Programmer’s Manual Volume 3: General-Purpose and System Instructions
+
 
 ;old amd
-bextr
-prefetch|prefetchw
-skinit
-stgi
 extrq
 insertq
-vbroadcastf128|vbroadcastsd|vbroadcastss
-vfmaddpd|vfmadd132pd|vfmadd213pd|vfmadd231pd
-vfnmaddpd|vfnmadd132pd|vfnmadd213pd|vfnmadd231pd
+vfmaddpd
+vfnmaddpd
 vfrczpd
 vpcmov
 vpcomq

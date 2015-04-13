@@ -403,6 +403,8 @@ repository:
       match: \b(clgi|int3|invlpga|iretw|skinit|stgi|vm(load|mcall|run|save))\b
     - name: keyword.mnemonic.supplemental.amd.memory-management
       match: \b(movnts[ds])\b
+    - name: keyword.mnemonic.supplemental.amd.cache-management
+      match: \b(prefetch)\b
 
   mnemonics-supplemental-cyrix:
     patterns:

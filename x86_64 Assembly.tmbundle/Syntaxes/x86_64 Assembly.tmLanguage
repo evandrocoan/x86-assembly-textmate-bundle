@@ -1016,6 +1016,12 @@
 					<key>name</key>
 					<string>keyword.mnemonic.supplemental.amd.memory-management</string>
 				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(prefetch)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.supplemental.amd.cache-management</string>
+				</dict>
 			</array>
 		</dict>
 		<key>mnemonics-supplemental-cyrix</key>
