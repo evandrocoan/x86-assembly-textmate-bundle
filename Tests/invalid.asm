@@ -38,3 +38,4 @@ pmovsx/pmovzx
 vbroadcast
 vfnmaddsub213pd
 xrdfsbase
+vcvttusi2sd/vcvttusi2ss

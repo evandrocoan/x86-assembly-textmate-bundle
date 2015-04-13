@@ -30,3 +30,13 @@ vcmpeq_osss|vcmplt_oqss|vcmple_oqss|vcmpunord_sss|vcmpneq_usss|vcmpnlt_uqss|vcmp
 vcmpeq_usss|vcmpnge_uqss|vcmpngt_uqss|vcmpfalse_osss|vcmpneq_osss|vcmpge_oqss|vcmpgt_oqss|vcmptrue_usss
 ;Table 4-11.  Pseudo-Op and PCLMULQDQ Implementation
 pclmullqlqdq|pclmulhqlqdq|pclmullqhdq|pclmulhqhdq ;pclmullqhqdq|pclmulhqhqdq ???
+
+;====================================================================
+;Intel® Architecture Instruction Set Extensions Programming Reference (2014-10)
+;Table 5-4. Pseudo-Op and CMPPD Implementation
+cmpeqpd|cmpltpd|cmplepd|cmpunordpd|cmpneqpd|cmpnltpd|cmpnlepd|cmpordpd
+;Table 5-5. Pseudo-Op and VCMPPD Implementation
+vcmpeqpd|vcmpltpd|vcmplepd|vcmpunordpd|vcmpneqpd|vcmpnltpd|vcmpnlepd|vcmpordpd
+vcmpeq_uqpd|vcmpngepd|vcmpngtpd|vcmpfalsepd|vcmpneq_oqpd|vcmpgepd|vcmpgtpd|vcmptruepd
+vcmpeq_ospd|vcmplt_oqpd|vcmple_oqpd|vcmpunord_spd|vcmpneq_uspd|vcmpnlt_uqpd|vcmpnle_uqpd|vcmpord_spd
+vcmpeq_uspd|vcmpnge_uqpd|vcmpngt_uqpd|vcmpfalse_ospd|vcmpneq_ospd|vcmpge_oqpd|vcmpgt_oqpd|vcmptrue_uspd

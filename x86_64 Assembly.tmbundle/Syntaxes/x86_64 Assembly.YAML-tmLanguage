@@ -119,6 +119,8 @@ repository:
       match: \b%?([xy]mm([0-9]|1[0-5])|mxcsr)\b
     - name: constant.language.registers.avx512
       match: \b%?(zmm([12]?[0-9]|30|31))\b
+    - name: constant.language.registers.memory-protection
+      match: \b%?(bnd([0-3]|cfg[su]|status))\b
     - name: constant.language.registers.system-table-pointer
       match: \b%?(([gil]dt)r?|tr)\b
     - name: constant.language.registers.debug
@@ -143,6 +145,7 @@ repository:
     - include: '#mnemonics-64bit'
     - include: '#mnemonics-vmx'
     - include: '#mnemonics-smx'
+    - include: '#mnemonics-future-intel'
     - include: '#mnemonics-undocumented'
 
   mnemonics-general-purpose:
@@ -389,6 +392,63 @@ repository:
       match: \b(getsec)\b
     - name: support.constant
       match: \b(capabilities|enteraccs|exitac|senter|sexit|parameters|smctrl|wakeup)\b
+
+  mnemonics-future-intel:
+    patterns:
+    - include: '#mnemonics-future-intel-avx512'
+    - include: '#mnemonics-future-intel-opmask'
+    - include: '#mnemonics-future-intel-sha'
+    - include: '#mnemonics-future-intel-mpx'
+    - include: '#mnemonics-future-intel-other'
+
+  mnemonics-future-intel-avx512:
+    patterns:
+    - name: keyword.mnemonic.avx512.blend
+      match: \b(vblendm(pd|ps)|vpblendm[bdqw])\b
+    - name: keyword.mnemonic.avx512.bits-mov
+      match: \b(vbroadcast[fi](32x[248]|64x[24])|v(extract|insert)[fi](32x[48]|64x[24])|vshuf[fi](32x4|64x2)|vpbroadcastm(b2q|w2d))\b
+    - name: keyword.mnemonic.avx512.compress
+      match: \b(v(compress|expand)p[ds]|vp(compress|expand|conflict)[dq])\b
+    - name: keyword.mnemonic.avx512.conversion
+      match: \b(vcvt(t?p[sd]2(udq|u?qq)|(udq|u?qq)2p[ds]|t?s[ds]2usi|usi2s[ds]))\b
+    - name: keyword.mnemonic.avx512.math
+      match: \b(v(fixupimm|fpclass|get(exp|mant)|range|(rcp|rsqrt)(14|28)|reduce|rndscale|scalef)([ps][ds]))\b
+    - name: keyword.mnemonic.avx512.math
+      match: \b(v(exp2p[ds]|(scatter|(gather|scatter)pf[01])[dq]p[ds]))\b
+    - name: keyword.mnemonic.avx512.simd-integer
+      match: \b(vmovdq(a(32|64)|u(8|16|32|64)))\b
+    - name: keyword.mnemonic.avx512.logical
+      match: \b(vp(andn?|x?or)[dq])\b
+    - name: keyword.mnemonic.avx512.packed-comparison
+      match: \b(vpcmpu?[dqw])\b
+    - name: keyword.mnemonic.avx512.packed-math
+      match: \b(vp(absq|(lzcnt|ternlog)[dq]|madd52[lh]uq|(max|min)[su]q|mullq))\b
+    - name: keyword.mnemonic.avx512.packed-mov
+      match: \b(vpmov(m2[bdqw]|[bdqw]2m|(u?s)?([qd][bw]|qd|wb)))\b
+    - name: keyword.mnemonic.avx512.packed-shift
+      match: \b(vp(ro[rl]v?[dq]|scatter[dq][dq]))\b
+    - name: keyword.mnemonic.avx512.packed-test
+      match: \b(vptestn?m[bdqw])\b
+    - name: keyword.mnemonic.avx512.permutations
+      match: \b(vperm([bdw]|[it]2([bdwq]|p[ds])))\b
+    - name: keyword.mnemonic.avx512.other
+      match: \b(valign[dq]|vdbpsadbw|vpmultishiftqb|vpsrav[dqw])\b
+
+  mnemonics-future-intel-opmask:
+    name: keyword.mnemonic.opmask
+    match: \b(k(add|andn?|(xn?)?or|mov|not|(or)?test|shift[lr])[bdqw]|kunpck(bw|wd|dq))\b
+
+  mnemonics-future-intel-sha:
+    name: keyword.mnemonic.sha
+    match: \b(sha(1rnds4|256rnds2|1nexte|(1|256)msg[12]))\b
+
+  mnemonics-future-intel-mpx:
+    name: keyword.mnemonic.mpx
+    match: \b(bnd(mk|c[lnu]|mov|ldx|stx))\b
+
+  mnemonics-future-intel-other:
+    name: keyword.mnemonic.other
+    match: \b(clflushopt|clwb|pcommit)\b
 
   mnemonics-undocumented:
     name: keyword.mnemonic.undocumented

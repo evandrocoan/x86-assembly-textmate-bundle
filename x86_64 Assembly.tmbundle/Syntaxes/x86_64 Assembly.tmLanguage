@@ -190,6 +190,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#mnemonics-future-intel</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#mnemonics-undocumented</string>
 				</dict>
 			</array>
@@ -441,6 +445,156 @@
 					<string>keyword.mnemonic.fpu.state-management</string>
 				</dict>
 			</array>
+		</dict>
+		<key>mnemonics-future-intel</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#mnemonics-future-intel-avx512</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mnemonics-future-intel-opmask</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mnemonics-future-intel-sha</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mnemonics-future-intel-mpx</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#mnemonics-future-intel-other</string>
+				</dict>
+			</array>
+		</dict>
+		<key>mnemonics-future-intel-avx512</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\b(vblendm(pd|ps)|vpblendm[bdqw])\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx512.blend</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vbroadcast[fi](32x[248]|64x[24])|v(extract|insert)[fi](32x[48]|64x[24])|vshuf[fi](32x4|64x2)|vpbroadcastm(b2q|w2d))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx512.bits-mov</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(v(compress|expand)p[ds]|vp(compress|expand|conflict)[dq])\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx512.compress</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vcvt(t?p[sd]2(udq|u?qq)|(udq|u?qq)2p[ds]|t?s[ds]2usi|usi2s[ds]))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx512.conversion</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(v(fixupimm|fpclass|get(exp|mant)|range|(rcp|rsqrt)(14|28)|reduce|rndscale|scalef)([ps][ds]))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx512.math</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(v(exp2p[ds]|(scatter|(gather|scatter)pf[01])[dq]p[ds]))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx512.math</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vmovdq(a(32|64)|u(8|16|32|64)))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx512.simd-integer</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vp(andn?|x?or)[dq])\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx512.logical</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vpcmpu?[dqw])\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx512.packed-comparison</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vp(absq|(lzcnt|ternlog)[dq]|madd52[lh]uq|(max|min)[su]q|mullq))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx512.packed-math</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vpmov(m2[bdqw]|[bdqw]2m|(u?s)?([qd][bw]|qd|wb)))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx512.packed-mov</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vp(ro[rl]v?[dq]|scatter[dq][dq]))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx512.packed-shift</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vptestn?m[bdqw])\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx512.packed-test</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vperm([bdw]|[it]2([bdwq]|p[ds])))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx512.permutations</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(valign[dq]|vdbpsadbw|vpmultishiftqb|vpsrav[dqw])\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.avx512.other</string>
+				</dict>
+			</array>
+		</dict>
+		<key>mnemonics-future-intel-mpx</key>
+		<dict>
+			<key>match</key>
+			<string>\b(bnd(mk|c[lnu]|mov|ldx|stx))\b</string>
+			<key>name</key>
+			<string>keyword.mnemonic.mpx</string>
+		</dict>
+		<key>mnemonics-future-intel-opmask</key>
+		<dict>
+			<key>match</key>
+			<string>\b(k(add|andn?|(xn?)?or|mov|not|(or)?test|shift[lr])[bdqw]|kunpck(bw|wd|dq))\b</string>
+			<key>name</key>
+			<string>keyword.mnemonic.opmask</string>
+		</dict>
+		<key>mnemonics-future-intel-other</key>
+		<dict>
+			<key>match</key>
+			<string>\b(clflushopt|clwb|pcommit)\b</string>
+			<key>name</key>
+			<string>keyword.mnemonic.other</string>
+		</dict>
+		<key>mnemonics-future-intel-sha</key>
+		<dict>
+			<key>match</key>
+			<string>\b(sha(1rnds4|256rnds2|1nexte|(1|256)msg[12]))\b</string>
+			<key>name</key>
+			<string>keyword.mnemonic.sha</string>
 		</dict>
 		<key>mnemonics-general-purpose</key>
 		<dict>
@@ -1063,6 +1217,12 @@
 					<string>\b%?(zmm([12]?[0-9]|30|31))\b</string>
 					<key>name</key>
 					<string>constant.language.registers.avx512</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b%?(bnd([0-3]|cfg[su]|status))\b</string>
+					<key>name</key>
+					<string>constant.language.registers.memory-protection</string>
 				</dict>
 				<dict>
 					<key>match</key>
