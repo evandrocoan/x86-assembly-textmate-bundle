@@ -373,12 +373,12 @@ repository:
 
   mnemonics-system:
     patterns:
-    - name: keyword.mnemonic.system.intel
+    - name: keyword.mnemonic.system
       match: \b((cl|st)ac|[ls]([gli]dt|tr|msw)|clts|arpl|lar|lsl|ver[rw]|inv(d|lpg|pcid)|wbinvd)\b
+    - name: keyword.mnemonic.system
+      match: \b(lock|hlt|rsm|(rd|wr)(msr|[fg]sbase)|rd(pmc|tscp?)|sys(enter|exit))\b
     - name: keyword.mnemonic.system.intel
-      match: \b(lock|hlt|rsm|(rd|wr)msr|rd(pmc|tscp?)|sys(enter|exit))\b
-    - name: keyword.mnemonic.system.intel
-      match: \b(x((save(c|opt|s)?|rstors?)(64)?|[gs]etbv)|(rd|wr)[fg]sbase)\b
+      match: \b(x((save(c|opt|s)?|rstors?)(64)?|[gs]etbv))\b
     - name: keyword.mnemonic.system.amd
       match: \b(clgi|int3|invlpga|iretw|skinit|stgi|vm(load|mcal|run|save))\b
 
