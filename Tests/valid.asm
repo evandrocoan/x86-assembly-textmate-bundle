@@ -541,125 +541,7 @@ iret|iret|iretw|iretd|iretq
 lar|lgdt|lidt|lldt|lmsw|lsl|ltr|monitor|mwait|rdfsbase|rdgsbase|rdmsr|rdpmc|rdtsc|rdtscp|rsm|sgdt|sidt|skinit|sldt
 smsw|sti|stgi|str|swapgs|syscall|sysenter|sysexit|sysret|ud2|verr|verw|vmload|vmmcal|vmrun|vmsave|wbinvd|wrfsbase|wrgsbase|wrmsr
 
-
-;====================================================================
-;legacy
-retn|retf
-
-;undocumented
-icebp
-int1
-smi
-
-;old samples
-label:	vaddpd xmm10, [rax+r15*4]
-		vaddps ymm1, ymm2, yword [rax]
-lock	add st0, mm1
-
-.text
-		db 'test\0'
-
-;old mnemonics list
-cmovge
-cmovnz
-cmovz
-cmovo
-cmovpo
-cmpxchg|cmpxchg8b|cmpxchg16b
-cpuid
-cbw|cwde|cdq
-cmps|cmpsb|cmpsw|cmpsd|cmpsq
-cwd|cdq|cqo
-dppd
-emms
-fadd|faddp|fiadd
-fcmovnbe
-fcom|fcomp|fcompp
-fcomi|fcomip|fucomi|fucomip
-fucom|fucomp|fucompp
-ficom|ficomp
-fdiv|fdivp|fidiv
-fdivr|fdivrp|fidivr
-ffree
-fld
-fld1|fldl2t|fldl2e|fldpi|fldlg2|fldln2|fldz
-fldcw
-fldenv
-fmul|fmulp|fimul
-fcos|fsin|fsincos
-fsub|fsubp|fisub
-fsubr|fsubrp|fisubr
-int n|into|int 3
-ja|jae|jb|jbe|jc|jcxz|je|jecxz|jg|jge|jl|jle|jmp|jna|jnae|jnb|jnbe|jnc|jne|jng|jnge|jnl|jnle|jno|jnp|jns|jnz|jo|jp|jpe|jpo|js|jz
-lds|les|lfs|lgs|lss
-lgdt|lidt
-lldt
-loopz|loopnz
-vmaxpd|vmaxps|maxpd|maxps
-vmovapd
-movbe
-movd|movq
-movddup|vmovddup
-movdq2q|movq2dq
-movhpd
-movlhps
-movmskpd|vmovmskpd
-movntdqa|movntdq|vmovntdqa|vmovntdqa
-movnti|movntq
-movntpd|vmovntpd
-movs|movsb|movsw|movsd|movsq
-movss|vmovss
-movsx|movsxd
-movupd|vmovupd|movups|vmovups
-movzx
-mpsadbw|vmpsadbw
-mul
-vmulpd
-wait|fwait|mwait
-outs|outsb|outsw|outsd
-paddb|paddw|paddd|paddq
-paddsb|paddsw
-paddusb|paddusw
-pcmpeqb|pcmpeqw|pcmpeqd|pcmpeqq
-pcmpestri|pcmpestrm
-pcmpgtb|pcmpgtw|pcmpgtd|pcmpgtq
-pcmpistri|pcmpistrm
-pextrb|pextrd|pextrq|pextrw
-phaddw|phaddd|phaddsw
-pop|popa|popad
-popcnt
-popf|popfd|popfq
-prefetcht0|prefetcht1|prefetcht2|prefetchnta
-pslldq
-psllw|pslld|psllq
-psraw|psrad
-psrldq
-psrlw|psrld|psrlq
-psubb|psubw|psubd|psubq
-psubsb|psubsw
-psubusb|psubusw
-punpckhbw|punpckhwd|punpckhdq|punpckhqdq
-punpcklbw|punpcklwd|punpckldq|punpcklqdq
-pushf|pushfd|pushfq
-rdfsbase|rdgsbase
-wrfsbase|wrgsbase
-rep|repe|repz|repne|repnz
-sal|shl|shld
-sar|shr|shrd
-vcvtph2ps|vcvtps2ph
-vmovupd
-pmovsxbd|pmovsxbq|pmovsxbw
-pmovsxwd|pmovsxwq
-pmovsxdq
-pmovzxbd|pmovzxbq|pmovzxbw
-pmovzxwq|pmovzxwd
-pmovzxdq
-stmxcsr
-
-getsec
-
-
-;amd
+;old amd
 bextr
 prefetch|prefetchw
 skinit
@@ -695,13 +577,20 @@ pavgusb
 pmulhrw
 pswapd
 
-;intel sha1
-sha1msg1
-sha1msg2
-sha1nexte
-sha1rnds4
-sha256msg1
-sha256msg2
-sha256rnds2
+;====================================================================
+;legacy
+retn|retf
 
-xsave|xrstor|xsaveopt
+;undocumented
+icebp
+int1
+smi
+
+;====================================================================
+;old samples
+label:	vaddpd xmm10, [rax+r15*4]
+		vaddps ymm1, ymm2, yword [rax]
+lock	add st0, mm1
+
+.text
+		db 'test\0'
