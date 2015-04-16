@@ -95,7 +95,7 @@ repository:
   support:
     patterns:
     - name: support.type.asm
-      match: (?i)\b(byte|(d|dq|o|q|t|y)?word|db|dw|dd|dq|dt|do|dy|res(b|w|d|q|t|o|y)?|incbin|equ|times)\b
+      match: (?i)\b(byte|([doqty]|dq)?word|(d|res)[bdoqtwy]?|incbin|equ|times)\b
     - name: support.other.asm.directive
       match: (?i)\b(\.?(align|bits|cpu|fpu))\b
     - name: support.other.asm.modifier

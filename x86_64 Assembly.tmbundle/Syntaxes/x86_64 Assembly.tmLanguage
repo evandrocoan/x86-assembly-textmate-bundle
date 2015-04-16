@@ -1471,7 +1471,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>(?i)\b(byte|(d|dq|o|q|t|y)?word|db|dw|dd|dq|dt|do|dy|res(b|w|d|q|t|o|y)?|incbin|equ|times)\b</string>
+					<string>(?i)\b(byte|([doqty]|dq)?word|(d|res)[bdoqtwy]?|incbin|equ|times)\b</string>
 					<key>name</key>
 					<string>support.type.asm</string>
 				</dict>
