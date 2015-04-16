@@ -40,3 +40,8 @@ vcmpeqpd|vcmpltpd|vcmplepd|vcmpunordpd|vcmpneqpd|vcmpnltpd|vcmpnlepd|vcmpordpd
 vcmpeq_uqpd|vcmpngepd|vcmpngtpd|vcmpfalsepd|vcmpneq_oqpd|vcmpgepd|vcmpgtpd|vcmptruepd
 vcmpeq_ospd|vcmplt_oqpd|vcmple_oqpd|vcmpunord_spd|vcmpneq_uspd|vcmpnlt_uqpd|vcmpnle_uqpd|vcmpord_spd
 vcmpeq_uspd|vcmpnge_uqpd|vcmpngt_uqpd|vcmpfalse_ospd|vcmpneq_ospd|vcmpge_oqpd|vcmpgt_oqpd|vcmptrue_uspd
+
+;====================================================================
+;AMD64 Architecture Programmer’s Manual Volume 4: 128-Bit and 256-Bit Media Instructions (2013-05)
+vpcomltb|vpcomleb|vpcomgtb|vpcomgeb|vpcomeqb|vpcomneqb|vpcomfalseb|vpcomtrueb
+vpcomltuw|vpcomleuw|vpcomgtuw|vpcomgeuw|vpcomequw|vpcomnequw|vpcomfalseuw|vpcomtrueuw

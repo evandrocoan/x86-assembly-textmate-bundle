@@ -152,6 +152,7 @@ repository:
     - include: '#mnemonics-supplemental-via'
     - include: '#mnemonics-undocumented'
     - include: '#mnemonics-future-intel'
+    - include: '#mnemonics-pseudo-ops'
 
   mnemonics-general-purpose:
     patterns:
@@ -494,6 +495,17 @@ repository:
   mnemonics-future-intel-other:
     name: keyword.mnemonic.other
     match: \b(clflushopt|clwb|pcommit)\b
+
+  mnemonics-pseudo-ops:
+    patterns:
+    - name: keyword.pseudo-mnemonic.sse2.compare
+      match: \b(cmp(n?(eq|lt|le)|(un)?ord)[ps][ds])\b
+    - name: keyword.pseudo-mnemonic.avx.promoted.aes
+      match: \b(v?pclmul([hl]q[hl]q|[hl]qh)dq)\b
+    - name: keyword.pseudo-mnemonic.avx.promoted.comparison
+      match: \b(vcmp(eq(_(os|uq|us))?|neq(_(oq|os|us))?|[gl][et](_oq)?|n[gl][et](_uq)?|(un)?ord(_s)?|false(_os)?|true(_us)?)[ps][ds])\b
+    - name: keyword.pseudo-mnemonic.supplemental.amd.xop.simd
+      match: \b(vpcom(n?eq|[gl][et]|false|true)(b|uw))\b
 
   entities:
     patterns:
