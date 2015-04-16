@@ -1022,6 +1022,36 @@
 					<key>name</key>
 					<string>keyword.mnemonic.supplemental.amd.cache-management</string>
 				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b((extr|insert)q)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.supplemental.amd.sse4.a</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vfn?m((add|sub)[ps][ds])|vfm((addsub|subadd)p[ds]))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.supplemental.amd.fma4</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vp(cmov|(comu?|rot|sh[al])[bdqw]|mac(s?s(d(d|q[hl])|w[dw]))|madcss?wd|perm))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.supplemental.amd.xop.simd</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vph(addu?(b[dqw]|w[dq]|dq)|sub(bw|dq|wd)))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.supplemental.amd.xop.simd-horizontal</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(vfrcz[ps][ds]|vpermil2p[ds])\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.supplemental.amd.xop.other</string>
+				</dict>
 			</array>
 		</dict>
 		<key>mnemonics-supplemental-cyrix</key>

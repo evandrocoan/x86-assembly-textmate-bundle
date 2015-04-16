@@ -405,6 +405,16 @@ repository:
       match: \b(movnts[ds])\b
     - name: keyword.mnemonic.supplemental.amd.cache-management
       match: \b(prefetch)\b
+    - name: keyword.mnemonic.supplemental.amd.sse4.a
+      match: \b((extr|insert)q)\b
+    - name: keyword.mnemonic.supplemental.amd.fma4
+      match: \b(vfn?m((add|sub)[ps][ds])|vfm((addsub|subadd)p[ds]))\b
+    - name: keyword.mnemonic.supplemental.amd.xop.simd
+      match: \b(vp(cmov|(comu?|rot|sh[al])[bdqw]|mac(s?s(d(d|q[hl])|w[dw]))|madcss?wd|perm))\b
+    - name: keyword.mnemonic.supplemental.amd.xop.simd-horizontal
+      match: \b(vph(addu?(b[dqw]|w[dq]|dq)|sub(bw|dq|wd)))\b
+    - name: keyword.mnemonic.supplemental.amd.xop.other
+      match: \b(vfrcz[ps][ds]|vpermil2p[ds])\b
 
   mnemonics-supplemental-cyrix:
     patterns:

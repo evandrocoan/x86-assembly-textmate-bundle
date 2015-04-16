@@ -22,6 +22,7 @@ vmovzx
 vmul
 vpshufw
 vfmsubadd132sd/vfmsubadd132ss/vfnmsubadd132pd
+vfmaddsubsd/vfnmaddsubpd
 vgatherds/vgatherdpq/vpgatherdqpd
 vpclmulhqlqdq
 xwait/iwait
