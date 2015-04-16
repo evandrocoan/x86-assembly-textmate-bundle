@@ -415,6 +415,12 @@ repository:
       match: \b(vph(addu?(b[dqw]|w[dq]|dq)|sub(bw|dq|wd)))\b
     - name: keyword.mnemonic.supplemental.amd.xop.other
       match: \b(vfrcz[ps][ds]|vpermil2p[ds])\b
+    - name: keyword.mnemonic.supplemental.amd.3dnow
+      match: \b(femms)\b
+    - name: keyword.mnemonic.supplemental.amd.3dnow.simd
+      match: \b(p(avgusb|(f2i|i2f)[dw]|mulhrw|swapd)|pf((p?n)?acc|add|max|min|mul|rcp(it[12])?|rsqit1|rsqrt|subr?))\b
+    - name: keyword.mnemonic.supplemental.amd.3dnow.comparison
+      match: \b(pfcmp(eq|ge|gt))\b
 
   mnemonics-supplemental-cyrix:
     patterns:

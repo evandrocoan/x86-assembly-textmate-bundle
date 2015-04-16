@@ -1052,6 +1052,24 @@
 					<key>name</key>
 					<string>keyword.mnemonic.supplemental.amd.xop.other</string>
 				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(femms)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.supplemental.amd.3dnow</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(p(avgusb|(f2i|i2f)[dw]|mulhrw|swapd)|pf((p?n)?acc|add|max|min|mul|rcp(it[12])?|rsqit1|rsqrt|subr?))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.supplemental.amd.3dnow.simd</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(pfcmp(eq|ge|gt))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.supplemental.amd.3dnow.comparison</string>
+				</dict>
 			</array>
 		</dict>
 		<key>mnemonics-supplemental-cyrix</key>

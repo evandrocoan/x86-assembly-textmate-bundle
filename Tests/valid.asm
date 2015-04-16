@@ -627,14 +627,29 @@ vtestpd|vtestps|vzeroall|vzeroupper
 
 xgetbv|xorpd|vxorpd|xorps|vxorps|xrstor|xsave|xsaveopt|xsetbv
 
-;old amd
-femms
-pf2id
-pfrcp|pfrcpit1|pfrcpit2
-pi2fd|pi2fw
-pavgusb
-pmulhrw
-pswapd
+;AMD64 Architecture Programmer’s Manual Volume 5: 64-Bit Media and x87 Floating-Point Instructions (2013-05)
+;1 64-Bit Media Instruction Reference
+cvtpd2pi|cvtpi2pd|cvtpi2ps|cvtps2pi|cvttpd2pi|cvttps2pi
+emms|femms
+frstor|fsave|fnsave|fxrstor|fxsave
+maskmovq|movd|movdq2q|movntq|movq|movq2dq
+packssdw|packsswb|packuswb
+
+paddb|paddd|paddq|paddsb|paddsw|paddusb|paddusw|paddw|pand|pandn|pavgb|pavgusb|pavgw
+pcmpeqb|pcmpeqd|pcmpeqw|pcmpgtb|pcmpgtd|pcmpgtw
+pextrw
+pf2id|pf2iw|pfacc|pfadd|pfcmpeq|pfcmpge|pfcmpgt|pfmax|pfmin|pfmul|pfnacc|pfpnacc|pfrcp|pfrcpit1|pfrcpit2|pfrsqit1|pfrsqrt|pfsub|pfsubr
+pi2fd|pi2fw|pinsrw|pmaddwd|pmaxsw|pmaxub|pminsw|pminub|pmovmskb|pmulhrw|pmulhuw|pmulhw|pmullw|pmuludq|por|psadbw|pshufw
+pslld|psllq|psllw|psrad|psraw|psrld|psrlq|psrlw|psubb|psubd|psubq|psubsb|psubsw|psubusb|psubusw|psubw|pswapd
+punpckhbw|punpckhdq|punpckhwd|punpcklbw|punpckldq|punpcklwd|pxor
+
+;2 x87 Floating-Point Instruction Reference
+f2xm1|fabs|fadd|faddp|fiadd|fbld|fbstp|fchs|fclex|fnclex
+fcmovb|fcmovbe|fcmove|fcmovnb|fcmovnbe|fcmovne|fcmovnu|fcmovu
+fcom|fcomp|fcompp|fcomi|fcomip|fcos|fdecstp|fdiv|fdivp|fidiv|fdivr|fdivrp|fidivr|ffree|ficom|ficomp|fild|fincstp|finit|fninit
+fist|fistp|fisttp|fld|fld1|fldcw|fldenv|fldl2e|fldl2t|fldlg2|fldln2|fldpi|fldz|fmul|fmulp|fimul|fnop|fpatan|fprem|fprem1|fptan
+frndint|frstor|fsave|fnsave|fscale|fsin|fsincos|fsqrt|fst|fstp|fstcw|fnstcw|fstenv|fnstenv|fstsw|fnstsw
+fsub|fsubp|fisub|fsubr|fsubrp|fisubr|ftst|fucom|fucomp|fucompp|fucomi|fucomip|fwait|wait|fxam|fxch|fxrstor|fxsave|fxtract|fyl2x|fyl2xp1
 
 ;====================================================================
 ;legacy
