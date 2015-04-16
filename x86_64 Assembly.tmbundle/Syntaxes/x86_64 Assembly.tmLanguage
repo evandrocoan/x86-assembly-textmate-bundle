@@ -198,6 +198,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#mnemonics-supplemental-via</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#mnemonics-undocumented</string>
 				</dict>
 				<dict>
@@ -1074,13 +1078,26 @@
 		</dict>
 		<key>mnemonics-supplemental-cyrix</key>
 		<dict>
+			<key>match</key>
+			<string>\b((sv|rs)dc|(wr|rd)shr)\b</string>
+			<key>name</key>
+			<string>keyword.mnemonic.supplemental.cyrix</string>
+		</dict>
+		<key>mnemonics-supplemental-via</key>
+		<dict>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\b((sv|rs)dc|(wr|rd)shr)\b</string>
+					<string>\b(montmul)\b</string>
 					<key>name</key>
-					<string>keyword.mnemonic.supplemental.cyrix</string>
+					<string>keyword.mnemonic.supplemental.via</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(x(store(rng)?|crypt(ecb|cbc|ctr|cfb|ofb)|sha(1|256)))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.supplemental.via.padlock</string>
 				</dict>
 			</array>
 		</dict>

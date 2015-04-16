@@ -149,6 +149,7 @@ repository:
     - include: '#mnemonics-smx'
     - include: '#mnemonics-supplemental-amd'
     - include: '#mnemonics-supplemental-cyrix'
+    - include: '#mnemonics-supplemental-via'
     - include: '#mnemonics-undocumented'
     - include: '#mnemonics-future-intel'
 
@@ -423,9 +424,15 @@ repository:
       match: \b(pfcmp(eq|ge|gt))\b
 
   mnemonics-supplemental-cyrix:
+    name: keyword.mnemonic.supplemental.cyrix
+    match: \b((sv|rs)dc|(wr|rd)shr)\b
+
+  mnemonics-supplemental-via:
     patterns:
-    - name: keyword.mnemonic.supplemental.cyrix
-      match: \b((sv|rs)dc|(wr|rd)shr)\b
+    - name: keyword.mnemonic.supplemental.via
+      match: \b(montmul)\b
+    - name: keyword.mnemonic.supplemental.via.padlock
+      match: \b(x(store(rng)?|crypt(ecb|cbc|ctr|cfb|ofb)|sha(1|256)))\b
 
   mnemonics-undocumented:
     name: keyword.mnemonic.undocumented
