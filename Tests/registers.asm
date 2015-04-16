@@ -8,7 +8,8 @@ r0d, r1d, r7d, r16d, r18d, r20d, r21d
 r0, r1, r7, r16, r18, r20, r21
 xmm, xmm01, xmm16, xmm20, xmm21
 ymm, ymm01, ymm16, ymm20, ymm21
-dr4, dr5, dr8, dr9
+zmm, zmm01, zmm32, zmm40, zmm41
+dr4, dr5, dr16, dr21, dr25
 cr1, cr5, cr01, dtr
 st8, st9, st10, st11
 
@@ -49,6 +50,15 @@ xmm0, xmm1, xmm2, xmm3, xmm4, xmm5, xmm6, xmm7, xmm8, xmm9, xmm10, xmm11, xmm12,
 ;YMM registers (AVX)
 ymm0, ymm1, ymm2, ymm3, ymm4, ymm5, ymm6, ymm7, ymm8, ymm9, ymm10, ymm11, ymm12, ymm13, ymm14, ymm15
 
+;ZMM registers (AVX512)
+zmm0, zmm1, zmm2, zmm3, zmm4, zmm5, zmm6, zmm7, zmm8, zmm9,
+zmm10, zmm11, zmm12, zmm13, zmm14, zmm15, zmm16, zmm17, zmm18, zmm19,
+zmm20, zmm21, zmm22, zmm23, zmm24, zmm25, zmm26, zmm27, zmm28, zmm29,
+zmm30, zmm31
+
+;Memory Protection registers
+bnd0, bnd1, bnd2, bnd3, bndcfgu, bndcfgs, bndstatus
+
 ;control registers
 cr0, cr2, cr3, cr4
 
@@ -59,5 +69,21 @@ gdtr, ldtr, idtr, tr
 dr0, dr1, dr2, dr3, dr6, dr7
 
 ;amd
-cr8, tpr
+cr8, tpr, efer, syscfg
+dr8, dr9, dr10, dr11, dr12, dr13, dr14, dr15
 gdt, ldt, idt
+;3.2.2  System-Linkage Registers
+star, lstar, cstar, sfmask
+kernelgsbase
+sysenter_cs, sysenter_esp, sysenter_eip
+;3.2.3  Memory-Typing Registers
+mtrrcap, mtrrdeftype, mtrrphysbasen, mtrrphysmaskn, mtrrfixn, pat, top_mem, top_mem2
+;3.2.4  Debug-Extension Registers
+debugctl
+lastbranchtoip, lastbranchfromip, lastinttoip, lastintfromip
+;3.2.5  Performance-Monitoring Registers
+tsc
+;perfevtsel, perfctr
+;3.2.6  Machine-Check Registers
+mcg_cap, mcg_ctl, mcg_status
+;MCi_CTL, MCi_STATUS, MCi_ADDR, MCi_MISC
