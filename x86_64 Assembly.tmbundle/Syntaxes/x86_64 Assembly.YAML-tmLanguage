@@ -147,7 +147,9 @@ repository:
     - include: '#mnemonics-64bit'
     - include: '#mnemonics-vmx'
     - include: '#mnemonics-smx'
-    - include: '#mnemonics-sgx'
+    - include: '#mnemonics-intel-isa-sgx'
+    - include: '#mnemonics-intel-isa-mpx'
+    - include: '#mnemonics-intel-isa-sha'
     - include: '#mnemonics-supplemental-amd'
     - include: '#mnemonics-supplemental-cyrix'
     - include: '#mnemonics-supplemental-via'
@@ -400,7 +402,7 @@ repository:
     - name: support.constant
       match: \b(capabilities|enteraccs|exitac|senter|sexit|parameters|smctrl|wakeup)\b
 
-  mnemonics-sgx:
+  mnemonics-intel-isa-sgx:
     patterns:
     - name: keyword.mnemonic.sgx1.supervisor
       match: \be(add|block|create|dbg(rd|wr)|extend|init|ld[bu]|pa|remove|track|wb)\b
@@ -410,6 +412,14 @@ repository:
       match: \be(aug|mod(pr|t))\b
     - name: keyword.mnemonic.sgx2.user
       match: \be(accept(copy)?|modpe)\b
+
+  mnemonics-intel-isa-mpx:
+    name: keyword.mnemonic.mpx
+    match: \b(bnd(mk|c[lnu]|mov|ldx|stx))\b
+
+  mnemonics-intel-isa-sha:
+    name: keyword.mnemonic.sha
+    match: \b(sha(1rnds4|256rnds2|1nexte|(1|256)msg[12]))\b
 
   mnemonics-supplemental-amd:
     patterns:
@@ -455,8 +465,6 @@ repository:
     patterns:
     - include: '#mnemonics-future-intel-avx512'
     - include: '#mnemonics-future-intel-opmask'
-    - include: '#mnemonics-future-intel-sha'
-    - include: '#mnemonics-future-intel-mpx'
     - include: '#mnemonics-future-intel-other'
 
   mnemonics-future-intel-avx512:
@@ -495,14 +503,6 @@ repository:
   mnemonics-future-intel-opmask:
     name: keyword.mnemonic.opmask
     match: \b(k(add|andn?|(xn?)?or|mov|not|(or)?test|shift[lr])[bdqw]|kunpck(bw|wd|dq))\b
-
-  mnemonics-future-intel-sha:
-    name: keyword.mnemonic.sha
-    match: \b(sha(1rnds4|256rnds2|1nexte|(1|256)msg[12]))\b
-
-  mnemonics-future-intel-mpx:
-    name: keyword.mnemonic.mpx
-    match: \b(bnd(mk|c[lnu]|mov|ldx|stx))\b
 
   mnemonics-future-intel-other:
     name: keyword.mnemonic.other
