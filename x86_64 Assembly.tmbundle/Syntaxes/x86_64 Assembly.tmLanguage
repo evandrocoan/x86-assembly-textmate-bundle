@@ -190,6 +190,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#mnemonics-sgx</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#mnemonics-supplemental-amd</string>
 				</dict>
 				<dict>
@@ -801,6 +805,36 @@
 					<string>\b(vpcom(n?eq|[gl][et]|false|true)(b|uw))\b</string>
 					<key>name</key>
 					<string>keyword.pseudo-mnemonic.supplemental.amd.xop.simd</string>
+				</dict>
+			</array>
+		</dict>
+		<key>mnemonics-sgx</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\be(add|block|create|dbg(rd|wr)|extend|init|ld[bu]|pa|remove|track|wb)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sgx1.supervisor</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\be(enter|exit|getkey|report|resume)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sgx1.user</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\be(aug|mod(pr|t))\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sgx2.supervisor</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\be(accept(copy)?|modpe)\b</string>
+					<key>name</key>
+					<string>keyword.mnemonic.sgx2.user</string>
 				</dict>
 			</array>
 		</dict>

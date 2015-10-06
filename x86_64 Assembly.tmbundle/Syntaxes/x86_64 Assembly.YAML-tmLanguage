@@ -147,6 +147,7 @@ repository:
     - include: '#mnemonics-64bit'
     - include: '#mnemonics-vmx'
     - include: '#mnemonics-smx'
+    - include: '#mnemonics-sgx'
     - include: '#mnemonics-supplemental-amd'
     - include: '#mnemonics-supplemental-cyrix'
     - include: '#mnemonics-supplemental-via'
@@ -398,6 +399,17 @@ repository:
       match: \b(getsec)\b
     - name: support.constant
       match: \b(capabilities|enteraccs|exitac|senter|sexit|parameters|smctrl|wakeup)\b
+
+  mnemonics-sgx:
+    patterns:
+    - name: keyword.mnemonic.sgx1.supervisor
+      match: \be(add|block|create|dbg(rd|wr)|extend|init|ld[bu]|pa|remove|track|wb)\b
+    - name: keyword.mnemonic.sgx1.user
+      match: \be(enter|exit|getkey|report|resume)\b
+    - name: keyword.mnemonic.sgx2.supervisor
+      match: \be(aug|mod(pr|t))\b
+    - name: keyword.mnemonic.sgx2.user
+      match: \be(accept(copy)?|modpe)\b
 
   mnemonics-supplemental-amd:
     patterns:
