@@ -10,7 +10,7 @@
 		<string>inc</string>
 	</array>
 	<key>name</key>
-	<string>x86_64 Assembly v2</string>
+	<string>x86_64 Assembly</string>
 	<key>patterns</key>
 	<array>
 		<dict>
