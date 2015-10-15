@@ -181,7 +181,7 @@ repository:
       match: \b(jmp|jn?[abceglopsz]|jn?[abgl]e|jp[eo]|j[er]?cxz)\b
     - name: keyword.mnemonic.general-purpose.control-transfer.other
       match: \b(loop(n?[ez])?|call|ret|iret[dq]?|into?|bound|enter|leave)\b
-    - name: keyword.mnemonic.general-purpose.string
+    - name: keyword.mnemonic.general-purpose.strings
       match: \b((mov|cmp|sca|lod|sto)(s[bdw]?)|rep(n?[ez])?)\b
     - name: keyword.mnemonic.general-purpose.io
       match: \b((in|out)(s[bdw]?)?)\b
@@ -212,7 +212,7 @@ repository:
       match: \b(f(sin|cos|sincos|pa?tan|2xm1|yl2x(p1)?))\b
     - name: keyword.mnemonic.fpu.load-constants
       match: \b(fld(1|z|pi|l2[et]|l[ng]2))\b
-    - name: keyword.mnemonic.fpu.control
+    - name: keyword.mnemonic.fpu.control-management
       match: \b(f((inc|dec)stp|free|n?(init|clex|st[cs]w|stenv|save)|ld(cw|env)|rstor|nop)|f?wait)\b
     - name: keyword.mnemonic.fpu.state-management
       match: \b(fx(save|rstor)(64)?)\b
