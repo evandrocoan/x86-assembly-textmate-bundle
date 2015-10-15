@@ -4,7 +4,7 @@
 <dict>
 	<key>name</key>
 	<string>x86 and x86_64 Assembly</string>
-	<key>scopeName</key>
+	<key>scope</key>
 	<string>source.asm.x86_64</string>
 	<key>settings</key>
 	<dict>
