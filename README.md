@@ -1,5 +1,5 @@
-About
-=====
+x86 and x86_64 Assembly
+=======================
 This is a TextMate/Sublime/VS Code/Atom bundle providing language support for x86_64 assembly language in a variety of dialects (nasm/yasm/tasm/gas).
 
 Features
