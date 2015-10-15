@@ -1,5 +1,5 @@
 # [PackageDev] target_format: plist, ext: tmLanguage
-name: x86_64 Assembly
+name: x86 and x86_64 Assembly
 scopeName: source.asm.x86_64
 fileTypes: [asm, nasm, yasm, inc]
 uuid: 05d6565d-991a-4e88-8e28-63bb21197f32

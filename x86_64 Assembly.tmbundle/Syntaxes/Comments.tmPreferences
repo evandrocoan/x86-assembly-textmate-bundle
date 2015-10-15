@@ -3,8 +3,8 @@
 <plist version="1.0">
 <dict>
 	<key>name</key>
-	<string>x86_64 Assembly</string>
-	<key>scope</key>
+	<string>x86 and x86_64 Assembly</string>
+	<key>scopeName</key>
 	<string>source.asm.x86_64</string>
 	<key>settings</key>
 	<dict>
