@@ -455,7 +455,7 @@ psubb|psubw|psubd|psubq|psubsb|psubsw|psubusb|psubusw|ptest
 punpckhbw|punpckhwd|punpckhdq|punpckhqdq|punpcklbw|punpcklwd|punpckldq|punpcklqdq
 push|pusha|pushad|pushf|pushfd|pushfq|pxor
 
-rcl|rcr|rol|ror|rcpps|rcpss|rdfsbase|rdgsbase|rdmsr|rdpmc|rdrand|rdseed|rdtsc|rdtscp
+rcl|rcr|rol|ror|rcpps|rcpss|rdfsbase|rdgsbase|rdmsr|rdpkru|rdpmc|rdrand|rdseed|rdtsc|rdtscp
 rep|repe|repz|repne|repnz|ret|rorx|roundpd|roundps|roundsd|roundss|rsm|rsqrtps|rsqrtss
 
 sahf|sal|sar|shl|shr|sarx|shlx|shrx|sbb|scas|scasb|scasw|scasd|scasq
@@ -482,7 +482,7 @@ vpbroadcastb|vpbroadcastw|vpbroadcastd|vpbroadcastq|vbroadcasti128
 vpermd|vpermpd|vpermps|vpermq|vperm2i128|vpermilpd|vpermilps|vperm2f128|vpmaskmovd|vpmaskmovq
 vpsllvd|vpsllvq|vpsravd|vpsrlvd|vpsrlvq|vtestpd|vtestps|vzeroall|vzeroupper
 
-wait|fwait|wbinvd|wrfsbase|wrgsbase|wrmsr
+wait|fwait|wbinvd|wrfsbase|wrgsbase|wrmsr|wrpkru
 
 xacquire|xrelease|xabort|xadd|xbegin|xchg|xend|xgetbv|xlat|xlatb|xor|xorpd|xorps
 xrstor|xrstor64|xrstors|xrstors64|xsave|xsave64|xsavec|xsavec64|xsaveopt|xsaveopt64|xsaves|xsaves64|xsetbv|xtest
