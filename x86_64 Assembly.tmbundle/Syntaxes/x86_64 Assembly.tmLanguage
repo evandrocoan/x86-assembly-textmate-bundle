@@ -760,6 +760,46 @@
 			<key>name</key>
 			<string>keyword.mnemonic.sha</string>
 		</dict>
+		<key>mnemonics-invalid</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#mnemonics-invalid-amd-sse5</string>
+				</dict>
+			</array>
+		</dict>
+		<key>mnemonics-invalid-amd-sse5</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\b(com[ps][ds]|pcomu?[bdqw])\b</string>
+					<key>name</key>
+					<string>invalid.keyword.mnemonic.sse5.comparison</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(cvtp(h2ps|s2ph)|frcz[ps][ds])\b</string>
+					<key>name</key>
+					<string>invalid.keyword.mnemonic.sse5.conversion</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(fn?m((add|sub)[ps][ds])|ph(addu?(b[dqw]|w[dq]|dq)|sub(bw|dq|wd))|pma(css?(d(d|q[hl])|w[dw])|dcss?wd))\b</string>
+					<key>name</key>
+					<string>invalid.keyword.mnemonic.sse5.packed-arithmetic</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(pcmov|permp[ds]|pperm|prot[bdqw]|psh[al][bdqw])\b</string>
+					<key>name</key>
+					<string>invalid.keyword.mnemonic.sse5.simd-integer</string>
+				</dict>
+			</array>
+		</dict>
 		<key>mnemonics-mmx</key>
 		<dict>
 			<key>patterns</key>

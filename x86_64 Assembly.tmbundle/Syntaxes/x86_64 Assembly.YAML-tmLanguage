@@ -156,6 +156,7 @@ repository:
     - include: '#mnemonics-undocumented'
     - include: '#mnemonics-future-intel'
     - include: '#mnemonics-pseudo-ops'
+#    - include: '#mnemonics-invalid'
 
   mnemonics-general-purpose:
     patterns:
@@ -518,6 +519,21 @@ repository:
       match: \b(vcmp(eq(_(os|uq|us))?|neq(_(oq|os|us))?|[gl][et](_oq)?|n[gl][et](_uq)?|(un)?ord(_s)?|false(_os)?|true(_us)?)[ps][ds])\b
     - name: keyword.pseudo-mnemonic.supplemental.amd.xop.simd
       match: \b(vpcom(n?eq|[gl][et]|false|true)(b|uw))\b
+
+  mnemonics-invalid:
+    patterns:
+    - include: '#mnemonics-invalid-amd-sse5'
+
+  mnemonics-invalid-amd-sse5:
+    patterns:
+    - name: invalid.keyword.mnemonic.sse5.comparison
+      match: \b(com[ps][ds]|pcomu?[bdqw])\b
+    - name: invalid.keyword.mnemonic.sse5.conversion
+      match: \b(cvtp(h2ps|s2ph)|frcz[ps][ds])\b
+    - name: invalid.keyword.mnemonic.sse5.packed-arithmetic
+      match: \b(fn?m((add|sub)[ps][ds])|ph(addu?(b[dqw]|w[dq]|dq)|sub(bw|dq|wd))|pma(css?(d(d|q[hl])|w[dw])|dcss?wd))\b
+    - name: invalid.keyword.mnemonic.sse5.simd-integer
+      match: \b(pcmov|permp[ds]|pperm|prot[bdqw]|psh[al][bdqw])\b
 
   entities:
     patterns:
