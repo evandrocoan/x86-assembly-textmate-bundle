@@ -1,3 +1,4 @@
+; AMD64 Technology 128-Bit SSE5 Instruction Set
 ; didn't make the cut into FMA/F16c/XOP
 compd
 comps
