@@ -507,7 +507,7 @@ repository:
 
   mnemonics-future-intel-other:
     name: keyword.mnemonic.other
-    match: \b(clflushopt|clwb|pcommit)\b
+    match: \b(clflushopt|clwb|pcommit|endbranch)\b
 
   mnemonics-pseudo-ops:
     patterns:
