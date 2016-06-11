@@ -660,6 +660,9 @@ icebp
 int1
 smi
 
+;cfe
+endbranch
+
 ;====================================================================
 ;old samples
 label:	vaddpd xmm10, [rax+r15*4]
