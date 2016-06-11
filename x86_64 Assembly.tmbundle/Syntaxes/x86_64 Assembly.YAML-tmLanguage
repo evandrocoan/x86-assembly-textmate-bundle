@@ -466,6 +466,7 @@ repository:
     patterns:
     - include: '#mnemonics-future-intel-avx512'
     - include: '#mnemonics-future-intel-opmask'
+    - include: '#mnemonics-future-intel-cet'
     - include: '#mnemonics-future-intel-other'
 
   mnemonics-future-intel-avx512:
@@ -505,9 +506,13 @@ repository:
     name: keyword.mnemonic.opmask
     match: \b(k(add|andn?|(xn?)?or|mov|not|(or)?test|shift[lr])[bdqw]|kunpck(bw|wd|dq))\b
 
+  mnemonics-future-intel-cet:
+    name: keyword.mnemonic.cet
+    match: \b((inc|save|rstor)ssp|wru?ss|(set|clr)ssbsy|endbranch|endbr(32|64))\b
+
   mnemonics-future-intel-other:
     name: keyword.mnemonic.other
-    match: \b(clflushopt|clwb|pcommit|endbranch)\b
+    match: \b(clflushopt|clwb|pcommit)\b
 
   mnemonics-pseudo-ops:
     patterns:
