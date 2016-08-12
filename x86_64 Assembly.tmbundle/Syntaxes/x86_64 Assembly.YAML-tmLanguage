@@ -15,19 +15,6 @@ patterns:
 - include: '#mnemonics'
 
 repository:
-  entities:
-    patterns:
-    - name: entity.name.section
-      match: '(section\s+)?\.((ro)?data|bss|text)'
-    - name: entity.name.function
-      match: '^\s*(\w|[\._?])(\w|[_$#@~\.?])*\:'
-    - name: invalid.entity.name.function
-      match: '^\s*([$@~])(\w|[_$#@~\.?])*\:'
-    - name: entity.directive
-      match: ^\.?(globa?l)\b
-    - name: text.variable
-      match: (\$\w+)\b
-
   constants:
     patterns:
     - name: constant.numeric.floating-point
@@ -42,6 +29,30 @@ repository:
       match: \b[0-9]+\b
     - name: constant.numeric.hex
       match: \b([0-9a-fA-F]+h|0x[0-9a-fA-F]+)\b
+
+  entities:
+    patterns:
+    - name: entity.name.section
+      match: '(section\s+)?\.((ro)?data|bss|text)'
+    - name: entity.name.function
+      match: '^\s*(\w|[\._?])(\w|[_$#@~\.?])*\:'
+    - name: invalid.entity.name.function
+      match: '^\s*([$@~])(\w|[_$#@~\.?])*\:'
+    - name: entity.directive
+      match: ^\.?(globa?l)\b
+    - name: text.variable
+      match: (\$\w+)\b
+
+  support:
+    patterns:
+    - name: support.type.asm
+      match: (?i)\b(byte|([doqty]|dq)?word|(d|res)[bdoqtwy]?|ddq|incbin|equ|times)\b
+    - name: support.directive.asm
+      match: (?i)\b(\.?(align|bits|cpu|fpu)|use(16|32|64))\b
+    - name: support.modifier.asm
+      match: \b(strict|nosplit|near|far|abs|rel|seg|wrt)\b
+    - name: support.prefix.asm
+      match: \b([ao](16|32|64))\b
  
   comments:
     patterns:
@@ -119,17 +130,6 @@ repository:
         '0': {name: punctuation.definition.string.end.c}
       patterns:
       - include: '#string_escaped_char'
-
-  support:
-    patterns:
-    - name: support.type.asm
-      match: (?i)\b(byte|([doqty]|dq)?word|(d|res)[bdoqtwy]?|ddq|incbin|equ|times)\b
-    - name: support.directive.asm
-      match: (?i)\b(\.?(align|bits|cpu|fpu)|use(16|32|64))\b
-    - name: support.modifier.asm
-      match: \b(strict|nosplit|near|far|abs|rel|seg|wrt)\b
-    - name: support.prefix.asm
-      match: \b([ao](16|32|64))\b
 
   registers:
     patterns:
