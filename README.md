@@ -1,6 +1,6 @@
-x86 and x86_64 Assembly
-=======================
-This is a TextMate/Sublime/VS Code/Atom bundle providing language support for x86_64 assembly language in a variety of dialects (nasm/yasm/tasm/gas).
+About
+=====
+This is a TextMate/Sublime/VS Code/Atom bundle providing language support for x86_64 assembly language in a variety of dialects (nasm/yasm primarily, but could highlight tasm/gas to some extent).
 
 Features
 ========
@@ -19,11 +19,6 @@ Source code
 The latest version of this package should be available on [GitHub](https://github.com/13xforever/x86-assembly-textmate-bundle).
 
 To compile the yaml sources to tmLanguage, you'll need [AAAPackageDev](https://packagecontrol.io/packages/AAAPackageDev). 
-More information and a user guide is available on the [project page](https://github.com/SublimeText/AAAPackageDev).
-
-Atom [import guide](https://atom.io/docs/latest/hacking-atom-converting-from-textmate).
-
-VS Code [import guide](https://code.visualstudio.com/updates/#_customization-adding-language-colorization-bracket-matching) (no IntelliSense support though)!
 
 Contributors
 ============
