@@ -5,16 +5,44 @@ fileTypes: [asm, nasm, yasm, inc]
 uuid: 05d6565d-991a-4e88-8e28-63bb21197f32
 
 patterns:
+- include: '#constants'
+- include: '#entities'
+- include: '#support'
 - include: '#comments'
 - include: '#preprocessor'
 - include: '#strings'
-- include: '#support'
 - include: '#registers'
 - include: '#mnemonics'
-- include: '#entities'
-- include: '#constants'
 
 repository:
+  entities:
+    patterns:
+    - name: entity.name.section
+      match: '(section\s+)?\.((ro)?data|bss|text)'
+    - name: entity.name.function
+      match: '^\s*(\w|[\._?])(\w|[_$#@~\.?])*\:'
+    - name: invalid.entity.name.function
+      match: '^\s*([$@~])(\w|[_$#@~\.?])*\:'
+    - name: entity.directive
+      match: ^\.?(globa?l)\b
+    - name: text.variable
+      match: (\$\w+)\b
+
+  constants:
+    patterns:
+    - name: constant.numeric.floating-point
+      match: \b([0-9]*(\.[0-9]*)?(e[+-]?[0-9]+)?)\b
+    - name: constant.numeric.literal
+      match: (\$[0-9a-f]+)\b
+    - name: constant.numeric.bin
+      match: \b[01]+b\b
+    - name: constant.numeric.oct
+      match: \b[0-7]+[oq]\b
+    - name: constant.numeric.dec
+      match: \b[0-9]+\b
+    - name: constant.numeric.hex
+      match: \b([0-9a-fA-F]+h|0x[0-9a-fA-F]+)\b
+ 
   comments:
     patterns:
     - name: comment.line
@@ -61,7 +89,7 @@ repository:
           '0': {name: punctuation.definition.string.end.c}
     
     - name: meta.preprocessor.c
-      begin: ^\s*[%#]\s*(define|defined|elif|else|if|ifdef|ifndef|line|pragma|undef|endif)\b
+      begin: ^\s*[%#]\s*(define|defined|elif|else|if|ifdef|ifndef|line|pragma|rep|undef|endif)\b
       end: (?=(?://|/\*))|$
       captures:
         '1': {name: keyword.control.import.c}
@@ -74,10 +102,10 @@ repository:
     - name: string.quoted.asm
       begin: '["'']'
       beginCaptures:
-        '0': {name: punctuation.definition.string.begin.asm}
+        '0': { name: punctuation.definition.string.begin.asm }
       end: '["'']'
       endCaptures:
-        '0': {name: punctuation.definition.string.end.asm}
+        '0': { name: punctuation.definition.string.end.asm }
       patterns:
       - include: '#string_escaped_char'
       - include: '#string_placeholder' #where are these patterns?
@@ -95,11 +123,13 @@ repository:
   support:
     patterns:
     - name: support.type.asm
-      match: (?i)\b(byte|([doqty]|dq)?word|(d|res)[bdoqtwy]?|incbin|equ|times)\b
-    - name: support.other.asm.directive
-      match: (?i)\b(\.?(align|bits|cpu|fpu))\b
-    - name: support.other.asm.modifier
-      match: \b(strict|nosplit|near|far|abs|rel)\b
+      match: (?i)\b(byte|([doqty]|dq)?word|(d|res)[bdoqtwy]?|ddq|incbin|equ|times)\b
+    - name: support.directive.asm
+      match: (?i)\b(\.?(align|bits|cpu|fpu)|use(16|32|64))\b
+    - name: support.modifier.asm
+      match: \b(strict|nosplit|near|far|abs|rel|seg|wrt)\b
+    - name: support.prefix.asm
+      match: \b([ao](16|32|64))\b
 
   registers:
     patterns:
@@ -539,22 +569,4 @@ repository:
       match: \b(fn?m((add|sub)[ps][ds])|ph(addu?(b[dqw]|w[dq]|dq)|sub(bw|dq|wd))|pma(css?(d(d|q[hl])|w[dw])|dcss?wd))\b
     - name: invalid.keyword.mnemonic.sse5.simd-integer
       match: \b(pcmov|permp[ds]|pperm|prot[bdqw]|psh[al][bdqw])\b
-
-  entities:
-    patterns:
-    - name: entity.name.section
-      match: (section\s+)?\.(data|bss|text)$
-    - name: entity.name.function
-      match: ^\s*\.?\w+:\s*(?=$|;)
-    - name: entity.directive
-      match: ^\.?(globa?l)\b
-
-  constants:
-    patterns:
-    - name: constant.numeric.literal
-      match: \$[0-9a-f]+\b
-    - name: constant.numeric.dec
-      match: \b[0-9]+\b
-    - name: constant.numeric.hex
-      match: \b([0-9a-fA-F]+h?|0x[0-9a-fA-F]+)\b
 ...
