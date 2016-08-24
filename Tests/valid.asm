@@ -167,7 +167,7 @@ palignr
 ;5.9 SSE4 INSTRUCTIONS
 
 ;5.10 SSE4.1 INSTRUCTIONS
-;5.10.1      Dword Multiply Instructions 
+;5.10.1      Dword Multiply Instructions
 pmulld|pmuldq
 ;5.10.2      Floating-Point Dot Product Instructions
 dppd|dpps
@@ -547,7 +547,39 @@ movntsd|movntss
 prefetch|prefetchw
 
 ;====================================================================
-;AMD64 Architecture Programmer’s Manual Volume 3: General-Purpose and System Instructions (2013-05)
+;AMD64 Architecture Programmer’s Manual Volume 3: General-Purpose and System Instructions (2015-06)
+;3 General-Purpose Instruction Reference
+aaa|aad|aam|aas|adc|add|and|andn
+bextr|blcfill|blci|blcic|blcmsk|blcs|blsfill|blsi|blsic|blsmsk|blsr|bound|bsf|bsr|bswap|bt|btc|btr|bts|bzhi
+call|cbw|cwde|cdqe|cwd|cdq|cqo|clc|cld|clflush|cmc
+cmovo|cmovno|cmovb|cmovc|cmovnae|cmovnb|cmovnc|cmovae|cmovz|cmove|cmovnz|cmovne|cmovbe|cmovna|cmovnbe
+cmova|cmovs|cmovns|cmovp|cmovpe|cmovnp|cmovpo|cmovl|cmovnge|cmovnl|cmovge|cmovle|cmovng|cmovnle|cmovg
+cmp|cmps|cmpsb|cmpsw|cmpsd|cmpsq|cmpxchg|cmpxchg8b|cmpxchg16b|cpuid|crc32
+daa|das|dec|div
+enter
+idiv|imul|in|inc|ins|insb|insw|insd|int|into
+jo|jno|jb|jc|jnae|jnb|jnc|jae|jz|je|jnz|jne|jbe|jna|jnbe|ja|js|jns|jp|jpe|jnp|jpo|jl|jnge|jnl|jge|jle|jng|jnle|jg|jcxz|jecxz|jrcxz|jmp
+lahf|lds|les|lfs|lgs|lss|lea|leave|lfence|llwpcb|lods|lodsb|lodsw|lodsd|lodsq|loop|loope|loopne|loopnz|loopz|lwpins|lwpval|lzcnt
+mfence|mov|movbe|movd|movmskpd|movmskps|movnti|movs|movsb|movsw|movsd|movsq|movsx|movsxd|movzx|mul|mulx
+neg|nop|not
+or|out|outs|outsb|outsw|outsd
+pause|pdep|pext|pop|popa|popad|popcnt|popf|popfd|popfq|prefetch|prefetchw|prefetchnta|prefetcht0|prefetcht1|prefetcht2|push|pusha|pushad|pushf|pushfd|pushfq
+rcl|rcr|rdfsbase|rdgsbase|rdrand|ret|rol|ror|rorx
+sahf|sal|shl|sar|sarx|sbb|scas|scasb|scasw|scasd|scasq
+seto|setno|setb|setc|setnae|setnb|setnc|setae|setz|sete|setnz|setne|setbe|setna|setnbe|seta|sets|setns|setp|setpe|setnp|setpo|setl|setnge|setnl|setge|setle|setng|setnle|setg
+sfence|shl|shld|shlx|shr|shrd|shrx|slwpcb|stc|std|stos|stosb|stosw|stosd|stosq|sub
+t1mskc|test|tzcnt|tzmsk
+wrfsbase|wrgsbase
+xadd|xchg|xlat|xlatb|xor
+
+;4 System Instruction Reference
+arpl|clgi|cli|clts|hlt|int 3|invd|invlpg|invlpga|iret|iretd|iretq|lar|lgdt|lidt|lldt|lmsw|lsl|ltr
+monitor|monitorx|mov crn|mov drn|mwait|mwaitx|rdmsr|rdpmc|rdtsc|rdtscp|rsm
+sgdt|sidt|skinit|sldt|smsw|sti|stgi|str|swapgs|syscall|sysenter|sysexit|sysret
+ud2|verr|verw|vmload|vmmcall|vmrun|vmsave|wbinvd|wrmsr
+
+; Zen Architecture
+clzero
 
 ;====================================================================
 ;AMD64 Architecture Programmer’s Manual Volume 4: 128-Bit and 256-Bit Media Instructions (2013-05)
