@@ -12,13 +12,17 @@ label2: ;comment
 label3: mov ax, bx
 label4: mov ax, bx ;comment
 label_$#@~.?:
+label# mov ax, bx ;not a comment
 .valid:
 _valid:
 ?valid:
 $invalid:
-#preprocessor
 @invalid:
 ~invalid:
+#preprocessor
+# gas comment
+;comment
+label: # also gas comment
 
 	mov ax, bx ;comment
 	jmp $eax
