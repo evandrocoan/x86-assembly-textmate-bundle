@@ -18,7 +18,7 @@ Source code
 ===========
 The latest version of this package should be available on [GitHub](https://github.com/13xforever/x86-assembly-textmate-bundle).
 
-To compile the yaml sources to tmLanguage, you'll need [AAAPackageDev](https://packagecontrol.io/packages/AAAPackageDev). 
+To compile the yaml sources to tmLanguage, you'll need [PackageDev](https://packagecontrol.io/packages/PackageDev). 
 
 Contributors
 ============
