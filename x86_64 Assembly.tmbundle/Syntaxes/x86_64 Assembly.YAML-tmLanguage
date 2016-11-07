@@ -5,14 +5,14 @@ fileTypes: [asm, nasm, yasm, inc, s]
 uuid: 05d6565d-991a-4e88-8e28-63bb21197f32
 
 patterns:
+- include: '#registers'
+- include: '#mnemonics'
 - include: '#constants'
 - include: '#entities'
 - include: '#support'
 - include: '#comments'
 - include: '#preprocessor'
 - include: '#strings'
-- include: '#registers'
-- include: '#mnemonics'
 
 repository:
   constants:
@@ -28,7 +28,7 @@ repository:
     - name: constant.numeric.dec
       match: \b[0-9]+\b
     - name: constant.numeric.hex
-      match: \b([0-9a-fA-F]+h|0x[0-9a-fA-F]+)\b
+      match: \b([0-9a-fA-F]+[hH]|0x[0-9a-fA-F]+)\b
 
   entities:
     patterns:
