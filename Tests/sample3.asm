@@ -23,5 +23,5 @@ _start:
         shufps $0x39, %xmm5, %xmm5 # Rotate elements right
         shufps $0x93, %xmm6, %xmm6 # Rotate elements left 
  
-        movups  %xmm0,v3        #store v1 in v3
+        movups  %xmm0,v3        # store v1 in v3
         ret
