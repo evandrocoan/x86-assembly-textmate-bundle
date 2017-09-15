@@ -201,7 +201,7 @@ repository:
     - include: '#mnemonics-undocumented'
     - include: '#mnemonics-future-intel'
     - include: '#mnemonics-pseudo-ops'
-#    - include: '#mnemonics-invalid'
+    #- include: '#mnemonics-invalid'
 
   mnemonics-general-purpose:
     patterns:
