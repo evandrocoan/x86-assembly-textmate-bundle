@@ -88,47 +88,6 @@ wordvar dw      123
         mov     ax,0b1100_1000  ; same binary constant yet again 
         mov     ax,0y1100_1000  ; same binary constant yet again
 
-      ; `` allow c-style escaping
-      db `These escape sequences are supported:`
-      db `single quote (\')`
-      db `double quote (\")`
-      db `back quote (\`)`
-      db `backslash (\\)`
-      db `question mark (\?)`
-      db `ascii non-printing characters (\a, \b, \t, \n, \v, \f, \r, \e)`
-      db `octal bytes (\377, but not \899 or \1243)`
-      db `hex bytes (\xa, \x0f or \xFA, but not \x1234)`
-      db `2 or 4-byte unicode (\u1234, \U12345678, but not \u123, \u12345678, \U1234, etc)`
-      db `also # and ; shouldn't be treated as comment`
-
-      ; '' and "" are treated verbatim
-      db 'These escape sequences are supported:'
-      db 'double quote (\")'
-      db 'back quote (\`)'
-      db 'backslash (\\)'
-      db 'question mark (\?)'
-      db 'ascii non-printing characters (\a, \b, \t, \n, \v, \f, \r, \e)'
-      db 'octal bytes (\377, but not \899 or \1243)'
-      db 'hex bytes (\xa, \x0f or \xFA, but not \x1234)'
-      db '2 or 4-byte unicode (\u1234, \U12345678, but not \u123, \u12345678, \U1234, etc)'
-      db 'also # and ; should not be treated as comment'
-
-      db "These escape sequences are supported:"
-      db "single quote (\')"
-      db "back quote (\`)"
-      db "backslash (\\)"
-      db "question mark (\?)"
-      db "ascii non-printing characters (\a, \b, \t, \n, \v, \f, \r, \e)"
-      db "octal bytes (\377, but not \899 or \1243)"
-      db "hex bytes (\xa, \x0f or \xFA, but not \x1234)"
-      db "2 or 4-byte unicode (\u1234, \U12345678, but not \u123, \u12345678, \U1234, etc)"
-      db "also # and ; shouldn't be treated as comment"
-
-      ; quote balancing
-      db "double quote can't be closed with single (') or back (`) quote"
-      db 'single quote can not be closed with double (") or back (`) quote'
-      db `back quote can't be closed with single ('), double (") or escaped back (\`) quote`
-
       db `\u263a`            ; UTF-8 smiley face 
       db `\xe2\x98\xba`      ; UTF-8 smiley face 
       db 0E2h, 098h, 0BAh    ; UTF-8 smiley face

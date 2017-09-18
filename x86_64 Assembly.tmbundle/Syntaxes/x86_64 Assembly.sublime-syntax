@@ -119,13 +119,13 @@ contexts:
   # ref: http://www.nasm.us/doc/nasmdoc3.html#section-3.4.2
   strings:
     - match: '`'
-      scope: string.quoted.other.asm.x86_64
+      scope: punctuation.definition.string.begin.asm.x86_64
       push: string_backquote
     - match: ''''
-      scope: string.quoted.single.asm.x86_64
+      scope: punctuation.definition.string.begin.asm.x86_64
       push: string_single
     - match: '"'
-      scope: string.quoted.double.asm.x86_64
+      scope: punctuation.definition.string.begin.asm.x86_64
       push: string_double
 
   string_content:
@@ -146,16 +146,19 @@ contexts:
     - meta_include_prototype: false
     - include: string_content
     - match: '`'
+      scope: punctuation.definition.string.end
       pop: true
   string_single:
     - meta_scope: string.quoted.single.asm.x86_64
     - meta_include_prototype: false
     - match: ''''
+      scope: punctuation.definition.string.end
       pop: true
   string_double:
     - meta_scope: string.quoted.double.asm.x86_64
     - meta_include_prototype: false
     - match: '"'
+      scope: punctuation.definition.string.end
       pop: true
 
   registers:
