@@ -43,18 +43,18 @@
 
 ; tests
       db `text \377 \899 ' " ; \``
-      ;  ^ punctuation.definition.string.begin
-      ;   ^^^^^ string.quoted
-      ;        ^^^^ string.quoted constant.character.escape
-      ;             ^^ string.quoted invalid.illegal
-      ;                  ^^^^^^ string.quoted
-      ;                        ^^ string.quoted constant.character.escape
-      ;                          ^ punctuation.definition.string.end
+      ;  ^ string.quoted.other punctuation.definition.string.begin
+      ;   ^^^^^ string.quoted.other
+      ;        ^^^^ string.quoted.other constant.character.escape
+      ;             ^^ string.quoted.other invalid.illegal
+      ;                  ^^^^^^ string.quoted.other
+      ;                        ^^ string.quoted.other constant.character.escape
+      ;                          ^ string.quoted.other punctuation.definition.string.end
       db "text \n ' ` ?"
-      ;  ^ punctuation.definition.string.begin
+      ;  ^ string.quoted.double punctuation.definition.string.begin
       ;   ^^^^^^^^^^^^^ string.quoted.double
-      ;                ^ punctuation.definition.string.end
+      ;                ^ string.quoted.double punctuation.definition.string.end
       db 'text \t " ` ;'
-      ;  ^ punctuation.definition.string.begin
+      ;  ^ string.quoted.single punctuation.definition.string.begin
       ;   ^^^^^^^^^^^^^ string.quoted.single
-      ;                ^ punctuation.definition.string.end
+      ;                ^ string.quoted.single punctuation.definition.string.end
