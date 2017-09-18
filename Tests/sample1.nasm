@@ -25,7 +25,7 @@ section .bss
  
 section .text
 	_start:
- 
+
 ;
 ;	op	dst,  src
 ;
