@@ -48,9 +48,15 @@ contexts:
       scope: text.variable
 
   support:
-    - match: (?i)\b(s?byte|([doqtyz]|dq|s[dq]?)?word|(d|res)[bdoqtwyz]?|ddq|incbin|equ|times|(end|i)?struc|at|iend)\b
-      scope: support.type.asm
-    - match: (?i)\b(\.?(alignb?|bits|cpu|fpu)|use(16|32|64))\b
+    # Initialized & uninitialized data: http://www.nasm.us/doc/nasmdoc3.html#section-3.2.1
+    - match: '(?i)\b(s?byte|([doqtyz]|dq|s[dq]?)?word|(d|res)[bdoqtwyz]?|ddq)\b'
+      scope: storage.type.asm.x86_64
+    - match: '(?i)\b(incbin|equ|times)\b'
+      scope: support.function.asm.x86_64
+    - match: '(?i)\b((end|i)?struc|at|iend)\b'
+      scope: meta.struct.asm.x86_64
+
+    - match: '(?i)\b(\.?(alignb?|bits|cpu|fpu)|use(16|32|64))\b'
       scope: support.directive.asm
     - match: '\b(strict|nosplit|near|far|abs|rel|seg|wrt|absolute|common)\b'
       scope: support.modifier.asm
@@ -116,8 +122,8 @@ contexts:
 #      - match: (?>\\\s*\n)
 #        scope: punctuation.separator.continuation.c
 #
-  # ref: http://www.nasm.us/doc/nasmdoc3.html#section-3.4.2
-  strings:
+  
+  strings: # Character strings: http://www.nasm.us/doc/nasmdoc3.html#section-3.4.2
     - match: '`'
       scope: punctuation.definition.string.begin.asm.x86_64
       push: string_backquote
@@ -127,7 +133,6 @@ contexts:
     - match: '"'
       scope: punctuation.definition.string.begin.asm.x86_64
       push: string_double
-
   string_content:
     - match: '\\u[0-9a-fA-F]{4}'
       scope: constant.character.escape.asm.x86_64
