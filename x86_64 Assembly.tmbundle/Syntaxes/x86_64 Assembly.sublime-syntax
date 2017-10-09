@@ -3,35 +3,72 @@
 file_extensions: [yasm, nasm, asm, inc, s]
 scope: source.asm.x86_64
 
+variables:
+  num_bin: '([01][01\_]*)'
+  num_oct: '([0-7][0-7\_]*)'
+  num_dec: '([0-9][0-9\_]*)'
+  num_hex: '([0-9a-fA-F][0-9a-fA-F\_]*)'
+  num_bin_exp: '(p\+?{{num_dec}})'
+  num_dec_exp: '(e[\+\-]?{{num_dec}})'
+
 contexts:
   prototype:
     - include: comments
 
   main:
     - include: registers
+    - include: numbers
     - include: mnemonics
-    - include: constants
     - include: entities
     - include: support
     - include: comments
     #- include: preprocessor
     - include: strings
 
-  constants:
-    - match: '\b((([0-9\_]+\.[0-9\_]*)(e[+-]?[0-9\_]+)?|\.?[0-9\_]+e[+-]?[0-9\_]+))\b'
-      scope: constant.numeric.floating-point
-    - match: '\b([0-9\_]+p[0-9\_]*)\b'
-      scope: constant.numeric.packed-bcd
-    - match: (\$0[0-9a-f]+)\b
-      scope: constant.numeric.literal
-    - match: '\b((0[by][01\_]+)|([01\_]+[by]))\b'
-      scope: constant.numeric.bin
-    - match: '\b((0[oq][0-7\_]+)|([0-7\_]+[oq]))\b'
-      scope: constant.numeric.oct
-    - match: '\b((0d[0-9\_]+)|([0-9\_]+d?))\b'
-      scope: constant.numeric.dec
-    - match: '\b((0[xh][0-9a-fA-F\_]+)|([0-9a-fA-F\_]+[hH]))\b'
-      scope: constant.numeric.hex
+  numbers:
+    - include: floating-point
+    - include: integers
+
+  floating-point:
+    - match: '\b0[by]{{num_bin}}\.({{num_bin}}?{{num_bin_exp}}?\b)?'
+      scope: constant.numeric.binary.floating-point.asm.x86_64
+    - match: '\b0[by]{{num_bin}}{{num_bin_exp}}\b'
+      scope: constant.numeric.binary.floating-point.asm.x86_64
+
+    - match: '\b0[oq]{{num_oct}}\.({{num_oct}}?{{num_bin_exp}}?\b)?'
+      scope: constant.numeric.octal.floating-point.asm.x86_64
+    - match: '\b0[oq]{{num_oct}}{{num_bin_exp}}\b'
+      scope: constant.numeric.octal.floating-point.asm.x86_64
+
+    - match: '\b{{num_dec}}\.({{num_dec}}?{{num_dec_exp}}?\b)?'
+      scope: constant.numeric.decimal.floating-point.asm.x86_64
+    - match: '\.{{num_dec}}{{num_dec_exp}}?\b'
+      scope: invalid.illegal.constant.numeric.decimal.floating-point.asm.x86_64
+    - match: '\b{{num_dec}}{{num_dec_exp}}\b'
+      scope: invalid.illegal.constant.numeric.decimal.floating-point.asm.x86_64
+    - match: '\b{{num_dec}}p{{num_dec}}?\b'
+      scope: constant.numeric.decimal.packed-bcd.asm.x86_64
+
+    - match: '\b0[xh]{{num_hex}}\.({{num_hex}}?{{num_bin_exp}}?\b)?'
+      scope: constant.numeric.hex.floating-point.asm.x86_64
+    - match: '\b0[xh]{{num_hex}}{{num_bin_exp}}\b'
+      scope: constant.numeric.hex.floating-point.asm.x86_64
+    - match: '\$[0-9]\_?{{num_hex}}\.({{num_hex}}?{{num_bin_exp}}?\b)?'
+      scope: constant.numeric.hex.floating-point.asm.x86_64
+    - match: '\$[0-9]\_?{{num_hex}}{{num_bin_exp}}\b'
+      scope: constant.numeric.hex.floating-point.asm.x86_64
+
+  integers:
+    - match: '\b((0[by]{{num_bin}})|({{num_bin}}[by]))\b'
+      scope: constant.numeric.binary.asm.x86_64
+    - match: '\b((0[oq]{{num_oct}})|({{num_oct}}[oq]))\b'
+      scope: constant.numeric.octal.asm.x86_64
+    - match: '\b((0[dt]{{num_dec}})|({{num_dec}}[dt]?))\b'
+      scope: constant.numeric.decimal.asm.x86_64
+    - match: '(\$[0-9]\_?{{num_hex}}?)\b'
+      scope: constant.numeric.hex.asm.x86_64
+    - match: '\b((0[xh]{{num_hex}})|({{num_hex}}[hxHX]))\b'
+      scope: constant.numeric.hex.asm.x86_64
 
   entities:
     - match: '((section|segment)\s+)?\.((ro)?data|bss|text)'
@@ -40,17 +77,20 @@ contexts:
       scope: entity.name.function
     - match: '^\s*([$@~])(\w|[_$#@~\.?])*\:'
       scope: invalid.entity.name.function
+    - match: (\$\w+)\b
+      scope: text.variable
     - match: \$
       scope: entity.label.special
     - match: ^\.?(globa?l|extern)\b
       scope: entity.directive
-    - match: (\$\w+)\b
-      scope: text.variable
+    - match: '[\+\-\*\/]'
+      scope: keyword.operator
 
   support:
     # Initialized & uninitialized data: http://www.nasm.us/doc/nasmdoc3.html#section-3.2.1
     - match: '(?i)\b(s?byte|([doqtyz]|dq|s[dq]?)?word|(d|res)[bdoqtwyz]?|ddq)\b'
       scope: storage.type.asm.x86_64
+      
     - match: '(?i)\b(incbin|equ|times)\b'
       scope: support.function.asm.x86_64
     - match: '(?i)\b((end|i)?struc|at|iend)\b'
