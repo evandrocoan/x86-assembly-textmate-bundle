@@ -4,43 +4,42 @@ file_extensions: [yasm, nasm, asm, inc, s]
 scope: source.asm.x86_64
 
 variables:
-  num_bin: '([01][01\_]*)'
-  num_oct: '([0-7][0-7\_]*)'
-  num_dec: '([0-9][0-9\_]*)'
-  num_hex: '([0-9a-fA-F][0-9a-fA-F\_]*)'
-  num_bin_exp: '(p\+?{{num_dec}})'
-  num_dec_exp: '(e[\+\-]?{{num_dec}})'
+  num_bin: '(?:[01][01_]*)'
+  num_oct: '(?:[0-7][0-7_]*)'
+  num_dec: '(?:[0-9][0-9_]*)'
+  num_hex: '(?:[0-9a-fA-F][0-9a-fA-F_]*)'
+  num_bin_exp: '(?:p\+?{{num_dec}})'
+  num_dec_exp: '(?:e[+-]?{{num_dec}})'
 
 contexts:
   prototype:
     - include: comments
 
   main:
-    - include: registers
-    - include: numbers
-    - include: mnemonics
-    - include: entities
-    - include: support
     - include: comments
-    #- include: preprocessor
+    - include: registers
+    - include: mnemonics
     - include: strings
+    - include: numbers
+    - include: support
+    - include: entities
+    #- include: preprocessor
 
   numbers:
     - include: floating-point
     - include: integers
-
   floating-point:
-    - match: '\b0[by]{{num_bin}}\.({{num_bin}}?{{num_bin_exp}}?\b)?'
+    - match: '\b0[by]{{num_bin}}\.(?:{{num_bin}}?{{num_bin_exp}}?\b)?'
       scope: constant.numeric.binary.floating-point.asm.x86_64
     - match: '\b0[by]{{num_bin}}{{num_bin_exp}}\b'
       scope: constant.numeric.binary.floating-point.asm.x86_64
 
-    - match: '\b0[oq]{{num_oct}}\.({{num_oct}}?{{num_bin_exp}}?\b)?'
+    - match: '\b0[oq]{{num_oct}}\.(?:{{num_oct}}?{{num_bin_exp}}?\b)?'
       scope: constant.numeric.octal.floating-point.asm.x86_64
     - match: '\b0[oq]{{num_oct}}{{num_bin_exp}}\b'
       scope: constant.numeric.octal.floating-point.asm.x86_64
 
-    - match: '\b{{num_dec}}\.({{num_dec}}?{{num_dec_exp}}?\b)?'
+    - match: '\b{{num_dec}}\.(?:{{num_dec}}?{{num_dec_exp}}?\b)?'
       scope: constant.numeric.decimal.floating-point.asm.x86_64
     - match: '\.{{num_dec}}{{num_dec_exp}}?\b'
       scope: invalid.illegal.constant.numeric.decimal.floating-point.asm.x86_64
@@ -49,41 +48,40 @@ contexts:
     - match: '\b{{num_dec}}p{{num_dec}}?\b'
       scope: constant.numeric.decimal.packed-bcd.asm.x86_64
 
-    - match: '\b0[xh]{{num_hex}}\.({{num_hex}}?{{num_bin_exp}}?\b)?'
+    - match: '\b0[xh]{{num_hex}}\.(?:{{num_hex}}?{{num_bin_exp}}?\b)?'
       scope: constant.numeric.hex.floating-point.asm.x86_64
     - match: '\b0[xh]{{num_hex}}{{num_bin_exp}}\b'
       scope: constant.numeric.hex.floating-point.asm.x86_64
-    - match: '\$[0-9]\_?{{num_hex}}\.({{num_hex}}?{{num_bin_exp}}?\b)?'
+    - match: '\$[0-9]\_?{{num_hex}}\.(?:{{num_hex}}?{{num_bin_exp}}?\b)?'
       scope: constant.numeric.hex.floating-point.asm.x86_64
     - match: '\$[0-9]\_?{{num_hex}}{{num_bin_exp}}\b'
       scope: constant.numeric.hex.floating-point.asm.x86_64
-
   integers:
-    - match: '\b((0[by]{{num_bin}})|({{num_bin}}[by]))\b'
+    - match: '\b(?:(?:0[by]{{num_bin}})|(?:{{num_bin}}[by]))\b'
       scope: constant.numeric.binary.asm.x86_64
-    - match: '\b((0[oq]{{num_oct}})|({{num_oct}}[oq]))\b'
+    - match: '\b(?:(?:0[oq]{{num_oct}})|(?:{{num_oct}}[oq]))\b'
       scope: constant.numeric.octal.asm.x86_64
-    - match: '\b((0[dt]{{num_dec}})|({{num_dec}}[dt]?))\b'
+    - match: '\b(?:(?:0[dt]{{num_dec}})|(?:{{num_dec}}[dt]?))\b'
       scope: constant.numeric.decimal.asm.x86_64
-    - match: '(\$[0-9]\_?{{num_hex}}?)\b'
+    - match: '(?:\$[0-9]\_?{{num_hex}}?)\b'
       scope: constant.numeric.hex.asm.x86_64
-    - match: '\b((0[xh]{{num_hex}})|({{num_hex}}[hxHX]))\b'
+    - match: '\b(?:(?:0[xh]{{num_hex}})|(?:{{num_hex}}[hxHX]))\b'
       scope: constant.numeric.hex.asm.x86_64
 
   entities:
     - match: '((section|segment)\s+)?\.((ro)?data|bss|text)'
       scope: entity.name.section
     - match: '^\s*(%%)?(\w|[\._?])(\w|[_$#@~\.?])*\:'
-      scope: entity.name.function
+      scope: entity.name.label
     - match: '^\s*([$@~])(\w|[_$#@~\.?])*\:'
-      scope: invalid.entity.name.function
+      scope: invalid.illegal.entity.name.label
     - match: (\$\w+)\b
       scope: text.variable
     - match: \$
-      scope: entity.label.special
+      scope: entity.name.label.special
     - match: ^\.?(globa?l|extern)\b
       scope: entity.directive
-    - match: '[\+\-\*\/]'
+    - match: '[+\-*/|&^%]'
       scope: keyword.operator
 
   support:

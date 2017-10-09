@@ -67,8 +67,8 @@ wordvar dw      123
      bndstx [rax+0x3], bnd0, rbx     ; ICC-1 
      bndstx [rax+0x3], rbx, bnd0     ; ICC-2
 
-     VDIVPS zmm4, zmm5, dword [rbx]{1to16}   ; single-precision float 
-     VDIVPS zmm4, zmm5, zword [rbx]          ; packed 512 bit memory
+     vdivps zmm4, zmm5, dword [rbx]{1to16}   ; single-precision float 
+     vdivps zmm4, zmm5, zword [rbx]          ; packed 512 bit memory
 
         mov     ax,200          ; decimal 
         mov     ax,0200         ; still decimal 

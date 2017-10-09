@@ -221,10 +221,10 @@ dq .0
 dq -.0
 ;  ^ keyword.operator
 ;   ^^ invalid.illegal.constant.numeric.decimal.floating-point
-dq .e10
-;  ^^^^ entity.label
-dq .e-10
-;  ^^ entity.label
+   .e10
+;  ^^^^ entity.name.label
+   .e-10
+;  ^^ entity.name.label
 ;    ^ keyword.operator
 ;     ^^ constant.numeric.decimal
 
