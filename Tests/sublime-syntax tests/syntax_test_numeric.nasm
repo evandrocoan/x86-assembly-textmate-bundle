@@ -222,9 +222,9 @@ dq -.0
 ;  ^ keyword.operator
 ;   ^^ invalid.illegal.constant.numeric.decimal.floating-point
    .e10
-;  ^^^^ entity.name.label
+;   ^^^ entity.name.label
    .e-10
-;  ^^ entity.name.label
+;   ^ entity.name.label
 ;    ^ keyword.operator
 ;     ^^ constant.numeric.decimal
 
