@@ -10,35 +10,35 @@ la_$#@~.?bel_?:
 .local_label:
 
   label
-; ^^^^^ entity.name.label
+; ^^^^^ entity.name.constant
   label:
-; ^^^^^ entity.name.label
+; ^^^^^ entity.name.constant
 ;      ^ punctuation.separator
   la12bel
-; ^^^^^^^ entity.name.label
+; ^^^^^^^ entity.name.constant
   la12bel:
-; ^^^^^^^ entity.name.label
+; ^^^^^^^ entity.name.constant
 ;        ^ punctuation.separator
   la_$#@~.?bel_?
-; ^^^^^^^^^^^^^^ entity.name.label
+; ^^^^^^^^^^^^^^ entity.name.constant
   la_$#@~.?bel_?:
-; ^^^^^^^^^^^^^^ entity.name.label
+; ^^^^^^^^^^^^^^ entity.name.constant
 ;               ^ punctuation.separator
   .local_label
 ; ^ punctuation.separator storage.modifier
-;  ^^^^^^^^^^^ entity.name.label
+;  ^^^^^^^^^^^ entity.name.constant
   .local_label:
 ; ^ punctuation.separator storage.modifier
-;  ^^^^^^^^^^^ entity.name.label
+;  ^^^^^^^^^^^ entity.name.constant
 ;             ^ punctuation.separator
 
   ..@special_label
 ; ^^^ punctuation.separator storage.modifier
-;    ^^^^^^^^^^^^^ entity.name.label
+;    ^^^^^^^^^^^^^ entity.name.constant
 
   ..@special_label:
 ; ^^^ punctuation.separator storage.modifier
-;    ^^^^^^^^^^^^^ entity.name.label
+;    ^^^^^^^^^^^^^ entity.name.constant
 ;                 ^ punctuation.separator
 
   ..start
