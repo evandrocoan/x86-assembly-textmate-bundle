@@ -20,6 +20,7 @@ contexts:
   main:
     - include: comments
     - include: prefixes
+    - include: data-types
     - include: registers
     - include: mnemonics
     - include: strings
@@ -92,12 +93,14 @@ contexts:
         2: invalid.illegal.entity.name.constant.asm.x86_64
         3: punctuation.separator.asm.x86_64
 
-  prefixes:
+  data-types:
     # Initialized & uninitialized data: http://www.nasm.us/doc/nasmdoc3.html#section-3.2.1
-    - match: '(?i)\b(?:s?byte|(?:[doqtyz]|dq|s[dq]?)?word|(?:d|res)[bdoqtwyz]?|ddq)\b'
+    - match: '(?i)\b(?:s?byte|(?:[doqtyz]|dq|s[dq]?)?word|(?:d|res)[bdoqtwyz]|ddq)\b'
       scope: storage.type.asm.x86_64
     - match: '(?i)\b(?:incbin|equ|times)\b'
       scope: support.function.asm.x86_64
+
+  prefixes:
     - match: '\b(?:strict|nosplit|near|far|abs|rel|absolute|common)\b'
       scope: storage.modifier.asm.x86_64
     - match: '\b(?:[ao](?:16|32|64))\b'
@@ -355,7 +358,7 @@ contexts:
     - match: '\b%?(cr8|dr([89]|1[0-5])|efer|tpr|syscfg)\b'
       scope: constant.language.register.amd.asm.x86_64
     - match: '\b%?(db[0-367]|t[67]|tr[3-7]|st)\b'
-      scope: invalid.deprecated
+      scope: invalid.deprecated.constant.language.register.asm.x86_64
 
   mnemonics: # see valid.asm for references
     - include: mnemonics-general-purpose
@@ -383,7 +386,6 @@ contexts:
     - include: mnemonics-future-intel
     - include: mnemonics-pseudo-ops
     #- include: mnemonics-invalid
-
   mnemonics-general-purpose:
     - match: '\b(?:mov(?:[sz]x)?|cmov(?:n?[abceglopsz]|n?[abgl]e|p[eo]))\b'
       scope: keyword.operator.word.mnemonic.general-purpose.data-transfer.mov
@@ -421,7 +423,6 @@ contexts:
       scope: keyword.operator.word.mnemonic.general-purpose.rng
     - match: '\b(andn|bextr|bls(i|r|msk)|bzhi|pdep|pext|[lt]zcnt|(mul|ror|sar|shl|shr)x)\b'
       scope: keyword.operator.word.mnemonic.general-purpose.bmi
-
   mnemonics-fpu:
     - match: '\b(fcmov(n?([beu]|be)))\b'
       scope: keyword.operator.word.mnemonic.fpu.data-transfer.mov
@@ -441,7 +442,6 @@ contexts:
       scope: keyword.operator.word.mnemonic.fpu.control-management
     - match: '\b(fx(save|rstor)(64)?)\b'
       scope: keyword.operator.word.mnemonic.fpu.state-management
-
   mnemonics-mmx:
     - match: '\b(mov[dq])\b'
       scope: keyword.operator.word.mnemonic.mmx.data-transfer
@@ -457,7 +457,6 @@ contexts:
       scope: keyword.operator.word.mnemonic.mmx.shift-and-rotate
     - match: '\b(emms)\b'
       scope: keyword.operator.word.mnemonic.mmx.state-management
-
   mnemonics-sse:
     - match: '\b(mov(([ahlu]|hl|lh|msk)ps|ss))\b'
       scope: keyword.operator.word.mnemonic.sse.data-transfer
@@ -479,7 +478,6 @@ contexts:
       scope: keyword.operator.word.mnemonic.sse.cacheability-control
     - match: '\b(prefetch(nta|t[0-2]|w(t1)?))\b'
       scope: keyword.operator.word.mnemonic.sse.prefetch
-
   mnemonics-sse2:
     - match: '\b(mov([auhl]|msk)pd)\b'
       scope: keyword.operator.word.mnemonic.sse2.data-transfer
@@ -501,7 +499,6 @@ contexts:
       scope: keyword.operator.word.mnemonic.sse2.simd-integer.other
     - match: '\b(clflush|[lm]fence|pause|maskmovdqu|movnt(dq|i|pd))\b'
       scope: keyword.operator.word.mnemonic.sse2.cacheability-control
-
   mnemonics-sse3:
     - match: '\b(fisttp|lddqu|(addsub|h(add|sub))p[sd]|mov(sh|sl|d)dup|monitor|mwait)\b'
       scope: keyword.operator.word.mnemonic.sse3
@@ -509,7 +506,6 @@ contexts:
       scope: keyword.operator.word.mnemonic.sse3.supplimental.horizontal-packed-arithmetic
     - match: '\b(p((abs|sign)[bdw]|maddubsw|mulhrsw|shufb|alignr))\b'
       scope: keyword.operator.word.mnemonic.sse3.supplimental.other
-
   mnemonics-sse4:
     - match: '\b(pmul(ld|dq)|dpp[ds])\b'
       scope: keyword.operator.word.mnemonic.sse4.1.arithmetic
@@ -529,11 +525,9 @@ contexts:
       scope: keyword.operator.word.mnemonic.sse4.1.other
     - match: '\b(pcmp([ei]str[im]|gtq))\b'
       scope: keyword.operator.word.mnemonic.sse4.2
-
   mnemonics-aesni:
     - match: '\b(aes((dec|enc)(last)?|imc|keygenassist)|pclmulqdq)\b'
       scope: keyword.operator.word.mnemonic.aesni
-
   mnemonics-avx:
     - match: '\b(v((test|permil|maskmov)p[ds]|zero(all|upper)|(perm2|insert|extract|broadcast)f128|broadcasts[ds]))\b'
       scope: keyword.operator.word.mnemonic.avx
@@ -581,7 +575,6 @@ contexts:
       scope: keyword.operator.word.mnemonic.16-bit-floating-point-conversion
     - match: '\b(vfn?m((add|sub)(132|213|231)[ps][ds])|vfm((addsub|subadd)(132|213|231)p[ds]))\b'
       scope: keyword.operator.word.mnemonic.fma
-
   mnemonics-avx2:
     - match: '\b(v((broadcast|extract|insert|perm2)i128|pmaskmov[dq]|perm([dsq]|p[sd])))\b'
       scope: keyword.operator.word.mnemonic.avx2.promoted.simd
@@ -591,11 +584,9 @@ contexts:
       scope: keyword.operator.word.mnemonic.avx2.blend
     - match: '\b(vp?gather[dq][dq]|vgather([dq]|dq)p[ds])\b'
       scope: keyword.operator.word.mnemonic.avx2.gather
-
   mnemonics-tsx:
     - match: '\b(x(abort|acquire|release|begin|end|test))\b'
       scope: keyword.operator.word.mnemonic.tsx
-
   mnemonics-system:
     - match: '\b((cl|st)ac|[ls]([gli]dt|tr|msw)|clts|arpl|lar|lsl|ver[rw]|inv(d|lpg|pcid)|wbinvd)\b'
       scope: keyword.operator.word.mnemonic.system
@@ -603,21 +594,17 @@ contexts:
       scope: keyword.operator.word.mnemonic.system
     - match: '\b(x((save(c|opt|s)?|rstors?)(64)?|[gs]etbv))\b'
       scope: keyword.operator.word.mnemonic.system
-
   mnemonics-64bit:
     - match: '\b(cdqe|cqo|(cmp|lod|mov|sto)sq|cmpxchg16b|mov(ntq|sxd)|scasq|swapgs|sys(call|ret))\b'
       scope: keyword.operator.word.mnemonic.64-bit-mode
-
   mnemonics-vmx:
     - match: '\b(vm(ptr(ld|st)|clear|read|write|launch|resume|xo(ff|n)|call|func)|inv(ept|vpid))\b'
       scope: keyword.operator.word.mnemonic.vmx
-
   mnemonics-smx:
     - match: '\b(getsec)\b'
       scope: keyword.operator.word.mnemonic.smx.getsec
     - match: '\b(capabilities|enteraccs|exitac|senter|sexit|parameters|smctrl|wakeup)\b'
       scope: support.constant
-
   mnemonics-intel-isa-sgx:
     - match: '\be(add|block|create|dbg(rd|wr)|extend|init|ld[bu]|pa|remove|track|wb)\b'
       scope: keyword.operator.word.mnemonic.sgx1.supervisor
@@ -627,15 +614,12 @@ contexts:
       scope: keyword.operator.word.mnemonic.sgx2.supervisor
     - match: '\be(accept(copy)?|modpe)\b'
       scope: keyword.operator.word.mnemonic.sgx2.user
-
   mnemonics-intel-isa-mpx:
     - match: '\b(bnd(mk|c[lnu]|mov|ldx|stx))\b'
       scope: keyword.operator.word.mnemonic.mpx
-
   mnemonics-intel-isa-sha:
     - match: '\b(sha(1rnds4|256rnds2|1nexte|(1|256)msg[12]))\b'
       scope: keyword.operator.word.mnemonic.sha
-
   mnemonics-supplemental-amd:
     - match: '\b(bl([cs](fill|ic?|msk)|cs)|t1mskc|tzmsk)\b'
       scope: keyword.operator.word.mnemonic.supplemental.amd.general-purpose
@@ -663,27 +647,22 @@ contexts:
       scope: keyword.operator.word.mnemonic.supplemental.amd.3dnow.simd
     - match: '\b(pfcmp(eq|ge|gt))\b'
       scope: keyword.operator.word.mnemonic.supplemental.amd.3dnow.comparison
-
   mnemonics-supplemental-cyrix:
     - match: '\b((sv|rs)dc|(wr|rd)shr)\b'
       scope: keyword.operator.word.mnemonic.supplemental.cyrix
-
   mnemonics-supplemental-via:
     - match: '\b(montmul)\b'
       scope: keyword.operator.word.mnemonic.supplemental.via
     - match: '\b(x(store(rng)?|crypt(ecb|cbc|ctr|cfb|ofb)|sha(1|256)))\b'
       scope: keyword.operator.word.mnemonic.supplemental.via.padlock
-
   mnemonics-undocumented:
     - match: '\b(ret[nf]|icebp|int1|smi)\b'
       scope: keyword.operator.word.mnemonic.undocumented
-
   mnemonics-future-intel:
     - include: mnemonics-future-intel-avx512
     - include: mnemonics-future-intel-opmask
     - include: mnemonics-future-intel-cet
     - include: mnemonics-future-intel-other
-
   mnemonics-future-intel-avx512:
     - match: '\b(vblendm(pd|ps)|vpblendm[bdqw])\b'
       scope: keyword.operator.word.mnemonic.avx512.blend
@@ -715,19 +694,15 @@ contexts:
       scope: keyword.operator.word.mnemonic.avx512.permutations
     - match: '\b(valign[dq]|vdbpsadbw|vpmultishiftqb|vpsrav[dqw])\b'
       scope: keyword.operator.word.mnemonic.avx512.other
-
   mnemonics-future-intel-opmask:
     - match: '\b(k(add|andn?|(xn?)?or|mov|not|(or)?test|shift[lr])[bdqw]|kunpck(bw|wd|dq))\b'
       scope: keyword.operator.word.mnemonic.opmask
-
   mnemonics-future-intel-cet:
     - match: '\b((inc|save|rstor)ssp|wru?ss|(set|clr)ssbsy|endbranch|endbr(32|64))\b'
       scope: keyword.operator.word.mnemonic.cet
-
   mnemonics-future-intel-other:
     - match: '\b(clflushopt|clwb|pcommit)\b'
       scope: keyword.operator.word.mnemonic.other
-
   mnemonics-pseudo-ops:
     - match: '\b(cmp(n?(eq|lt|le)|(un)?ord)[ps][ds])\b'
       scope: keyword.pseudo-mnemonic.sse2.compare
@@ -737,10 +712,8 @@ contexts:
       scope: keyword.pseudo-mnemonic.avx.promoted.comparison
     - match: '\b(vpcom(n?eq|[gl][et]|false|true)(b|uw))\b'
       scope: keyword.pseudo-mnemonic.supplemental.amd.xop.simd
-
   mnemonics-invalid:
     - include: mnemonics-invalid-amd-sse5
-
   mnemonics-invalid-amd-sse5:
     - match: '\b(com[ps][ds]|pcomu?[bdqw])\b'
       scope: invalid.keyword.operator.word.mnemonic.sse5.comparison
