@@ -18,6 +18,7 @@ contexts:
 
   main:
     - include: comments
+    - include: prefixes
     - include: registers
     - include: mnemonics
     - include: strings
@@ -83,21 +84,22 @@ contexts:
         2: invalid.illegal.entity.name.label.asm.x86_64
         3: punctuation.separator.asm.x86_64
 
-  support:
+  prefixes:
     # Initialized & uninitialized data: http://www.nasm.us/doc/nasmdoc3.html#section-3.2.1
     - match: '(?i)\b(?:s?byte|(?:[doqtyz]|dq|s[dq]?)?word|(?:d|res)[bdoqtwyz]?|ddq)\b'
       scope: storage.type.asm.x86_64
     - match: '(?i)\b(?:incbin|equ|times)\b'
       scope: support.function.asm.x86_64
-
     - match: '\b(?:strict|nosplit|near|far|abs|rel|absolute|common)\b'
       scope: storage.modifier.asm.x86_64
-    - match: '\b(?:[ao](?:16|32|64)|(?:no)?bnd)\b'
+    - match: '\b(?:[ao](?:16|32|64))\b'
       scope: storage.modifier.prefix.asm.x86_64
-
+    - match: '\b(?:rep(?:n?[ez])?|lock|xacquire|xrelease|(?:no)?bnd)\b'
+      scope: storage.modifier.prefix.asm.x86_64
     - match: '(?i)\b(\.?(alignb?|bits|cpu|fpu)|use(16|32|64))\b'
       scope: keyword.other.asm
 
+  support:
     - match: '\b__(utf((16|32)([lb]e)?)|float(8|16|32|64|80[me]|128[lh])|Infinity|[QS]?NaN)__\b'
       scope: support.function.asm.x86_64
 

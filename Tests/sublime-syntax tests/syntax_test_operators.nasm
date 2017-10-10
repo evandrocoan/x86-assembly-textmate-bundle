@@ -1,34 +1,6 @@
 ; SYNTAX TEST "Packages/User/x86_64 Assembly.tmbundle/Syntaxes/x86_64 Assembly.sublime-syntax"
 
 1|1
-2^2
-3&3
-4<<4
-5>>5
-6+6
-7-7
-8*8
-9/9
-10//10
-11% 11
-12%% 12
-symbol wrt weird_seg
-
-+1
--2
-~3
-!4
-seg symbol
-
-4<4
-5>5
-
-%macro
-%%also_macro
-
-; tests
-
-1|1
 ;^ keyword.operator
 2^2
 ;^ keyword.operator
@@ -65,6 +37,9 @@ symbol wrt weird_seg
 ;^ keyword.operator
  seg symbol
 ;^^^ keyword.operator.word
+
+
+; not operators
 
 4<4
 5>5
