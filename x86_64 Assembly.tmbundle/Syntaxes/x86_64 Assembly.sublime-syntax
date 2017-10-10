@@ -22,6 +22,7 @@ contexts:
     - include: mnemonics
     - include: strings
     - include: numbers
+    - include: operators
     - include: support
     - include: entities
     - include: labels
@@ -71,16 +72,48 @@ contexts:
       scope: constant.numeric.hex.asm.x86_64
 
   labels:
-    - match: '(?:(\.)?|\b)([0-9$@~]{{identifier_body}})(?:(\:)?|\b)'
-      captures:
-        1: punctuation.separator.asm.x86_64 storage.modifier.asm.x86_64
-        2: invalid.illegal.entity.name.label.asm.x86_64
-        3: punctuation.separator.asm.x86_64
     - match: '(?:(\.)?|\b)([[:alpha:]_?]{{identifier_body}})(?:(\:)?|\b)'
       captures:
         1: punctuation.separator.asm.x86_64 storage.modifier.asm.x86_64
         2: entity.name.label.asm.x86_64
         3: punctuation.separator.asm.x86_64
+    - match: '(?:(\.)?|\b)([0-9$@~]{{identifier_body}})(?:(\:)?|\b)'
+      captures:
+        1: punctuation.separator.asm.x86_64 storage.modifier.asm.x86_64
+        2: invalid.illegal.entity.name.label.asm.x86_64
+        3: punctuation.separator.asm.x86_64
+
+  support:
+    # Initialized & uninitialized data: http://www.nasm.us/doc/nasmdoc3.html#section-3.2.1
+    - match: '(?i)\b(?:s?byte|(?:[doqtyz]|dq|s[dq]?)?word|(?:d|res)[bdoqtwyz]?|ddq)\b'
+      scope: storage.type.asm.x86_64
+    - match: '(?i)\b(?:incbin|equ|times)\b'
+      scope: support.function.asm.x86_64
+
+    - match: '\b(?:strict|nosplit|near|far|abs|rel|absolute|common)\b'
+      scope: storage.modifier.asm.x86_64
+    - match: '\b(?:[ao](?:16|32|64)|(?:no)?bnd)\b'
+      scope: storage.modifier.prefix.asm.x86_64
+
+    - match: '(?i)\b(\.?(alignb?|bits|cpu|fpu)|use(16|32|64))\b'
+      scope: keyword.other.asm
+
+    - match: '\b__(utf((16|32)([lb]e)?)|float(8|16|32|64|80[me]|128[lh])|Infinity|[QS]?NaN)__\b'
+      scope: support.function.asm.x86_64
+
+    - match: '(?i)\b((end|i)?struc|at|iend)\b'
+      scope: meta.struct.asm.x86_64
+
+  operators:
+    - match: '[+\-*/]'
+      scope: keyword.operator.arithmetic.asm.x86_64
+    - match: '(%%|%)[[:space:]]'
+      captures:
+        1: keyword.operator.arithmetic.asm.x86_64
+    - match: '[|&^~!]|<<|>>'
+      scope: keyword.operator.bitwise.asm.x86_64
+    - match: '\b(seg|wrt)\b'
+      scope: keyword.operator.word.asm.x86_64
 
   entities:
     - match: '((section|segment)\s+)?\.((ro)?data|bss|text)'
@@ -91,27 +124,6 @@ contexts:
       scope: entity.name.label.special
     - match: ^\.?(globa?l|extern)\b
       scope: entity.directive
-    - match: '[+\-*/|&^%]'
-      scope: keyword.operator
-
-  support:
-    # Initialized & uninitialized data: http://www.nasm.us/doc/nasmdoc3.html#section-3.2.1
-    - match: '(?i)\b(s?byte|([doqtyz]|dq|s[dq]?)?word|(d|res)[bdoqtwyz]?|ddq)\b'
-      scope: storage.type.asm.x86_64
-      
-    - match: '(?i)\b(incbin|equ|times)\b'
-      scope: support.function.asm.x86_64
-    - match: '(?i)\b((end|i)?struc|at|iend)\b'
-      scope: meta.struct.asm.x86_64
-
-    - match: '(?i)\b(\.?(alignb?|bits|cpu|fpu)|use(16|32|64))\b'
-      scope: support.directive.asm
-    - match: '\b(strict|nosplit|near|far|abs|rel|seg|wrt|absolute|common)\b'
-      scope: support.modifier.asm
-    - match: '\b([ao](16|32|64))\b'
-      scope: support.prefix.asm
-    - match: '\b__(utf((16|32)([lb]e)?)|float(8|16|32|64|80[me]|128[lh])|Infinity|[QS]?NaN)__\b'
-      scope: support.function.asm
  
   comments:
     - match: (?:(;)|(?:^|\s)(#)\s).*$
