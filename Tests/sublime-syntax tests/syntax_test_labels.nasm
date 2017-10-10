@@ -32,6 +32,8 @@ la_$#@~.?bel_?:
 ;  ^^^^^^^^^^^ entity.name.label
 ;             ^ punctuation.separator
 
+
+  0asdlfh
   mov ax, bx
 ; ^^^ keyword.operator.word.mnemonic
 ;     ^^ constant.language.register

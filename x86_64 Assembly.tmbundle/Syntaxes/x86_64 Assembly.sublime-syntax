@@ -10,7 +10,7 @@ variables:
   num_hex: '(?:[0-9a-fA-F][0-9a-fA-F_]*)'
   num_bin_exp: '(?:p\+?{{num_dec}})'
   num_dec_exp: '(?:e[+-]?{{num_dec}})'
-  identifier: '(?:[[:alnum:]_?][[:alnum:]_$#@~.?]*)'
+  identifier_body: '(?:[[:alnum:]_$#@~.?]*)'
 
 contexts:
   prototype:
@@ -87,13 +87,16 @@ contexts:
       scope: keyword.operator
 
   labels:
-    - match: '(?:(\.)?|\b)({{identifier}})(?:(\:)?|\b)'
+    - match: '(?:(\.)?|\b)([0-9$@~]{{identifier_body}})(?:(\:)?|\b)'
+      captures:
+        1: punctuation.separator.asm.x86_64 storage.modifier.asm.x86_64
+        2: invalid.illegal.entity.name.label.asm.x86_64
+        3: punctuation.separator.asm.x86_64
+    - match: '(?:(\.)?|\b)([[:alpha:]_?]{{identifier_body}})(?:(\:)?|\b)'
       captures:
         1: punctuation.separator.asm.x86_64 storage.modifier.asm.x86_64
         2: entity.name.label.asm.x86_64
         3: punctuation.separator.asm.x86_64
-    - match: '^\s*([$@~])(\w|[_$#@~\.?])*\:'
-      scope: invalid.illegal.entity.name.label
 
   support:
     # Initialized & uninitialized data: http://www.nasm.us/doc/nasmdoc3.html#section-3.2.1
