@@ -41,12 +41,39 @@ la_$#@~.?bel_?:
 ;    ^^^^^^^^^^^^^ entity.name.label
 ;                 ^ punctuation.separator
 
+  ..start
+; ^^^^^^^ support.function
+  ..imagebase
+; ^^^^^^^^^^^ support.function
+  ..tlvp
+; ^^^^^^ support.function
+  ..gotpcrel
+; ^^^^^^^^^^ support.function
+  ..gotpc
+; ^^^^^^^ support.function
+  ..gotoff
+; ^^^^^^^^ support.function
+  ..got
+; ^^^^^ support.function
+  ..plt
+; ^^^^^ support.function
+  ..sym
+; ^^^^^ support.function
+  ..tlsie
+; ^^^^^^^ support.function
+  ..gottpoff
+; ^^^^^^^^^^ support.function
+
+
   0asdlfh
   @not_a_label:
   ~not_a_label:
   #not_a_label:
   $not_a_label:
   $variable
+  ..not_a_label:
+  ..not_a_label
+
 
   mov ax, bx
 ; ^^^ keyword.operator.word.mnemonic

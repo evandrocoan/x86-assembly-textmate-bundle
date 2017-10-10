@@ -73,6 +73,8 @@ contexts:
       scope: constant.numeric.hex.asm.x86_64
 
   labels:
+    - match: '\.\.(?:start|imagebase|tlvp|got(?:pc(?:rel)?|(?:tp)?off)?|plt|sym|tlsie)\b'
+      scope: support.function.asm.x86_64
     - match: '(?:(\.\.@)|\b)([[:alpha:]_?]{{identifier_body}})(?:(\:)?|\b)'
       captures:
         1: punctuation.separator.asm.x86_64 storage.modifier.asm.x86_64
@@ -125,6 +127,8 @@ contexts:
   entities:
     - match: '((section|segment)\s+)?\.((ro)?data|bss|text)'
       scope: entity.name.section
+    - match: '\b(?:private|public|common|stack)\b'
+      scope: storage.modifier
     - match: (\$\w+)\b
       scope: text.variable
     - match: \$
