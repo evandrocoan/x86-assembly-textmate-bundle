@@ -42,6 +42,24 @@ db 'single quote can not be closed with double (") or back (`) quote'
 db `back quote can't be closed with single ('), double (") or escaped back (\`) quote`
 
 ; tests
+db `\'\"\`\\\?\a\b\t\n\v\f\r\e`
+;   ^^^^^^^^^^^^^^^^^^^^^^^^^^ constant.character.escape
+db `octal bytes (\377, but not \899 or \1243)`
+;                ^^^^ constant.character.escape
+;                              ^^ invalid.illegal.constant.character.escape
+;                                      ^^^^ constant.character.escape
+db `hex bytes (\xa, \x0f or \xFA, but not \x1234)`
+;              ^^^ constant.character.escape
+;                   ^^^^ constant.character.escape
+;                           ^^^^ constant.character.escape
+;                                         ^^^^ constant.character.escape
+db `2 or 4-byte unicode (\u1234, \U12345678, but not \u123, \u12345678, \U1234, etc)`
+;                        ^^^^^^ constant.character.escape
+;                                ^^^^^^^^^^ constant.character.escape
+;                                                    ^^ invalid.illegal.constant.character.escape
+;                                                           ^^^^^^ constant.character.escape
+;                                                                       ^^ invalid.illegal.constant.character.escape
+
 db `text \377 \899 ' " ; \``
 ;  ^ string.quoted.other punctuation.definition.string.begin
 ;   ^^^^^ string.quoted.other

@@ -73,8 +73,10 @@ contexts:
       scope: constant.numeric.hex.asm.x86_64
 
   labels:
+    # http://www.nasm.us/doc/nasmdoc7.html#section-7.4.6
     - match: '\.\.(?:start|imagebase|tlvp|got(?:pc(?:rel)?|(?:tp)?off)?|plt|sym|tlsie)\b'
       scope: support.function.asm.x86_64
+    # http://www.nasm.us/doc/nasmdoc3.html#section-3.9
     - match: '(?:(\.\.@)|\b)([[:alpha:]_?]{{identifier_body}})(?:(\:)?|\b)'
       captures:
         1: punctuation.separator.asm.x86_64 storage.modifier.asm.x86_64
@@ -104,7 +106,7 @@ contexts:
     - match: '\b(?:rep(?:n?[ez])?|lock|xacquire|xrelease|(?:no)?bnd)\b'
       scope: storage.modifier.prefix.asm.x86_64
     - match: '(?i)\b(\.?(alignb?|bits|cpu|fpu)|use(16|32|64))\b'
-      scope: keyword.other.asm
+      scope: keyword.other.asm.x86_64
 
   support:
     - match: '\b__(utf((16|32)([lb]e)?)|float(8|16|32|64|80[me]|128[lh])|Infinity|[QS]?NaN)__\b'
@@ -212,18 +214,18 @@ contexts:
       scope: punctuation.definition.string.begin.asm.x86_64
       push: string_double
   string_content:
-    - match: '\\u[:xdigit:]{4}'
+    - match: '\\u[[:xdigit:]]{4}'
       scope: constant.character.escape.asm.x86_64
-    - match: '\\U[:xdigit:]{8}'
+    - match: '\\U[[:xdigit:]]{8}'
       scope: constant.character.escape.asm.x86_64
-    - match: '\\x[:xdigit:]{1,2}'
+    - match: '\\x[[:xdigit:]]{1,2}'
       scope: constant.character.escape.asm.x86_64
     - match: '\\[0-7]{1,3}'
       scope: constant.character.escape.asm.x86_64
     - match: '\\[''"`\\?abtnvfre]'
       scope: constant.character.escape.asm.x86_64
     - match: '\\.'
-      scope: invalid.illegal.asm.x86_64
+      scope: invalid.illegal.constant.character.escape.asm.x86_64
   string_backquote:
     - meta_scope: string.quoted.other.asm.x86_64
     - meta_include_prototype: false
