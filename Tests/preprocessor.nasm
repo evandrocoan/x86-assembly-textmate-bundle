@@ -1,3 +1,6 @@
+%define THIS_VERY_LONG_MACRO_NAME_IS_DEFINED_TO \ 
+        THIS_VALUE
+
 %define ctrl    0x1F &
 %define param(a,b) ((a)+(a)*(b))
         mov     byte [param(2,ebx)], ctrl 'D'
