@@ -34,6 +34,12 @@ la_$#@~.?bel_?:
 
 
   0asdlfh
+  @not_a_label:
+  ~not_a_label:
+  #not_a_label:
+  $not_a_label:
+  $variable
+
   mov ax, bx
 ; ^^^ keyword.operator.word.mnemonic
 ;     ^^ constant.language.register
