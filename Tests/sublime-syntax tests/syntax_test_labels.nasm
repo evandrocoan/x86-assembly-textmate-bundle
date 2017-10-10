@@ -32,6 +32,14 @@ la_$#@~.?bel_?:
 ;  ^^^^^^^^^^^ entity.name.label
 ;             ^ punctuation.separator
 
+  ..@special_label
+; ^^^ punctuation.separator storage.modifier
+;    ^^^^^^^^^^^^^ entity.name.label
+
+  ..@special_label:
+; ^^^ punctuation.separator storage.modifier
+;    ^^^^^^^^^^^^^ entity.name.label
+;                 ^ punctuation.separator
 
   0asdlfh
   @not_a_label:

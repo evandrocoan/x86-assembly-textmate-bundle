@@ -20,6 +20,8 @@
 ; ^^^ storage.modifier
   nobnd
 ; ^^^^^ storage.modifier
+  strict
+; ^^^^^^ storage.modifier
   a16
 ; ^^^ storage.modifier
   a32

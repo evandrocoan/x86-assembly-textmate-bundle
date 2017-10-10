@@ -73,6 +73,11 @@ contexts:
       scope: constant.numeric.hex.asm.x86_64
 
   labels:
+    - match: '(?:(\.\.@)|\b)([[:alpha:]_?]{{identifier_body}})(?:(\:)?|\b)'
+      captures:
+        1: punctuation.separator.asm.x86_64 storage.modifier.asm.x86_64
+        2: entity.name.label.special.asm.x86_64
+        3: punctuation.separator.asm.x86_64
     - match: '(?:(\.)?|\b)([[:alpha:]_?]{{identifier_body}})(?:(\:)?|\b)'
       captures:
         1: punctuation.separator.asm.x86_64 storage.modifier.asm.x86_64
