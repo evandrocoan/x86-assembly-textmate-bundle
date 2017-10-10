@@ -1,12 +1,16 @@
 ; SYNTAX TEST "Packages/User/x86_64 Assembly.tmbundle/Syntaxes/x86_64 Assembly.sublime-syntax"
 
-    ; single-line comment
-;   ^^^^^^^^^^^^^^^^^^^^^ comment.line
+    ; single-line comment /* */
+;   ^^^^^^^^^^^^^^^^^^^^^^^^^^^ comment.line
 ;   ^ punctuation.definition.comment
 
     # also single-line comment
 ;   ^^^^^^^^^^^^^^^^^^^^^^^^^^ comment.line
 ;   ^ punctuation.definition.comment
+
+    /**/
+;   ^^^^ punctuation.definition.comment
+;   ^^^^ comment.block
 
     /* single-line block */ mov ax, bx
 ;   ^^ punctuation.definition.comment
