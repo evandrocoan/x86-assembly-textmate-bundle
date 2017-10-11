@@ -46,6 +46,23 @@ mov ax,Foo%[__BITS__]   ; Will expand to Foo16/Foo32/Foo64
 ;                      ^^^^ meta.preprocessor.macro
 ;                          ^ punctuation.section.brackets.end
 
+%define BDASTART 400h
+struc   tBIOSDA
+        .COM1addr       RESW    1 
+        .COM2addr       RESW    1 
+endstruc
+; Macro to access BIOS variables by their names (from tBDA):
+%define BDA(x)  BDASTART + tBIOSDA. %+ x
+;                                   ^ punctuation.definition.preprocessor
+        mov     ax,BDA(COM1addr) ; Expands to BDASTART + tBIOSDA.COM1addr
+        mov     bx,BDA(COM2addr)
+
+%idefine Foo mov %?,%??
+;                ^ punctuation.definition.preprocessor
+;                 ^ variable.language
+;                   ^ punctuation.definition.preprocessor
+;                    ^^ variable.language
+
 %undef ctrl
 ;<- punctuation.definition.preprocessor
 ;^^^^^ keyword.control.import
