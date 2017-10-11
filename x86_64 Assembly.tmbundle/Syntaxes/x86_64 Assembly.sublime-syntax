@@ -116,6 +116,8 @@ contexts:
       scope: support.function.asm.x86_64
     - match: '\b__(utf((16|32)([lb]e)?)|float(8|16|32|64|80[me]|128[lh])|Infinity|[QS]?NaN)__\b'
       scope: support.function.asm.x86_64
+    - match: '\b__(BITS)__\b'
+      scope: support.function.asm.x86_64
 
   operators:
     - match: '[+\-*/]'
@@ -137,13 +139,13 @@ contexts:
       scope: entity.name.section
     - match: '\b(?:private|public|common|stack)\b'
       scope: storage.modifier
-    - match: (\$)(\w+)\b
+    - match: '(\$)(\w+)\b'
       scope: variable.other
       captures:
         1: punctuation.definition.variable
     - match: '\$'
       scope: variable.language
-    - match: ^\.?(globa?l|extern)\b
+    - match: '^\.?(globa?l|extern)\b'
       scope: entity.directive
  
   comments:
@@ -160,10 +162,13 @@ contexts:
           scope: punctuation.definition.comment.asm.x86_64
           pop: true
 
+  # http://www.nasm.us/doc/nasmdoc4.html
   preprocessor:
     - include: preprocessor-macro-define
+    - include: preprocessor-macro-indirection
+    - include: preprocessor-other
   preprocessor-macro-define:
-    - match: ^\s*((%)(define))\b
+    - match: '^\s*((%)((?:xi?)?define))\b'
       captures:
         1: meta.preprocessor.macro.asm.x86_64
         2: punctuation.definition.preprocessor.asm.x86_64
@@ -173,7 +178,7 @@ contexts:
         - include: preprocessor-line-continuation
         - include: preprocessor-line-ending
         - include: preprocessor-comments
-        - match: '({{valid_identifier}})(?=\()'
+        - match: '(?:{{valid_identifier}})(?=\()'
           scope: entity.name.function.preprocessor.asm.x86_64
           set:
             - match: '\('
@@ -186,17 +191,17 @@ contexts:
     - match: '(\\)$\n'
       captures:
         1: punctuation.separator.continuation.asm.x86_64
-    - match: \\(\s+?)$
+    - match: '\\(\s+?)$'
       captures:
         1: invalid.illegal.space-after-continuation.asm.x86_64
   preprocessor-line-ending:
-    - match: $\n
+    - match: '$\n'
       pop: true
   preprocessor-macro-params:
     - meta_scope: meta.preprocessor.macro.parameters.asm.x86_64 meta.group.asm.x86_64
     - match: '{{valid_identifier}}'
       scope: variable.parameter.asm.x86_64
-    - match: \)
+    - match: '\)'
       scope: punctuation.section.group.end.asm.x86_64
       set: preprocessor-macro-definition
     - match: ','
@@ -211,7 +216,7 @@ contexts:
           scope: keyword.operator.variadic.asm.x86_64
         - match: '(?=\))'
           pop: true
-        - match: (/\*).*(\*/)
+        - match: '(/\*).*(\*/)'
           scope: comment.block.asm.x86_64
           captures:
             1: punctuation.definition.comment.asm.x86_64
@@ -222,12 +227,12 @@ contexts:
     - include: preprocessor-comments
     - match: '\.\.\.'
       scope: keyword.operator.variadic.asm.x86_64
-    - match: (/\*).*(\*/)
+    - match: '(/\*).*(\*/)'
       scope: comment.block.asm.x86_64
       captures:
         1: punctuation.definition.comment.asm.x86_64
         2: punctuation.definition.comment.asm.x86_64
-    - match: $\n
+    - match: '$\n'
       scope: invalid.illegal.unexpected-end-of-line.asm.x86_64
   preprocessor-macro-definition:
     - meta_content_scope: meta.preprocessor.macro.asm.x86_64
@@ -236,7 +241,51 @@ contexts:
     - include: preprocessor-comments
     # Don't define blocks in define statements
     - include: main
-
+  preprocessor-macro-indirection:
+    - match: '((%)(\[))'
+      captures:
+        1: meta.preprocessor.macro.asm.x86_64
+        2: punctuation.definition.preprocessor.asm.x86_64
+        3: meta.brackets.asm.x86_64 punctuation.section.brackets.begin.asm.x86_64
+      push:
+        - meta_scope: meta.brackets.asm.x86_64 meta.preprocessor.macro.asm.x86_64
+        - include: preprocessor-line-continuation
+        - include: preprocessor-line-ending
+        - match: '\]'
+          scope: punctuation.section.brackets.end.asm.x86_64
+          pop: true
+        - include: main
+  preprocessor-other:
+    - match: '^\s*((%)(if|ifn?def|elif|else))\b'
+      captures:
+        1: meta.preprocessor.macro.asm.x86_64
+        2: punctuation.definition.preprocessor.asm.x86_64
+        3: keyword.control.import.asm.x86_64
+      push:
+        - meta_scope: meta.preprocessor.asm.x86_64
+        - include: preprocessor-line-continuation
+        - include: preprocessor-line-ending
+        - include: preprocessor-comments
+        - match: '\bdefined\b'
+          scope: keyword.control.asm.x86_64
+    - match: '^\s*((%)(endif))\b'
+      captures:
+        1: meta.preprocessor.asm.x86_64
+        2: punctuation.definition.preprocessor.asm.x86_64
+        3: keyword.control.import.asm.x86_64
+    - match: '^\s*((%)(undef))\b'
+      captures:
+        1: meta.preprocessor.asm.x86_64
+        2: punctuation.definition.preprocessor.asm.x86_64
+        3: keyword.control.import.asm.x86_64
+      push:
+        - meta_scope: meta.preprocessor.asm.x86_64
+        - include: preprocessor-line-continuation
+        - include: preprocessor-line-ending
+        - include: preprocessor-comments
+        - match: '{{valid_identifier}}'
+          scope: entity.name.constant.preprocessor.asm.x86_64
+          pop: true
 
 #  preprocessor:
 #    - name: comment.preprocessor

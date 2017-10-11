@@ -20,7 +20,33 @@
 ;                ^ punctuation.section.group.end
 ;                  ^^^^^^^^^^^^^ meta.preprocessor.macro
 
+%xdefine isTrue  1 
+%xdefine isFalse isTrue 
+%xdefine isTrue  0 
+val1:    db      isFalse 
+
+%xdefine isTrue  1 
+val2:    db      isFalse
+
+%define Foo16	align 16
+%define Foo32	align 32
+%define Foo64	align 64
+mov ax,Foo%[__BITS__]   ; Will expand to Foo16/Foo32/Foo64
+;         ^ punctuation.definition.preprocessor
+;          ^ punctuation.section.brackets.begin
+;          ^^^^^^^^^^ meta.brackets
+;           ^^^^^^^^ meta.preprocessor.macro
+;                   ^ punctuation.section.brackets.end
+
+%xdefine Bar         Quux    ; Expands due to %xdefine 
+%define  Bar         %[Quux] ; Expands due to %[...]
+;                    ^ punctuation.definition.preprocessor
+;                     ^ punctuation.section.brackets.begin
+;                     ^^^^^^ meta.brackets
+;                      ^^^^ meta.preprocessor.macro
+;                          ^ punctuation.section.brackets.end
+
 %undef ctrl
 ;<- punctuation.definition.preprocessor
-;^^^^^ keyword.other.preprocessor
+;^^^^^ keyword.control.import
 ;      ^^^^ entity.name.constant
