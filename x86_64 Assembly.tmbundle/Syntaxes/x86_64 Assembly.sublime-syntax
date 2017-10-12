@@ -163,9 +163,40 @@ contexts:
           pop: true
 
   preprocessor: # http://www.nasm.us/doc/nasmdoc4.html
+    - include: preprocessor-macro-multiline
     - include: preprocessor-macro-define
     - include: preprocessor-macro-indirection
     - include: preprocessor-other
+  preprocessor-macro-multiline:
+    - match: '^\s*((%)i?macro)\b'
+      captures:
+        1: meta.preprocessor.macro.asm.x86_64 keyword.control.import.define.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+      push:
+        - meta_content_scope: meta.preprocessor.macro.asm.x86_64
+        - include: preprocessor-comments
+        - match: '(?:{{valid_identifier}})(?=\()'
+          scope: entity.name.constant.preprocessor.asm.x86_64
+          set:
+            - meta_content_scope: invalid.illegal.asm.x86_64
+            - match: '\('
+              scope: punctuation.section.group.begin.asm.x86_64
+              set: preprocessor-macro-params-illegal
+        - match: '({{valid_identifier}})(?:\s+(\d+))'
+          captures:
+            1: entity.name.function.preprocessor.asm.x86_64
+            2: variable.parameter.preprocessor.asm.x86_64
+          set: preprocessor-macro-definition-multiline
+    - match: '^\s*((%)endmacro)\b'
+      captures:
+        1: meta.preprocessor.asm.x86_64 keyword.control.import.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+      pop: true
+    - match: '((%)(\d+))'
+      captures:
+        1: meta.preprocessor.asm.x86_64 keyword.operator.preprocessor.asm.x86_64
+        2: punctuation.definition.variable.preprocessor.asm.x86_64
+        3: variable.other.preprocessor.asm.x86_64
   preprocessor-macro-define:
     - match: '^\s*((%)x?i?define)\b'
       captures:
@@ -269,6 +300,10 @@ contexts:
     - include: preprocessor-line-ending
     - include: preprocessor-comments
     - include: main
+  preprocessor-macro-definition-multiline:
+    - meta_content_scope: meta.preprocessor.macro.asm.x86_64
+    - include: preprocessor-comments
+    - include: main
   preprocessor-macro-indirection:
     - match: '((%)(\[))'
       captures:
@@ -326,7 +361,6 @@ contexts:
         - match: '{{valid_identifier}}'
           scope: entity.name.constant.preprocessor.asm.x86_64
           pop: true
-
  
   strings: # Character strings: http://www.nasm.us/doc/nasmdoc3.html#section-3.4.2
     - match: '`'
