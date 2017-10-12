@@ -167,11 +167,10 @@ contexts:
     - include: preprocessor-macro-indirection
     - include: preprocessor-other
   preprocessor-macro-define:
-    - match: '^\s*((%)(x?i?define))\b'
+    - match: '^\s*((%)x?i?define)\b'
       captures:
-        1: meta.preprocessor.macro.asm.x86_64
-        2: punctuation.definition.preprocessor.asm.x86_64
-        3: keyword.control.import.define.asm.x86_64
+        1: meta.preprocessor.macro.asm.x86_64 keyword.control.import.define.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
       push:
         - meta_content_scope: meta.preprocessor.macro.asm.x86_64
         - include: preprocessor-line-continuation
@@ -186,11 +185,10 @@ contexts:
         - match: '{{valid_identifier}}'
           scope: entity.name.constant.preprocessor.asm.x86_64
           set: preprocessor-macro-definition
-    - match: '^\s*((%)(assign))\b'
+    - match: '^\s*((%)assign)\b'
       captures:
-        1: meta.preprocessor.macro.asm.x86_64
-        2: punctuation.definition.preprocessor.asm.x86_64
-        3: keyword.control.import.assign.asm.x86_64
+        1: meta.preprocessor.macro.asm.x86_64 keyword.control.import.assign.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
       push:
         - meta_content_scope: meta.preprocessor.macro.asm.x86_64
         - include: preprocessor-line-continuation
@@ -206,12 +204,11 @@ contexts:
         - match: '{{valid_identifier}}'
           scope: entity.name.constant.preprocessor.asm.x86_64
           set: preprocessor-macro-definition
-    - match: '^\s*((%)(i?defstr))\s+({{valid_identifier}})\b'
+    - match: '^\s*((%)i?defstr)\s+({{valid_identifier}})\b'
       captures:
-        1: meta.preprocessor.macro.asm.x86_64
-        2: punctuation.definition.preprocessor.asm.x86_64
-        3: keyword.control.import.assign.asm.x86_64
-        4: entity.name.constant.preprocessor.asm.x86_64
+        1: meta.preprocessor.macro.asm.x86_64 keyword.control.import.assign.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+        3: entity.name.constant.preprocessor.asm.x86_64
       push:
         - meta_content_scope: meta.preprocessor.macro.asm.x86_64 string.quoted.single.asm.x86_64
         - include: preprocessor-line-ending
@@ -275,8 +272,8 @@ contexts:
   preprocessor-macro-indirection:
     - match: '((%)(\[))'
       captures:
-        1: meta.preprocessor.macro.asm.x86_64
-        2: punctuation.definition.preprocessor.asm.x86_64
+        1: meta.preprocessor.macro.asm.x86_64 keyword.control.preprocessor.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
         3: meta.brackets.asm.x86_64 punctuation.section.brackets.begin.asm.x86_64
       push:
         - meta_scope: meta.brackets.asm.x86_64 meta.preprocessor.macro.asm.x86_64
@@ -284,30 +281,28 @@ contexts:
         - include: preprocessor-line-ending
         - include: main
         - match: '\]'
-          scope: punctuation.section.brackets.end.asm.x86_64
+          scope: punctuation.section.brackets.end.asm.x86_64 keyword.control.preprocessor.asm.x86_64
           pop: true
-    - match: '((%)(\+))\s+'
+    - match: '((%)\+)\s+'
       captures:
-        1: meta.preprocessor.asm.x86_64
-        2: punctuation.definition.preprocessor.asm.x86_64
-        3: keyword.operator.asm.x86_64
+        1: meta.preprocessor.asm.x86_64 keyword.operator.preprocessor.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
     - match: '((%)(\?\??))'
       captures:
-        1: meta.preprocessor.asm.x86_64
-        2: punctuation.definition.preprocessor.asm.x86_64
-        3: variable.language.asm.x86_64
+        1: meta.preprocessor.asm.x86_64 keyword.operator.preprocessor.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+        3: variable.language.preprocessor.asm.x86_64
     - match: '((%)(\!)(\w+))\b'
       captures:
-        1: meta.preprocessor.asm.x86_64
-        2: punctuation.definition.preprocessor.asm.x86_64
+        1: meta.preprocessor.asm.x86_64 keyword.operator.preprocessor.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
         3: punctuation.definition.variable.asm.x86_64
         4: variable.parameter.preprocessor.asm.x86_64
   preprocessor-other:
-    - match: '^\s*((%)(if|ifn?def|elif|else))\b'
+    - match: '^\s*((%)if|ifn?def|elif|else)\b'
       captures:
-        1: meta.preprocessor.macro.asm.x86_64
-        2: punctuation.definition.preprocessor.asm.x86_64
-        3: keyword.control.import.asm.x86_64
+        1: meta.preprocessor.macro.asm.x86_64 keyword.control.import.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
       push:
         - meta_scope: meta.preprocessor.asm.x86_64
         - include: preprocessor-line-continuation
@@ -315,16 +310,14 @@ contexts:
         - include: preprocessor-comments
         - match: '\bdefined\b'
           scope: keyword.control.asm.x86_64
-    - match: '^\s*((%)(endif))\b'
+    - match: '^\s*((%)endif)\b'
       captures:
-        1: meta.preprocessor.asm.x86_64
-        2: punctuation.definition.preprocessor.asm.x86_64
-        3: keyword.control.import.asm.x86_64
-    - match: '^\s*((%)(undef))\b'
+        1: meta.preprocessor.asm.x86_64 keyword.control.import.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+    - match: '^\s*((%)undef)\b'
       captures:
-        1: meta.preprocessor.asm.x86_64
-        2: punctuation.definition.preprocessor.asm.x86_64
-        3: keyword.control.import.asm.x86_64
+        1: meta.preprocessor.asm.x86_64 keyword.control.import.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
       push:
         - meta_scope: meta.preprocessor.asm.x86_64
         - include: preprocessor-line-continuation
