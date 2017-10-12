@@ -185,7 +185,7 @@ contexts:
         - match: '{{valid_identifier}}'
           scope: entity.name.constant.preprocessor.asm.x86_64
           set: preprocessor-macro-definition
-    - match: '^\s*((%)assign)\b'
+    - match: '^\s*((%)(?:assign|i?deftok|strcat|strlen|substr))\b'
       captures:
         1: meta.preprocessor.macro.asm.x86_64 keyword.control.import.assign.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64

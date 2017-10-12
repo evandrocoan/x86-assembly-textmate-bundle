@@ -90,13 +90,33 @@ endstruc
 ;                           ^ punctuation.section.brackets.end
 ;            ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.preprocessor.macro
 ;            ^^^^^^^^^^^^^^^^^^^^^^^^^^ string.quoted.single
-%defstr PATH %!PATH CONTINUES; The operating system PATH variable
+%idefstr PATH TEST %!PATH CONTINUES; The operating system PATH variable
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^ keyword.control.import
+;        ^^^^ entity.name.constant
+;                  ^ punctuation.definition.keyword.preprocessor
+;                   ^ punctuation.definition.variable
+;                    ^^^^ variable.parameter.preprocessor
+;             ^^^^^^^^^^^^^^^^^^^^^ meta.preprocessor.macro
+;             ^^^^^^^^^^^^^^^^^^^^^ string.quoted.single
+
+%define test TEST
+%deftok test 'TEST'
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^^^^ keyword.control.import
 ;       ^^^^ entity.name.constant
-;            ^ punctuation.definition.keyword.preprocessor
-;             ^ punctuation.definition.variable
-;              ^^^^ variable.parameter.preprocessor
-;            ^^^^^^^^^^^^^^^^ meta.preprocessor.macro
-;            ^^^^^^^^^^^^^^^^ string.quoted.single
+;            ^^^^^^ meta.preprocessor.macro
 
+%strcat alpha "Alpha: ", '12" screen'
+%strcat beta '"foo"\', "'bar'"
+
+%define sometext 'my string' 
+%strlen charcnt sometext
+%strlen charcnt 'my string'
+
+%substr mychar 'xyzw' 1       ; equivalent to %define mychar 'x' 
+%substr mychar 'xyzw' 2       ; equivalent to %define mychar 'y' 
+%substr mychar 'xyzw' 3       ; equivalent to %define mychar 'z' 
+%substr mychar 'xyzw' 2,2     ; equivalent to %define mychar 'yz' 
+%substr mychar 'xyzw' 2,-1    ; equivalent to %define mychar 'yzw' 
+%substr mychar 'xyzw' 2,-2    ; equivalent to %define mychar 'yz'
