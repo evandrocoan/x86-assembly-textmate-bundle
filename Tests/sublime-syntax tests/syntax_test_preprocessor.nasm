@@ -57,11 +57,22 @@ endstruc
         mov     ax,BDA(COM1addr) ; Expands to BDASTART + tBIOSDA.COM1addr
         mov     bx,BDA(COM2addr)
 
-%idefine Foo mov %?,%??
+%idefine Foo mov %?,%?? ?
 ;                ^ punctuation.definition.preprocessor
 ;                 ^ variable.language
 ;                   ^ punctuation.definition.preprocessor
 ;                    ^^ variable.language
+
+%idefine pause $%?                  ; Hide the PAUSE instruction
+
+%assign i i+1
+%assign i(a,b) ((a)+(a)*(b))
+;<- punctuation.definition.preprocessor
+;^^^^^^ keyword.control.import
+;       ^ entity.name.constant
+;        ^^^^^ invalid.illegal
+;              ^^^^^^^^^^^^^ meta.preprocessor.macro
+
 
 %undef ctrl
 ;<- punctuation.definition.preprocessor

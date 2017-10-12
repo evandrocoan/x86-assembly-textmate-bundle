@@ -186,6 +186,26 @@ contexts:
         - match: '{{valid_identifier}}'
           scope: entity.name.constant.preprocessor.asm.x86_64
           set: preprocessor-macro-definition
+    - match: '^\s*((%)(assign))\b'
+      captures:
+        1: meta.preprocessor.macro.asm.x86_64
+        2: punctuation.definition.preprocessor.asm.x86_64
+        3: keyword.control.import.assign.asm.x86_64
+      push:
+        - meta_content_scope: meta.preprocessor.macro.asm.x86_64
+        - include: preprocessor-line-continuation
+        - include: preprocessor-line-ending
+        - include: preprocessor-comments
+        - match: '(?:{{valid_identifier}})(?=\()'
+          scope: entity.name.constant.preprocessor.asm.x86_64
+          set:
+            - meta_content_scope: invalid.illegal.asm.x86_64
+            - match: '\('
+              scope: punctuation.section.group.begin.asm.x86_64
+              set: preprocessor-macro-params-illegal
+        - match: '{{valid_identifier}}'
+          scope: entity.name.constant.preprocessor.asm.x86_64
+          set: preprocessor-macro-definition
   preprocessor-line-continuation:
     - match: '(\\)$\n'
       captures:
@@ -196,6 +216,9 @@ contexts:
   preprocessor-line-ending:
     - match: '$\n'
       pop: true
+  preprocessor-macro-params-illegal:
+    - meta_scope: invalid.illegal.asm.x86_64
+    - include: preprocessor-macro-params
   preprocessor-macro-params:
     - meta_scope: meta.preprocessor.macro.parameters.asm.x86_64 meta.group.asm.x86_64
     - match: '{{valid_identifier}}'
