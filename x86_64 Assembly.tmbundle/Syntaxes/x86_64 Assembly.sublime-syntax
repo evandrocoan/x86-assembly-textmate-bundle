@@ -206,6 +206,16 @@ contexts:
         - match: '{{valid_identifier}}'
           scope: entity.name.constant.preprocessor.asm.x86_64
           set: preprocessor-macro-definition
+    - match: '^\s*((%)(i?defstr))\s+({{valid_identifier}})\b'
+      captures:
+        1: meta.preprocessor.macro.asm.x86_64
+        2: punctuation.definition.preprocessor.asm.x86_64
+        3: keyword.control.import.assign.asm.x86_64
+        4: entity.name.constant.preprocessor.asm.x86_64
+      push:
+        - meta_content_scope: meta.preprocessor.macro.asm.x86_64 string.quoted.single.asm.x86_64
+        - include: preprocessor-line-ending
+        - include: preprocessor-macro-indirection
   preprocessor-line-continuation:
     - match: '(\\)$\n'
       captures:
@@ -261,16 +271,6 @@ contexts:
     - include: preprocessor-line-continuation
     - include: preprocessor-line-ending
     - include: preprocessor-comments
-    - match: '((%)(\+))\s+'
-      captures:
-        1: meta.preprocessor.asm.x86_64
-        2: punctuation.definition.preprocessor.asm.x86_64
-        3: keyword.operator.asm.x86_64
-    - match: '((%)(\?\??))'
-      captures:
-        1: meta.preprocessor.asm.x86_64
-        2: punctuation.definition.preprocessor.asm.x86_64
-        3: variable.language.asm.x86_64
     - include: main
   preprocessor-macro-indirection:
     - match: '((%)(\[))'
@@ -282,10 +282,26 @@ contexts:
         - meta_scope: meta.brackets.asm.x86_64 meta.preprocessor.macro.asm.x86_64
         - include: preprocessor-line-continuation
         - include: preprocessor-line-ending
+        - include: main
         - match: '\]'
           scope: punctuation.section.brackets.end.asm.x86_64
           pop: true
-        - include: main
+    - match: '((%)(\+))\s+'
+      captures:
+        1: meta.preprocessor.asm.x86_64
+        2: punctuation.definition.preprocessor.asm.x86_64
+        3: keyword.operator.asm.x86_64
+    - match: '((%)(\?\??))'
+      captures:
+        1: meta.preprocessor.asm.x86_64
+        2: punctuation.definition.preprocessor.asm.x86_64
+        3: variable.language.asm.x86_64
+    - match: '((%)(\!)(\w+))\b'
+      captures:
+        1: meta.preprocessor.asm.x86_64
+        2: punctuation.definition.preprocessor.asm.x86_64
+        3: punctuation.definition.variable.asm.x86_64
+        4: variable.parameter.preprocessor.asm.x86_64
   preprocessor-other:
     - match: '^\s*((%)(if|ifn?def|elif|else))\b'
       captures:
@@ -322,14 +338,14 @@ contexts:
   strings: # Character strings: http://www.nasm.us/doc/nasmdoc3.html#section-3.4.2
     - match: '`'
       scope: punctuation.definition.string.begin.asm.x86_64
-      push: string_backquote
+      push: string-backquote
     - match: ''''
       scope: punctuation.definition.string.begin.asm.x86_64
-      push: string_single
+      push: string-single
     - match: '"'
       scope: punctuation.definition.string.begin.asm.x86_64
-      push: string_double
-  string_content:
+      push: string-double
+  string-content:
     - match: '\\u[[:xdigit:]]{4}'
       scope: constant.character.escape.asm.x86_64
     - match: '\\U[[:xdigit:]]{8}'
@@ -342,20 +358,20 @@ contexts:
       scope: constant.character.escape.asm.x86_64
     - match: '\\.'
       scope: invalid.illegal.constant.character.escape.asm.x86_64
-  string_backquote:
+  string-backquote:
     - meta_scope: string.quoted.other.asm.x86_64
     - meta_include_prototype: false
-    - include: string_content
+    - include: string-content
     - match: '`'
       scope: punctuation.definition.string.end
       pop: true
-  string_single:
+  string-single:
     - meta_scope: string.quoted.single.asm.x86_64
     - meta_include_prototype: false
     - match: ''''
       scope: punctuation.definition.string.end
       pop: true
-  string_double:
+  string-double:
     - meta_scope: string.quoted.double.asm.x86_64
     - meta_include_prototype: false
     - match: '"'

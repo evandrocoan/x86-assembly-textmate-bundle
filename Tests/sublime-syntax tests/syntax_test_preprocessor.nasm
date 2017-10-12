@@ -65,6 +65,11 @@ endstruc
 
 %idefine pause $%?                  ; Hide the PAUSE instruction
 
+%undef ctrl
+;<- punctuation.definition.preprocessor
+;^^^^^ keyword.control.import
+;      ^^^^ entity.name.constant
+
 %assign i i+1
 %assign i(a,b) ((a)+(a)*(b))
 ;<- punctuation.definition.preprocessor
@@ -73,8 +78,25 @@ endstruc
 ;        ^^^^^ invalid.illegal
 ;              ^^^^^^^^^^^^^ meta.preprocessor.macro
 
-
-%undef ctrl
+%define test 'TEST'
+%defstr test TEST %[__BITS__] CONTINUES
 ;<- punctuation.definition.preprocessor
-;^^^^^ keyword.control.import
-;      ^^^^ entity.name.constant
+;^^^^^^ keyword.control.import
+;       ^^^^ entity.name.constant
+;                 ^ punctuation.definition.preprocessor
+;                  ^ punctuation.section.brackets.begin
+;                  ^^^^^^^^^^ meta.brackets
+;                   ^^^^^^^^ meta.preprocessor.macro
+;                           ^ punctuation.section.brackets.end
+;            ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.preprocessor.macro
+;            ^^^^^^^^^^^^^^^^^^^^^^^^^^ string.quoted.single
+%defstr PATH %!PATH CONTINUES; The operating system PATH variable
+;<- punctuation.definition.preprocessor
+;^^^^^^ keyword.control.import
+;       ^^^^ entity.name.constant
+;            ^ punctuation.definition.preprocessor
+;             ^ punctuation.definition.variable
+;              ^^^^ variable.parameter.preprocessor
+;            ^^^^^^^^^^^^^^^^ meta.preprocessor.macro
+;            ^^^^^^^^^^^^^^^^ string.quoted.single
+
