@@ -98,11 +98,17 @@ mpar 1,2,3,4,5,6
 ;^^^^^^^^ invalid.illegal
 
 %macro  multipop 1-* 
-  %rep %0 
+  %rep %0
+;       ^ variable.other.preprocessor
   %rotate -1
         pop     %1 
   %endrep 
 %endmacro
+
+%rep 10
+    push  %1
+;          ^ invalid.illegal
+%endrep
 
 %macro keytab_entry 2 
     keypos%{1}8    equ     $-keytab 
@@ -143,4 +149,7 @@ keyposReturn    equ     $-keytab
         ; Do something 
 %endmacro 
 %unmacro foo 1-3
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^
+not_a_macro
 

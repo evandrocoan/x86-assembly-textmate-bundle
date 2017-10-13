@@ -28,9 +28,9 @@ val1:    db      isFalse
 %xdefine isTrue  1 
 val2:    db      isFalse
 
-%define Foo16	align 16
-%define Foo32	align 32
-%define Foo64	align 64
+%define Foo16    align 16
+%define Foo32    align 32
+%define Foo64    align 64
 mov ax,Foo%[__BITS__]   ; Will expand to Foo16/Foo32/Foo64
 ;         ^ punctuation.definition.keyword.preprocessor
 ;          ^ punctuation.section.brackets.begin
