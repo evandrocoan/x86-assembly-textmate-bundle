@@ -80,3 +80,20 @@ mpar 1,2,3,4,5,6
 
 %macro die 0-1+ "Painful program death has occurred.",13,10
 %endmacro
+
+%macro  multipush 1-* 
+  %rep  %0 
+; ^ punctuation.definition.keyword.preprocessor
+;  ^^^ keyword.operator.word
+        push    %1 
+;^^^^^^^^^^^^^^^^^ meta.block.preprocessor.rep
+  %rotate 1 
+  %endrep 
+; ^ punctuation.definition.keyword.preprocessor
+;  ^^^^^^ keyword.operator.word
+  %endrep 
+;  ^^^^^^ invalid.illegal
+%endmacro
+%endmacro
+;^^^^^^^^ invalid.illegal
+
