@@ -195,12 +195,13 @@ contexts:
             - match: '\('
               scope: punctuation.section.group.begin.asm.x86_64
               set: preprocessor-macro-params-illegal
-        - match: '({{valid_identifier}})(?:\s+(?:(\d+(?:(-)(?:\d+|\*))?)(\+)?))'
+        - match: '({{valid_identifier}})(?:\s+(?:(\d+(?:(-)(?:\d+|\*))?)(\+)?(\.nolist\b)?))'
           captures:
             1: entity.name.function.preprocessor.asm.x86_64
             2: variable.parameter.preprocessor.asm.x86_64
             3: keyword.operator.preprocessor.range.asm.x86_64
             4: storage.modifier.preprocessor.greedy.asm.x86_64
+            5: storage.modifier.preprocessor.listing.asm.x86_64
           set: preprocessor-macro-definition-multiline
     - match: '^\s*((%)endmacro)\b'
       captures:
@@ -317,7 +318,7 @@ contexts:
         1: meta.preprocessor.asm.x86_64 keyword.control.import.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
       pop: true
-    - match: '((%)(\d+))'
+    - match: '((%)(\-?\d+))'
       captures:
         1: meta.preprocessor.asm.x86_64
         2: punctuation.definition.variable.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
@@ -345,14 +346,6 @@ contexts:
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.operator.word.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
-      push:
-        - meta_scope: meta.preprocessor.asm.x86_64
-        - include: preprocessor-line-continuation
-        - include: preprocessor-line-ending
-        - include: preprocessor-comments
-        - match: '{{valid_identifier}}'
-          scope: entity.name.constant.preprocessor.asm.x86_64
-          pop: true
     - match: '^\s*((%)rep)\b'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.operator.word.asm.x86_64 meta.block.preprocessor.rep.asm.x86_64
@@ -417,6 +410,23 @@ contexts:
         - include: preprocessor-comments
         - match: '{{valid_identifier}}'
           scope: entity.name.constant.preprocessor.asm.x86_64
+          pop: true
+    - match: '^\s*((%)unmacro)\b'
+      captures:
+        1: meta.preprocessor.asm.x86_64 keyword.control.import.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+      push:
+        - meta_scope: meta.preprocessor.asm.x86_64
+        - include: preprocessor-line-continuation
+        - include: preprocessor-line-ending
+        - include: preprocessor-comments
+        - match: '({{valid_identifier}})(?:\s+(?:(\d+(?:(-)(?:\d+|\*))?)(\+)?(\.nolist\b)?))'
+          captures:
+            1: entity.name.function.preprocessor.asm.x86_64
+            2: variable.parameter.preprocessor.asm.x86_64
+            3: keyword.operator.preprocessor.range.asm.x86_64
+            4: storage.modifier.preprocessor.greedy.asm.x86_64
+            5: storage.modifier.preprocessor.listing.asm.x86_64
           pop: true
  
   strings: # Character strings: http://www.nasm.us/doc/nasmdoc3.html#section-3.4.2

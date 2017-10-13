@@ -97,3 +97,50 @@ mpar 1,2,3,4,5,6
 %endmacro
 ;^^^^^^^^ invalid.illegal
 
+%macro  multipop 1-* 
+  %rep %0 
+  %rotate -1
+        pop     %1 
+  %endrep 
+%endmacro
+
+%macro keytab_entry 2 
+    keypos%{1}8    equ     $-keytab 
+                   db      %2 
+%endmacro 
+keytab: 
+          keytab_entry F1,128+1 
+          keytab_entry F2,128+2 
+          keytab_entry Return,13
+;which would expand to
+keytab: 
+keyposF18       equ     $-keytab 
+                db     128+1 
+keyposF28       equ     $-keytab 
+                db      128+2 
+keyposReturn    equ     $-keytab 
+                db      13
+
+%macro expansion 0
+	%{%foo}bar 
+	%%foobar    ; same thing
+%endmacro
+
+%macro  retc 1 
+        j%-1    %%skip 
+        ret 
+  %%skip: 
+%endmacro
+
+%macro foo 1.nolist
+;           ^^^^^^^ storage.modifier
+%endmacro
+%macro bar 1-5+.nolist a,b,c,d,e,f,g,h
+;              ^^^^^^^ storage.modifier
+%endmacro
+
+%macro foo 1-3 
+        ; Do something 
+%endmacro 
+%unmacro foo 1-3
+
