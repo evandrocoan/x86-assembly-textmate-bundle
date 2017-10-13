@@ -92,6 +92,17 @@ contexts:
         1: punctuation.separator.asm.x86_64 storage.modifier.asm.x86_64
         2: invalid.illegal.entity.name.constant.asm.x86_64
         3: punctuation.separator.asm.x86_64
+    - match: '((%)(\d+))'
+      captures:
+        1: invalid.illegal.meta.preprocessor.asm.x86_64
+        2: punctuation.definition.variable.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
+        3: variable.other.preprocessor.asm.x86_64
+    - match: '((%%)({{valid_identifier}})(?:(\:)?|\b))'
+      captures:
+        1: invalid.illegal.meta.preprocessor.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
+        3: entity.name.constant.special.asm.x86_64
+        4: punctuation.separator.asm.x86_64
 
   data-types:
     # Initialized & uninitialized data: http://www.nasm.us/doc/nasmdoc3.html#section-3.2.1
@@ -129,6 +140,8 @@ contexts:
       scope: keyword.operator.bitwise.asm.x86_64
     - match: '\b(seg|wrt)\b'
       scope: keyword.operator.word.asm.x86_64
+    - match: ','
+      scope: operator.separator.asm.x86_64
 
   structs:
     - match: '(?i)\b((end|i)?struc|at|iend)\b'
@@ -182,10 +195,12 @@ contexts:
             - match: '\('
               scope: punctuation.section.group.begin.asm.x86_64
               set: preprocessor-macro-params-illegal
-        - match: '({{valid_identifier}})(?:\s+(\d+))'
+        - match: '({{valid_identifier}})(?:\s+(?:(\d+(?:(-)(?:\d+|\*))?)(\+)?))'
           captures:
             1: entity.name.function.preprocessor.asm.x86_64
             2: variable.parameter.preprocessor.asm.x86_64
+            3: keyword.operator.preprocessor.range.asm.x86_64
+            4: storage.modifier.preprocessor.greedy.asm.x86_64
           set: preprocessor-macro-definition-multiline
     - match: '^\s*((%)endmacro)\b'
       captures:
@@ -298,6 +313,31 @@ contexts:
   preprocessor-macro-definition-multiline:
     - meta_content_scope: meta.preprocessor.macro.asm.x86_64
     - include: preprocessor-comments
+    - match: '((%)(\d+))'
+      captures:
+        1: meta.preprocessor.asm.x86_64
+        2: punctuation.definition.variable.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
+        3: variable.other.preprocessor.asm.x86_64
+    - match: '((%%)({{valid_identifier}})(?:(\:)?|\b))'
+      captures:
+        1: meta.preprocessor.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
+        3: entity.name.constant.special.asm.x86_64
+        4: punctuation.separator.asm.x86_64
+    - match: '((%)({))'
+      captures:
+        1: meta.preprocessor.macro.asm.x86_64 keyword.control.preprocessor.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+        3: meta.braces.asm.x86_64 punctuation.section.braces.begin.asm.x86_64
+      push:
+        - meta_scope: meta.braces.asm.x86_64 meta.preprocessor.macro.asm.x86_64
+        - include: preprocessor-macro-indirection
+        - match: ':'
+          scope: punctuation.separator.asm.x86_64
+        - match: '}'
+          scope: punctuation.section.braces.end.asm.x86_64 keyword.control.preprocessor.asm.x86_64
+          pop: true
+    - include: preprocessor-macro-indirection
     - include: main
   preprocessor-macro-indirection:
     - match: '((%)(\[))'
@@ -328,11 +368,6 @@ contexts:
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
         3: punctuation.definition.variable.asm.x86_64
         4: variable.parameter.preprocessor.asm.x86_64
-    - match: '((%)(\d+))'
-      captures:
-        1: meta.preprocessor.asm.x86_64 keyword.operator.preprocessor.asm.x86_64
-        2: punctuation.definition.variable.preprocessor.asm.x86_64
-        3: variable.other.preprocessor.asm.x86_64
   preprocessor-other:
     - include: preprocessor-macro-indirection
     - match: '^\s*((%)undef)\b'
