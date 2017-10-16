@@ -229,33 +229,6 @@ contexts:
         - meta_content_scope: meta.preprocessor.macro.asm.x86_64 string.quoted.single.asm.x86_64
         - include: preprocessor-line-ending
         - include: preprocessor-macro-indirection
-  preprocessor-macro-multiline:
-    - match: '^\s*((%)i?macro)\b'
-      captures:
-        1: meta.preprocessor.macro.asm.x86_64 keyword.control.import.define.asm.x86_64
-        2: punctuation.definition.keyword.preprocessor.asm.x86_64
-      push:
-        - meta_content_scope: meta.preprocessor.macro.asm.x86_64
-        - include: preprocessor-comments
-        - match: '(?:{{valid_identifier}})(?=\()'
-          scope: entity.name.constant.preprocessor.asm.x86_64
-          set:
-            - meta_content_scope: invalid.illegal.asm.x86_64
-            - match: '\('
-              scope: punctuation.section.group.begin.asm.x86_64
-              set: preprocessor-macro-params-illegal
-        - match: '({{valid_identifier}})(?:\s+(?:(\d+(?:(-)(?:\d+|\*))?)(\+)?(\.nolist\b)?))'
-          captures:
-            1: entity.name.function.preprocessor.asm.x86_64
-            2: variable.parameter.preprocessor.asm.x86_64
-            3: keyword.operator.preprocessor.range.asm.x86_64
-            4: storage.modifier.preprocessor.greedy.asm.x86_64
-            5: storage.modifier.preprocessor.listing.asm.x86_64
-          set: preprocessor-macro-definition-multiline
-    - match: '^\s*((%)endmacro)\b'
-      captures:
-        1: invalid.illegal.meta.preprocessor.asm.x86_64 keyword.control.import.asm.x86_64
-        2: punctuation.definition.keyword.preprocessor.asm.x86_64
   preprocessor-macro-rep:
     - match: '^\s*((%)rep)\b'
       captures:
@@ -268,11 +241,15 @@ contexts:
             1: meta.preprocessor.asm.x86_64 keyword.operator.word.asm.x86_64 meta.block.preprocessor.rep.asm.x86_64
             2: punctuation.definition.keyword.preprocessor.asm.x86_64
           pop: true
-        - include: preprocessor-macro-definition-multiline-rep
+        - include: preprocessor-macro-definition-rep
     - match: '^\s*((%)endrep)\b'
       captures:
         1: invalid.illegal.meta.preprocessor.asm.x86_64 keyword.operator.word.asm.x86_64 meta.block.preprocessor.rep.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
+  preprocessor-macro-definition-rep:
+    - meta_content_scope: meta.preprocessor.macro.rep.asm.x86_64
+    - include: preprocessor-comments
+    - include: preprocessor-macro-definition-multiline
   preprocessor-line-continuation:
     - match: '(\\)$\n'
       captures:
@@ -329,49 +306,6 @@ contexts:
     - include: preprocessor-line-ending
     - include: preprocessor-comments
     - include: main
-  preprocessor-macro-definition-multiline:
-    - meta_content_scope: meta.preprocessor.macro.asm.x86_64
-    - include: preprocessor-comments
-    - match: '^\s*((%)endmacro)\b'
-      captures:
-        1: meta.preprocessor.asm.x86_64 keyword.control.import.asm.x86_64
-        2: punctuation.definition.keyword.preprocessor.asm.x86_64
-      pop: true
-    - match: '((%)(\-?\d+))'
-      captures:
-        1: meta.preprocessor.asm.x86_64
-        2: punctuation.definition.variable.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
-        3: variable.other.preprocessor.asm.x86_64
-    - match: '((%%)({{valid_identifier}})(?:(\:)?|\b))'
-      captures:
-        1: meta.preprocessor.asm.x86_64
-        2: punctuation.definition.keyword.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
-        3: entity.name.constant.special.asm.x86_64
-        4: punctuation.separator.asm.x86_64
-    - match: '((%)({))'
-      captures:
-        1: meta.preprocessor.macro.asm.x86_64 keyword.control.preprocessor.asm.x86_64
-        2: punctuation.definition.keyword.preprocessor.asm.x86_64
-        3: meta.braces.asm.x86_64 punctuation.section.braces.begin.asm.x86_64
-      push:
-        - meta_scope: meta.braces.asm.x86_64 meta.preprocessor.macro.asm.x86_64
-        - include: preprocessor-macro-indirection
-        - match: ':'
-          scope: punctuation.separator.asm.x86_64
-        - match: '}'
-          scope: punctuation.section.braces.end.asm.x86_64 keyword.control.preprocessor.asm.x86_64
-          pop: true
-    - match: '^\s*((%)(?:rotate))\b'
-      captures:
-        1: meta.preprocessor.asm.x86_64 keyword.operator.word.asm.x86_64
-        2: punctuation.definition.keyword.preprocessor.asm.x86_64
-    - include: preprocessor-macro-indirection
-    - include: preprocessor-conditions
-    - include: main
-  preprocessor-macro-definition-multiline-rep:
-    - meta_content_scope: meta.preprocessor.macro.rep.asm.x86_64
-    - include: preprocessor-comments
-    - include: preprocessor-macro-definition-multiline
   preprocessor-macro-indirection:
     - match: '((%)(\[))'
       captures:
@@ -417,6 +351,8 @@ contexts:
             1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
             2: punctuation.definition.keyword.preprocessor.asm.x86_64
           pop: true
+        - include: preprocessor-comments
+        - include: preprocessor-macro-definition-multiline
         - include: main
     - match: '^\s*((%)(?:elif|else))\b'
       captures:
@@ -457,6 +393,128 @@ contexts:
             4: storage.modifier.preprocessor.greedy.asm.x86_64
             5: storage.modifier.preprocessor.listing.asm.x86_64
           pop: true
+
+  preprocessor-macro-multiline:
+    - match: '^\s*((%)i?macro)\b'
+      captures:
+        1: meta.preprocessor.macro.asm.x86_64 keyword.control.import.define.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+      push:
+        - meta_content_scope: meta.preprocessor.macro.asm.x86_64
+        - include: preprocessor-comments
+        - match: '(?:{{valid_identifier}})(?=\()'
+          scope: entity.name.constant.preprocessor.asm.x86_64
+          set:
+            - meta_content_scope: invalid.illegal.asm.x86_64
+            - match: '\('
+              scope: punctuation.section.group.begin.asm.x86_64
+              set: preprocessor-macro-params-illegal
+        - match: '({{valid_identifier}})(?:\s+(?:(\d+(?:(-)(?:\d+|\*))?)(\+)?(\.nolist\b)?))'
+          captures:
+            1: entity.name.function.preprocessor.asm.x86_64
+            2: variable.parameter.preprocessor.asm.x86_64
+            3: keyword.operator.preprocessor.range.asm.x86_64
+            4: storage.modifier.preprocessor.greedy.asm.x86_64
+            5: storage.modifier.preprocessor.listing.asm.x86_64
+          set: preprocessor-macro-definition-multiline-with-parameters
+    - match: '^\s*((%)endmacro)\b'
+      captures:
+        1: invalid.illegal.meta.preprocessor.asm.x86_64 keyword.control.import.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+  preprocessor-macro-definition-multiline-with-parameters:
+    - meta_content_scope: meta.preprocessor.macro.asm.x86_64
+    - match: '((%)(\-?\d+))'
+      captures:
+        1: meta.preprocessor.asm.x86_64
+        2: punctuation.definition.variable.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
+        3: variable.other.preprocessor.asm.x86_64
+    - include: preprocessor-comments
+    - include: preprocessor-macro-indirection
+    - include: preprocessor-macro-rep-multiline
+    - include: preprocessor-macro-conditions-multiline
+    - include: preprocessor-macro-definition-multiline
+  preprocessor-macro-definition-multiline:
+    - meta_content_scope: meta.preprocessor.macro.asm.x86_64
+    - include: preprocessor-comments
+    - match: '^\s*((%)endmacro)\b'
+      captures:
+        1: meta.preprocessor.asm.x86_64 keyword.control.import.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+      pop: true
+    - match: '((%%)({{valid_identifier}})(?:(\:)?|\b))'
+      captures:
+        1: meta.preprocessor.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
+        3: entity.name.constant.special.asm.x86_64
+        4: punctuation.separator.asm.x86_64
+    - match: '((%)({))'
+      captures:
+        1: meta.preprocessor.macro.asm.x86_64 keyword.control.preprocessor.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+        3: meta.braces.asm.x86_64 punctuation.section.braces.begin.asm.x86_64
+      push:
+        - meta_scope: meta.braces.asm.x86_64 meta.preprocessor.macro.asm.x86_64
+        - include: preprocessor-macro-indirection
+        - match: ':'
+          scope: punctuation.separator.asm.x86_64
+        - match: '}'
+          scope: punctuation.section.braces.end.asm.x86_64 keyword.control.preprocessor.asm.x86_64
+          pop: true
+    - match: '^\s*((%)(?:rotate))\b'
+      captures:
+        1: meta.preprocessor.asm.x86_64 keyword.operator.word.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+    - include: preprocessor-macro-indirection
+    - include: preprocessor-conditions
+    - include: main
+  preprocessor-macro-rep-multiline:
+    - match: '^\s*((%)rep)\b'
+      captures:
+        1: meta.preprocessor.asm.x86_64 keyword.operator.word.asm.x86_64 meta.block.preprocessor.rep.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+      push:
+        - meta_scope: meta.preprocessor.asm.x86_64 meta.block.preprocessor.rep.asm.x86_64
+        - match: '^\s*((%)endrep)\b'
+          captures:
+            1: meta.preprocessor.asm.x86_64 keyword.operator.word.asm.x86_64 meta.block.preprocessor.rep.asm.x86_64
+            2: punctuation.definition.keyword.preprocessor.asm.x86_64
+          pop: true
+        - include: preprocessor-macro-definition-multiline-rep
+    - match: '^\s*((%)endrep)\b'
+      captures:
+        1: invalid.illegal.meta.preprocessor.asm.x86_64 keyword.operator.word.asm.x86_64 meta.block.preprocessor.rep.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+  preprocessor-macro-conditions-multiline:
+    - match: '^\s*((%)if)\b'
+      captures:
+        1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+      push:
+        - meta_content_scope: meta.block.asm.x86_64
+        - match: '^\s*((%)(?:elif|else))\b'
+          captures:
+            1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
+            2: punctuation.definition.keyword.preprocessor.asm.x86_64
+        - match: '^\s*((%)endif)\b'
+          captures:
+            1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
+            2: punctuation.definition.keyword.preprocessor.asm.x86_64
+          pop: true
+        - include: preprocessor-comments
+        - include: preprocessor-macro-definition-multiline-with-parameters
+        - include: main
+    - match: '^\s*((%)(?:elif|else))\b'
+      captures:
+        1: invalid.illegal.meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+    - match: '^\s*((%)endif)\b'
+      captures:
+        1: invalid.illegal.meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+  preprocessor-macro-definition-multiline-rep:
+    - meta_content_scope: meta.preprocessor.macro.rep.asm.x86_64
+    - include: preprocessor-comments
+    - include: preprocessor-macro-definition-multiline-with-parameters
  
   strings: # Character strings: http://www.nasm.us/doc/nasmdoc3.html#section-3.4.2
     - match: '`'
