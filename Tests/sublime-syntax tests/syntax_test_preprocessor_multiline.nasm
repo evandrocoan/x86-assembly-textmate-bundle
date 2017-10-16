@@ -148,8 +148,11 @@ keyposReturn    equ     $-keytab
 %macro foo 1-3 
         ; Do something 
 %endmacro 
-%unmacro foo 1-3
+%unmacro foo 1-3+.nolist
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^^^
+;^^^^^^^ keyword.control.import
+;        ^^^ entity.name.function.preprocessor
+;            ^^^ variable.parameter.preprocessor
+;                ^^^^^^^ storage.modifier
 not_a_macro
 
