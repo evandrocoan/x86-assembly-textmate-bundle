@@ -47,6 +47,17 @@
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^^^ keyword.control.preprocessor
 
+%ifndef DEBUG
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^ keyword.control.preprocessor
+%elifdef RELEASE
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^ keyword.control.preprocessor
+%elifndef TEST
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^^ keyword.control.preprocessor
+%endif
+
 %macro mymacro 2
 %ifdef DEBUG
     push %1
@@ -65,6 +76,7 @@
 ;^^^^^^^ keyword.control.preprocessor
 ;        ^^^^^^^ entity.name.function.preprocessor
 ;                ^^^ variable.parameter.preprocessor
+;                   ^^^^^^^^ storage.modifier
      %error "MyMacro 1-3" causes a conflict with an existing macro. 
 %else 
      %macro MyMacro 1-3+.nolist
@@ -72,3 +84,22 @@
      %endmacro 
 %endif
 
+%ifnmacro MyMacro 1-3+.nolist
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^^ keyword.control.preprocessor
+;         ^^^^^^^ entity.name.function.preprocessor
+;                 ^^^ variable.parameter.preprocessor
+;                    ^^^^^^^^ storage.modifier
+
+%elifmacro MyMacro 1
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^^^ keyword.control.preprocessor
+;          ^^^^^^^ entity.name.function.preprocessor
+;                  ^ variable.parameter.preprocessor
+
+%elifnmacro MyMacro 2-*
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^^^^ keyword.control.preprocessor
+;           ^^^^^^^ entity.name.function.preprocessor
+;                   ^^^ variable.parameter.preprocessor
+%endif
