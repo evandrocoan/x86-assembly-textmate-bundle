@@ -16,19 +16,21 @@
 ;^^^^^ invalid.illegal
 
 %if DEBUG
-	push %1
+    push %1
 ;         ^ invalid.illegal
 %else
-	push %2
+    push %2
+;   ^^^^ keyword.operator.word.mnemonic
 ;         ^ invalid.illegal
 %endif
 
 %macro mymacro 2
 %if DEBUG
-	push %1
+    push %1
+;   ^^^^ keyword.operator.word.mnemonic
 ;         ^ variable.other.preprocessor
 %else
-	push %2
+    push %2
 ;         ^ variable.other.preprocessor
 %endif
 %endmacro

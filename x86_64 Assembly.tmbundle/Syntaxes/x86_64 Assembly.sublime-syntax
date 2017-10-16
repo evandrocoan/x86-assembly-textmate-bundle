@@ -351,8 +351,6 @@ contexts:
             1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
             2: punctuation.definition.keyword.preprocessor.asm.x86_64
           pop: true
-        - include: preprocessor-comments
-        - include: preprocessor-macro-definition-multiline
         - include: main
     - match: '^\s*((%)(?:elif|else))\b'
       captures:
@@ -500,9 +498,7 @@ contexts:
             1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
             2: punctuation.definition.keyword.preprocessor.asm.x86_64
           pop: true
-        - include: preprocessor-comments
         - include: preprocessor-macro-definition-multiline-with-parameters
-        - include: main
     - match: '^\s*((%)(?:elif|else))\b'
       captures:
         1: invalid.illegal.meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64

@@ -111,8 +111,8 @@ mpar 1,2,3,4,5,6
 %endrep
 
 %macro keytab_entry 2 
-    keypos%{1}8    equ     $-keytab 
-                   db      %2 
+    keypos%{1}8     equ     $-keytab 
+                    db      %2 
 %endmacro 
 keytab: 
           keytab_entry F1,128+1 
