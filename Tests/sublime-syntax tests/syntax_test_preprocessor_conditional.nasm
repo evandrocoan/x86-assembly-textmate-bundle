@@ -10,6 +10,8 @@
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^^ keyword.control.preprocessor
 %endif
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^ keyword.control.preprocessor
 
 %ifn
 ;<- punctuation.definition.keyword.preprocessor
@@ -24,7 +26,7 @@
 %ifdef DEBUG
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^^^ keyword.control.preprocessor
-;      ^^^^^ entity.name.constant
+;      ^^^^^ entity.name.constant.preprocessor
     push %1
 ;   ^^^^ keyword.operator.word.mnemonic
 ;         ^ invalid.illegal
@@ -42,14 +44,19 @@
 
 %ifndef DEBUG
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^ keyword.control.preprocessor
+;^^^^^^ keyword.control.preprocessor
+;       ^^^^^ entity.name.constant.preprocessor
 %elifdef RELEASE
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^^^^^ keyword.control.preprocessor
+;        ^^^^^^^ entity.name.constant.preprocessor
 %elifndef TEST
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^^^^^^ keyword.control.preprocessor
+;         ^^^^ entity.name.constant.preprocessor
 %endif
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^ keyword.control.preprocessor
 
 %macro mymacro 2
 %ifdef DEBUG
@@ -62,6 +69,8 @@
 ;         ^ variable.other.preprocessor
 ;^^^^^^^^^^ meta.block
 %endif
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^ keyword.control.preprocessor
 %endmacro
 
 %ifmacro MyMacro 1-3+.nolist
@@ -76,6 +85,8 @@
              ; insert code to define the macro 
      %endmacro 
 %endif
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^ keyword.control.preprocessor
 
 %ifnmacro MyMacro 1-3+.nolist
 ;<- punctuation.definition.keyword.preprocessor
@@ -96,6 +107,58 @@
 ;           ^^^^^^^ entity.name.function.preprocessor
 ;                   ^^^ variable.parameter.preprocessor
 %endif
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^ keyword.control.preprocessor
+
+%ifctx ctx
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^ keyword.control.preprocessor
+;      ^^^ entity.name.constant.preprocessor
+%elifctx ctx
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^ keyword.control.preprocessor
+;        ^^^ entity.name.constant.preprocessor
+%endif
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^ keyword.control.preprocessor
+
+%ifnctx ctx
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^ keyword.control.preprocessor
+;       ^^^ entity.name.constant.preprocessor
+%elifnctx ctx
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^^ keyword.control.preprocessor
+;         ^^^ entity.name.constant.preprocessor
+%endif
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^ keyword.control.preprocessor
+
+%macro if 1 
+    %push if 
+    j%-1  %$ifnot 
+%endmacro 
+%macro else 0 
+  %ifctx if 
+        %repl   else 
+        jmp     %$ifend 
+        %$ifnot: 
+  %else 
+        %error  "expected `if' before `else'" 
+  %endif 
+%endmacro 
+%macro endif 0 
+  %ifctx if 
+        %$ifnot: 
+        %pop 
+  %elifctx      else 
+        %$ifend: 
+        %pop 
+  %else 
+        %error  "expected `if' or `else' before `endif'" 
+  %endif 
+%endmacro
+
 
 
 %else
@@ -114,3 +177,7 @@
 ;^^^^^^^^^ invalid.illegal
 %elifnmacro MyMacro 2-*
 ;^^^^^^^^^^ invalid.illegal
+%elifctx
+;^^^^^^^ invalid.illegal
+%elifnctx
+;^^^^^^^^ invalid.illegal

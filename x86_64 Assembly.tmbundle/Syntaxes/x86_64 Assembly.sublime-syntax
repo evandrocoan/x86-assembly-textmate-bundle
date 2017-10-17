@@ -337,26 +337,42 @@ contexts:
         3: punctuation.definition.variable.asm.x86_64
         4: variable.parameter.preprocessor.asm.x86_64
   preprocessor-conditions: # also see preprocessor-macro-conditions-multiline
-    - match: '^\s*((%)ifn?(?:def)?)\b'
+    - match: '^\s*((%)ifn?)\b'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
       push: preprocessor-conditions-content-block
+    - match: '^\s*((%)ifn?(?:def|ctx))\b'
+      captures:
+        1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+      push: [preprocessor-conditions-content-block, preprocessor-conditions-constant]
     - match: '^\s*((%)ifn?macro)\b'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
       push: [preprocessor-conditions-content-block, preprocessor-macro-arguments-signature]
     - include: preprocessor-conditions-parity
+  preprocessor-conditions-constant:
+    - include: preprocessor-line-continuation
+    - include: preprocessor-line-ending
+    - match: '{{valid_identifier}}\b'
+      scope: meta.preprocessor.asm.x86_64 entity.name.constant.preprocessor.asm.x86_64
+      pop: true
   preprocessor-conditions-content-block:
     - meta_content_scope: meta.block.asm.x86_64
     - include: preprocessor-conditions-content-block-common
     - include: main
   preprocessor-conditions-content-block-common:
-    - match: '^\s*((%)(?:elifn?(?:def)?|else))\b'
+    - match: '^\s*((%)(?:elifn?|else))\b'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
+    - match: '^\s*((%)(?:elifn?(?:def|ctx)))\b'
+      captures:
+        1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+      push: preprocessor-conditions-constant
     - match: '^\s*((%)elifn?macro)\b'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
@@ -369,7 +385,7 @@ contexts:
       pop: true
     - include: main
   preprocessor-conditions-parity:
-    - match: '^\s*((%)(?:elifn?(?:macro|def)?|else|endif))\b'
+    - match: '^\s*((%)(?:elifn?(?:macro|def|ctx)?|else|endif))\b'
       captures:
         1: invalid.illegal.meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
@@ -501,11 +517,16 @@ contexts:
         1: invalid.illegal.meta.preprocessor.asm.x86_64 keyword.operator.word.asm.x86_64 meta.block.preprocessor.rep.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
   preprocessor-macro-conditions-multiline: # also see preprocessor-conditions
-    - match: '^\s*((%)ifn?(?:def)?)\b'
+    - match: '^\s*((%)ifn?)\b'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
       push: preprocessor-conditions-content-block-multiline
+    - match: '^\s*((%)ifn?(?:def|ctx))\b'
+      captures:
+        1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+      push: [preprocessor-conditions-content-block-multiline, preprocessor-conditions-constant]
     - match: '^\s*((%)ifn?macro)\b'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
