@@ -346,7 +346,7 @@ contexts:
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
-      push: [preprocessor-conditions-content-block, preprocessor-macro-arguments-signature] # this is stack, so pushing in reverse order
+      push: [preprocessor-conditions-content-block, preprocessor-macro-arguments-signature]
     - include: preprocessor-conditions-parity
   preprocessor-conditions-content-block:
     - meta_content_scope: meta.block.asm.x86_64
@@ -357,6 +357,11 @@ contexts:
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
+    - match: '^\s*((%)elifn?macro)\b'
+      captures:
+        1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+      push: preprocessor-macro-arguments-signature
     - match: '^\s*((%)endif)\b'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
