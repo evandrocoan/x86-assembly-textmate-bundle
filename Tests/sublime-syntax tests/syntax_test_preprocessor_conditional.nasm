@@ -229,7 +229,6 @@
   %endif 
   %%label %0
 %endmacro
-;^ - invalid.illegal
 
 %else
 ;^^^^ invalid.illegal
@@ -252,6 +251,10 @@
 %elifnctx
 ;^^^^^^^^ invalid.illegal
 %elifidn text1,text2
+;^^^^^^^ invalid.illegal
 %elifidni text1,text2
+;^^^^^^^^ invalid.illegal
 %elifnidn text1,text2
+;^^^^^^^^ invalid.illegal
 %elifnidni text1,text2
+;^^^^^^^^^ invalid.illegal
