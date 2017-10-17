@@ -13,6 +13,7 @@
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^^^^ keyword.control.import
 ;       ^^^^^ entity.name.function.preprocessor
+;            ^^^^^ - invalid.illegal
 ;            ^ punctuation.section.group.begin
 ;             ^ variable.parameter
 ;              ^ punctuation.separator
@@ -59,9 +60,9 @@ endstruc
 
 %idefine Foo mov %?,%?? ?
 ;                ^ punctuation.definition.keyword.preprocessor
-;                 ^ variable.language
+;                 ^ variable.language - invalid.illegal
 ;                   ^ punctuation.definition.keyword.preprocessor
-;                    ^^ variable.language
+;                    ^^ variable.language - invalid.illegal
 
 %idefine pause $%?                  ; Hide the PAUSE instruction
 
@@ -94,11 +95,10 @@ endstruc
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^^^^^ keyword.control.import
 ;        ^^^^ entity.name.constant
+;             ^^^^^^^^^^^^^^^^^^^^^ meta.preprocessor.macro string.quoted.single
 ;                  ^ punctuation.definition.keyword.preprocessor
 ;                   ^ punctuation.definition.variable
 ;                    ^^^^ variable.parameter.preprocessor
-;             ^^^^^^^^^^^^^^^^^^^^^ meta.preprocessor.macro
-;             ^^^^^^^^^^^^^^^^^^^^^ string.quoted.single
 
 %define test TEST
 %deftok test 'TEST'

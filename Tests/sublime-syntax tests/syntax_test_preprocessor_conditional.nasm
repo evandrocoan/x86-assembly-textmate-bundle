@@ -3,6 +3,9 @@
 %if<condition> 
 ;<- punctuation.definition.keyword.preprocessor
 ;^^ keyword.control.preprocessor
+    push %1
+;   ^^^^ keyword.operator.word.mnemonic
+;         ^ invalid.illegal
 %elif<condition2> 
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^^ keyword.control.preprocessor
@@ -22,6 +25,14 @@
 %endif
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^^^ keyword.control.preprocessor
+
+%macro asdf 3
+  %if %0
+      push  %1
+;     ^^^^ keyword.operator.word.mnemonic
+;            ^ variable.other.preprocessor - invalid.illegal
+  %endif
+%endmacro
 
 %ifdef DEBUG
 ;<- punctuation.definition.keyword.preprocessor
@@ -62,11 +73,11 @@
 %ifdef DEBUG
     push %1
 ;   ^^^^ keyword.operator.word.mnemonic
-;         ^ variable.other.preprocessor
+;         ^ variable.other.preprocessor - invalid.illegal
 ;^^^^^^^^^^ meta.block
 %else
     push %2
-;         ^ variable.other.preprocessor
+;         ^ variable.other.preprocessor - invalid.illegal
 ;^^^^^^^^^^ meta.block
 %endif
 ;<- punctuation.definition.keyword.preprocessor
@@ -135,8 +146,9 @@
 ;^^^^^ keyword.control.preprocessor
 
 %macro if 1 
-    %push if 
-    j%-1  %$ifnot 
+  %push if 
+  j%-1  %$ifnot 
+  %%label %0
 %endmacro 
 %macro else 0 
   %ifctx if 
@@ -146,6 +158,7 @@
   %else 
         %error  "expected `if' before `else'" 
   %endif 
+  %%label %0
 %endmacro 
 %macro endif 0 
   %ifctx if 
@@ -157,9 +170,66 @@
   %else 
         %error  "expected `if' or `else' before `endif'" 
   %endif 
+  %%label %0
 %endmacro
 
+%ifidn text1,text2
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^ keyword.control.preprocessor
+    push %1
+;   ^^^^ keyword.operator.word.mnemonic
+;         ^ invalid.illegal
+%elifidn text1,text2
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^ keyword.control.preprocessor
+%endif
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^ keyword.control.preprocessor
 
+%ifidni text1,text2
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^ keyword.control.preprocessor
+%elifidni text1,text2
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^^ keyword.control.preprocessor
+%endif
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^ keyword.control.preprocessor
+
+%ifnidn text1,text2
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^ keyword.control.preprocessor
+%elifnidn text1,text2
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^^ keyword.control.preprocessor
+%endif
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^ keyword.control.preprocessor
+
+%ifnidni text1,text2
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^ keyword.control.preprocessor
+%elifnidni text1,text2
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^^^ keyword.control.preprocessor
+%endif
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^ keyword.control.preprocessor
+
+%macro  pushparam 1 
+  %%label %0
+  %ifidni %1,ip 
+        call    %%label 
+        push    %1
+;       ^^^^ keyword.operator.word.mnemonic
+;                ^ variable.other.preprocessor - invalid.illegal
+  %%label: 
+  %else 
+        push    %1 
+  %endif 
+  %%label %0
+%endmacro
+;^ - invalid.illegal
 
 %else
 ;^^^^ invalid.illegal
@@ -181,3 +251,7 @@
 ;^^^^^^^ invalid.illegal
 %elifnctx
 ;^^^^^^^^ invalid.illegal
+%elifidn text1,text2
+%elifidni text1,text2
+%elifnidn text1,text2
+%elifnidni text1,text2

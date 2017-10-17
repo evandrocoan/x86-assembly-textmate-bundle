@@ -7,7 +7,7 @@
 ;              ^ variable.parameter
     %2: db      %1
 ;   ^ punctuation.definition.variable
-;    ^ variable.other.preprocessor
+;    ^ variable.other.preprocessor - invalid.illegal
 ;^^^^^^^^^^^^^^^^^ meta.preprocessor.macro
 %endmacro 
 ;<- punctuation.definition.keyword.preprocessor
@@ -20,11 +20,11 @@
 %macro  retz 0
         jnz     %%skip
 ;               ^^ punctuation.definition.keyword.preprocessor
-;                 ^^^^ entity.name.constant
+;                 ^^^^ entity.name.constant - invalid.illegal
         ret
     %%skip:
 ;   ^^ punctuation.definition.keyword.preprocessor
-;     ^^^^ entity.name.constant
+;     ^^^^ entity.name.constant - invalid.illegal
 ;         ^ punctuation.separator
 %endmacro
     %%macro_label: ; invalid outside of macro
@@ -99,7 +99,7 @@ mpar 1,2,3,4,5,6
 
 %macro  multipop 1-* 
   %rep %0
-;       ^ variable.other.preprocessor
+;       ^ variable.other.preprocessor - invalid.illegal
   %rotate -1
         pop     %1 
   %endrep 

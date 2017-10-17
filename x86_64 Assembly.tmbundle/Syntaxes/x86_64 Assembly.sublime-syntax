@@ -337,7 +337,7 @@ contexts:
         3: punctuation.definition.variable.asm.x86_64
         4: variable.parameter.preprocessor.asm.x86_64
   preprocessor-conditions: # also see preprocessor-macro-conditions-multiline
-    - match: '^\s*((%)ifn?)\b'
+    - match: '^\s*((%)ifn?(?:idni?)?)\b'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
@@ -364,7 +364,7 @@ contexts:
     - include: preprocessor-conditions-content-block-common
     - include: main
   preprocessor-conditions-content-block-common:
-    - match: '^\s*((%)(?:elifn?|else))\b'
+    - match: '^\s*((%)(?:elifn?(?:idni?)?|else))\b'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
@@ -383,9 +383,8 @@ contexts:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
       pop: true
-    - include: main
   preprocessor-conditions-parity:
-    - match: '^\s*((%)(?:elifn?(?:macro|def|ctx)?|else|endif))\b'
+    - match: '^\s*((%)(?:elifn?(?:macro|def|ctx|idni?)?|else|endif))\b'
       captures:
         1: invalid.illegal.meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
@@ -517,7 +516,7 @@ contexts:
         1: invalid.illegal.meta.preprocessor.asm.x86_64 keyword.operator.word.asm.x86_64 meta.block.preprocessor.rep.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
   preprocessor-macro-conditions-multiline: # also see preprocessor-conditions
-    - match: '^\s*((%)ifn?)\b'
+    - match: '^\s*((%)ifn?(?:idni?)?)\b'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
