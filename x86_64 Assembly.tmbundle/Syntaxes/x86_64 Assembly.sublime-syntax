@@ -369,7 +369,7 @@ contexts:
       pop: true
     - include: main
   preprocessor-conditions-parity:
-    - match: '^\s*((%)(?:elif|else))\b'
+    - match: '^\s*((%)(?:elifn?(?:macro|def)?|else|endif))\b'
       captures:
         1: invalid.illegal.meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64

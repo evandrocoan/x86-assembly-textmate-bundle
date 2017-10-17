@@ -11,13 +11,6 @@
 ;^^^^ keyword.control.preprocessor
 %endif
 
-%else
-;^^^^ invalid.illegal
-%elif
-;^^^^ invalid.illegal
-%endif
-;^^^^^ invalid.illegal
-
 %ifn
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^ keyword.control.preprocessor
@@ -104,3 +97,20 @@
 ;                   ^^^ variable.parameter.preprocessor
 %endif
 
+
+%else
+;^^^^ invalid.illegal
+%elif
+;^^^^ invalid.illegal
+%elifn
+;^^^^^ invalid.illegal
+%endif
+;^^^^^ invalid.illegal
+%elifdef RELEASE
+;^^^^^^^ invalid.illegal
+%elifndef RELEASE
+;^^^^^^^^ invalid.illegal
+%elifmacro MyMacro 1
+;^^^^^^^^^ invalid.illegal
+%elifnmacro MyMacro 2-*
+;^^^^^^^^^^ invalid.illegal
