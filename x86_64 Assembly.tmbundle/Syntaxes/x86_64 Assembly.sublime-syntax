@@ -337,11 +337,13 @@ contexts:
         3: punctuation.definition.variable.asm.x86_64
       push:
         - meta_content_scope: meta.preprocessor.asm.x86_64 keyword.operator.preprocessor.asm.x86_64 variable.parameter.preprocessor.asm.x86_64
-        - include: strings
         - match: '{{valid_identifier}}'
-        - match: '.+'
-          scope: invalid.illegal.variable.parameter.preprocessor.asm.x86_64
+          pop: true
+        - include: strings
         - match: '\b'
+          pop: true
+        - match: '.+\b'
+          scope: invalid.illegal.variable.parameter.preprocessor.asm.x86_64
           pop: true
   preprocessor-conditions: # also see preprocessor-macro-conditions-multiline
     - match: '^\s*((%)ifn?(?:idni?|id|num|str|token|empty|env)?)\b'
