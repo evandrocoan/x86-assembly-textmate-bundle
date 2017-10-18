@@ -306,6 +306,64 @@
         writefile [file], strpointer, length 
         writefile [file], "hello", 13, 10
 
+%iftoken 1
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^ keyword.control.preprocessor - invalid.illegal
+%eliftoken asdf
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^^^ keyword.control.preprocessor - invalid.illegal
+%endif
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^ keyword.control.preprocessor - invalid.illegal
+%ifntoken 2
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^^ keyword.control.preprocessor - invalid.illegal
+%elifntoken 4
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^^^^ keyword.control.preprocessor - invalid.illegal
+%endif
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^ keyword.control.preprocessor - invalid.illegal
+
+%ifempty
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^ keyword.control.preprocessor - invalid.illegal
+%elifempty
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^^^ keyword.control.preprocessor - invalid.illegal
+%endif
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^ keyword.control.preprocessor - invalid.illegal
+%ifnempty
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^^ keyword.control.preprocessor - invalid.illegal
+%elifnempty
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^^^^ keyword.control.preprocessor - invalid.illegal
+%endif
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^ keyword.control.preprocessor - invalid.illegal
+
+%ifenv %!FOO
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^ keyword.control.preprocessor - invalid.illegal
+%elifenv %!'::FOO::'
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^ keyword.control.preprocessor - invalid.illegal
+%endif
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^ keyword.control.preprocessor - invalid.illegal
+%ifnenv %!"::FOO::"
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^ keyword.control.preprocessor - invalid.illegal
+%elifnenv %!`::FOO::`
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^^ keyword.control.preprocessor - invalid.illegal
+%endif
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^ keyword.control.preprocessor - invalid.illegal
+
+
 
 
 %else
@@ -347,4 +405,16 @@
 %elifstr
 ;^^^^^^^ invalid.illegal
 %elifnstr
+;^^^^^^^^ invalid.illegal
+%eliftoken 1
+;^^^^^^^^^ invalid.illegal
+%elifntoken 23
+;^^^^^^^^^^ invalid.illegal
+%elifempty
+;^^^^^^^^^ invalid.illegal
+%elifnempty
+;^^^^^^^^^^ invalid.illegal
+%elifenv %!'::FOO::'
+;^^^^^^^ invalid.illegal
+%elifnenv %!`::FOO::`
 ;^^^^^^^^ invalid.illegal
