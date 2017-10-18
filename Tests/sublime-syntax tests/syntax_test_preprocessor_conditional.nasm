@@ -8,23 +8,23 @@
 ;         ^ invalid.illegal
 %elif<condition2> 
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^ keyword.control.preprocessor
+;^^^^ keyword.control.preprocessor - invalid.illegal
 %else 
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^ keyword.control.preprocessor
+;^^^^ keyword.control.preprocessor - invalid.illegal
 %endif
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^ keyword.control.preprocessor
+;^^^^^ keyword.control.preprocessor - invalid.illegal
 
 %ifn
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^ keyword.control.preprocessor
 %elifn 
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^ keyword.control.preprocessor
+;^^^^^ keyword.control.preprocessor - invalid.illegal
 %endif
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^ keyword.control.preprocessor
+;^^^^^ keyword.control.preprocessor - invalid.illegal
 
 %macro asdf 3
   %if %0
@@ -51,7 +51,7 @@
 ;^^^^^^^^^^ meta.block
 %endif
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^ keyword.control.preprocessor
+;^^^^^ keyword.control.preprocessor - invalid.illegal
 
 %ifndef DEBUG
 ;<- punctuation.definition.keyword.preprocessor
@@ -59,15 +59,15 @@
 ;       ^^^^^ entity.name.constant.preprocessor
 %elifdef RELEASE
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^^^ keyword.control.preprocessor
+;^^^^^^^ keyword.control.preprocessor - invalid.illegal
 ;        ^^^^^^^ entity.name.constant.preprocessor
 %elifndef TEST
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^^^^ keyword.control.preprocessor
+;^^^^^^^^ keyword.control.preprocessor - invalid.illegal
 ;         ^^^^ entity.name.constant.preprocessor
 %endif
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^ keyword.control.preprocessor
+;^^^^^ keyword.control.preprocessor - invalid.illegal
 
 %macro mymacro 2
 %ifdef DEBUG
@@ -81,7 +81,7 @@
 ;^^^^^^^^^^ meta.block
 %endif
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^ keyword.control.preprocessor
+;^^^^^ keyword.control.preprocessor - invalid.illegal
 %endmacro
 
 %ifmacro MyMacro 1-3+.nolist
@@ -108,18 +108,18 @@
 
 %elifmacro MyMacro 1
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^^^^^ keyword.control.preprocessor
+;^^^^^^^^^ keyword.control.preprocessor - invalid.illegal
 ;          ^^^^^^^ entity.name.function.preprocessor
 ;                  ^ variable.parameter.preprocessor
 
 %elifnmacro MyMacro 2-*
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^^^^^^ keyword.control.preprocessor
+;^^^^^^^^^^ keyword.control.preprocessor - invalid.illegal
 ;           ^^^^^^^ entity.name.function.preprocessor
 ;                   ^^^ variable.parameter.preprocessor
 %endif
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^ keyword.control.preprocessor
+;^^^^^ keyword.control.preprocessor - invalid.illegal
 
 %ifctx ctx
 ;<- punctuation.definition.keyword.preprocessor
@@ -127,19 +127,19 @@
 ;      ^^^ entity.name.constant.preprocessor
 %elifctx ctx
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^^^ keyword.control.preprocessor
+;^^^^^^^ keyword.control.preprocessor - invalid.illegal
 ;        ^^^ entity.name.constant.preprocessor
 %endif
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^ keyword.control.preprocessor
+;^^^^^ keyword.control.preprocessor - invalid.illegal
 
 %ifnctx ctx
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^^ keyword.control.preprocessor
+;^^^^^^ keyword.control.preprocessor - invalid.illegal
 ;       ^^^ entity.name.constant.preprocessor
 %elifnctx ctx
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^^^^ keyword.control.preprocessor
+;^^^^^^^^ keyword.control.preprocessor - invalid.illegal
 ;         ^^^ entity.name.constant.preprocessor
 %endif
 ;<- punctuation.definition.keyword.preprocessor
@@ -181,40 +181,40 @@
 ;         ^ invalid.illegal
 %elifidn text1,text2
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^^^ keyword.control.preprocessor
+;^^^^^^^ keyword.control.preprocessor - invalid.illegal
 %endif
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^ keyword.control.preprocessor
+;^^^^^ keyword.control.preprocessor - invalid.illegal
 
 %ifidni text1,text2
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^^^^ keyword.control.preprocessor
 %elifidni text1,text2
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^^^^ keyword.control.preprocessor
+;^^^^^^^^ keyword.control.preprocessor - invalid.illegal
 %endif
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^ keyword.control.preprocessor
+;^^^^^ keyword.control.preprocessor - invalid.illegal
 
 %ifnidn text1,text2
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^^^^ keyword.control.preprocessor
 %elifnidn text1,text2
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^^^^ keyword.control.preprocessor
+;^^^^^^^^ keyword.control.preprocessor - invalid.illegal
 %endif
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^ keyword.control.preprocessor
+;^^^^^ keyword.control.preprocessor - invalid.illegal
 
 %ifnidni text1,text2
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^^^^^ keyword.control.preprocessor
 %elifnidni text1,text2
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^^^^^ keyword.control.preprocessor
+;^^^^^^^^^ keyword.control.preprocessor - invalid.illegal
 %endif
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^ keyword.control.preprocessor
+;^^^^^ keyword.control.preprocessor - invalid.illegal
 
 %macro  pushparam 1 
   %%label %0
@@ -233,21 +233,58 @@
 %ifid
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^^ keyword.control.preprocessor
+%elifid
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^ keyword.control.preprocessor - invalid.illegal
 %endif
 ;<- punctuation.definition.keyword.preprocessor
+;^^^^^ keyword.control.preprocessor - invalid.illegal
+%ifnid
+;<- punctuation.definition.keyword.preprocessor
 ;^^^^^ keyword.control.preprocessor
+%elifnid
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^ keyword.control.preprocessor - invalid.illegal
+%endif
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^ keyword.control.preprocessor - invalid.illegal
 %ifnum
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^^^ keyword.control.preprocessor
+%elifnum
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^ keyword.control.preprocessor - invalid.illegal
 %endif
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^ keyword.control.preprocessor
+;^^^^^ keyword.control.preprocessor - invalid.illegal
+%ifnnum
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^ keyword.control.preprocessor
+%elifnnum
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^^ keyword.control.preprocessor - invalid.illegal
+%endif
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^ keyword.control.preprocessor - invalid.illegal
 %ifstr
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^^^ keyword.control.preprocessor
+%elifstr
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^ keyword.control.preprocessor - invalid.illegal
 %endif
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^ keyword.control.preprocessor
+;^^^^^ keyword.control.preprocessor - invalid.illegal
+%ifnstr
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^ keyword.control.preprocessor
+%elifnstr
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^^^^ keyword.control.preprocessor - invalid.illegal
+%endif
+;<- punctuation.definition.keyword.preprocessor
+;^^^^^ keyword.control.preprocessor - invalid.illegal
+
 %macro writefile 2-3+ 
   %ifstr %2 
         jmp     %%endstr 
@@ -299,3 +336,15 @@
 ;^^^^^^^^ invalid.illegal
 %elifnidni text1,text2
 ;^^^^^^^^^ invalid.illegal
+%elifid
+;^^^^^^ invalid.illegal
+%elifnid
+;^^^^^^^ invalid.illegal
+%elifnum
+;^^^^^^^ invalid.illegal
+%elifnnum
+;^^^^^^^^ invalid.illegal
+%elifstr
+;^^^^^^^ invalid.illegal
+%elifnstr
+;^^^^^^^^ invalid.illegal
