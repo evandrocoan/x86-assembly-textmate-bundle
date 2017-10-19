@@ -364,8 +364,6 @@
 ;^^^^^ keyword.control.preprocessor - invalid.illegal
 
 
-
-
 %else
 ;^^^^ invalid.illegal
 %elif

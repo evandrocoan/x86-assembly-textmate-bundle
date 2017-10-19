@@ -177,7 +177,6 @@ contexts:
 
   preprocessor: # http://www.nasm.us/doc/nasmdoc4.html
     - include: preprocessor-macro-multiline
-    - include: preprocessor-macro-rep
     - include: preprocessor-macro-define
     - include: preprocessor-macro-indirection
     - include: preprocessor-conditions
@@ -230,27 +229,6 @@ contexts:
         - meta_content_scope: meta.preprocessor.macro.asm.x86_64 string.quoted.single.asm.x86_64
         - include: preprocessor-line-ending
         - include: preprocessor-macro-indirection
-  preprocessor-macro-rep:
-    - match: '^\s*((%)rep)\b'
-      captures:
-        1: meta.preprocessor.asm.x86_64 keyword.operator.word.asm.x86_64 meta.block.preprocessor.rep.asm.x86_64
-        2: punctuation.definition.keyword.preprocessor.asm.x86_64
-      push:
-        - meta_scope: meta.preprocessor.asm.x86_64 meta.block.preprocessor.rep.asm.x86_64
-        - match: '^\s*((%)endrep)\b'
-          captures:
-            1: meta.preprocessor.asm.x86_64 keyword.operator.word.asm.x86_64 meta.block.preprocessor.rep.asm.x86_64
-            2: punctuation.definition.keyword.preprocessor.asm.x86_64
-          pop: true
-        - include: preprocessor-macro-definition-rep
-    - match: '^\s*((%)endrep)\b'
-      captures:
-        1: invalid.illegal.meta.preprocessor.asm.x86_64 keyword.operator.word.asm.x86_64 meta.block.preprocessor.rep.asm.x86_64
-        2: punctuation.definition.keyword.preprocessor.asm.x86_64
-  preprocessor-macro-definition-rep:
-    - meta_content_scope: meta.preprocessor.macro.rep.asm.x86_64
-    - include: preprocessor-comments
-    - include: preprocessor-macro-definition-multiline
   preprocessor-line-continuation:
     - match: '(\\)$\n'
       captures:
@@ -356,6 +334,11 @@ contexts:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
       push: [preprocessor-conditions-content-block, preprocessor-conditions-constant]
+    - match: '^\s*((%)rep)\b'
+      captures:
+        1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+      push: preprocessor-conditions-content-block
     - match: '^\s*((%)ifn?macro)\b'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
@@ -373,7 +356,7 @@ contexts:
     - include: preprocessor-conditions-content-block-common
     - include: main
   preprocessor-conditions-content-block-common:
-    - match: '^\s*((%)(?:elifn?(?:idni?|id|num|str|token|empty|env)?|else))\b'
+    - match: '^\s*((%)(?:elifn?(?:idni?|id|num|str|token|empty|env)?|else|exitrep))\b'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
@@ -387,17 +370,13 @@ contexts:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
       push: preprocessor-macro-arguments-signature
-    - match: '^\s*((%)endif)\b'
+    - match: '^\s*((%)(?:end(?:if|rep)))\b'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
       pop: true
   preprocessor-conditions-parity:
-    - match: '^\s*((%)(?:elifn?(?:macro|def|ctx|idni?|id|num|str|token|empty|env)?|else|endif))\b'
-      captures:
-        1: invalid.illegal.meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
-        2: punctuation.definition.keyword.preprocessor.asm.x86_64
-    - match: '^\s*((%)endif)\b'
+    - match: '^\s*((%)(?:elifn?(?:macro|def|ctx|idni?|id|num|str|token|empty|env)?|else|(?:end(?:if|rep))|exitrep))\b'
       captures:
         1: invalid.illegal.meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
@@ -470,7 +449,6 @@ contexts:
         3: variable.other.preprocessor.asm.x86_64
     - include: preprocessor-comments
     - include: preprocessor-macro-indirection
-    - include: preprocessor-macro-rep-multiline
     - include: preprocessor-macro-conditions-multiline
     - include: preprocessor-macro-definition-multiline
   preprocessor-macro-definition-multiline:
@@ -507,23 +485,6 @@ contexts:
     - include: preprocessor-macro-indirection
     - include: preprocessor-conditions
     - include: main
-  preprocessor-macro-rep-multiline:
-    - match: '^\s*((%)rep)\b'
-      captures:
-        1: meta.preprocessor.asm.x86_64 keyword.operator.word.asm.x86_64 meta.block.preprocessor.rep.asm.x86_64
-        2: punctuation.definition.keyword.preprocessor.asm.x86_64
-      push:
-        - meta_scope: meta.preprocessor.asm.x86_64 meta.block.preprocessor.rep.asm.x86_64
-        - match: '^\s*((%)endrep)\b'
-          captures:
-            1: meta.preprocessor.asm.x86_64 keyword.operator.word.asm.x86_64 meta.block.preprocessor.rep.asm.x86_64
-            2: punctuation.definition.keyword.preprocessor.asm.x86_64
-          pop: true
-        - include: preprocessor-macro-definition-multiline-rep
-    - match: '^\s*((%)endrep)\b'
-      captures:
-        1: invalid.illegal.meta.preprocessor.asm.x86_64 keyword.operator.word.asm.x86_64 meta.block.preprocessor.rep.asm.x86_64
-        2: punctuation.definition.keyword.preprocessor.asm.x86_64
   preprocessor-macro-conditions-multiline: # also see preprocessor-conditions
     - match: '^\s*((%)ifn?(?:idni?|id|num|str|token|empty|env)?)\b'
       captures:
@@ -535,6 +496,11 @@ contexts:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
       push: [preprocessor-conditions-content-block-multiline, preprocessor-conditions-constant]
+    - match: '^\s*((%)rep)\b'
+      captures:
+        1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+      push: preprocessor-conditions-content-block-multiline
     - match: '^\s*((%)ifn?macro)\b'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
@@ -544,10 +510,6 @@ contexts:
   preprocessor-conditions-content-block-multiline:
     - meta_content_scope: meta.block.asm.x86_64
     - include: preprocessor-conditions-content-block-common
-    - include: preprocessor-macro-definition-multiline-with-parameters
-  preprocessor-macro-definition-multiline-rep:
-    - meta_content_scope: meta.preprocessor.macro.rep.asm.x86_64
-    - include: preprocessor-comments
     - include: preprocessor-macro-definition-multiline-with-parameters
  
   strings: # Character strings: http://www.nasm.us/doc/nasmdoc3.html#section-3.4.2
