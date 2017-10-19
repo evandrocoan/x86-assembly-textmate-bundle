@@ -34,6 +34,18 @@ fibonacci:
 ;^^^^^^ keyword.control.preprocessor - invalid.illegal
 fib_number equ ($-fibonacci)/2
 
+%macro  mymacro 1
+%rep    100
+    push    %1
+;            ^ variable.other.preprocessor - invalid.illegal
+%endrep
+%endmacro
+
+%rep    100
+    push    %1
+;            ^ invalid.illegal
+%endrep
+
 
 
 %exitrep
