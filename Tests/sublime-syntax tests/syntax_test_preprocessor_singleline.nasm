@@ -5,13 +5,13 @@
 
 %define ctrl    0x1F &
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^^ keyword.control.import
-;       ^^^^ entity.name.constant
+;^^^^^^ keyword.control.import.preprocessor
+;       ^^^^ entity.name.constant.preprocessor
 ;               ^^^^^^ meta.preprocessor.macro
 
 %define param(a,b) ((a)+(a)*(b)) 
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^^ keyword.control.import
+;^^^^^^ keyword.control.import.preprocessor
 ;       ^^^^^ entity.name.function.preprocessor
 ;            ^^^^^ - invalid.illegal
 ;            ^ punctuation.section.group.begin
@@ -68,13 +68,13 @@ endstruc
 
 %undef ctrl
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^ keyword.control.import
+;^^^^^ keyword.control.preprocessor
 ;      ^^^^ entity.name.constant
 
 %assign i i+1
 %assign i(a,b) ((a)+(a)*(b))
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^^ keyword.control.import
+;^^^^^^ keyword.control.preprocessor
 ;       ^ entity.name.constant
 ;        ^^^^^ invalid.illegal
 ;              ^^^^^^^^^^^^^ meta.preprocessor.macro
@@ -82,8 +82,8 @@ endstruc
 %define test 'TEST'
 %defstr test TEST %[__BITS__] CONTINUES
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^^ keyword.control.import
-;       ^^^^ entity.name.constant
+;^^^^^^ keyword.control.import.preprocessor
+;       ^^^^ entity.name.constant.preprocessor
 ;                 ^ punctuation.definition.keyword.preprocessor
 ;                  ^ punctuation.section.brackets.begin
 ;                  ^^^^^^^^^^ meta.brackets
@@ -93,17 +93,17 @@ endstruc
 ;            ^^^^^^^^^^^^^^^^^^^^^^^^^^ string.quoted.single
 %idefstr PATH TEST %!PATH CONTINUES; The operating system PATH variable
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^^^ keyword.control.import
+;^^^^^^^ keyword.control.import.preprocessor
 ;        ^^^^ entity.name.constant
 ;             ^^^^^^^^^^^^^^^^^^^^^ meta.preprocessor.macro string.quoted.single
-;                  ^ punctuation.definition.keyword.preprocessor
-;                   ^ punctuation.definition.variable
+;                  ^ punctuation.definition.keyword.preprocessor - variable.parameter.preprocessor
+;                   ^ punctuation.definition.variable - variable.parameter.preprocessor
 ;                    ^^^^ variable.parameter.preprocessor
 
 %define test TEST
 %deftok test 'TEST'
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^^ keyword.control.import
+;^^^^^^ keyword.control.preprocessor
 ;       ^^^^ entity.name.constant
 ;            ^^^^^^ meta.preprocessor.macro
 

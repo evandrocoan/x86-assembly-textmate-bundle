@@ -2,7 +2,7 @@
 
 %assign i 0 
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^^ keyword.control.import
+;^^^^^^ keyword.control.preprocessor
 %rep    64 
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^ keyword.control.preprocessor
@@ -10,7 +10,7 @@
 ;       ^^^ keyword.operator.word.mnemonic
 %assign i i+1 
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^^ keyword.control.import
+;^^^^^^ keyword.control.preprocessor
 %endrep
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^^^^ keyword.control.preprocessor - invalid.illegal
