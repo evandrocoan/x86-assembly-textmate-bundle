@@ -128,8 +128,8 @@ keyposReturn    equ     $-keytab
                 db      13
 
 %macro expansion 0
-	%{%foo}bar 
-	%%foobar    ; same thing
+    %{%foo}bar 
+    %%foobar    ; same thing
 %endmacro
 
 %macro  retc 1 

@@ -13,7 +13,15 @@
 
 %imacro incbin 1-2+ 0 
 %pathsearch dep %1 
+;                ^ variable.other.preprocessor - invalid.illegal
 %depend dep 
         incbin dep,%2 
+;                   ^ variable.other.preprocessor - invalid.illegal
 %endmacro
 
+%include %1
+;         ^ invalid.illegal
+%pathsearch %2
+;            ^ invalid.illegal
+%depend %3
+;        ^ invalid.illegal
