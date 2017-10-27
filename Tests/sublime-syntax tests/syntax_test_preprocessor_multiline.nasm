@@ -1,5 +1,7 @@
 ; SYNTAX TEST "Packages/User/x86_64 Assembly.tmbundle/Syntaxes/x86_64 Assembly.sublime-syntax"
 
+%1
+;^ invalid.illegal
 %macro  silly  2
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^^^ keyword.control.import

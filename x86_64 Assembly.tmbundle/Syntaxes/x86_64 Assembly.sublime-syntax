@@ -342,6 +342,7 @@ contexts:
     - match: '{{valid_identifier}}\b'
       scope: meta.preprocessor.asm.x86_64 entity.name.constant.preprocessor.asm.x86_64
       pop: true
+    - include: main
   preprocessor-conditions-content-block:
     - meta_content_scope: meta.block.preprocessor.asm.x86_64
     - include: preprocessor-conditions-content-block-common
@@ -477,12 +478,12 @@ contexts:
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.import.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
-      push: preprocessor-macro-definition-inside-multiline
+      set: preprocessor-macro-definition-inside-multiline
     - match: '^\s*((%)(?:pathsearch))\b'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
-      push: [preprocessor-macro-definition-inside-multiline, preprocessor-conditions-constant]
+      set: [preprocessor-macro-definition-inside-multiline, preprocessor-conditions-constant]
     - include: preprocessor-macro-indirection
     - include: preprocessor-conditions
     - include: main
