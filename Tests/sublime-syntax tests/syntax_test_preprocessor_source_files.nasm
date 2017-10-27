@@ -3,7 +3,7 @@
 
 %include "macros.mac"
 ;<- punctuation.definition.keyword.preprocessor
-;^^^^^^^ keyword.control.import
+;^^^^^^^ keyword.control.import.preprocessor
 %pathsearch MyFoo "foo.bin"
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^^^^^^^^ keyword.control.preprocessor
@@ -20,6 +20,16 @@
         incbin dep,%2 
 ;                   ^ variable.other.preprocessor - invalid.illegal
 %endmacro
+
+%use altreg 
+;<- punctuation.definition.keyword.preprocessor
+;^^^ keyword.control.import.preprocessor
+;    ^^^^^^ string - string.quoted
+%use 'altreg'
+;<- punctuation.definition.keyword.preprocessor
+;^^^ keyword.control.import.preprocessor
+;    ^^^^^^^^ string.quoted.single
+
 
 %include %1
 ;         ^ invalid.illegal

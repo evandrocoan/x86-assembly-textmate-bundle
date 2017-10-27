@@ -80,6 +80,7 @@ endstruc
 ;              ^^^^^^^^^^^^^ meta.preprocessor.macro
 
 %define test 'TEST'
+;            ^^^^^^ string.quoted.single
 %defstr test TEST %[__BITS__] CONTINUES
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^^^^ keyword.control.import.preprocessor
@@ -90,12 +91,12 @@ endstruc
 ;                   ^^^^^^^^ meta.preprocessor.macro
 ;                           ^ punctuation.section.brackets.end
 ;            ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.preprocessor.macro
-;            ^^^^^^^^^^^^^^^^^^^^^^^^^^ string.quoted.single
+;            ^^^^^^^^^^^^^^^^^^^^^^^^^^ string - string.quoted
 %idefstr PATH TEST %!PATH CONTINUES; The operating system PATH variable
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^^^^^ keyword.control.import.preprocessor
 ;        ^^^^ entity.name.constant
-;             ^^^^^^^^^^^^^^^^^^^^^ meta.preprocessor.macro string.quoted.single
+;             ^^^^^^^^^^^^^^^^^^^^^ meta.preprocessor.macro string - string.quoted
 ;                  ^ punctuation.definition.keyword.preprocessor - variable.parameter.preprocessor
 ;                   ^ punctuation.definition.variable - variable.parameter.preprocessor
 ;                    ^^^^ variable.parameter.preprocessor
@@ -105,7 +106,7 @@ endstruc
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^^^^ keyword.control.preprocessor
 ;       ^^^^ entity.name.constant
-;            ^^^^^^ meta.preprocessor.macro
+;            ^^^^^^ meta.preprocessor.macro string.quoted.single
 
 %strcat alpha "Alpha: ", '12" screen'
 %strcat beta '"foo"\', "'bar'"

@@ -206,6 +206,15 @@ contexts:
         1: meta.preprocessor.asm.x86_64 keyword.control.import.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
       push: preprocessor-macro-definition
+    - match: '^\s*((%)use)\b'
+      captures:
+        1: meta.preprocessor.asm.x86_64 keyword.control.import.preprocessor.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+      push:
+        - meta_content_scope: meta.preprocessor.macro.asm.x86_64 string.asm.x86_64
+        - include: strings
+        - include: preprocessor-line-ending
+        - include: preprocessor-macro-indirection
     - match: '^\s*((%)(?:assign|i?deftok|strcat|strlen|substr|pathsearch))\b'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
@@ -217,7 +226,8 @@ contexts:
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
         3: entity.name.constant.preprocessor.asm.x86_64
       push:
-        - meta_content_scope: meta.preprocessor.macro.asm.x86_64 string.quoted.single.asm.x86_64
+        - meta_content_scope: meta.preprocessor.macro.asm.x86_64 string.asm.x86_64
+        - include: strings
         - include: preprocessor-line-ending
         - include: preprocessor-macro-indirection
   preprocessor-line-continuation:
