@@ -1,6 +1,5 @@
 ; SYNTAX TEST "Packages/User/x86_64 Assembly.tmbundle/Syntaxes/x86_64 Assembly.sublime-syntax"
 
-
 %include "macros.mac"
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^^^^^ keyword.control.import.preprocessor
