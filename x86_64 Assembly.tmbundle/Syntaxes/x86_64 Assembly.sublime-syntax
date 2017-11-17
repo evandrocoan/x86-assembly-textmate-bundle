@@ -118,7 +118,7 @@ contexts:
       scope: storage.modifier.prefix.asm.x86_64
     - match: '\b(?:rep(?:n?[ez])?|lock|xacquire|xrelease|(?:no)?bnd)\b'
       scope: storage.modifier.prefix.asm.x86_64
-    - match: '(?i)\b(\.?(alignb?|bits|cpu|fpu)|use(16|32|64))\b'
+    - match: '(?i)\b(\.?(bits|cpu|fpu)|use(16|32|64))\b'
       scope: keyword.other.asm.x86_64
 
   support:
@@ -180,7 +180,7 @@ contexts:
       push:
         - meta_content_scope: meta.struct.asm.x86_64.1
         - match: '{{valid_identifier}}'
-          scope: variable.struct.asm.x86_64
+          scope: variable.other.asm.x86_64
           set:
             - meta_scope: meta.struct.asm.x86_64
             - match: '^\s*(at)\b'
@@ -196,7 +196,12 @@ contexts:
     - match: '^\s*(iend)\b'
       captures:
         1: invalid.illegal.support.function.asm.x86_64 meta.struct.asm.x86_64
-
+    - match: '\balignb?\b'
+      scope: support.function.asm.x86_64
+    - match: '\b(SECTALIGN)\s+(ON|OFF)?'
+      captures:
+        1: support.function.asm.x86_64
+        2: support.constant.asm.x86_64
   entities:
     - match: '((section|segment)\s+)?\.((ro)?data|bss|text)'
       scope: entity.name.section
