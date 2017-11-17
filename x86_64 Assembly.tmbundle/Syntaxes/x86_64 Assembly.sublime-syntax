@@ -363,15 +363,17 @@ contexts:
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
         3: punctuation.definition.variable.asm.x86_64
       push:
-        - meta_content_scope: meta.preprocessor.asm.x86_64 keyword.operator.preprocessor.asm.x86_64 variable.parameter.preprocessor.asm.x86_64
+        - meta_content_scope: meta.preprocessor.asm.x86_64 keyword.operator.preprocessor.asm.x86_64
         - match: '{{valid_identifier}}'
-          scope: variable.parameter.preprocessor.asm.x86_64
+          scope: variable.parameter.preprocessor.environment.simple.asm.x86_64
           pop: true
-        - include: strings
-        - match: '\b'
-          pop: true
-        - match: '.+\b'
-          scope: invalid.illegal.variable.parameter.preprocessor.asm.x86_64
+        - match: '(?=`|''|")'
+          set:
+            - meta_scope: variable.parameter.preprocessor.environment.quoted.asm.x86_64 fdads
+            - include: strings
+            - match: '\b|$'
+              pop: true
+        - match: '\b|$'
           pop: true
   preprocessor-conditions: # also see preprocessor-macro-conditions-multiline
     - match: '^\s*((%)ifn?(?:idni?|id|num|str|token|empty|env)?)\b'

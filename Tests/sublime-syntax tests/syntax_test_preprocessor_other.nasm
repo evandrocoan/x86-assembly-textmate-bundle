@@ -46,11 +46,60 @@
 %line nnn[+mmm] [filename]
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^^ keyword.control.preprocessor
-%!variable
+%!variable: not a variable
 ;<- punctuation.definition.keyword.preprocessor - variable.parameter.preprocessor
 ;^ punctuation.definition.variable - variable.parameter.preprocessor
-; ^^^^^^^^ variable.parameter.preprocessor
-%!'also variable'
+; ^^^^^^^^ variable.parameter.preprocessor.environment.simple
+;         ^^^^^^^^^^^^^^^^ - variable.parameter.preprocessor
+%!'also a variable' also not a variable
 ;<- punctuation.definition.keyword.preprocessor - variable.parameter.preprocessor
 ;^ punctuation.definition.variable - variable.parameter.preprocessor
-; ^^^^^^^^^^^^^^^ variable.parameter.preprocessor
+; ^^^^^^^^^^^^^^^^^ variable.parameter.preprocessor.environment.quoted
+;                   ^^^^^^^^^^^^^^^^^^^ - variable.parameter.preprocessor
+
+%defstr FOO          %!FOO
+%defstr C_colon      %!'C:'
+%defstr C_colon      %!'C:'
+;^^^^^^ - invalid.illegal
+; '
+%defstr blah text %!'c:'
+%defstr blah text %!'c:'
+;^^^^^^ - invalid.illegal
+;                   ^^^^ variable.parameter.preprocessor.environment.quoted
+; '
+%defstr blah text %!'c:' text
+%defstr blah text %!'c:' text text text
+;^^^^^^ - invalid.illegal
+;                   ^^^^ variable.parameter.preprocessor.environment.quoted
+;                        ^^^^^^^^^^^^^^ string - invalid.illegal - variable.parameter.preprocessor.environment
+%defstr C_colon      %!`C:`
+%defstr C_colon      %!`C:`
+;^^^^^^ - invalid.illegal
+;                      ^^^^ variable.parameter.preprocessor.environment.quoted
+; `
+%defstr blah text %!`c:`
+%defstr blah text %!`c:`
+;^^^^^^ - invalid.illegal
+;                   ^^^^ variable.parameter.preprocessor.environment.quoted
+; `
+%defstr blah text %!'c:' text
+%defstr blah text %!`c:` text text text
+;^^^^^^ - invalid.illegal
+;                   ^^^^ variable.parameter.preprocessor.environment.quoted
+;                        ^^^^^^^^^^^^^^ string - invalid.illegal - variable.parameter.preprocessor.environment
+%defstr C_colon      %!"C:"
+%defstr C_colon      %!"C:"
+;^^^^^^ - invalid.illegal
+; "
+%defstr blah text %!"c:"
+%defstr blah text %!"c:"
+;^^^^^^ - invalid.illegal
+;                   ^^^^ variable.parameter.preprocessor.environment.quoted
+; "
+%defstr blah text %!"c:" text
+%defstr blah text %!"c:" text text text
+;^^^^^^ - invalid.illegal
+;                   ^^^^ variable.parameter.preprocessor.environment.quoted
+;                        ^^^^^^^^^^^^^^ string - invalid.illegal - variable.parameter.preprocessor.environment
+
+
