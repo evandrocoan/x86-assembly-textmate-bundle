@@ -28,9 +28,9 @@ contexts:
     - include: operators
     - include: support
     - include: entities
-    - include: labels
     - include: structs
     - include: preprocessor
+    - include: labels
 
   numbers:
     - include: floating-point
@@ -155,8 +155,25 @@ contexts:
       scope: operator.separator.asm.x86_64
 
   structs:
-    - match: '(?i)\b((end|i)?struc|at|iend)\b'
-      scope: meta.struct.asm.x86_64
+    - match: '^\s*(struc)\b'
+      captures:
+        1: support.function.asm.x86_64 meta.struct.asm.x86_64
+      push:
+        - meta_content_scope: meta.struct.asm.x86_64.1
+        - match: '{{valid_identifier}}'
+          scope: entity.name.struct.asm.x86_64
+          set:
+            - meta_scope: meta.struct.asm.x86_64
+            - match: '^\s*(endstruc)\b'
+              captures:
+                1: support.function.asm.x86_64 meta.struct.asm.x86_64
+              pop: true
+            - include: main
+        - match: '\w'
+          scope: invalid.illegal.entity.name.struct.asm.x86_64
+    - match: '^\s*(endstruc)\b'
+      captures:
+        1: invalid.illegal.support.function.asm.x86_64 meta.struct.asm.x86_64
 
   entities:
     - match: '((section|segment)\s+)?\.((ro)?data|bss|text)'
