@@ -215,7 +215,7 @@ contexts:
         - include: strings
         - include: preprocessor-line-ending
         - include: preprocessor-macro-indirection
-    - match: '^\s*((%)(?:assign|i?deftok|strcat|strlen|substr|pathsearch|push|pop|repl))\b'
+    - match: '^\s*((%)(?:assign|i?deftok|strcat|strlen|substr|pathsearch|push|pop|repl|line))\b'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
@@ -363,8 +363,9 @@ contexts:
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
         3: punctuation.definition.variable.asm.x86_64
       push:
-        - meta_scope: meta.preprocessor.asm.x86_64 keyword.operator.preprocessor.asm.x86_64 variable.parameter.preprocessor.asm.x86_64
+        - meta_content_scope: meta.preprocessor.asm.x86_64 keyword.operator.preprocessor.asm.x86_64 variable.parameter.preprocessor.asm.x86_64
         - match: '{{valid_identifier}}'
+          scope: variable.parameter.preprocessor.asm.x86_64
           pop: true
         - include: strings
         - match: '\b'

@@ -42,3 +42,15 @@
 ;    ^^^^^ keyword.control.preprocessor
 ;          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ string.quoted
 %endif
+
+%line nnn[+mmm] [filename]
+;<- punctuation.definition.keyword.preprocessor
+;^^^^ keyword.control.preprocessor
+%!variable
+;<- punctuation.definition.keyword.preprocessor - variable.parameter.preprocessor
+;^ punctuation.definition.variable - variable.parameter.preprocessor
+; ^^^^^^^^ variable.parameter.preprocessor
+%!'also variable'
+;<- punctuation.definition.keyword.preprocessor - variable.parameter.preprocessor
+;^ punctuation.definition.variable - variable.parameter.preprocessor
+; ^^^^^^^^^^^^^^^ variable.parameter.preprocessor
