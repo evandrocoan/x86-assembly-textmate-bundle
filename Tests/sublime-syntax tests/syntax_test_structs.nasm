@@ -36,3 +36,20 @@ endstruc
 mov [ebp + mytype.word], ax
 ;<- - meta.struct
 ;^^^^^^^^^^^^^^^^^^^^^^^^^^ - meta.struct
+
+ endstruc
+;^^^^^^^^ invalid.illegal
+
+mystruc: 
+;<- entity.name.constant
+;^^^^^^ entity.name.constant
+    istruc mytype 
+;   ^^^^^^ support.function
+;          ^^^^^^ variable.struct
+        at mt_long, dd      123456 
+;       ^^ support.function
+        at mt_word, dw      1024 
+        at mt_byte, db      'x' 
+        at mt_str,  db      'hello, world', 13, 10, 0 
+    iend
+;   ^^^^ support.function
