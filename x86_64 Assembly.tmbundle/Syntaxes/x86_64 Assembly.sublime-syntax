@@ -125,10 +125,21 @@ contexts:
     # http://www.nasm.us/doc/nasmdoc7.html#section-7.4.6
     - match: '\.\.(?:start|imagebase|tlvp|got(?:pc(?:rel)?|(?:tp)?off)?|plt|sym|tlsie)\b'
       scope: support.function.asm.x86_64
-    - match: '\b__(utf((16|32)([lb]e)?)|float(8|16|32|64|80[me]|128[lh])|Infinity|[QS]?NaN)__\b'
+    - match: '\b__(?:utf(?:(?:16|32)(?:[lb]e)?)|float(?:8|16|32|64|80[me]|128[lh])|Infinity|[QS]?NaN)__\b'
       scope: support.function.asm.x86_64
-    - match: '\b__(BITS)__\b'
+    # http://www.nasm.us/doc/nasmdoc4.html#section-4.11
+    - match: '\b__NASM_(?:MAJOR|(?:SUB)?MINOR|SNAPSHOT|VER(?:SION_ID)?)__\b'
       scope: support.function.asm.x86_64
+    - match: '\b___NASM_PATCHLEVEL__\b'
+      scope: support.function.asm.x86_64
+    - match: '\b__(?:FILE|LINE|BITS|OUTPUT_FORMAT)__\b'
+      scope: support.function.asm.x86_64
+    - match: '\b__(?:(?:UTC_)?(?:DATE|TIME)(?:_NUM)?|POSIX_TIME)__\b'
+      scope: support.function.asm.x86_64
+    - match: '\b__USE_(?:ALTREG|SMARTALIGN|FP|IFUNC)__\b'
+      scope: support.function.asm.x86_64
+    - match: '\b__PASS__\b'
+      scope: support.function.asm.x86_64 invalid.deprecated.asm.x86_64
 
   operators:
     - match: '[+\-*/]'
@@ -215,7 +226,7 @@ contexts:
         - include: strings
         - include: preprocessor-line-ending
         - include: preprocessor-macro-indirection
-    - match: '^\s*((%)(?:assign|i?deftok|strcat|strlen|substr|pathsearch|push|pop|repl|line))\b'
+    - match: '^\s*((%)(?:assign|i?deftok|strcat|strlen|substr|pathsearch|push|pop|repl|line|clear))\b'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64

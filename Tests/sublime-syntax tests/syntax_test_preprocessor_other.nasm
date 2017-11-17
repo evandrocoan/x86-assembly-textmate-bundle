@@ -101,5 +101,3 @@
 ;^^^^^^ - invalid.illegal
 ;                   ^^^^ variable.parameter.preprocessor.environment.quoted
 ;                        ^^^^^^^^^^^^^^ string - invalid.illegal - variable.parameter.preprocessor.environment
-
-
