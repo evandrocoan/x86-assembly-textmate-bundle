@@ -252,10 +252,19 @@ contexts:
           scope: invalid.illegal.storage.type.asm.x86_64
         - include: preprocessor-line-continuation
         - include: preprocessor-line-ending
-
     - match: '^\s*((%)i?defstr)\s+({{valid_identifier}})\b'
       captures:
         1: meta.preprocessor.macro.asm.x86_64 keyword.control.import.preprocessor.assign.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+        3: entity.name.constant.preprocessor.asm.x86_64
+      push:
+        - meta_content_scope: meta.preprocessor.macro.asm.x86_64 string.asm.x86_64
+        - include: strings
+        - include: preprocessor-line-ending
+        - include: preprocessor-macro-indirection
+    - match: '^\s*((%)(?:warning|error|fatal))(?:\s|$)'
+      captures:
+        1: meta.preprocessor.macro.asm.x86_64 keyword.control.preprocessor.assign.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
         3: entity.name.constant.preprocessor.asm.x86_64
       push:

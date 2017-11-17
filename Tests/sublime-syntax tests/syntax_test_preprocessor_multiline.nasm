@@ -34,14 +34,18 @@
 
 %macro  level1  0
     %%level1_label:
+;     ^^^^^^^^^^^^ - invalid.illegal
 
     %macro      level2  0
         %%level2_label:
+;         ^^^^^^^^^^^^ - invalid.illegal
     %endmacro
 
     %%still_level1_label:
+;     ^^^^^^^^^^^^^^^^^^ - invalid.illegal
 %endmacro
 %%and_now_its_invalid:
+; ^^^^^^^^^^^^^^^^^^^ invalid.illegal
 
 %macro  writefile 2+
 ;                  ^ storage.modifier
