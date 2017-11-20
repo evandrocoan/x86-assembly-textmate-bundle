@@ -140,21 +140,29 @@ contexts:
       scope: support.function.asm.x86_64
     - match: '\b__PASS__\b'
       scope: support.function.asm.x86_64 invalid.deprecated.asm.x86_64
-    - match: '\b(r[0-7]|r[0-3][lh])\b'
+    - match: '\b(?i)(?:r[0-7]|r[0-3][lh])\b'
       scope: support.constant.altreg.asm.x86_64
-    - match: '\b(r[4-7][lh])\b'
+    - match: '\b(?i)r[4-7][lh]\b'
       scope: invalid.illegal.support.constant.altreg.asm.x86_64
-    - match: '\b__ALIGNMODE__\b'
+    - match: '(?i)\balignmode\b'
       scope: support.function.smartalign.asm.x86_64
       push:
         - include: preprocessor-line-continuation
         - include: preprocessor-line-ending
-        - match: '\b(generic|nop|k7|k8|p6)\b'
+        - match: '\b(?:generic|nop|k7|k8|p6)\b'
           scope: support.constant.smartalign.asm.x86_64
           pop: true
         - match: '\w+'
           scope: invalid.illegal.constant.smartalign.asm.x86_64
           pop: true
+    - match: '\b__ALIGNMODE__\b'
+      scope: support.constant.smartalign.asm.x86_64
+    - match: '\b(?:Inf|[QS]?NaN)\b'
+      scope: support.constant.fp.asm.x86_64
+    - match: '\b(?:float(?:8|16|32|64|80[me]|128[lh]))\b'
+      scope: support.function.fp.asm.x86_64
+    - match: '(?i)\bilog2[ewfc]?\b'
+      scope: support.function.ifunc.asm.x86_64
 
   operators:
     - match: '[+\-*/]'
