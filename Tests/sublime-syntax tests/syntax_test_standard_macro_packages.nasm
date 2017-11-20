@@ -11,12 +11,12 @@ __USE_ALTREG__
 ;                         ^^ support.constant
 ;                              ^^ support.constant
 ;                                   ^^ support.constant
- r0l, r1l, r2l, r3l
+ r0l, r1L, R2l, R3L
 ;^^^ support.constant
 ;     ^^^ support.constant
 ;          ^^^ support.constant
 ;               ^^^ support.constant
- r0h, r1h, r2h, r3h
+ r0h, r1H, R2h, R3H
 ;^^^ support.constant
 ;     ^^^ support.constant
 ;          ^^^ support.constant
