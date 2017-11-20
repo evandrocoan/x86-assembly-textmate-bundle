@@ -37,3 +37,22 @@ proc:
       ret
 
 __USE_SMARTALIGN__
+ __ALIGNMODE__ generic, -1
+;^^^^^^^^^^^^^ support.function
+;              ^^^^^^^ support.constant
+ __ALIGNMODE__     nop, -1
+;                  ^^^ support.constant
+ __ALIGNMODE__      k7
+;                   ^^ support.constant
+ __ALIGNMODE__      k8
+;                   ^^ support.constant
+ __ALIGNMODE__      p6
+;                   ^^ support.constant
+ __ALIGNMODE__      p5, 12
+;                   ^^ invalid.illegal
+ generic, nop, k7, k8, p6
+;^^^^^^^ - support.constant
+;         ^^^ - support.constant
+;              ^^ - support.constant
+;                  ^^ - support.constant
+;                      ^^ - support.constant

@@ -144,6 +144,17 @@ contexts:
       scope: support.constant.altreg.asm.x86_64
     - match: '\b(r[4-7][lh])\b'
       scope: invalid.illegal.support.constant.altreg.asm.x86_64
+    - match: '\b__ALIGNMODE__\b'
+      scope: support.function.smartalign.asm.x86_64
+      push:
+        - include: preprocessor-line-continuation
+        - include: preprocessor-line-ending
+        - match: '\b(generic|nop|k7|k8|p6)\b'
+          scope: support.constant.smartalign.asm.x86_64
+          pop: true
+        - match: '\w+'
+          scope: invalid.illegal.constant.smartalign.asm.x86_64
+          pop: true
 
   operators:
     - match: '[+\-*/]'
