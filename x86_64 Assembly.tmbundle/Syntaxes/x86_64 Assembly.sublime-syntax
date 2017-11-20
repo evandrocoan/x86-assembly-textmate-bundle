@@ -27,6 +27,7 @@ contexts:
     - include: numbers
     - include: operators
     - include: support
+    - include: directives
     - include: entities
     - include: structs
     - include: preprocessor
@@ -163,6 +164,10 @@ contexts:
       scope: support.function.fp.asm.x86_64
     - match: '(?i)\bilog2(?:[ewfc]|[fc]w)?\b'
       scope: support.function.ifunc.asm.x86_64
+
+  directives:
+    - match: '(?i)\b(?:IDEAL|JUMPS|P[345]86|END)\b'
+      scope: invalid.deprecated.tasm.asm.x86_64
 
   operators:
     - match: '[+\-*/]'
