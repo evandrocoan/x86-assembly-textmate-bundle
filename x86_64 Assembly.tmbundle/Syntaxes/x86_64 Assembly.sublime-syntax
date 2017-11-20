@@ -140,6 +140,10 @@ contexts:
       scope: support.function.asm.x86_64
     - match: '\b__PASS__\b'
       scope: support.function.asm.x86_64 invalid.deprecated.asm.x86_64
+    - match: '\b(r[0-7]|r[0-3][lh])\b'
+      scope: support.constant.altreg.asm.x86_64
+    - match: '\b(r[4-7][lh])\b'
+      scope: invalid.illegal.support.constant.altreg.asm.x86_64
 
   operators:
     - match: '[+\-*/]'
