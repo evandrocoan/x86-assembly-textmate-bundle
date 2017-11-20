@@ -161,7 +161,7 @@ contexts:
       scope: support.constant.fp.asm.x86_64
     - match: '\b(?:float(?:8|16|32|64|80[me]|128[lh]))\b'
       scope: support.function.fp.asm.x86_64
-    - match: '(?i)\bilog2[ewfc]?\b'
+    - match: '(?i)\bilog2(?:[ewfc]|[fc]w)?\b'
       scope: support.function.ifunc.asm.x86_64
 
   operators:

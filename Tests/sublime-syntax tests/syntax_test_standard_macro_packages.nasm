@@ -93,7 +93,11 @@ __USE_IFUNC__
 ;^^^^^^ support.function
  ilog2w(x)
 ;^^^^^^ support.function
+ ilog2fw(x)
+;^^^^^^^ support.function
  ilog2f(x)
 ;^^^^^^ support.function
+ ilog2cw(x)
+;^^^^^^^ support.function
  ilog2c(x)
 ;^^^^^^ support.function
