@@ -8,7 +8,7 @@ variables:
   num_oct: '(?:[0-7][0-7_]*)'
   num_dec: '(?:[0-9][0-9_]*)'
   num_hex: '(?:[[:xdigit:]][[:xdigit:]_]*)'
-  num_bin_exp: '(?:p\+?{{num_dec}})'
+  num_bin_exp: '(?:p[+-]?{{num_dec}})'
   num_dec_exp: '(?:e[+-]?{{num_dec}})'
   identifier_body: '(?:[[:alnum:]_$#@~.?]*)'
   valid_identifier: '(?:[[:alpha:]_?]{{identifier_body}})'
@@ -37,32 +37,33 @@ contexts:
     - include: floating-point
     - include: integers
   floating-point:
-    - match: '\b0[by]{{num_bin}}\.(?:{{num_bin}}?{{num_bin_exp}}?\b)?'
+    # binary
+    - match: '(?i)\b0[by]{{num_bin}}\.(?:{{num_bin}}?{{num_bin_exp}}?\b)?'
       scope: constant.numeric.binary.floating-point.asm.x86_64
-    - match: '\b0[by]{{num_bin}}{{num_bin_exp}}\b'
+    - match: '(?i)\b0[by]{{num_bin}}{{num_bin_exp}}\b'
       scope: constant.numeric.binary.floating-point.asm.x86_64
-
-    - match: '\b0[oq]{{num_oct}}\.(?:{{num_oct}}?{{num_bin_exp}}?\b)?'
+    # octal
+    - match: '(?i)\b0[oq]{{num_oct}}\.(?:{{num_oct}}?{{num_bin_exp}}?\b)?'
       scope: constant.numeric.octal.floating-point.asm.x86_64
-    - match: '\b0[oq]{{num_oct}}{{num_bin_exp}}\b'
+    - match: '(?i)\b0[oq]{{num_oct}}{{num_bin_exp}}\b'
       scope: constant.numeric.octal.floating-point.asm.x86_64
-
-    - match: '\b{{num_dec}}\.(?:{{num_dec}}?{{num_dec_exp}}?\b)?'
+    # decimal
+    - match: '(?i)\b{{num_dec}}\.(?:{{num_dec}}?{{num_dec_exp}}?\b)?'
       scope: constant.numeric.decimal.floating-point.asm.x86_64
-    - match: '\.{{num_dec}}{{num_dec_exp}}?\b'
+    - match: '(?i)\.{{num_dec}}{{num_dec_exp}}?\b'
       scope: invalid.illegal.constant.numeric.decimal.floating-point.asm.x86_64
-    - match: '\b{{num_dec}}{{num_dec_exp}}\b'
+    - match: '(?i)\b{{num_dec}}{{num_dec_exp}}\b'
       scope: invalid.illegal.constant.numeric.decimal.floating-point.asm.x86_64
-    - match: '\b{{num_dec}}p{{num_dec}}?\b'
+    - match: '(?i)\b{{num_dec}}p{{num_dec}}?\b'
       scope: constant.numeric.decimal.packed-bcd.asm.x86_64
-
-    - match: '\b0[xh]{{num_hex}}\.(?:{{num_hex}}?{{num_bin_exp}}?\b)?'
+    # hex
+    - match: '(?i)\b0[xh]{{num_hex}}\.(?:{{num_hex}}?{{num_bin_exp}}?\b)?'
       scope: constant.numeric.hex.floating-point.asm.x86_64
-    - match: '\b0[xh]{{num_hex}}{{num_bin_exp}}\b'
+    - match: '(?i)\b0[xh]{{num_hex}}{{num_bin_exp}}\b'
       scope: constant.numeric.hex.floating-point.asm.x86_64
-    - match: '\$[0-9]\_?{{num_hex}}\.(?:{{num_hex}}?{{num_bin_exp}}?\b)?'
+    - match: '(?i)\$[0-9]\_?{{num_hex}}?\.(?:{{num_hex}}?{{num_bin_exp}}?\b)?'
       scope: constant.numeric.hex.floating-point.asm.x86_64
-    - match: '\$[0-9]\_?{{num_hex}}{{num_bin_exp}}\b'
+    - match: '(?i)\$[0-9]\_?{{num_hex}}{{num_bin_exp}}\b'
       scope: constant.numeric.hex.floating-point.asm.x86_64
   integers:
     - match: '\b(?:(?:0[by]{{num_bin}})|(?:{{num_bin}}[by]))\b'

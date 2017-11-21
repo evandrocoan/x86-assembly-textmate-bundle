@@ -131,6 +131,8 @@ dq 0x1f.p+2
 ;  ^^^^^^^^ constant.numeric.hex.floating-point
 dq 0x1f.afp+2
 ;  ^^^^^^^^^^ constant.numeric.hex.floating-point
+dq 0x0.123456789abcdef0123456789abcdef012345p-10
+;  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ constant.numeric.hex.floating-point
 dq 0h1f.
 ;  ^^^^^ constant.numeric.hex.floating-point
 dq 0h1f.ff
@@ -155,6 +157,7 @@ dq $01f.p+2
 ;  ^^^^^^^^ constant.numeric.hex.floating-point
 dq $01f.afp+2
 ;  ^^^^^^^^^^ constant.numeric.hex.floating-point
+
 
 dq 0b10.
 ;  ^^^^^ constant.numeric.binary.floating-point
@@ -212,9 +215,9 @@ dq 0q17.71p+9
 dq 1e10
 ;  ^^^^ invalid.illegal.constant.numeric.decimal
 dq $a0
-;  ^^^ text.variable
+;  ^^^ - constant.numeric
 dq $ff
-;  ^^^ text.variable
+;  ^^^ - constant.numeric
 
 dq .0
 ;  ^^ invalid.illegal.constant.numeric.decimal.floating-point
@@ -222,9 +225,9 @@ dq -.0
 ;  ^ keyword.operator
 ;   ^^ invalid.illegal.constant.numeric.decimal.floating-point
    .e10
-;   ^^^ entity.name.label
+;   ^^^ entity.name.constant
    .e-10
-;   ^ entity.name.label
+;   ^ entity.name.constant
 ;    ^ keyword.operator
 ;     ^^ constant.numeric.decimal
 
