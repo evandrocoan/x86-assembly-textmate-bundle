@@ -141,10 +141,6 @@ contexts:
     - match: '\b__USE_(?:ALTREG|SMARTALIGN|FP|IFUNC)__\b'
       scope: support.function.asm.x86_64
     - match: '\b__PASS__\b'
-      scope: support.function.asm.x86_64 invalid.deprecated.asm.x86_64
-    - match: '\b(?i)(?:r[0-7]|r[0-3][lh])\b'
-      scope: support.constant.altreg.asm.x86_64
-    - match: '\b(?i)r[4-7][lh]\b'
       scope: invalid.illegal.support.constant.altreg.asm.x86_64
     - match: '(?i)\balignmode\b'
       scope: support.function.smartalign.asm.x86_64

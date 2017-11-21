@@ -101,3 +101,21 @@
 ;^^^^^^ - invalid.illegal
 ;                   ^^^^ variable.parameter.preprocessor.environment.quoted
 ;                        ^^^^^^^^^^^^^^ string - invalid.illegal - variable.parameter.preprocessor.environment
+
+%defstr incfile %!'PROJECTBASEDIR'/%{1}.dec
+;^^^^^^ - invalid.illegal
+;                 ^^^^^^^^^^^^^^^^ variable.parameter.preprocessor.environment.quoted
+;                                 ^^^^^^^^^ string - invalid.illegal - variable.parameter.preprocessor.environment
+
+%macro import 1
+    %defstr %%incfile %!PROJECTBASEDIR/%{1}.inc
+;^^^^^^^^^^^^^^^^^^^^ - invalid.illegal
+;                       ^^^^^^^^^^^^^^ variable.parameter.preprocessor.environment.quoted
+;                                     ^^^^^^^^^ string - invalid.illegal - variable.parameter.preprocessor.environment
+    %defstr %%decfile %!'PROJECTBASEDIR'/%{1}.dec
+;^^^^^^^^^^^^^^^^^^^^ - invalid.illegal
+;                       ^^^^^^^^^^^^^^^^ variable.parameter.preprocessor.environment.quoted
+;                                       ^^^^^^^^^ string - invalid.illegal - variable.parameter.preprocessor.environment
+    db %%incfile, `\n`
+    db %%decfile, `\n`
+%endmacro

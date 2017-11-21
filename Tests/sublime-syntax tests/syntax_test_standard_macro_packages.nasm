@@ -1,36 +1,6 @@
 ; SYNTAX TEST "Packages/User/x86_64 Assembly.tmbundle/Syntaxes/x86_64 Assembly.sublime-syntax"
 
 __USE_ALTREG__
- ax,  cx,  dx,  bx, spl, bpl, sil, dil
- r0,  r1,  r2,  r3,  R4,  R5,  R6,  R7
-;^^ support.constant
-;     ^^ support.constant
-;          ^^ support.constant
-;               ^^ support.constant
-;                    ^^ support.constant
-;                         ^^ support.constant
-;                              ^^ support.constant
-;                                   ^^ support.constant
- r0l, r1L, R2l, R3L
-;^^^ support.constant
-;     ^^^ support.constant
-;          ^^^ support.constant
-;               ^^^ support.constant
- r0h, r1H, R2h, R3H
-;^^^ support.constant
-;     ^^^ support.constant
-;          ^^^ support.constant
-;               ^^^ support.constant
- r4l, r5l, r6l, r7l
-;^^^ invalid.illegal
-;     ^^^ invalid.illegal
-;          ^^^ invalid.illegal
-;               ^^^ invalid.illegal
- r4h, r5h, r6h, r7h
-;^^^ invalid.illegal
-;     ^^^ invalid.illegal
-;          ^^^ invalid.illegal
-;               ^^^ invalid.illegal
 %use altreg 
 proc: 
       mov r0l,r3h                    ; mov al,bh 
