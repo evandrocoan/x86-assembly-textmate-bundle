@@ -22,7 +22,11 @@ dq 0d200_000
 ;  ^^^^^^^^^ constant.numeric.decimal
 dq 0t200_000
 ;  ^^^^^^^^^ constant.numeric.decimal
-
+dd 0d3.7282705e+4
+;  ^^^^^^^^^^^^^^ constant.numeric.decimal
+dd 0t3.7282705e+4
+;  ^^^^^^^^^^^^^^ constant.numeric.decimal
+	
 dq 0c8h
 ;  ^^^^ constant.numeric.hex
 dq 0d8h
@@ -157,7 +161,8 @@ dq $01f.p+2
 ;  ^^^^^^^^ constant.numeric.hex.floating-point
 dq $01f.afp+2
 ;  ^^^^^^^^^^ constant.numeric.hex.floating-point
-
+dq $0.12
+;  ^^^^^ constant.numeric.hex.floating-point
 
 dq 0b10.
 ;  ^^^^^ constant.numeric.binary.floating-point
@@ -212,18 +217,16 @@ dq 0q17.71p+9
 
 ; NOT A NUMBER TESTS
 
-dq 1e10
-;  ^^^^ invalid.illegal.constant.numeric.decimal
 dq $a0
 ;  ^^^ - constant.numeric
 dq $ff
 ;  ^^^ - constant.numeric
 
 dq .0
-;  ^^ invalid.illegal.constant.numeric.decimal.floating-point
+;  ^^ invalid.illegal.constant.numeric
 dq -.0
 ;  ^ keyword.operator
-;   ^^ invalid.illegal.constant.numeric.decimal.floating-point
+;   ^^ invalid.illegal.constant.numeric
    .e10
 ;   ^^^ entity.name.constant
    .e-10
@@ -232,11 +235,49 @@ dq -.0
 ;     ^^ constant.numeric.decimal
 
 dq 0x1p+1a
+;  ^^^^^^^ - constant.numeric
 dq 0b12.01
+;  ^^^^^^^ - constant.numeric
 dq 0b10.12
 ;  ^^^^^ constant.numeric.binary.floating-point
 ;       ^^ constant.numeric.decimal
 dq 0o89.01
+;  ^^^^^^^ - constant.numeric
 dq 0o10.19
 ;  ^^^^^ constant.numeric.octal.floating-point
 ;       ^^ constant.numeric.decimal
+
+; NASM TESTS
+
+dd 0x1234_5678
+;  ^^^^^^^^^^^ constant.numeric.hex
+dd 305_419_896		; Same number as above it
+;  ^^^^^^^^^^^ constant.numeric.decimal
+dd 0x1e16		; NOT a floating-point number!
+;  ^^^^^^ constant.numeric.hex - constant.numeric.hex.floating-point - constant.numeric.decimal.floating-point
+dd 1e16h		; NOT a floating-point number!
+;  ^^^^^ constant.numeric.hex - constant.numeric.hex.floating-point - constant.numeric.decimal.floating-point
+dd 1e16_h		; NOT a floating-point number!
+;  ^^^^^^ constant.numeric.hex - constant.numeric.hex.floating-point - constant.numeric.decimal.floating-point
+dd $1e16		; NOT a floating-point number!
+;  ^^^^^ constant.numeric.hex - constant.numeric.hex.floating-point - constant.numeric.decimal.floating-point
+dd $1e+16		; NOT a floating-point number!
+;  ^^^ constant.numeric.hex
+;     ^ keyword.operator.arithmetic
+;      ^^ constant.numeric.decimal
+;  ^^^^^^ - constant.numeric.hex.floating-point - constant.numeric.decimal.floating-point
+dd 1e16			; THIS is a floating-point number!
+;  ^^^^ constant.numeric.decimal.floating-point
+dd 1e+16
+;  ^^^^^ constant.numeric.decimal.floating-point
+dd 1.e+16
+;  ^^^^^^ constant.numeric.decimal.floating-point
+dd 1e+1_6
+;  ^^^^^^ constant.numeric.decimal.floating-point
+dd 1e1_6
+;  ^^^^^ constant.numeric.decimal.floating-point
+dd 1.0e16
+;  ^^^^^^ constant.numeric.decimal.floating-point
+dd 1_0e16		; This is 1e17, not 1e16!
+;  ^^^^^^ constant.numeric.decimal.floating-point
+

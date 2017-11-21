@@ -48,11 +48,11 @@ contexts:
     - match: '(?i)\b0[oq]{{num_oct}}{{num_bin_exp}}\b'
       scope: constant.numeric.octal.floating-point.asm.x86_64
     # decimal
-    - match: '(?i)\b{{num_dec}}\.(?:{{num_dec}}?{{num_dec_exp}}?\b)?'
+    - match: '(?i)\b(?:0[dt])?{{num_dec}}\.(?:{{num_dec}}?{{num_dec_exp}}?\b)?'
+      scope: constant.numeric.decimal.floating-point.asm.x86_64
+    - match: '(?i)\b{{num_dec}}{{num_dec_exp}}\b'
       scope: constant.numeric.decimal.floating-point.asm.x86_64
     - match: '(?i)\.{{num_dec}}{{num_dec_exp}}?\b'
-      scope: invalid.illegal.constant.numeric.decimal.floating-point.asm.x86_64
-    - match: '(?i)\b{{num_dec}}{{num_dec_exp}}\b'
       scope: invalid.illegal.constant.numeric.decimal.floating-point.asm.x86_64
     - match: '(?i)\b{{num_dec}}p{{num_dec}}?\b'
       scope: constant.numeric.decimal.packed-bcd.asm.x86_64
@@ -66,15 +66,15 @@ contexts:
     - match: '(?i)\$[0-9]\_?{{num_hex}}{{num_bin_exp}}\b'
       scope: constant.numeric.hex.floating-point.asm.x86_64
   integers:
-    - match: '\b(?:(?:0[by]{{num_bin}})|(?:{{num_bin}}[by]))\b'
+    - match: '(?i)\b(?:(?:0[by]{{num_bin}})|(?:{{num_bin}}[by]))\b'
       scope: constant.numeric.binary.asm.x86_64
-    - match: '\b(?:(?:0[oq]{{num_oct}})|(?:{{num_oct}}[oq]))\b'
+    - match: '(?i)\b(?:(?:0[oq]{{num_oct}})|(?:{{num_oct}}[oq]))\b'
       scope: constant.numeric.octal.asm.x86_64
-    - match: '\b(?:(?:0[dt]{{num_dec}})|(?:{{num_dec}}[dt]?))\b'
+    - match: '(?i)\b(?:(?:0[dt]{{num_dec}})|(?:{{num_dec}}[dt]?))\b'
       scope: constant.numeric.decimal.asm.x86_64
-    - match: '(?:\$[0-9]\_?{{num_hex}}?)\b'
+    - match: '(?i)(?:\$[0-9]\_?{{num_hex}}?)\b'
       scope: constant.numeric.hex.asm.x86_64
-    - match: '\b(?:(?:0[xh]{{num_hex}})|(?:{{num_hex}}[hxHX]))\b'
+    - match: '(?i)\b(?:(?:0[xh]{{num_hex}})|(?:{{num_hex}}[hxHX]))\b'
       scope: constant.numeric.hex.asm.x86_64
 
   labels:
