@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-file_extensions: [yasm, nasm, asm, inc]
+file_extensions: [yasm, nasm, asm, inc, mac]
 scope: source.asm.x86_64
 
 variables:
@@ -120,7 +120,7 @@ contexts:
       scope: storage.modifier.prefix.asm.x86_64
     - match: '(?i)\b(?:rep(?:n?[ez])?|lock|xacquire|xrelease|(?:no)?bnd)\b'
       scope: storage.modifier.prefix.asm.x86_64
-    - match: '(?i)\b(\.?(bits|cpu|fpu)|use(16|32|64))\b'
+    - match: '(?i)\b(\.?(cpu|fpu))\b'
       scope: keyword.other.asm.x86_64
 
   support:
@@ -163,8 +163,14 @@ contexts:
       scope: support.function.ifunc.asm.x86_64
 
   directives:
-    - match: '(?i)\b(?:IDEAL|JUMPS|P[345]86|END)\b'
+    - match: '(?i)\b(?:ideal|jumps|p[345]86|end)\b'
       scope: invalid.deprecated.tasm.asm.x86_64
+    - match: '(?i)\b(?:bits|use(?:16|32|64))\b'
+      scope: support.function.directive.asm.x86_64
+    - match: '(?i)\b(default)(?:\s+(rel|abs|(?:no)?bnd))?\b'
+      captures:
+        1: support.function.directive.asm.x86_64
+        2: support.constant.directive.asm.x86_64
 
   operators:
     - match: '[+\-*/]'
@@ -228,9 +234,9 @@ contexts:
         1: support.function.asm.x86_64
         2: support.constant.asm.x86_64
   entities:
-    - match: '((section|segment)\s+)?\.((ro)?data|bss|text)'
+    - match: '(?i)((section|segment)\s+)?\.((ro)?data|bss|text)'
       scope: entity.name.section
-    - match: '\b(?:private|public|common|stack)\b'
+    - match: '(?i)\b(?:private|public|common|stack)\b'
       scope: storage.modifier
     - match: '(\$)(\w+)\b'
       scope: variable.other
@@ -238,7 +244,7 @@ contexts:
         1: punctuation.definition.variable
     - match: '\$'
       scope: variable.language
-    - match: '^\.?(globa?l|extern)\b'
+    - match: '(?i)^\.?(globa?l|extern)\b'
       scope: entity.directive
  
   comments:
