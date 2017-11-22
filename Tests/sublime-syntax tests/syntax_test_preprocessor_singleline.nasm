@@ -106,7 +106,7 @@ endstruc
 ;<- punctuation.definition.keyword.preprocessor
 ;^^^^^^ keyword.control.preprocessor
 ;       ^^^^ entity.name.constant
-;            ^^^^^^ meta.preprocessor.macro string.quoted.single
+;            ^^^^^^ string.quoted.single
 
 %strcat alpha "Alpha: ", '12" screen'
 %strcat beta '"foo"\', "'bar'"

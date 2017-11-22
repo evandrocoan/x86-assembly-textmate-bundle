@@ -186,5 +186,5 @@ CPU IA64
 ;               ^^^^^^^^^^^^^^^^^^^^^^^^ invalid.illegal
 ;               ^^^^^^^^^^^^^^^ - support.constant.directive.warning
 ;                                        ^ - invalid.illegal
- warning all
-;^^^^^^^^^^^ - support.function.directive - support.constant.directive
+ warning all unknown-warning
+;^^^^^^^^^^^^^^^^^^^^^^^^^^^ - support.function.directive - support.constant.directive

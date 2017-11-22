@@ -56,7 +56,7 @@ __USE_package__
 ;^^^^^^^^^^^^^ support.function
 
  __PASS__
-;^^^^^^^^ support.function invalid.deprecated
+;^^^^^^^^ invalid.deprecated
 
 %macro  notdeadyet 0 
         push    eax 

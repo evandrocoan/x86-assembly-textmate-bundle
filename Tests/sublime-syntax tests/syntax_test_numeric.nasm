@@ -26,7 +26,7 @@ dd 0d3.7282705e+4
 ;  ^^^^^^^^^^^^^^ constant.numeric.decimal
 dd 0t3.7282705e+4
 ;  ^^^^^^^^^^^^^^ constant.numeric.decimal
-	
+
 dq 0c8h
 ;  ^^^^ constant.numeric.hex
 dq 0d8h
@@ -251,22 +251,22 @@ dq 0o10.19
 
 dd 0x1234_5678
 ;  ^^^^^^^^^^^ constant.numeric.hex
-dd 305_419_896		; Same number as above it
+dd 305_419_896        ; Same number as above it
 ;  ^^^^^^^^^^^ constant.numeric.decimal
-dd 0x1e16		; NOT a floating-point number!
+dd 0x1e16        ; NOT a floating-point number!
 ;  ^^^^^^ constant.numeric.hex - constant.numeric.hex.floating-point - constant.numeric.decimal.floating-point
-dd 1e16h		; NOT a floating-point number!
+dd 1e16h        ; NOT a floating-point number!
 ;  ^^^^^ constant.numeric.hex - constant.numeric.hex.floating-point - constant.numeric.decimal.floating-point
-dd 1e16_h		; NOT a floating-point number!
+dd 1e16_h        ; NOT a floating-point number!
 ;  ^^^^^^ constant.numeric.hex - constant.numeric.hex.floating-point - constant.numeric.decimal.floating-point
-dd $1e16		; NOT a floating-point number!
+dd $1e16        ; NOT a floating-point number!
 ;  ^^^^^ constant.numeric.hex - constant.numeric.hex.floating-point - constant.numeric.decimal.floating-point
-dd $1e+16		; NOT a floating-point number!
+dd $1e+16        ; NOT a floating-point number!
 ;  ^^^ constant.numeric.hex
 ;     ^ keyword.operator.arithmetic
 ;      ^^ constant.numeric.decimal
 ;  ^^^^^^ - constant.numeric.hex.floating-point - constant.numeric.decimal.floating-point
-dd 1e16			; THIS is a floating-point number!
+dd 1e16            ; THIS is a floating-point number!
 ;  ^^^^ constant.numeric.decimal.floating-point
 dd 1e+16
 ;  ^^^^^ constant.numeric.decimal.floating-point
@@ -278,6 +278,6 @@ dd 1e1_6
 ;  ^^^^^ constant.numeric.decimal.floating-point
 dd 1.0e16
 ;  ^^^^^^ constant.numeric.decimal.floating-point
-dd 1_0e16		; This is 1e17, not 1e16!
+dd 1_0e16        ; This is 1e17, not 1e16!
 ;  ^^^^^^ constant.numeric.decimal.floating-point
 

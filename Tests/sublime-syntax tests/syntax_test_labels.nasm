@@ -78,5 +78,4 @@ la_$#@~.?bel_?:
   mov ax, bx
 ; ^^^ keyword.operator.word.mnemonic
 ;     ^^ constant.language.register
-;       ^ punctuation.separator
 ;         ^^ constant.language.register

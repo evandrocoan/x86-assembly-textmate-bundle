@@ -44,7 +44,8 @@ symbol wrt weird_seg
 4<4
 5>5
 
-%macro
+%macro df 234
 ;<- punctuation.definition.keyword
+%endmacro
 %%also_macro
 ;<- punctuation.definition.keyword

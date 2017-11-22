@@ -49,7 +49,7 @@
 %!variable: not a variable
 ;<- punctuation.definition.keyword.preprocessor - variable.parameter.preprocessor
 ;^ punctuation.definition.variable - variable.parameter.preprocessor
-; ^^^^^^^^ variable.parameter.preprocessor.environment.simple
+; ^^^^^^^^ variable.parameter.preprocessor.environment.unquoted
 ;         ^^^^^^^^^^^^^^^^ - variable.parameter.preprocessor
 %!'also a variable' also not a variable
 ;<- punctuation.definition.keyword.preprocessor - variable.parameter.preprocessor
@@ -60,11 +60,11 @@
 %defstr FOO          %!FOO
 %defstr C_colon      %!'C:'
 %defstr C_colon      %!'C:'
-;^^^^^^ - invalid.illegal
+;^^^^^^ - invalid.illegal - string
 ; '
 %defstr blah text %!'c:'
 %defstr blah text %!'c:'
-;^^^^^^ - invalid.illegal
+;^^^^^^ - invalid.illegal - string
 ;                   ^^^^ variable.parameter.preprocessor.environment.quoted
 ; '
 %defstr blah text %!'c:' text
@@ -74,12 +74,12 @@
 ;                        ^^^^^^^^^^^^^^ string - invalid.illegal - variable.parameter.preprocessor.environment
 %defstr C_colon      %!`C:`
 %defstr C_colon      %!`C:`
-;^^^^^^ - invalid.illegal
+;^^^^^^ - invalid.illegal - string
 ;                      ^^^^ variable.parameter.preprocessor.environment.quoted
 ; `
 %defstr blah text %!`c:`
 %defstr blah text %!`c:`
-;^^^^^^ - invalid.illegal
+;^^^^^^ - invalid.illegal - string
 ;                   ^^^^ variable.parameter.preprocessor.environment.quoted
 ; `
 %defstr blah text %!'c:' text
@@ -89,11 +89,11 @@
 ;                        ^^^^^^^^^^^^^^ string - invalid.illegal - variable.parameter.preprocessor.environment
 %defstr C_colon      %!"C:"
 %defstr C_colon      %!"C:"
-;^^^^^^ - invalid.illegal
+;^^^^^^ - invalid.illegal - string
 ; "
 %defstr blah text %!"c:"
 %defstr blah text %!"c:"
-;^^^^^^ - invalid.illegal
+;^^^^^^ - invalid.illegal - string
 ;                   ^^^^ variable.parameter.preprocessor.environment.quoted
 ; "
 %defstr blah text %!"c:" text
@@ -110,7 +110,7 @@
 %macro import 1
     %defstr %%incfile %!PROJECTBASEDIR/%{1}.inc
 ;^^^^^^^^^^^^^^^^^^^^ - invalid.illegal
-;                       ^^^^^^^^^^^^^^ variable.parameter.preprocessor.environment.quoted
+;                       ^^^^^^^^^^^^^^ variable.parameter.preprocessor.environment.unquoted
 ;                                     ^^^^^^^^^ string - invalid.illegal - variable.parameter.preprocessor.environment
     %defstr %%decfile %!'PROJECTBASEDIR'/%{1}.dec
 ;^^^^^^^^^^^^^^^^^^^^ - invalid.illegal
