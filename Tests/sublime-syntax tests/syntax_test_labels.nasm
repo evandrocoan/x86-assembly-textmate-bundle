@@ -42,27 +42,27 @@ la_$#@~.?bel_?:
 ;                 ^ punctuation.separator
 
   ..start
-; ^^^^^^^ support.function
+; ^^^^^^^ support.constant
   ..imagebase
-; ^^^^^^^^^^^ support.function
+; ^^^^^^^^^^^ support.constant
   ..tlvp
-; ^^^^^^ support.function
+; ^^^^^^ support.constant
   ..gotpcrel
-; ^^^^^^^^^^ support.function
+; ^^^^^^^^^^ support.constant
   ..gotpc
-; ^^^^^^^ support.function
+; ^^^^^^^ support.constant
   ..gotoff
-; ^^^^^^^^ support.function
+; ^^^^^^^^ support.constant
   ..got
-; ^^^^^ support.function
+; ^^^^^ support.constant
   ..plt
-; ^^^^^ support.function
+; ^^^^^ support.constant
   ..sym
-; ^^^^^ support.function
+; ^^^^^ support.constant
   ..tlsie
-; ^^^^^^^ support.function
+; ^^^^^^^ support.constant
   ..gottpoff
-; ^^^^^^^^^^ support.function
+; ^^^^^^^^^^ support.constant
 
 
   0asdlfh

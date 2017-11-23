@@ -138,7 +138,7 @@ contexts:
   support:
     # http://www.nasm.us/doc/nasmdoc7.html#section-7.4.6
     - match: '\.\.(?:start|imagebase|tlvp|got(?:pc(?:rel)?|(?:tp)?off)?|plt|sym|tlsie)\b'
-      scope: support.function.asm.x86_64
+      scope: support.constant.asm.x86_64
     - match: '\b__(?:utf(?:(?:16|32)(?:[lb]e)?)|float(?:8|16|32|64|80[me]|128[lh])|Infinity|[QS]?NaN)__\b'
       scope: support.function.asm.x86_64
     # http://www.nasm.us/doc/nasmdoc4.html#section-4.11
@@ -177,7 +177,7 @@ contexts:
   directives:
     - match: '(?i)\b(?:ideal|jumps|p[345]86|end)\b'
       scope: invalid.deprecated.tasm.asm.x86_64
-    - match: '(?i)\b(?:bits|use(?:16|32|64))\b'
+    - match: '(?i)\b(?:bits|use(?:16|32|64)|org|uppercase)\b'
       scope: support.function.directive.asm.x86_64
     - match: '(?i)\b(default)(?:\s+(rel|abs|(?:no)?bnd))?\b'
       captures:
@@ -185,20 +185,50 @@ contexts:
         2: support.constant.directive.asm.x86_64
     - match: '(?i)\b(?:section|segment)\b'
       scope: support.function.directive.asm.x86_64
-      push:
-        - include: line-continuation
-        - include: line-ending
-        - match: '(?:\.|\b)(?:text|bss|(?:ro)?data)\b'
-          scope: string.unquoted.asm.x86_64 support.constant.section.asm.x86_64
-          pop: true
-        - match: '(?:\.|\b){{valid_identifier}}\b'
-          scope: string.unquoted.asm.x86_64
-          pop: true
-        - include: main
-    - match: '\b__SECT__\b'
+      push: [section-parameters, section-name]
+    - match: '(?i)\bgroup\b'
+      scope: support.function.directive.asm.x86_64
+      push: section-name
+    - match: '\b(?:__SECT__|__NASMDEFSEG)\b'
       scope: support.constant.directive.asm.x86_64
     - match: '(?i)\b(?:absolute|extern|global|common)\b'
       scope: support.function.directive.asm.x86_64
+    - match: '(?i)import\b'
+      scope: support.function.directive.asm.x86_64
+      set:
+        - match: '{{valid_identifier}}'
+          scope: entity.name.function.asm.x86_64
+          set:
+            - match: '{{valid_identifier}}'
+              scope: meta.path.asm.x86_64 string.unquoted.asm.x86_64
+              set:
+                - match: '{{valid_identifier}}'
+                  scope: variable.function.asm.x86_64
+                  set:
+                    - include: comments
+                    - match: '{{valid_identifier}}'
+                      scope: invalid.illegal.asm.x86_64
+                    - include: line-continuation
+                    - include: line-ending
+                - include: line-continuation
+                - include: line-ending
+            - include: line-continuation
+            - include: line-ending
+        - include: line-continuation
+        - include: line-ending
+    - match: '(?i)export\b'
+      scope: support.function.directive.asm.x86_64
+      set:
+        - match: '{{valid_identifier}}'
+          scope: entity.name.constant.asm.x86_64
+          set:
+            - match: '{{valid_identifier}}'
+              scope: variable.function.asm.x86_64
+              set: export-parameters
+            - include: line-continuation
+            - include: line-ending
+        - include: line-continuation
+        - include: line-ending
     - match: '(?i)\bcpu\b'
       scope: support.function.directive.asm.x86_64
       push:
@@ -221,8 +251,6 @@ contexts:
       captures:
         2: support.function.directive.asm.x86_64
       push:
-        - include: line-continuation
-        - include: line-ending
         - match: '(?i)([+\-*])|(error)\s*(=)\s*'
           captures:
             1: keyword.control.warning.asm.x86_64
@@ -242,6 +270,74 @@ contexts:
           scope: support.constant.directive.warning.asm.x86_64
         - match: ']'
           pop: true
+        - include: line-continuation
+        - include: line-ending
+    - match: '(?i)(\[)\s*(map)\b'
+      captures:
+        2: support.function.directive.asm.x86_64
+      push:
+        - match: '(?i)\b(?:all|brief|sections|segments|symbols)\b'
+          scope: support.constant.directive.map.asm.x86_64
+        - match: '(?i)\b(?:std(?:out|err))\b'
+          scope: meta.path.asm.x86_64 support.constant.directive.map.asm.x86_64
+        - match: '{{valid_identifier}}'
+          scope: meta.path.asm.x86_64 string.unquoted.asm.x86_64
+        - match: ']'
+          pop: true
+        - include: line-continuation
+        - include: line-ending
+  section-parameters:
+    - include: line-continuation
+    - include: line-ending
+    - match: '='
+      scope: keyword.operator.assignment.asm.x86_64
+    - match: '(?i)\b(?:(?:v)?start|align|absolute)\b'
+      scope: variable.parameter.directive.asm.x86_64
+    - match: '(?i)\b(?:(?:prog|no)bits|private|public|common|stack)\b'
+      scope: storage.modifier.directive.asm.x86_64 variable.parameter.directive.asm.x86_64
+    - match: '(?i)\b(?:(?:v)?follows)\b'
+      scope: variable.parameter.directive.asm.x86_64
+      push:
+        - match: '='
+          scope: keyword.operator.assignment.asm.x86_64
+          set: [pop, section-name]
+        - include: line-continuation
+        - include: line-ending
+    - match: '(?i)\b(?:class|overlay)\b'
+      scope: variable.parameter.directive.asm.x86_64
+      push:
+        - match: '='
+          scope: keyword.operator.assignment.asm.x86_64
+        - match: '{{valid_identifier}}'
+          scope: entity.name.class.asm.x86_64 string.unquoted.asm.x86_64
+          pop: true
+        - include: line-continuation
+        - include: line-ending
+    - include: main
+  section-name:
+    - match: '(?:\.|\b)(?:text|bss|(?:ro)?data|code)\b'
+      scope: entity.name.section.asm.x86_64 string.unquoted.asm.x86_64 support.constant.section.asm.x86_64
+      pop: true
+    - match: '(?:\.|\b){{valid_identifier}}\b'
+      scope: entity.name.section.asm.x86_64 string.unquoted.asm.x86_64
+      pop: true
+    - match: '(?=`|''|")'
+      set:
+        - meta_scope: entity.name.section.asm.x86_64
+        - include: strings
+        - include: pop
+    - include: line-continuation
+    - include: line-ending
+  export-parameters:
+    - include: line-continuation
+    - include: line-ending
+    - match: '='
+      scope: keyword.operator.assignment.asm.x86_64
+    - match: '(?i)\b(?:resident|nodata)\b'
+      scope: storage.modifier.directive.asm.x86_64 variable.parameter.directive.asm.x86_64
+    - match: '(?i)\b(?:parm)\b'
+      scope: variable.parameter.directive.asm.x86_64
+    - include: main
 
   operators:
     - match: '[+\-*/]'
@@ -306,8 +402,6 @@ contexts:
         2: support.constant.asm.x86_64
 
   entities:
-    - match: '(?i)\b(?:private|public|stack)\b'
-      scope: storage.modifier
     - match: '(\$)(\w+)\b'
       scope: variable.other
       captures:
@@ -513,7 +607,6 @@ contexts:
           scope: variable.parameter.preprocessor.environment.unquoted.asm.x86_64
           pop: true
         - match: '(?=`|''|")'
-          scope: 
           set:
             - meta_scope: variable.parameter.preprocessor.environment.quoted.asm.x86_64
             - include: strings

@@ -32,10 +32,10 @@
 
  section .text
 ;^^^^^^^ support.function.directive
-;        ^^^^^ string.unquoted support.constant.section
+;        ^^^^^ entity.name.section string.unquoted support.constant.section
  segment .arm
 ;^^^^^^^ support.function.directive
-;        ^^^^ string.unquoted
+;        ^^^^ entity.name.section string.unquoted
 
 %macro  writefile 2+ 
         [section custom] 
@@ -188,3 +188,5 @@ CPU IA64
 ;                                        ^ - invalid.illegal
  warning all unknown-warning
 ;^^^^^^^^^^^^^^^^^^^^^^^^^^^ - support.function.directive - support.constant.directive
+
+
