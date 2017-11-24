@@ -25,3 +25,13 @@
      mov eax,[nosplit eax]       ; eax as base register 
      mov eax,[nosplit eax*1]     ; eax as index register
 
+{k7}
+{z}
+{rn-sae}
+{ru-sae}
+{rd-sae}
+{rz-sae}
+{1to8}
+{1to16}
+{sae}
+{k1}
