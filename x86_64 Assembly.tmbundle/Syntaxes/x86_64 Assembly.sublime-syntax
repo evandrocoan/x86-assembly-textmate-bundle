@@ -30,6 +30,9 @@ contexts:
   pop:
     - match: '(?=.|$)'
       pop: true
+  pop-if-not-whitespace:
+    - match: '(?=\S)'
+      set: pop
 
   main:
     - include: comments
@@ -177,7 +180,7 @@ contexts:
   directives:
     - match: '(?i)\b(?:ideal|jumps|p[345]86|end)\b'
       scope: invalid.deprecated.tasm.asm.x86_64
-    - match: '(?i)\b(?:bits|use(?:16|32|64)|org|uppercase)\b'
+    - match: '(?i)\b(?:bits|use(?:16|32|64)|org|uppercase|safeseh)\b'
       scope: support.function.directive.asm.x86_64
     - match: '(?i)\b(default)(?:\s+(rel|abs|(?:no)?bnd))?\b'
       captures:
@@ -195,7 +198,7 @@ contexts:
       scope: support.function.directive.asm.x86_64
     - match: '(?i)import\b'
       scope: support.function.directive.asm.x86_64
-      set:
+      push:
         - match: '{{valid_identifier}}'
           scope: entity.name.function.asm.x86_64
           set:
@@ -209,16 +212,20 @@ contexts:
                     - match: '{{valid_identifier}}'
                       scope: invalid.illegal.asm.x86_64
                     - include: line-continuation
+                    - include: pop-if-not-whitespace
                     - include: line-ending
                 - include: line-continuation
+                - include: pop-if-not-whitespace
                 - include: line-ending
             - include: line-continuation
+            - include: pop-if-not-whitespace
             - include: line-ending
         - include: line-continuation
+        - include: pop-if-not-whitespace
         - include: line-ending
     - match: '(?i)export\b'
       scope: support.function.directive.asm.x86_64
-      set:
+      push:
         - match: '{{valid_identifier}}'
           scope: entity.name.constant.asm.x86_64
           set:
@@ -226,26 +233,30 @@ contexts:
               scope: variable.function.asm.x86_64
               set: export-parameters
             - include: line-continuation
+            - include: pop-if-not-whitespace
             - include: line-ending
         - include: line-continuation
+        - include: pop-if-not-whitespace
         - include: line-ending
     - match: '(?i)\bcpu\b'
       scope: support.function.directive.asm.x86_64
       push:
-        - include: line-continuation
-        - include: line-ending
         - match: '(?i)\b(?:(?:80|[1-6])86|pentium|ppro|p[234]|katmai|willamette|prescott|(?:x|ia)64)\b'
           scope: support.constant.directive.asm.x86_64
           pop: true
+        - include: line-continuation
+        - include: pop-if-not-whitespace
+        - include: line-ending
         - include: main
     - match: '(?i)\bfloat\b'
       scope: support.function.directive.asm.x86_64
       push:
-        - include: line-continuation
-        - include: line-ending
         - match: '(?i)\b(?:(?:no)?daz|near|up|down|zero|default)\b'
           scope: support.constant.directive.asm.x86_64
           pop: true
+        - include: line-continuation
+        - include: pop-if-not-whitespace
+        - include: line-ending
         - include: main
     - match: '(?i)(\[)\s*(warning)\b'
       captures:
@@ -287,13 +298,11 @@ contexts:
         - include: line-continuation
         - include: line-ending
   section-parameters:
-    - include: line-continuation
-    - include: line-ending
     - match: '='
       scope: keyword.operator.assignment.asm.x86_64
     - match: '(?i)\b(?:(?:v)?start|align|absolute)\b'
       scope: variable.parameter.directive.asm.x86_64
-    - match: '(?i)\b(?:(?:prog|no)bits|private|public|common|stack)\b'
+    - match: '(?i)\b(?:(?:prog|no)bits|private|public|common|stack|code|text|data|bss|rdata|info)\b'
       scope: storage.modifier.directive.asm.x86_64 variable.parameter.directive.asm.x86_64
     - match: '(?i)\b(?:(?:v)?follows)\b'
       scope: variable.parameter.directive.asm.x86_64
@@ -313,9 +322,11 @@ contexts:
           pop: true
         - include: line-continuation
         - include: line-ending
+    - include: line-continuation
+    - include: line-ending
     - include: main
   section-name:
-    - match: '(?:\.|\b)(?:text|bss|(?:ro)?data|code)\b'
+    - match: '(?:\.|\b)(?:text|bss|(?:ro?)?data|code)\b'
       scope: entity.name.section.asm.x86_64 string.unquoted.asm.x86_64 support.constant.section.asm.x86_64
       pop: true
     - match: '(?:\.|\b){{valid_identifier}}\b'
@@ -327,16 +338,18 @@ contexts:
         - include: strings
         - include: pop
     - include: line-continuation
+    - include: pop-if-not-whitespace
     - include: line-ending
   export-parameters:
-    - include: line-continuation
-    - include: line-ending
     - match: '='
       scope: keyword.operator.assignment.asm.x86_64
     - match: '(?i)\b(?:resident|nodata)\b'
       scope: storage.modifier.directive.asm.x86_64 variable.parameter.directive.asm.x86_64
     - match: '(?i)\b(?:parm)\b'
       scope: variable.parameter.directive.asm.x86_64
+    - include: primitive-directive-end
+    - include: line-continuation
+    - include: line-ending
     - include: main
 
   operators:
@@ -402,12 +415,16 @@ contexts:
         2: support.constant.asm.x86_64
 
   entities:
-    - match: '(\$)(\w+)\b'
-      scope: variable.other
+    - match: '\$@feat\.00\b'
+      scope: variable.language.sseh.asm.x86_64
+    - match: '(\$)(?:\w+)\b'
+      scope: variable.other.asm.x86_64
       captures:
-        1: punctuation.definition.variable
+        1: punctuation.definition.variable.asm.x86_64
+    - match: '\${3,}'
+      scope: invalid.illegal.variable.language.asm.x86_64
     - match: '\$'
-      scope: variable.language
+      scope: variable.language.asm.x86_64
  
   comments:
     - match: (?:(;)|(?:^|\s)(#)\s).*$
@@ -437,8 +454,6 @@ contexts:
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
       push:
         - meta_content_scope: meta.preprocessor.macro.asm.x86_64
-        - include: line-continuation
-        - include: line-ending
         - include: preprocessor-comments
         - match: '(?:{{valid_identifier}})(?=\()'
           scope: entity.name.function.preprocessor.asm.x86_64
@@ -449,6 +464,9 @@ contexts:
         - match: '{{valid_identifier}}'
           scope: entity.name.constant.preprocessor.asm.x86_64
           set: preprocessor-macro-definition
+        - include: line-continuation
+        - include: pop-if-not-whitespace
+        - include: line-ending
     - match: '^\s*((%)(?:include|depend))\b'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.import.preprocessor.asm.x86_64
@@ -563,9 +581,9 @@ contexts:
       scope: invalid.illegal.unexpected-end-of-line.asm.x86_64
   preprocessor-macro-definition:
     - meta_content_scope: meta.preprocessor.macro.asm.x86_64
+    - include: preprocessor-comments
     - include: line-continuation
     - include: line-ending
-    - include: preprocessor-comments
     - include: main
   preprocessor-macro-indirection:
     - match: '((%)(\[))'
@@ -636,8 +654,6 @@ contexts:
     - include: preprocessor-conditions-parity
   preprocessor-conditions-constant:
     - meta_content_scope: meta.preprocessor.asm.x86_64
-    - include: line-continuation
-    - include: line-ending
     - match: '(?:{{valid_identifier}})(?=\()'
       scope: entity.name.constant.preprocessor.asm.x86_64
       set:
@@ -647,6 +663,9 @@ contexts:
     - match: '{{valid_identifier}}\b'
       scope: meta.preprocessor.asm.x86_64 entity.name.constant.preprocessor.asm.x86_64
       pop: true
+    - include: line-continuation
+    - include: pop-if-not-whitespace
+    - include: line-ending
     - include: main
   preprocessor-conditions-content-block:
     - meta_content_scope: meta.block.preprocessor.asm.x86_64
@@ -698,8 +717,6 @@ contexts:
       push: preprocessor-macro-arguments-signature
   preprocessor-macro-arguments-signature:
     - meta_scope: meta.preprocessor.asm.x86_64
-    - include: line-continuation
-    - include: line-ending
     - include: preprocessor-comments
     - match: '({{valid_identifier}})(?:\s+(?:(\d+(?:(-)(?:\d+|\*))?)(\+)?(\.nolist\b)?))'
       captures:
@@ -709,6 +726,9 @@ contexts:
         4: storage.modifier.preprocessor.greedy.asm.x86_64
         5: storage.modifier.preprocessor.listing.asm.x86_64
       pop: true
+    - include: line-continuation
+    - include: pop-if-not-whitespace
+    - include: line-ending
   # multi-line macro
   preprocessor-macro-multiline:
     - match: '^\s*((%)i?macro)\b'
@@ -737,14 +757,16 @@ contexts:
       captures:
         1: invalid.illegal.meta.preprocessor.asm.x86_64 keyword.control.import.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
-  preprocessor-macro-definition-multiline-with-parameters:
-    - meta_content_scope: meta.preprocessor.macro.asm.x86_64
+  preprocessor-macro-parameter:
     - match: '((%)(\-?\d+))'
       captures:
         1: meta.preprocessor.asm.x86_64
         2: punctuation.definition.variable.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         3: variable.other.preprocessor.asm.x86_64
+  preprocessor-macro-definition-multiline-with-parameters:
+    - meta_content_scope: meta.preprocessor.macro.asm.x86_64
     - include: preprocessor-comments
+    - include: preprocessor-macro-parameter
     - include: preprocessor-macro-indirection
     - include: preprocessor-macro-conditions-multiline
     - include: preprocessor-macro-definition-multiline
@@ -783,12 +805,32 @@ contexts:
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.import.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
-      set: preprocessor-macro-definition-inside-multiline
+      set: preprocessor-macro-definition-multiline-with-parameters
     - match: '^\s*((%)(?:pathsearch))\b'
       captures:
         1: meta.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
-      set: [preprocessor-macro-definition-inside-multiline, preprocessor-conditions-constant]
+      set: [preprocessor-macro-definition-multiline-with-parameters, preprocessor-conditions-constant]
+    - match: '^\s*((%)x?i?define)\b'
+      captures:
+        1: meta.preprocessor.macro.asm.x86_64 keyword.control.import.preprocessor.asm.x86_64
+        2: punctuation.definition.keyword.preprocessor.asm.x86_64
+      push:
+        - meta_content_scope: meta.preprocessor.macro.asm.x86_64
+        - include: preprocessor-comments
+        - match: '(?:{{valid_identifier}})(?=\()'
+          scope: entity.name.function.preprocessor.asm.x86_64
+          set:
+            - match: '\('
+              scope: punctuation.section.group.begin.asm.x86_64
+              set: preprocessor-macro-params
+        - match: '{{valid_identifier}}'
+          scope: entity.name.constant.preprocessor.asm.x86_64
+          set: preprocessor-macro-definition-inside-multiline
+        - include: line-continuation
+        - include: pop-if-not-whitespace
+        - include: line-ending
+
     - include: preprocessor-macro-indirection
     - include: preprocessor-conditions
     - include: main
@@ -820,7 +862,8 @@ contexts:
     - include: preprocessor-macro-definition-multiline-with-parameters
   preprocessor-macro-definition-inside-multiline:
     - meta_content_scope: meta.preprocessor.macro.asm.x86_64
-    - include: preprocessor-macro-definition-multiline-with-parameters
+    - include: preprocessor-macro-parameter
+    - include: preprocessor-macro-definition
 
   strings: # Character strings: http://www.nasm.us/doc/nasmdoc3.html#section-3.4.2
     - match: '`'

@@ -1,5 +1,11 @@
 ; SYNTAX TEST "Packages/User/x86_64 Assembly.tmbundle/Syntaxes/x86_64 Assembly.sublime-syntax"
 
+ $ $$ $$$ $$$$
+;^ variable.language
+;  ^^ variable.language
+;     ^^^ invalid.illegal
+;         ^^^^ invalid.illegal
+
 1|1
 ;^ keyword.operator
 2^2

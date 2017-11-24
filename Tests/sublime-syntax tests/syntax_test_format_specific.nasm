@@ -129,6 +129,10 @@ segment code private align=16 class=my_class overlay=my_overlay ABSOLUTE=0xB800 
 ;                               ^^^^ variable.parameter.directive
 ;                                       ^^^^^^ storage.modifier.directive variable.parameter.directive
 ;                                              ^^^^^ comment.line
+%imacro mymacro 1+
+    [export %1]
+;   ^^^^^^^^^^^ meta.preprocessor.macro
+%endmacro
 
  ..start
 ;^^^^^^^ support.constant
@@ -151,3 +155,51 @@ common  foo     10:wrt dgroup
 common  bar     16:far 2:wrt data 
 common  baz     24:wrt data:6
 
+section .text code text data bss rdata info align=16
+;             ^^^^ storage.modifier.directive variable.parameter.directive
+;                  ^^^^ storage.modifier.directive variable.parameter.directive
+;                       ^^^^ storage.modifier.directive variable.parameter.directive
+;                            ^^^ storage.modifier.directive variable.parameter.directive
+;                                ^^^^^ storage.modifier.directive variable.parameter.directive
+;                                      ^^^^ storage.modifier.directive variable.parameter.directive
+;                                           ^^^^^ variable.parameter.directive
+section .text    code  align=16 
+section .data    data  align=4 
+section .rdata   rdata align=8
+;       ^^^^^^ entity.name.section string.unquoted support.constant.section
+section .bss     bss   align=4
+
+ $@feat.00 equ 1
+;^^^^^^^^^ variable.language.sseh
+ safeseh myhandler
+;^^^^^^^ support.function.directive
+
+section .text 
+extern  _MessageBoxA@16 
+%if     __NASM_VERSION_ID__ >= 0x02030000 
+safeseh handler         ; register handler as "safe handler" 
+%endif 
+handler: 
+        push    DWORD 1 ; MB_OKCANCEL 
+        push    DWORD caption 
+        push    DWORD text 
+        push    DWORD 0 
+        call    _MessageBoxA@16 
+        sub     eax,1   ; incidentally suits as return value 
+                        ; for exception handler 
+        ret 
+global  _main 
+_main: 
+        push    DWORD handler 
+        push    DWORD [fs:0] 
+        mov     DWORD [fs:0],esp ; engage exception handler 
+        xor     eax,eax 
+        mov     eax,DWORD[eax]   ; cause exception 
+        pop     DWORD [fs:0]     ; disengage exception handler 
+        add     esp,4 
+        ret 
+text:   db      'OK to rethrow, CANCEL to generate core dump',0 
+caption:db      'SEGV',0 
+
+section .drectve info 
+        db      '/defaultlib:user32.lib /defaultlib:msvcrt.lib '

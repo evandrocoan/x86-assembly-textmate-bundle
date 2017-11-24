@@ -161,4 +161,81 @@ keyposReturn    equ     $-keytab
 ;            ^^^ variable.parameter.preprocessor
 ;                ^^^^^^^ storage.modifier
 not_a_macro
+;<- - meta.preprocessor
 
+%imacro align 1-2+.nolist nop ;comment
+    sectalign %1
+    times (((%1) - (($-$$) % (%1))) % (%1)) %2
+;                    ^^^^ - invalid.illegal
+;                    ^ variable.language
+;                      ^^ variable.language
+
+%endmacro
+{}
+;<- - meta
+%imacro istruc 1.nolist
+    %push
+        %define %$strucname %1
+;               ^^^^^^^^^^^^^^ - invalid.illegal
+        %$strucstart:
+%endmacro
+{}
+;<- - meta
+%imacro absolute 1+.nolist
+    %define __SECT__ [absolute %1]
+;           ^^^^^^^^^^^^^^^^^^^^^^ - invalid.illegal
+    __SECT__
+%endmacro
+{}
+;<- - meta
+%imacro section 1+.nolist
+    %define __SECT__ [section %1] ; broken :(
+;           ^^^^^^^^^^^^^^^^^^^^^ - invalid.illegal
+    __SECT__
+%endmacro
+{}
+;<- - meta
+%imacro cpu 1+.nolist
+    [cpu %1]
+;   ^^^^^^^^ - invalid.illegal
+%endmacro
+{}
+;<- - meta
+%imacro arg 0-1 1
+    %assign %$arg %1+%$arg
+;   ^^^^^^^^^^^^^^^^^^^^^^ - invalid.illegal
+%endmacro
+{}
+;<- - meta
+%imacro float 1-*.nolist
+    %rep %0
+        [float %1]
+        %ifidni %1,daz
+            %define __FLOAT_DAZ__ daz
+        %elifidni %1,nodaz
+;       ^^^^^^^^^^^^^^^^^^ - invalid.illegal
+            %define __FLOAT_DAZ__ nodaz
+        %elifidni %1,near
+;       ^^^^^^^^^^^^^^^^^ - invalid.illegal
+            %define __FLOAT_ROUND__ near
+        %elifidni %1,up
+;       ^^^^^^^^^^^^^^^ - invalid.illegal
+            %define __FLOAT_ROUND__ up
+        %elifidni %1,down
+;       ^^^^^^^^^^^^^^^^^ - invalid.illegal
+            %define __FLOAT_ROUND__ down
+        %elifidni %1,zero
+;       ^^^^^^^^^^^^^^^^^ - invalid.illegal
+            %define __FLOAT_ROUND__ zero
+        %elifidni %1,default
+;       ^^^^^^^^^^^^^^^^^^^^ - invalid.illegal
+            %define __FLOAT_DAZ__ nodaz
+            %define __FLOAT_ROUND__ near
+        %endif
+;       ^^^^^^ - invalid.illegal
+        %rotate 1
+    %endrep
+;   ^^^^^^^ - invalid.illegal
+%endmacro
+{}
+;<- - meta
