@@ -223,10 +223,12 @@ dq $ff
 ;  ^^^ - constant.numeric
 
 dq .0
-;  ^^ invalid.illegal.constant.numeric
+;  ^^ - constant.numeric
+;   ^ entity.name.constant
 dq -.0
+;   ^^ - constant.numeric
 ;  ^ keyword.operator
-;   ^^ invalid.illegal.constant.numeric
+;    ^ entity.name.constant
    .e10
 ;   ^^^ entity.name.constant
    .e-10

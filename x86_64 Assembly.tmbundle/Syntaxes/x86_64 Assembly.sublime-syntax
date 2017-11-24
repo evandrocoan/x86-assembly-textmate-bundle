@@ -69,8 +69,8 @@ contexts:
       scope: constant.numeric.decimal.floating-point.asm.x86_64
     - match: '(?i)\b{{num_dec}}{{num_dec_exp}}\b'
       scope: constant.numeric.decimal.floating-point.asm.x86_64
-    - match: '(?i)\.{{num_dec}}{{num_dec_exp}}?\b'
-      scope: invalid.illegal.constant.numeric.decimal.floating-point.asm.x86_64
+    #- match: '(?i)\.{{num_dec}}{{num_dec_exp}}?\b'
+    #  scope: invalid.illegal.constant.numeric.decimal.floating-point.asm.x86_64
     - match: '(?i)\b{{num_dec}}p{{num_dec}}?\b'
       scope: constant.numeric.decimal.packed-bcd.asm.x86_64
     # hex
@@ -106,6 +106,11 @@ contexts:
         1: punctuation.separator.asm.x86_64 storage.modifier.asm.x86_64
         2: entity.name.constant.asm.x86_64
         3: punctuation.separator.asm.x86_64
+    - match: '(\.)([0-9]+{{identifier_body}})(?:(\:)?|\b)'
+      captures:
+        1: punctuation.separator.asm.x86_64 storage.modifier.asm.x86_64
+        2: entity.name.constant.asm.x86_64
+        3: punctuation.separator.asm.x86_64
     - match: '(?:(\.)?|\b)([0-9$@~]{{identifier_body}})(?:(\:)?|\b)'
       captures:
         1: punctuation.separator.asm.x86_64 storage.modifier.asm.x86_64
@@ -114,6 +119,7 @@ contexts:
     - match: '((%)(\d+))'
       captures:
         1: invalid.illegal.meta.preprocessor.asm.x86_64
+        #1: meta.preprocessor.asm.x86_64
         2: punctuation.definition.variable.preprocessor.asm.x86_64 keyword.control.preprocessor.asm.x86_64
         3: variable.other.preprocessor.asm.x86_64
     - match: '((%%)({{valid_identifier}})(?:(\:)?|\b))'
@@ -137,6 +143,18 @@ contexts:
       scope: storage.modifier.prefix.asm.x86_64
     - match: '(?i)\b(?:rep(?:n?[ez])?|lock|xacquire|xrelease|(?:no)?bnd)\b'
       scope: storage.modifier.prefix.asm.x86_64
+    - match: '{(vex[23]|evex)}'
+      captures:
+        1: storage.modifier.prefix.vex.asm.x86_64
+    - match: '{(k[1-7])}'
+      captures:
+        1: storage.modifier.opmask.asm.x86_64
+    - match: '{(1to(?:8|16))}'
+      captures:
+        1: storage.modifier.precision.asm.x86_64
+    - match: '{(z|(?:r[nudz]-)?sae)}'
+      captures:
+        1: storage.modifier.rounding.asm.x86_64
 
   support:
     # http://www.nasm.us/doc/nasmdoc7.html#section-7.4.6
@@ -249,6 +267,7 @@ contexts:
           scope: storage.modifier.directive.asm.x86_64 variable.parameter.directive.asm.x86_64
         - include: line-continuation
         - include: line-ending
+        - include: preprocessor-macro-parameter
         - include: main
     - match: '(?i)extern\b'
       scope: support.function.directive.asm.x86_64
@@ -259,6 +278,7 @@ contexts:
           scope: storage.modifier.directive.asm.x86_64 variable.parameter.directive.asm.x86_64
         - include: line-continuation
         - include: line-ending
+        - include: preprocessor-macro-parameter
         - include: main
     - match: '(?i)library\b'
       scope: support.function.directive.asm.x86_64
@@ -579,7 +599,7 @@ contexts:
         - meta_content_scope: meta.preprocessor.macro.asm.x86_64 string.unquoted.asm.x86_64
         - include: preprocessor-macro-indirection
         - include: line-ending
-    - match: '^\s*((%)(?:warning|error|fatal))(?:\s|$)'
+    - match: '^\s*((%)(?:warning|error|fatal|pragma))(?=\s|$)'
       captures:
         1: meta.preprocessor.macro.asm.x86_64 keyword.control.preprocessor.assign.asm.x86_64
         2: punctuation.definition.keyword.preprocessor.asm.x86_64
@@ -587,8 +607,8 @@ contexts:
       push:
         - meta_content_scope: meta.preprocessor.macro.asm.x86_64 string.unquoted.asm.x86_64
         - include: strings
-        - include: line-ending
         - include: preprocessor-macro-indirection
+        - include: line-ending
   preprocessor-macro-params-illegal:
     - meta_scope: invalid.illegal.asm.x86_64
     - include: preprocessor-macro-params
@@ -959,31 +979,33 @@ contexts:
       pop: true
 
   registers:
-    - match: '(?i)\b%?([abcd][hl]|[er]?[abcd]x|[er]?(di|si|bp|sp)|dil|sil|bpl|spl|r(8|9|1[0-5])[bdlw]?)\b'
+    - match: '(?i)\b(?:[abcd][hl]|[er]?[abcd]x|[er]?(?:di|si|bp|sp)|dil|sil|bpl|spl|r(?:8|9|1[0-5])[bdlw]?)\b'
       scope: constant.language.register.general-purpose.asm.x86_64
-    - match: '(?i)\b%?([cdefgs]s)\b'
+    - match: '(?i)\b(?:[cdefgs]s)\b'
       scope: constant.language.register.segment.asm.x86_64
-    - match: '(?i)\b%?([er]?flags)\b'
+    - match: '(?i)\b(?:[er]?flags)\b'
       scope: constant.language.register.flags.asm.x86_64
-    - match: '(?i)\b%?([er]?ip)\b'
+    - match: '(?i)\b(?:[er]?ip)\b'
       scope: constant.language.register.instruction-pointer.asm.x86_64
-    - match: '(?i)\b%?(cr[02-4])\b'
+    - match: '(?i)\b(?:cr[02-4])\b'
       scope: constant.language.register.control.asm.x86_64
-    - match: '(?i)\b%?((mm|st|fpr)[0-7])\b'
+    - match: '(?i)\b(?:(?:mm|st|fpr)[0-7])\b'
       scope: constant.language.register.mmx.asm.x86_64
-    - match: '(?i)\b%?([xy]mm([0-9]|1[0-5])|mxcsr)\b'
+    - match: '(?i)\b(?:[xy]mm(?:[0-9]|1[0-5])|mxcsr)\b'
       scope: constant.language.register.sse_avx.asm.x86_64
-    - match: '(?i)\b%?(zmm([12]?[0-9]|30|31))\b'
+    - match: '(?i)\b(?:zmm(?:[12]?[0-9]|30|31))\b'
       scope: constant.language.register.avx512.asm.x86_64
-    - match: '(?i)\b%?(bnd([0-3]|cfg[su]|status))\b'
+    - match: '(?i)\b(?:bnd(?:[0-3]|cfg[su]|status))\b'
       scope: constant.language.register.memory-protection.asm.x86_64
-    - match: '(?i)\b%?(([gil]dt)r?|tr)\b'
+    - match: '(?i)\b(?:(?:[gil]dt)r?|tr)\b'
       scope: constant.language.register.system-table-pointer.asm.x86_64
-    - match: '(?i)\b%?(dr[0-367])\b'
+    - match: '(?i)\b(?:dr[0-367])\b'
       scope: constant.language.register.debug.asm.x86_64
-    - match: '(?i)\b%?(cr8|dr([89]|1[0-5])|efer|tpr|syscfg)\b'
+    - match: '(?i)\b(?:cr8|dr(?:[89]|1[0-5])|efer|tpr|syscfg)\b'
       scope: constant.language.register.amd.asm.x86_64
-    - match: '(?i)\b%?(db[0-367]|t[67]|tr[3-7]|st)\b'
+    - match: '(?i)\b(?:db[0-367]|t[67]|tr[3-7]|st)\b'
+      scope: invalid.deprecated.constant.language.register.asm.x86_64
+    - match: '(?i)\b[xy]mm(?:1[6-9]|2[0-9]|3[01])\b'
       scope: invalid.deprecated.constant.language.register.asm.x86_64
 
   mnemonics: # see valid.asm for references

@@ -8,6 +8,8 @@ la_$#@~.?bel_?
 la_$#@~.?bel_?:
 .local_label
 .local_label:
+.123
+.1234:
 
   label
 ; ^^^^^ entity.name.constant
@@ -31,15 +33,20 @@ la_$#@~.?bel_?:
 ; ^ punctuation.separator storage.modifier
 ;  ^^^^^^^^^^^ entity.name.constant
 ;             ^ punctuation.separator
-
   ..@special_label
 ; ^^^ punctuation.separator storage.modifier
 ;    ^^^^^^^^^^^^^ entity.name.constant
-
   ..@special_label:
 ; ^^^ punctuation.separator storage.modifier
 ;    ^^^^^^^^^^^^^ entity.name.constant
 ;                 ^ punctuation.separator
+  .123
+; ^ punctuation.separator storage.modifier
+;  ^^^ entity.name.constant
+  .123:
+; ^ punctuation.separator storage.modifier
+;  ^^^ entity.name.constant
+;     ^ punctuation.separator
 
   ..start
 ; ^^^^^^^ support.constant
