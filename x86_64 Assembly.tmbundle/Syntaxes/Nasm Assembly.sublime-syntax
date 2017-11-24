@@ -436,50 +436,43 @@ contexts:
       scope: operator.separator.asm.x86_64
 
   structs:
-    - match: '^\s*(struc)\b'
-      captures:
-        1: support.function.asm.x86_64 meta.struct.asm.x86_64
+    - match: '(?i)\bstruc\b'
+      scope: support.function.asm.x86_64 meta.struct.asm.x86_64
       push:
         - meta_content_scope: meta.struct.asm.x86_64.1
         - match: '{{valid_identifier}}'
           scope: entity.name.struct.asm.x86_64
           set:
             - meta_scope: meta.struct.asm.x86_64
-            - match: '^\s*(endstruc)\b'
-              captures:
-                1: support.function.asm.x86_64 meta.struct.asm.x86_64
+            - match: '(?i)\bendstruc\b'
+              scope: support.function.asm.x86_64 meta.struct.asm.x86_64
               pop: true
             - include: main
         - match: '\w'
           scope: invalid.illegal.entity.name.struct.asm.x86_64
-    - match: '^\s*(endstruc)\b'
-      captures:
-        1: invalid.illegal.support.function.asm.x86_64 meta.struct.asm.x86_64
-    - match: '^\s*(istruc)\b'
-      captures:
-        1: support.function.asm.x86_64 meta.struct.asm.x86_64
+    - match: '(?i)\bendstruc\b'
+      scope: invalid.illegal.support.function.asm.x86_64 meta.struct.asm.x86_64
+    - match: '(?i)\bistruc\b'
+      scope: support.function.asm.x86_64 meta.struct.asm.x86_64
       push:
         - meta_content_scope: meta.struct.asm.x86_64.1
         - match: '{{valid_identifier}}'
           scope: variable.other.asm.x86_64
           set:
             - meta_scope: meta.struct.asm.x86_64
-            - match: '^\s*(at)\b'
-              captures:
-                1: support.function.asm.x86_64 meta.struct.asm.x86_64
-            - match: '^\s*(iend)\b'
-              captures:
-                1: support.function.asm.x86_64 meta.struct.asm.x86_64
+            - match: '(?i)\bat\b'
+              scope: support.function.asm.x86_64 meta.struct.asm.x86_64
+            - match: '(?i)\biend\b'
+              scope: support.function.asm.x86_64 meta.struct.asm.x86_64
               pop: true
             - include: main
         - match: '\w'
           scope: invalid.illegal.variable.struct.asm.x86_64
-    - match: '^\s*(iend)\b'
-      captures:
-        1: invalid.illegal.support.function.asm.x86_64 meta.struct.asm.x86_64
-    - match: '\balignb?\b'
+    - match: '(?i)\biend\b'
+      scope: invalid.illegal.support.function.asm.x86_64 meta.struct.asm.x86_64
+    - match: '(?i)\balignb?\b'
       scope: support.function.asm.x86_64
-    - match: '\b(SECTALIGN)\s+(ON|OFF)?'
+    - match: '(?i)\b(sectalign)\s+(on|off)?'
       captures:
         1: support.function.asm.x86_64
         2: support.constant.asm.x86_64
