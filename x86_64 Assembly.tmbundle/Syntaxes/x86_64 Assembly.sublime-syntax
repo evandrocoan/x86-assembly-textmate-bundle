@@ -1185,7 +1185,7 @@ contexts:
       scope: keyword.operator.word.mnemonic.avx.promoted.supplemental.mov
     - match: '(?i)\b(vp(insr[bdqw]|sll(dq|[dqw])|srl(dq)))\b'
       scope: keyword.operator.word.mnemonic.avx.promoted.simd-integer
-    - match: '(?i)\b(vp(sra[dw]|srl[dqw]))\b'
+    - match: '(?i)\b(vp(sra[dwq]|srl[dqw]))\b'
       scope: keyword.operator.word.mnemonic.avx.promoted.shift-and-rotate
     - match: '(?i)\b(vblendv?p[ds])\b'
       scope: keyword.operator.word.mnemonic.avx.promoted.packed-blending
