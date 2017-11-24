@@ -166,7 +166,7 @@ section .text code text data bss rdata info align=16
 section .text    code  align=16 
 section .data    data  align=4 
 section .rdata   rdata align=8
-;       ^^^^^^ entity.name.section string.unquoted support.constant.section
+;       ^^^^^^ support.constant.section
 section .bss     bss   align=4
 
  $@feat.00 equ 1
@@ -203,3 +203,216 @@ caption:db      'SEGV',0
 
 section .drectve info 
         db      '/defaultlib:user32.lib /defaultlib:msvcrt.lib '
+
+        lea     rbx,[rel dsptch] 
+        mov     eax,[rbx+rax*4] 
+        sub     rbx,dsptch wrt ..imagebase 
+        add     rbx,rax 
+        jmp     rbx 
+        ... 
+dsptch: dd      case0 wrt ..imagebase 
+        dd      case1 wrt ..imagebase
+
+        dd      label wrt ..imagebase           ; ok 
+        dq      label wrt ..imagebase           ; bad 
+        mov     eax,label wrt ..imagebase       ; ok 
+        mov     rax,label wrt ..imagebase       ; bad
+
+default rel 
+section .text 
+extern  MessageBoxA 
+handler: 
+        sub     rsp,40 
+        mov     rcx,0 
+        lea     rdx,[text] 
+        lea     r8,[caption] 
+        mov     r9,1    ; MB_OKCANCEL 
+        call    MessageBoxA 
+        sub     eax,1   ; incidentally suits as return value 
+                        ; for exception handler 
+        add     rsp,40 
+        ret 
+global  main 
+main: 
+        xor     rax,rax 
+        mov     rax,QWORD[rax]  ; cause exception 
+        ret 
+main_end: 
+text:   db      'OK to rethrow, CANCEL to generate core dump',0 
+caption:db      'SEGV',0 
+
+section .pdata  rdata align=4 
+;       ^^^^^^ support.constant.section
+        dd      main wrt ..imagebase 
+        dd      main_end wrt ..imagebase 
+        dd      xmain wrt ..imagebase 
+section .xdata  rdata align=8 
+;       ^^^^^^ support.constant.section
+xmain:  db      9,0,0,0 
+        dd      handler wrt ..imagebase 
+section .drectve info 
+        db      '/defaultlib:user32.lib /defaultlib:msvcrt.lib '
+
+function: 
+        mov     rax,rsp         ; copy rsp to volatile register 
+        push    r15             ; save non-volatile registers 
+        push    rbx 
+        push    rbp 
+        mov     r11,rsp         ; prepare variable stack frame 
+        sub     r11,rcx 
+        and     r11,-64 
+        mov     QWORD[r11],rax  ; check for exceptions 
+        mov     rsp,r11         ; allocate stack frame 
+        mov     QWORD[rsp],rax  ; save original rsp value 
+magic_point: 
+        ... 
+        mov     r11,QWORD[rsp]  ; pull original rsp value 
+        mov     rbp,QWORD[r11-24] 
+        mov     rbx,QWORD[r11-16] 
+        mov     r15,QWORD[r11-8] 
+        mov     rsp,r11         ; destroy frame 
+        ret
+
+section .text
+;       ^^^^^  support.constant.section
+section .rodata
+;       ^^^^^^^  support.constant.section
+section .data
+;       ^^^^^  support.constant.section
+section .bss
+;       ^^^^  support.constant.section
+SECTION __TEXT
+;       ^^^^^^  support.constant.section
+SECTION __CONST
+;       ^^^^^^^  support.constant.section
+SECTION __DATA
+;       ^^^^^^  support.constant.section
+SECTION __BSS
+;       ^^^^^  support.constant.section
+section __text
+;       ^^^^^^  support.constant.section
+section __const
+;       ^^^^^^^  support.constant.section
+section __data
+;       ^^^^^^  support.constant.section
+section __bss
+;       ^^^^^  support.constant.section
+
+section macho data text mixed bss zerofill no_dead_strip live_support strip_static_syms align=16
+;             ^^^^ storage.modifier.directive variable.parameter.directive
+;                  ^^^^ storage.modifier.directive variable.parameter.directive
+;                       ^^^^^ storage.modifier.directive variable.parameter.directive
+;                             ^^^ storage.modifier.directive variable.parameter.directive
+;                                 ^^^^^^^^ storage.modifier.directive variable.parameter.directive
+;                                          ^^^^^^^^^^^^^ storage.modifier.directive variable.parameter.directive
+;                                                        ^^^^^^^^^^^^ storage.modifier.directive variable.parameter.directive
+;                                                                     ^^^^^^^^^^^^^^^^^ storage.modifier.directive variable.parameter.directive
+;                                                                                       ^^^^^ variable.parameter.directive
+
+
+
+ ..tlvp ; is used to specify access to thread-local storage.
+;^^^^^^ support.constant
+ ..gotpcrel ; is used to specify references to the Global Offset Table. The GOT is supported in the macho64 format only.
+;^^^^^^^^^^ support.constant
+
+ subsections_via_symbols
+;^^^^^^^^^^^^^^^^^^^^^^^ support.function.directive.macho
+ no_dead_strip
+;^^^^^^^^^^^^^ support.function.directive.macho
+
+ osabi
+;^^^^^ support.function.directive
+
+section elf alloc exec write progbits align=8 tls 
+;           ^^^^^ storage.modifier.directive variable.parameter.directive
+;                 ^^^^ storage.modifier.directive variable.parameter.directive
+;                      ^^^^^ storage.modifier.directive variable.parameter.directive
+;                            ^^^^^^^^ storage.modifier.directive variable.parameter.directive
+;                                     ^^^^^ variable.parameter.directive
+;                                             ^^^ storage.modifier.directive variable.parameter.directive
+section elf noalloc noexec nowrite nobits
+;           ^^^^^^^ storage.modifier.directive variable.parameter.directive
+;                   ^^^^^^ storage.modifier.directive variable.parameter.directive
+;                          ^^^^^^^ storage.modifier.directive variable.parameter.directive
+;                                  ^^^^^^ storage.modifier.directive variable.parameter.directive
+
+section .text    progbits  alloc   exec    nowrite  align=16 
+;       ^^^^^ support.constant.section
+section .rodata  progbits  alloc   noexec  nowrite  align=4 
+;       ^^^^^^^ support.constant.section
+section .lrodata progbits  alloc   noexec  nowrite  align=4 
+;       ^^^^^^^^ support.constant.section
+section .data    progbits  alloc   noexec  write    align=4 
+;       ^^^^^ support.constant.section
+section .ldata   progbits  alloc   noexec  write    align=4 
+;       ^^^^^^ support.constant.section
+section .bss     nobits    alloc   noexec  write    align=4 
+;       ^^^^ support.constant.section
+section .lbss    nobits    alloc   noexec  write    align=4 
+;       ^^^^^ support.constant.section
+section .tdata   progbits  alloc   noexec  write    align=4    tls 
+;       ^^^^^^ support.constant.section
+section .tbss    nobits    alloc   noexec  write    align=4    tls 
+;       ^^^^^ support.constant.section
+section .comment progbits  noalloc noexec  nowrite  align=1 
+;       ^^^^^^^^ support.constant.section
+section other    progbits  alloc   noexec  nowrite  align=1
+;       ^^^^^ - support.constant.section
+
+ ..gotpc
+;^^^^^^^ support.constant
+ ..gotoff
+;^^^^^^^^ support.constant
+ ..got
+;^^^^^ support.constant
+ ..plt
+;^^^^^ support.constant
+ ..sym
+;^^^^^ support.constant
+ _GLOBAL_OFFSET_TABLE_
+;^^^^^^^^^^^^^^^^^^^^^ support.constant.directive
+ __GLOBAL_OFFSET_TABLE_
+;^^^^^^^^^^^^^^^^^^^^^^ support.constant.directive
+func:   push    ebp 
+        mov     ebp,esp 
+        push    ebx 
+        call    .get_GOT 
+.get_GOT: 
+        pop     ebx 
+        add     ebx,_GLOBAL_OFFSET_TABLE_+$$-.get_GOT wrt ..gotpc 
+
+        ; the function body comes here 
+
+        mov     ebx,[ebp-4] 
+        mov     esp,ebp 
+        pop     ebp 
+        ret
+
+ ..tlsie
+;^^^^^^^ support.constant
+ ..gottpoff
+;^^^^^^^^^^ support.constant
+       mov  eax,[tid wrt ..tlsie] 
+       mov  [gs:eax],ebx
+
+       mov   rax,[rel tid wrt ..gottpoff] 
+       mov   rcx,[fs:rax]
+
+global   hashlookup:function, hashtable:data default internal hidden protected
+;                   ^^^^^^^^ storage.type.directive
+;                                       ^^^^ storage.type.directive
+;                                            ^^^^^^^ storage.modifier.directive variable.parameter.directive
+;                                                    ^^^^^^^^ storage.modifier.directive variable.parameter.directive
+;                                                             ^^^^^^ storage.modifier.directive variable.parameter.directive
+;                                                                    ^^^^^^^^^ storage.modifier.directive variable.parameter.directive
+
+global  hashtable:data (hashtable.end - hashtable)
+hashtable: 
+        db this,that,theother  ; some data here 
+.end:
+
+common  dwordarray 128:4
+[warning +gnu-elf-extensions]
+;         ^^^^^^^^^^^^^^^^^^ support.constant.directive.warning
+
