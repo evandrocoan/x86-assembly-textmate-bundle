@@ -691,6 +691,11 @@ retn|retf
 icebp
 int1
 smi
+int03			; Instead of INT3
+ud1			; No documented mnemonic for this one
+
+sqrtps xmm0,[ebx+10]	; SSE opcode
+paddsiw mm0,[ebx+10]	; Cyrix opcode with the same byte seq.
 
 ;====================================================================
 ;old samples

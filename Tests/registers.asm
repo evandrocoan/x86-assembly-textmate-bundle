@@ -6,8 +6,8 @@ r0l, r1l, r7l, r16l, r18l, r20l, r21l
 r0w, r1w, r7w, r16w, r18w, r20w, r21w
 r0d, r1d, r7d, r16d, r18d, r20d, r21d
 r0, r1, r7, r16, r18, r20, r21
-xmm, xmm01, xmm16, xmm20, xmm21
-ymm, ymm01, ymm16, ymm20, ymm21
+xmm, xmm01
+ymm, ymm01
 zmm, zmm01, zmm32, zmm40, zmm41
 dr4, dr5, dr16, dr21, dr25
 cr1, cr5, cr01, dtr
@@ -18,6 +18,11 @@ t6, t7, tr3, tr4, tr5
 
 ;legacy and compatibility?
 db0|db1|db2|db3|db6|db7|tr6|tr7|st
+
+;nasm aliases for zmm
+xmm16, xmm17, xmm18, xmm19, xmm20, xmm21, xmm22, xmm23, xmm24, xmm25, xmm26, xmm27, xmm28, xmm29, xmm30, xmm31
+ymm16, ymm17, ymm18, ymm19, ymm20, ymm21, ymm22, ymm23, ymm24, ymm25, ymm26, ymm27, ymm28, ymm29, ymm30, ymm31
+
 
 ;general purpose
 cl, dl, ah, bh, ch, dh

@@ -36,7 +36,7 @@ vpmovsxbw|vpmovsxbd|vpmovsxbq|vpmovsxwd|vpmovsxwq|vpmovsxdq
 vpmovzxbw|vpmovzxbd|vpmovzxbq|vpmovzxwd|vpmovzxwq|vpmovzxdq
 vpmuldq|vpmulhrsw|vpmulhuw|vpmulhw|vpmulld|vpmullw|vpmuludq
 vpor|vpsadbw|vpshufb|vpshufd|vpshufhw|vpshuflw|vpsignb|vpsignw|vpsignd
-vpslldq|vpsllw|vpslld|vpsllq|vpsraw|vpsrad|vpsrldq|vpsrlw|vpsrld|vpsrlq
+vpslldq|vpsllw|vpslld|vpsllq|vpsraw|vpsrad|vpsraq|vpsrldq|vpsrlw|vpsrld|vpsrlq
 vpsubb|vpsubw|vpsubd|vpsubq|vpsubsb|vpsubsw|vpsubusb|vpsubusw|vptest
 vpunpckhbw|vpunpckhwd|vpunpckhdq|vpunpckhqdq|vpunpcklbw|vpunpcklwd|vpunpckldq|vpunpcklqdq|vpxor
 
