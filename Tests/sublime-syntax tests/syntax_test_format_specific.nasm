@@ -416,3 +416,27 @@ common  dwordarray 128:4
 [warning +gnu-elf-extensions]
 ;         ^^^^^^^^^^^^^^^^^^ support.constant.directive.warning
 
+ library  mylib.rdl ;
+;^^^^^^^ support.function.directive
+;         ^^^^^^^^^ meta.path string.unquoted
+
+ module  mymodname
+;^^^^^^ support.function.directive
+;        ^^^^^^^^^ entity.name.namespace
+ module  $kernel.core
+;^^^^^^ support.function.directive
+;        ^^^^^^^^^^^^ entity.name.namespace
+
+global  sys_open:export proc data
+;                ^^^^^^ storage.type.directive
+;                       ^^^^ storage.modifier.directive variable.parameter.directive
+;                            ^^^^ storage.modifier.directive variable.parameter.directive
+
+    library $libc 
+    extern  _open:import 
+;                 ^^^^^^ storage.type.directive
+    extern  _printf:import proc 
+;                          ^^^^ storage.modifier.directive variable.parameter.directive
+    extern  _errno:import data
+;                         ^^^^ storage.modifier.directive variable.parameter.directive
+

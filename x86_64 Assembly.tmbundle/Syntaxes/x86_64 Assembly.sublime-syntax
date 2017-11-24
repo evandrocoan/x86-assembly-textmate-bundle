@@ -194,7 +194,7 @@ contexts:
       push: section-name
     - match: '\b(?:__SECT__|__NASMDEFSEG|_?_GLOBAL_OFFSET_TABLE_)\b'
       scope: support.constant.directive.asm.x86_64
-    - match: '(?i)\b(?:absolute|extern|common)\b'
+    - match: '(?i)\b(?:absolute|common)\b'
       scope: support.function.directive.asm.x86_64
     - match: '(?i)\b(?:subsections_via_symbols|no_dead_strip)\b'
       scope: support.function.directive.macho.asm.x86_64
@@ -243,13 +243,41 @@ contexts:
     - match: '(?i)global\b'
       scope: support.function.directive.asm.x86_64
       push:
-        - match: '(?<=\:)(?:function|data)\b'
+        - match: '(?<=\:)(?:function|data|export)\b'
           scope: storage.type.directive.asm.x86_64
-        - match: '\b(?:default|internal|hidden|protected)\b'
+        - match: '\b(?:default|internal|hidden|protected|proc|data)\b'
           scope: storage.modifier.directive.asm.x86_64 variable.parameter.directive.asm.x86_64
         - include: line-continuation
         - include: line-ending
         - include: main
+    - match: '(?i)extern\b'
+      scope: support.function.directive.asm.x86_64
+      push:
+        - match: '(?<=\:)(?:import)\b'
+          scope: storage.type.directive.asm.x86_64
+        - match: '\b(?:proc|data)\b'
+          scope: storage.modifier.directive.asm.x86_64 variable.parameter.directive.asm.x86_64
+        - include: line-continuation
+        - include: line-ending
+        - include: main
+    - match: '(?i)library\b'
+      scope: support.function.directive.asm.x86_64
+      push:
+        - match: '{{valid_identifier}}'
+          scope: meta.path.asm.x86_64 string.unquoted.asm.x86_64
+          pop: true
+        - include: line-continuation
+        - include: line-ending
+        - include: pop-if-not-whitespace
+    - match: '(?i)module\b'
+      scope: support.function.directive.asm.x86_64
+      push:
+        - match: '\$?{{valid_identifier}}'
+          scope: entity.name.namespace.asm.x86_64
+          pop: true
+        - include: line-continuation
+        - include: line-ending
+        - include: pop-if-not-whitespace
     - match: '(?i)\bcpu\b'
       scope: support.function.directive.asm.x86_64
       push:
