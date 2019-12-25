@@ -51,6 +51,7 @@ This is a TextMate/Sublime/VS Code/Atom bundle providing language support for x8
 search for **`X86Assembly`** and press <kbd>Enter</kbd>
 
 See also:
+
 1. [ITE - Integrated Toolset Environment](https://github.com/evandrocoan/ITE)
 1. [Package control docs](https://packagecontrol.io/docs/usage) for details.
 
